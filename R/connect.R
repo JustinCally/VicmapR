@@ -70,28 +70,63 @@ listFields <- function(Client, layer_name) {
     purrr::map_chr(function(x){x$getName()})
 }
 
-boundbox <- function(xmin, ymin, xmax, ymax) {
-  paste(c(xmin, ymin, xmax, ymax), collapse = ",")
+
+#' Formats boundbox for WFS query
+#' @description Convenience function that formats a spatial bounding box into a character string that can be passed to the WFS query. 
+#' The function accepts either a `bbox` from \link{sf}[st_bbox] or the coordinates for the box edges (`xmin`, `ymin`, `xmax`, `ymax`).
+#'
+#' @param xmin numeric; minimum x coordinate (longitude)
+#' @param ymin numeric; minimum y coordinate (latitude)
+#' @param xmax numeric; maximum x coordinate (longitude)
+#' @param ymax numeric; maximum y coordinate (latitude)
+#' @param st_bbox bbox; object generated using \link{sf}[st_bbox]
+#'
+#' @return character string formatted for WFS query and use in \link{VicmapR}[read_layer_sf]
+#' @export
+#'
+#' @examples
+#' #### Using an sf object ####
+#' sf_data <- sf::st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
+#' boundbox(st_bbox = sf::st_bbox(sf_data))
+#' 
+#' #### Using coordinates ####
+#' boundbox(xmin = 144.05, ymin = -38.44, xmax = 144.50, ymax = -38.10)
+boundbox <- function(xmin, ymin, xmax, ymax, st_bbox = NULL) {
+  
+  if(!is.null(st_bbox)) {
+    if(class(st_bbox) != "bbox") {
+      stop("st_bbox is not of class 'bbox'. Use sf::st_bbox to generate a valid bbox")
+    }
+    box <- paste(st_bbox, collapse = ",")
+  } else {
+  box <- paste(c(xmin, ymin, xmax, ymax), collapse = ",")
+  }
+  return(box)
 }
 
 
 read_layer_sf <- function(layer_name, filter = NULL, CRS = 4283, boundbox = NULL, ...) {
+  
+  # Set up URL query and request
   url <- httr::parse_url(wfs_url)
   url$query <- list(service = "wfs",
-                    version = "2.0.0",
+                    version = "1.0.0",
                     request = "GetFeature",
                     typename = layer_name,
-                    CQL_FILTER = filter,
-                    BBOX = boundbox,
-                    srsName = paste0("EPSG:", CRS)) %>% purrr::discard(is.null)
+                    srsName = paste0("EPSG:", CRS),
+                    BBOX = boundbox, 
+                    CQL_FILTER = filter) %>% purrr::discard(is.null)
   
   request <- httr::build_url(url)
   
-  print(request)
-  
+  # Return an sf object
   return(sf::read_sf(request, ...))
   
 }
 
+# CQL filter and bbox are mutually exclusive. Need to get the bbox in cql format (therefore need to find the )
 
-data <- read_layer_sf("datavic:VMLITE_TR_AIRPORT", boundbox = boundbox(xmin = 144.05, ymin = -38.44, xmax = 145.59, ymax = -37.19))
+data <- read_layer_sf("datavic:VMHYDRO_WATERCOURSE_DRAIN", 
+                      boundbox = boundbox(xmin = 144.05, ymin = -38.44, xmax = 144.50, ymax = -38.10), 
+                      filter = "UFI = 2915212")
+
