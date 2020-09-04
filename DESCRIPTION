@@ -1,12 +1,14 @@
 Package: VicmapR
-Title: What the Package Does (One Line, Title Case)
+Title: R Functions for Accessing Victorian Spatial Data Through WFS 
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Justin",
            family = "Cally",
            role = c("aut", "cre"),
            email = "justin.cally@epa.vic.gov.au")
-Description: What the package does (one paragraph).
+Description: Easily interfaces R to spatial datasets freely available through 
+  the Victorian Government's WFS (Web Feature Service). Allows users to read 
+  in `sf` data from these sources and wraps methods from `ows4R`. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -15,4 +17,11 @@ RoxygenNote: 7.1.0
 Suggests: 
     testthat
 Imports: 
-    magrittr
+    magrittr,
+    httr,
+    ows4R,
+    sf,
+    dplyr,
+    stringr,
+    purrr,
+    methods

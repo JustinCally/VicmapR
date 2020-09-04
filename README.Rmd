@@ -18,43 +18,40 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of VicmapR is to ...
+The goal of VicmapR is to provide functions to easily access Victorin Government spatial data through their WFS (Web Feature Service).
 
 ## Installation
 
-You can install the released version of VicmapR from [CRAN](https://CRAN.R-project.org) with:
+You can install the the development version from [GitHub](https://github.com/) with:
 
 ``` r
-install.packages("VicmapR")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("JustinCally/VicmapR")
+# install.packages("remotes")
+remotes::install_github("JustinCally/VicmapR")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+### Searching for data
 
-```{r example, eval = FALSE}
+```{r example}
 library(VicmapR)
 ## basic example code
+
+# Create new client
+VicmapClient <- newClient()
+
+listLayers(VicmapClient, pattern = stringr::regex("trees", ignore_case = T))
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+### Reading in data
 
-```{r cars}
-summary(cars)
+```{r}
+data <- read_layer_sf(layer_name = "datavic:VMHYDRO_WATERCOURSE_DRAIN",
+                      boundbox = boundbox(xmin = 144.25, 
+                                          ymin = -38.44, 
+                                          xmax = 144.50,  
+                                          ymax = -38.25),  
+                      filter = "HIERARCHY = 'L'")
+
+str(data)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
