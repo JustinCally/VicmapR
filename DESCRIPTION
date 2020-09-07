@@ -15,7 +15,8 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Suggests: 
-    testthat
+    testthat (>= 2.1.0),
+    covr
 Imports: 
     magrittr,
     httr,

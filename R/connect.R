@@ -142,7 +142,7 @@ read_layer_sf <- function(layer_name,
     
     # Format CQL filter 
     bbox_format <- paste0("bbox(", geom_field, ",", boundbox, ")")
-    filter <- paste0(bbox_format, " AND ", filter)
+    filter <- paste(c(bbox_format, filter), collapse = " AND ")
   }
   
   # Set up URL query and request
@@ -151,6 +151,7 @@ read_layer_sf <- function(layer_name,
                     version = "1.0.0",
                     request = "GetFeature",
                     typename = layer_name,
+                    outputFormat = "application/json",
                     srsName = paste0("EPSG:", CRS),
                     CQL_FILTER = filter) %>% purrr::discard(is.null)
   
