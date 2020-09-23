@@ -11,7 +11,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://codecov.io/gh/JustinCally/VicmapR?branch=master)
 <!-- badges: end -->
 
-The goal of VicmapR is to provide functions to easily access Victorin
+The goal of VicmapR is to provide functions to easily access Victorian
 Government spatial data through their WFS (Web Feature Service). The
 package is currently in an early development stage.
 
