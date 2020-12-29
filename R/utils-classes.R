@@ -3,4 +3,3 @@ as.vicmap_promise <- function(res) {
             class = c("vicmap_promise", setdiff(class(res), "vicmap_promise"))
   )
 }
-

@@ -1,12 +1,12 @@
-vicmap_query <- function(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4283) {
+vicmap_query <- function(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4283, count = 10000000L) {
   url <- httr::parse_url("http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs")
   url$query <- list(service = "wfs",
                     version = "2.0.0",
                     request = "GetFeature",
                     typename = layer,
                     outputFormat = "application/json",
-                    srsName = paste0("EPSG:", CRS),
-                    count = 6) %>% purrr::discard(is.null)
+                    count = count,
+                    srsName = paste0("EPSG:", CRS)) %>% purrr::discard(is.null)
   
   as.vicmap_promise(url)
   
@@ -38,6 +38,8 @@ head.vicmap_promise <- function(x, n = 5) {
 
 
 print.vicmap_promise <- function(x) {
+  
+  x$query$count <- 6 
   
   request <- httr::build_url(x)  
   
