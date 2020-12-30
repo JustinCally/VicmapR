@@ -25,4 +25,5 @@ Imports:
     dplyr,
     stringr,
     purrr,
-    methods
+    methods,
+    cli
