@@ -26,9 +26,31 @@ show_query.vicmap_promise <- function(x, ...) {
 
 collect.vicmap_promise <- function(x, ...) {
   
-  request <- httr::build_url(x)
+  # check number of records
+  number_of_records <- feature_hits(x)
   
-  return(sf::read_sf(request, ...))
+  #paginate?
+  if(number_of_records > x$query$count) {
+    message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (70,000). The collection of data might take some time."))
+    loop_times <- ceiling(number_of_records/x$query$count)
+    
+    returned_sf <- list()
+    for(i in 1:loop_times) {
+      x$query$startIndex <- (i-1)*x$query$count
+      request <- httr::build_url(x)
+      returned_sf[i] <- sf::read_sf(request, ...)
+    }
+    return(do.call("rbind", returned_sf))
+     
+  } else {
+    # if less than only loop once
+    request <- httr::build_url(x)
+    return(sf::read_sf(request, ...))
+  }
+  
+  
+  
+  
   
 }
 
@@ -43,9 +65,11 @@ head.vicmap_promise <- function(x, n = 5) {
 
 print.vicmap_promise <- function(x) {
   
-  x$query$count <- 6 
-  
   number_of_records <- feature_hits(x)
+  
+  if(number_of_records > 6) {
+  x$query$count <- 6 
+  }
   
   request <- httr::build_url(x)  
   
