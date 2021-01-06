@@ -100,8 +100,6 @@ collect.vicmap_promise <- function(x, quiet = FALSE, ...) {
   
   
   
-  
-  
 }
 
 #' head
