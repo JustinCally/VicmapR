@@ -11,4 +11,14 @@ feature_hits <- function(x) {
   return(n_hits)
 }
 
+feature_cols <- function(x) {
+  
+  x$query$count <- 1
 
+  
+  request <- httr::build_url(x)
+  response <- httr::GET(request)
+  
+  parsed <- httr::content(response, encoding = "UTF-8")
+  return(parsed[["features"]][[1]][["properties"]]) %>% names()
+}
