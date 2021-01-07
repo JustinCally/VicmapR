@@ -1,14 +1,14 @@
 #' vicmap_query
 #'
-#' @param layer 
-#' @param CRS 
-#' @param count 
+#' @param layer vicmap layer to query. Options are listed in `VicmapR::listLayers()``
+#' @param CRS Coordinate Reference System (default is 4283)
 #'
 #' @return
 #' @export
 #'
 #' @examples
-vicmap_query <- function(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4283, count = getOption("vicmap.chunk_limit", default = 70000L)) {
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+vicmap_query <- function(layer, CRS = 4283) {
   
   # Check if query exceeds vicmap limit 
   check_chunk_limit()
@@ -19,7 +19,7 @@ vicmap_query <- function(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4283
                     request = "GetFeature",
                     typeNames = layer,
                     outputFormat = "application/json",
-                    count = count,
+                    count = getOption("vicmap.chunk_limit", default = 70000L),
                     srsName = paste0("EPSG:", CRS)) %>% purrr::discard(is.null)
   
   as.vicmap_promise(url)
@@ -28,13 +28,16 @@ vicmap_query <- function(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4283
 
 #' show_query
 #'
-#' @param x 
-#' @param ... 
+#' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' head(50) %>%
+#' show_query()
+
 show_query.vicmap_promise <- function(x, ...) {
   
   request <- httr::build_url(x)
@@ -45,21 +48,25 @@ show_query.vicmap_promise <- function(x, ...) {
 
 #' collect
 #'
-#' @param x 
-#' @param quiet 
+#' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
+#' @param quiet logical; whether to suppress the printing of messages and progress
+#' @param paginate logical; whether to allow pagination of results to extract all records (default is TRUE)
 #' @param ... 
 #'
 #' @return
 #' @export
 #'
 #' @examples
-collect.vicmap_promise <- function(x, quiet = FALSE, ...) {
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' head(50) %>%
+#' collect()
+collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   
   # check number of records
   number_of_records <- feature_hits(x)
   
   #paginate?
-  if(number_of_records > x$query$count) {
+  if(number_of_records > getOption("vicmap.chunk_limit", default = 70000L) & paginate == TRUE & x$query$count == getOption("vicmap.chunk_limit", default = 70000L)) {
     # number of times to loop
     loop_times <- ceiling(number_of_records/x$query$count)
     # inform user of delay
@@ -104,13 +111,17 @@ collect.vicmap_promise <- function(x, quiet = FALSE, ...) {
 
 #' head
 #'
-#' @param x 
-#' @param n 
+#' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
+#' @param n number of rows to return
 #'
 #' @return
 #' @export
 #'
 #' @examples
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' head(50) %>%
+#' collect()
+
 head.vicmap_promise <- function(x, n = 5) {
   
   x$query$count <- n 
@@ -120,6 +131,14 @@ head.vicmap_promise <- function(x, n = 5) {
 }
 
 
+#' print
+#'
+#' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
+#'
+#' @return 
+#' @export
+#'
+#' @examples
 print.vicmap_promise <- function(x) {
   
   number_of_records <- feature_hits(x)

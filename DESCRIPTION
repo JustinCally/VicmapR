@@ -16,7 +16,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Suggests: 
     testthat (>= 2.1.0),
-    covr
+    covr,
+    knitr,
+    rmarkdown
 Imports: 
     magrittr,
     httr,
@@ -27,3 +29,4 @@ Imports:
     purrr,
     methods,
     cli
+VignetteBuilder: knitr

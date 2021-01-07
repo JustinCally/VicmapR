@@ -1,0 +1,39 @@
+---
+title: "How to Query Vicmap Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to Query Vicmap Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(dplyr)
+library(VicmapR)
+```
+
+# How to Query Data
+
+```{r query, eval = FALSE}
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+```
+
+```{r query_collect, eval = FALSE}
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  head(50) %>%
+  collect()
+```
+
+```{r show_query, eval = FALSE}
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  head(50) %>%
+  show_query()
+```
+
