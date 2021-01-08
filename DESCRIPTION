@@ -29,5 +29,6 @@ Imports:
     purrr,
     methods,
     cli,
-    DBI
+    DBI,
+    tidyselect
 VignetteBuilder: knitr

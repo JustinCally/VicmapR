@@ -4,7 +4,7 @@
 \alias{show_query.vicmap_promise}
 \title{show_query}
 \usage{
-show_query.vicmap_promise(x, ...)
+\method{show_query}{vicmap_promise}(x, ...)
 }
 \arguments{
 \item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
