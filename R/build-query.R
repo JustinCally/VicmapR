@@ -40,6 +40,8 @@ vicmap_query <- function(layer, CRS = 4283) {
 
 show_query.vicmap_promise <- function(x, ...) {
   
+  x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
+  
   request <- httr::build_url(x)
   
   return(request)
@@ -61,6 +63,8 @@ show_query.vicmap_promise <- function(x, ...) {
 #' head(50) %>%
 #' collect()
 collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
+  
+  x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
   
   # check number of records
   number_of_records <- feature_hits(x)
@@ -140,6 +144,8 @@ head.vicmap_promise <- function(x, n = 5) {
 #'
 #' @examples
 print.vicmap_promise <- function(x) {
+  
+  x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
   
   number_of_records <- feature_hits(x)
   

@@ -16,3 +16,4 @@ check_chunk_limit <- function(){
     stop(glue::glue("Your chunk value of {chunk_value} exceed the Vicmap Data Catalogue chunk limit"), call. = FALSE)
   }
 }
+

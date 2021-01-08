@@ -28,5 +28,6 @@ Imports:
     stringr,
     purrr,
     methods,
-    cli
+    cli,
+    DBI
 VignetteBuilder: knitr

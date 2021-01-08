@@ -1,3 +1,11 @@
+#' cql translate
+#'
+#' @param ... 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 cql_translate <- function(...) {
   ## convert dots to list of quosures
   dots <- rlang::quos(...)

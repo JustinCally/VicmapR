@@ -1,3 +1,11 @@
+#' number of rows
+#'
+#' @param x 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 feature_hits <- function(x) {
 
   x$query$resultType <- "hits"
@@ -11,6 +19,14 @@ feature_hits <- function(x) {
   return(n_hits)
 }
 
+#' feature column names
+#'
+#' @param x 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 feature_cols <- function(x) {
   
   x$query$count <- 1
@@ -23,6 +39,14 @@ feature_cols <- function(x) {
   return(parsed[["features"]][[1]][["properties"]]) %>% names()
 }
 
+#' geom column name
+#'
+#' @param x 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 geom_col_name <- function(x) {
   
   x$query$count <- 1
@@ -35,6 +59,15 @@ geom_col_name <- function(x) {
   
 }
 
+#' apply cql to geom
+#'
+#' @param x 
+#' @param CQL_statement 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 specify_geom_name <- function(x, CQL_statement){
   # Find the geometry field and get the name of the field
   geom_col <- geom_col_name(x)
