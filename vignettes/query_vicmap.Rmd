@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(dplyr)
 library(VicmapR)
+library(sf)
 ```
 
 # How to Query Data
@@ -35,5 +36,19 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
   head(50) %>%
   show_query()
+```
+
+```{r filter, eval = FALSE}
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  filter(HIERARCHY == "L", PFI == 8553127) %>%
+  collect()
+```
+
+```{r filter_spatial, eval = FALSE}
+melbourne <- st_read(system.file("shapes/melbourne.geojson", package="VicmapR")) %>% polygonFormat()
+
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326) %>%
+#  filter(HIERARCHY == "L") %>%
+  filter(CONTAINS(melbourne))
 ```
 
