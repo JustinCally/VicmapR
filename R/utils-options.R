@@ -1,4 +1,11 @@
+#' options
+#'
+#' @return
+#' @export
+#'
+#' @examples
 vicmap_options <- function() {
+  
   null_to_na <- function(x) {
     ifelse(is.null(x), NA, as.numeric(x))
   }
@@ -9,7 +16,14 @@ vicmap_options <- function() {
   )
 }
 
+#' check chunk limit
+#'
+#' @return
+#' @export
+#'
+#' @examples
 check_chunk_limit <- function(){
+  
   chunk_value <- options("vicmap.chunk_limit")$vicmap.chunk_limit
   
   if(!is.null(chunk_value) && chunk_value > 70000){

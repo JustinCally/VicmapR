@@ -8,14 +8,14 @@
 #'
 #' @examples
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
-vicmap_query <- function(layer, CRS = 4283) {
+vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   
   # Check if query exceeds vicmap limit 
   check_chunk_limit()
   
   url <- httr::parse_url("http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs")
   url$query <- list(service = "wfs",
-                    version = "2.0.0",
+                    version = wfs_version,
                     request = "GetFeature",
                     typeNames = layer,
                     outputFormat = "application/json",

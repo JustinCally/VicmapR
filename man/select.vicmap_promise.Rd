@@ -4,7 +4,7 @@
 \alias{select.vicmap_promise}
 \title{select}
 \usage{
-select.vicmap_promise(x, ...)
+\method{select}{vicmap_promise}(x, ...)
 }
 \arguments{
 \item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}

@@ -30,7 +30,7 @@ polygonFormat.sf <- function(shape, ...) {
     tol <- dTolerance
   } else {
     perim <- sf::st_boundary(shape) %>% sf::st_length() 
-    tol <- perim/100
+    tol <- perim/10
   }
   shape %>%
     sf::st_simplify(dTolerance = tol) %>% 

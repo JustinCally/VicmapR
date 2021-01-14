@@ -40,15 +40,26 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 
 ```{r filter, eval = FALSE}
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-  filter(HIERARCHY == "L", PFI == 8553127) %>%
+ filter(HIERARCHY == "L", PFI == 8553127) %>%
   collect()
 ```
 
 ```{r filter_spatial, eval = FALSE}
-melbourne <- st_read(system.file("shapes/melbourne.geojson", package="VicmapR")) %>% polygonFormat()
+melbourne <- st_read(system.file("shapes/melbourne.geojson", package="VicmapR"))
 
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326) %>%
 #  filter(HIERARCHY == "L") %>%
-  filter(CONTAINS(melbourne))
+  filter(BBOX(sf::st_bbox(melbourne))) %>%
+  collect() %>%
+  plot(max.plot = 2, lwd = 10, cex = 10)
+```
+
+```{r filter_spatial_2,eval=FALSE}
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
+#  filter(HIERARCHY == "L") %>%
+  filter(CROSSES(melbourne %>% polygonFormat.sf())) %>%
+  collect() 
+
+
 ```
 

@@ -61,7 +61,7 @@ a CQL expression to be passed on to the WFS call
 }
 \description{
 Functions to construct a CQL expression to be used
-to filter results from \code{\link[=bcdc_query_geodata]{bcdc_query_geodata()}}.
+to filter results from \code{\link[=vicmap_query_geodata]{vicmap_query_geodata()}}.
 See \href{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#spatial-predicate}{the geoserver CQL documentation for details}.
 The sf object is automatically converted in a
 bounding box to reduce the complexity of the Web Service call. Subsequent in-memory

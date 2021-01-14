@@ -4,7 +4,7 @@
 \alias{vicmap_query}
 \title{vicmap_query}
 \usage{
-vicmap_query(layer, CRS = 4283)
+vicmap_query(layer, CRS = 4283, wfs_version = "2.0.0")
 }
 \arguments{
 \item{layer}{vicmap layer to query. Options are listed in `VicmapR::listLayers()``}

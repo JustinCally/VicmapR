@@ -20,7 +20,7 @@ CQL <- function(...) {
 #' Create CQL filter strings from sf objects
 #'
 #' Convenience wrapper to convert sf objects and geometric operations into CQL
-#' filter strings which can then be supplied to filter.bcdc_promise.
+#' filter strings which can then be supplied to filter.vicmap_promise.
 #' The sf object is automatically converted in a
 #' bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
 #' filtering may be need to achieve exact results.
@@ -43,7 +43,7 @@ vicmap_cql_string <- function(x, geometry_predicates, pattern = NULL,
          call. = FALSE)
   }
   
-  if (inherits(x, "bcdc_promise")) {
+  if (inherits(x, "vicmap_promise")) {
     stop("To use spatial operators, you need to use collect() to retrieve the object used to filter",
          call. = FALSE)
   }
@@ -112,7 +112,7 @@ sf_text <- function(x) {
 #' CQL Geometry Predicates
 #'
 #' Functions to construct a CQL expression to be used
-#' to filter results from [bcdc_query_geodata()].
+#' to filter results from [vicmap_query_geodata()].
 #' See [the geoserver CQL documentation for details](https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#spatial-predicate).
 #' The sf object is automatically converted in a
 #' bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
