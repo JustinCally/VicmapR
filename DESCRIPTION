@@ -30,5 +30,6 @@ Imports:
     methods,
     cli,
     DBI,
-    tidyselect
+    tidyselect,
+    xml2
 VignetteBuilder: knitr

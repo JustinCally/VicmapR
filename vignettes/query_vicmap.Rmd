@@ -56,10 +56,52 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326) %>%
 
 ```{r filter_spatial_2,eval=FALSE}
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
+  filter(VicmapR::DWITHIN(melbourne %>% sf::st_centroid(), distance = 1000, units = "meters")) %>%
+  collect()
+  
+  library(lineprof)
+
+prof <- lineprof({vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
+  filter(VicmapR::DWITHIN(melbourne %>% sf::st_centroid(), distance = 1000, units = "meters")) %>%
+  collect()})
+
+shine(prof)
 #  filter(HIERARCHY == "L") %>%
-  filter(CROSSES(melbourne %>% polygonFormat.sf())) %>%
+data <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
+  filter(CROSSES(melbourne %>% polygonFormat())) %>%
   collect() 
 
+
+# points <- list(melbz = c(144.9436,-37.81073))
+# 
+# closest_feature <- lapply(points, function(y) {
+#   
+# n_hits <- 0    
+# i <- 0
+# 
+# while(n_hits < 1) { 
+#   i <- i + 1
+#   x <- 100*i
+# data <- paste0("http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?service=wfs&version=1.0.0&request=GetFeature&typeNames=datavic%3AVMHYDRO_WATERCOURSE_DRAIN&outputFormat=application%2Fjson&count=70000&srsName=EPSG%3A4326&CQL_FILTER=%28DWITHIN%28SHAPE%2C%20POINT%20%28",y[1],"%20", y[2],"%29%2C%20", x,"%2C%20meters%29%29") %>% sf::read_sf()
+# n_hits <- nrow(data)
+# 
+# }
+# point_poly <- sf::st_as_sf(x = data.frame(long = y[1], lat = y[2]),
+#                            coords = c("long", "lat")) %>% sf::`st_crs<-`(4326)
+# 
+# data$distance_from_point <- sf::st_distance(point_poly, 
+#                                             data, by_element = TRUE) 
+# 
+# data <- data %>%
+#   dplyr::arrange(distance_from_point) %>%
+#   dplyr::slice(1)
+# 
+# # nearest_points <- sf::st_nearest_points(point_poly, 
+# #                                         data) %>% sf::st_cast("MULTIPOINT") %>%
+# #   as.data.frame()
+# 
+# return(data)
+# })
 
 ```
 

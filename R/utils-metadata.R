@@ -15,7 +15,9 @@ feature_hits <- function(x) {
   
   parsed <- httr::content(response, encoding = "UTF-8")
   
-  n_hits <- as.numeric(xml2::xml_attrs(parsed)["numberMatched"])
+  hit_name <- ifelse(x$query$version == "2.0.0", "numberMatched", "numberOfFeatures")
+  
+  n_hits <- as.numeric(xml2::xml_attrs(parsed)[hit_name])
   return(n_hits)
 }
 
@@ -29,14 +31,8 @@ feature_hits <- function(x) {
 #' @examples
 feature_cols <- function(x) {
   
-  x$query$count <- 1
+  return(get_col_df(x)$name)
 
-  
-  request <- httr::build_url(x)
-  response <- httr::GET(request)
-  
-  parsed <- httr::content(response, encoding = "UTF-8")
-  return(parsed[["features"]][[1]][["properties"]]) %>% names()
 }
 
 #' geom column name
@@ -49,13 +45,11 @@ feature_cols <- function(x) {
 #' @examples
 geom_col_name <- function(x) {
   
-  x$query$count <- 1
+  geom_col <- get_col_df(x) %>% 
+    dplyr::filter(stringr::str_detect(string = type, pattern = "gml:")) %>%
+    dplyr::pull(name)
   
-  request <- httr::build_url(x)
-  response <- httr::GET(request)
-  
-  parsed <- httr::content(response, encoding = "UTF-8")
-  return(parsed[["features"]][[1]][["geometry_name"]])
+  return(geom_col)
   
 }
 
@@ -75,3 +69,31 @@ specify_geom_name <- function(x, CQL_statement){
   # substitute the geometry column name into the CQL statement and add sql class
   dbplyr::sql(glue::glue(CQL_statement, geom_name = geom_col))
 }
+
+#' return df of column names and types 
+#'
+#' @param x 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_col_df <- function(x) {
+  
+  layer <- x$query$version
+  r <- httr::GET(paste0("http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/", x$query$typeNames, "/wfs?service=wfs&version=", x$query$version, "&request=DescribeFeatureType"))
+  c <- httr::content(r, encoding = "UTF-8", type="text/xml") 
+  
+  list <- xml2::xml_child(xml2::xml_child(xml2::xml_child(xml2::xml_child(c, "xsd:complexType"), 
+                                      "xsd:complexContent"), 
+                            "xsd:extension"), 
+                  "xsd:sequence") %>% 
+    xml2::as_list()
+  
+  data <- data.frame(name = sapply(list, function(x) attr(x, "name")),
+                     type = sapply(list, function(x) attr(x, "type")), stringsAsFactors = F)
+
+  return(data)
+}
+
+
