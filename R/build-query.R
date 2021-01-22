@@ -2,14 +2,14 @@
 #'
 #' @param layer vicmap layer to query. Options are listed in `VicmapR::listLayers()``
 #' @param CRS Coordinate Reference System (default is 4283)
-#' @param wfs_version The current version of WFS is 2.0.0. GeoServer supports versions 2.0.0, 1.1.0, and 1.0.0. However in order for filtering to be correctly applied wfs_version must be 1.0.0 (default is 1.0.0)
+#' @param wfs_version The current version of WFS is 2.0.0. GeoServer supports versions 2.0.0, 1.1.0, and 1.0.0. However in order for filtering to be correctly applied wfs_version must be 2.0.0 (default is 2.0.0)
 #'
 #' @return
 #' @export
 #'
 #' @examples
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
-vicmap_query <- function(layer, CRS = 4283, wfs_version = "1.0.0") {
+vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   
   # Check if query exceeds vicmap limit 
   check_chunk_limit()

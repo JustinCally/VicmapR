@@ -20,8 +20,8 @@ NULL
 #' @examples
 filter.vicmap_promise <- function(x, ...) {
   
-  if(x$query$version != "1.0.0") {
-    warning("wfs_version is not 1.0.0. Filtering may not be correctly applied")
+  if(x$query$version != "2.0.0") {
+    warning("wfs_version is not 2.0.0. Filtering may not be correctly applied as certain CRS's requests require axis flips")
   }
   
   current_cql = cql_translate(...)

@@ -118,11 +118,11 @@ melbourne <- st_read(system.file("shapes/melbourne.geojson", package="VicmapR"))
 some_point <- melbourne %>% sf::st_centroid()
 
 # How many hits 
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "2.0.0") %>%
   filter(VicmapR::DWITHIN(some_point, distance = 2000, units = "meters")) %>%
-  feature_hits()
+  show_query()
 
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "2.0.0") %>%
   filter(VicmapR::DWITHIN(some_point, distance = 1000, units = "meters")) %>%
   collect()
 ```

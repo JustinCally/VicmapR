@@ -104,6 +104,10 @@ sf_text <- function(x) {
     x <- sf::st_union(x)
   }
   
+  ## Flip axis for certain crs's ##
+  
+  x <- st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1")
+  
   sf::st_as_text(x)
 }
 
