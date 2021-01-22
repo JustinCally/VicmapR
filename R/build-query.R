@@ -2,13 +2,14 @@
 #'
 #' @param layer vicmap layer to query. Options are listed in `VicmapR::listLayers()``
 #' @param CRS Coordinate Reference System (default is 4283)
+#' @param wfs_version The current version of WFS is 2.0.0. GeoServer supports versions 2.0.0, 1.1.0, and 1.0.0. However in order for filtering to be correctly applied wfs_version must be 1.0.0 (default is 1.0.0)
 #'
 #' @return
 #' @export
 #'
 #' @examples
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
-vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
+vicmap_query <- function(layer, CRS = 4283, wfs_version = "1.0.0") {
   
   # Check if query exceeds vicmap limit 
   check_chunk_limit()
@@ -20,7 +21,18 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
                     typeNames = layer,
                     outputFormat = "application/json",
                     count = getOption("vicmap.chunk_limit", default = 70000L),
-                    srsName = paste0("EPSG:", CRS)) %>% purrr::discard(is.null)
+                    maxFeatures = getOption("vicmap.chunk_limit", default = 70000L),
+                    srsName = paste0("EPSG:", CRS))
+  
+  #maxFeatures or count depends on version
+  
+  if(url$query$version == "2.0.0") {
+    url$query$maxFeatures <- NULL 
+  } else {
+    url$query$count <- NULL 
+  }
+  
+  url$query <- purrr::discard(url$query, is.null)
   
   as.vicmap_promise(url)
   
@@ -69,10 +81,17 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   # check number of records
   number_of_records <- feature_hits(x)
   
+  #get queried count
+  if(x$query$version == "2.0.0") {
+    the_count <- x$query$count
+  } else {
+    the_count <- x$query$maxFeatures 
+  }
+  
   #paginate?
-  if(number_of_records > getOption("vicmap.chunk_limit", default = 70000L) & paginate == TRUE & x$query$count == getOption("vicmap.chunk_limit", default = 70000L)) {
+  if(number_of_records > getOption("vicmap.chunk_limit", default = 70000L) & paginate == TRUE & the_count == getOption("vicmap.chunk_limit", default = 70000L)) {
     # number of times to loop
-    loop_times <- ceiling(number_of_records/x$query$count)
+    loop_times <- ceiling(number_of_records/the_count)
     # inform user of delay
     if(!quiet) {
     message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (70,000). The collection of data might take some time."))
@@ -90,7 +109,7 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
     }
     
     for(i in 1:loop_times) {
-      x$query$startIndex <- (i-1)*x$query$count
+      x$query$startIndex <- (i-1)*the_count
       x$query$sortBy <- sort_col 
       request <- httr::build_url(x)
       returned_sf[[i]] <- sf::read_sf(request, ...)
@@ -128,7 +147,13 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 
 head.vicmap_promise <- function(x, n = 5) {
   
+  # Different names for versions
+  
+  if(x$query$version == "2.0.0") {
   x$query$count <- n 
+  } else {
+    x$query$maxFeatures <- n 
+  }
   
   return(x)
   
@@ -150,7 +175,11 @@ print.vicmap_promise <- function(x) {
   number_of_records <- feature_hits(x)
   
   if(number_of_records > 6) {
-  x$query$count <- 6 
+    if(x$query$version == "2.0.0") {
+      x$query$count <- 6 
+    } else {
+      x$query$maxFeatures <- 6 
+    }
   }
   
   request <- httr::build_url(x)  

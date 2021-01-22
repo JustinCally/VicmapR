@@ -9,15 +9,15 @@
 feature_hits <- function(x) {
 
   x$query$resultType <- "hits"
+  x$query$outputFormat <- "text/xml"
+  x$query$version <- "2.0.0"
   
   request <- httr::build_url(x)
   response <- httr::GET(request)
   
   parsed <- httr::content(response, encoding = "UTF-8")
   
-  hit_name <- ifelse(x$query$version == "2.0.0", "numberMatched", "numberOfFeatures")
-  
-  n_hits <- as.numeric(xml2::xml_attrs(parsed)[hit_name])
+  n_hits <- as.numeric(xml2::xml_attrs(parsed)["numberMatched"])
   return(n_hits)
 }
 

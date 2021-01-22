@@ -20,6 +20,10 @@ NULL
 #' @examples
 filter.vicmap_promise <- function(x, ...) {
   
+  if(x$query$version != "1.0.0") {
+    warning("wfs_version is not 1.0.0. Filtering may not be correctly applied")
+  }
+  
   current_cql = cql_translate(...)
   ## Change CQL query on the fly if geom is not GEOMETRY
   current_cql = specify_geom_name(x, current_cql)

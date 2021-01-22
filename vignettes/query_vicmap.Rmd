@@ -27,22 +27,28 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
 ```
 
 ```{r query_collect, eval = FALSE}
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "1.0.0") %>%
   head(50) %>%
   collect()
 ```
 
 ```{r show_query, eval = FALSE}
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "1.0.0") %>%
   head(50) %>%
   show_query()
 ```
 
 ```{r filter, eval = FALSE}
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "1.0.0") %>%
  filter(HIERARCHY == "L", PFI == 8553127) %>%
   collect()
 ```
+
+```{r paginate, eval = FALSE}
+data <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "1.0.0") %>%
+  collect()
+```
+
 
 ```{r filter_spatial, eval = FALSE}
 melbourne <- st_read(system.file("shapes/melbourne.geojson", package="VicmapR"))
@@ -57,7 +63,7 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326) %>%
 ```{r filter_spatial_2,eval=FALSE}
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
   filter(VicmapR::DWITHIN(melbourne %>% sf::st_centroid(), distance = 1000, units = "meters")) %>%
-  collect()
+  show_query()
   
   library(lineprof)
 
@@ -103,5 +109,21 @@ data <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wf
 # return(data)
 # })
 
+```
+
+
+```{r loop_dwithin, eval=FALSE}
+melbourne <- st_read(system.file("shapes/melbourne.geojson", package="VicmapR"))
+
+some_point <- melbourne %>% sf::st_centroid()
+
+# How many hits 
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
+  filter(VicmapR::DWITHIN(some_point, distance = 2000, units = "meters")) %>%
+  feature_hits()
+
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
+  filter(VicmapR::DWITHIN(some_point, distance = 1000, units = "meters")) %>%
+  collect()
 ```
 
