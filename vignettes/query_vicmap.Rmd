@@ -113,17 +113,29 @@ data <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wf
 
 
 ```{r loop_dwithin, eval=FALSE}
+# remotes::install_github("justincally/VicmapR", ref = "3-vicmap-promise")
+# library(sf)
+# library(dplyr)
+# library(VicmapR)
+
 melbourne <- st_read(system.file("shapes/melbourne.geojson", package="VicmapR"))
 
 some_point <- melbourne %>% sf::st_centroid()
 
 # How many hits 
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "2.0.0") %>%
-  filter(VicmapR::DWITHIN(some_point, distance = 2000, units = "meters")) %>%
-  show_query()
+  filter(VicmapR::DWITHIN(some_point, distance = 1000, units = "meters")) %>%
+  feature_hits()
 
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "2.0.0") %>%
+data <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 32755, wfs_version = "2.0.0") %>%
   filter(VicmapR::DWITHIN(some_point, distance = 1000, units = "meters")) %>%
   collect()
 ```
 
+
+```{r query_select, eval = FALSE}
+small.df <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  head(50) %>%
+  select(HIERARCHY, PFI) %>%
+  collect()
+```
