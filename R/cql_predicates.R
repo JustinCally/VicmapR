@@ -32,7 +32,7 @@ CQL <- function(...) {
 #' DISJOINT, INTERSECTS, TOUCHES, CROSSES,  WITHIN, CONTAINS, OVERLAPS,
 #' DWITHIN, BBOX.
 #'
-#' @seealso sql_geom_predicates
+#' @seealso cql_geom_predicates
 #' @noRd
 vicmap_cql_string <- function(x, geometry_predicates, pattern = NULL,
                             distance = NULL, units = NULL,

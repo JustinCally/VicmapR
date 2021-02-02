@@ -1,4 +1,3 @@
-
 #' List available WFS layers
 #' @description Lists layers available from Vicmap
 #'
@@ -31,25 +30,3 @@ listLayers <- function(...) {
   }
   return(df)
 }  
-
-
-
-#' list data fields for WFS layer
-#'
-#' @param layer_name character; name of the WFS layer
-#' @rdname listLayers
-#'
-#' @return character; fields/columns of data
-#' @export
-#'
-#' @examples
-#' VicmapClient <- newClient()
-#' listFields(VicmapClient, "datavic:VMLITE_TR_AIRPORT")
-listFields <- function(Client, layer_name) {
-  Client$
-    getCapabilities()$
-    findFeatureTypeByName(layer_name)$
-    getDescription(pretty = T) %>%
-    .$name
-}
-

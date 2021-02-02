@@ -1,10 +1,12 @@
 #' vicmap_query
 #'
+#' @description Begin a Vicmap WFS query by selecting a WFS layer.  
+#'
 #' @param layer vicmap layer to query. Options are listed in `VicmapR::listLayers()``
 #' @param CRS Coordinate Reference System (default is 4283)
 #' @param wfs_version The current version of WFS is 2.0.0. GeoServer supports versions 2.0.0, 1.1.0, and 1.0.0. However in order for filtering to be correctly applied wfs_version must be 2.0.0 (default is 2.0.0)
 #'
-#' @return
+#' @return vicmap_promise
 #' @export
 #'
 #' @examples
@@ -42,7 +44,7 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #'
-#' @return
+#' @return vicmap_promise (invisible), query printed to console
 #' @export
 #'
 #' @examples
@@ -53,10 +55,17 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 show_query.vicmap_promise <- function(x, ...) {
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
+  #request <- httr::build_url(x)
   
-  request <- httr::build_url(x)
-  
-  return(request)
+  cli::cat_line("<base url>")
+  cli::cat_line(glue::glue("{x[['scheme']]}://{x[['hostname']]}/{x[['path']]}"))
+  cli::cat_line()
+  cli::cat_line("<body>")
+  cli::cat_line(glue::glue("{names(x$query)}: {x$query} \n"))
+  cli::cat_line()
+  cli::cat_line("<full query url>")
+  cli::cat_line(httr::build_url(x))
+  invisible(x)
   
 }
 
@@ -65,9 +74,9 @@ show_query.vicmap_promise <- function(x, ...) {
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param quiet logical; whether to suppress the printing of messages and progress
 #' @param paginate logical; whether to allow pagination of results to extract all records (default is TRUE)
-#' @param ... 
+#' @param ... additional arguments passed to \link[sf]{read_sf}
 #'
-#' @return
+#' @return sf/tbl_df/tbl/data.frame
 #' @export
 #'
 #' @examples
@@ -137,7 +146,7 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param n number of rows to return
 #'
-#' @return
+#' @return vicmap_promise
 #' @export
 #'
 #' @examples
@@ -164,10 +173,12 @@ head.vicmap_promise <- function(x, n = 5) {
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #'
-#' @return 
+#' @return vicmap_promise (invisible), promise sample printed to console
 #' @export
 #'
 #' @examples
+#' query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' print(query)
 print.vicmap_promise <- function(x) {
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
