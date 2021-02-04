@@ -111,7 +111,7 @@ sf_text <- function(x) {
   
   ## Flip axis for certain crs's ##
   
-  x <- st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1")
+  x <- sf::st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1")
   
   sf::st_as_text(x)
 }
