@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(VicmapR)
 library(sf)
+library(leaflet)
 ```
 
 # How to query data
@@ -82,129 +83,42 @@ Vicmap translates numerous geometric filter functions available in the Victorian
 + `TOUCHES`   
 + `CROSSES`   
 + `WITHIN`   
-+ `CONTAINS`   
++ `CONTAINS` **  
 + `OVERLAPS`   
 + `RELATE`   
 + `DWITHIN`   
 + `BEYOND`  
 + `BBOX`  
 
-These filters can be used within the `filter()` function by providing them an object of class `sf/sfc/sfg/bbox`. 
+These filters can be used within the `filter()` function by providing them an object of class `sf/sfc/sfg/bbox`. Below is a leaflet map with the melbourne rail network being read in with the use of three different types of filter functions: `INTERSECTS()`, `BBOX()` and `DWITHIN()`.
 
-```{r filter_spatial}
+```{r filter_spatial, warning = FALSE, message=FALSE, out.width="100%"}
 #### Return objects that intersect melbourne ####
 
 # Read in an example shape to restrict our query to using geometric filtering
 melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = T)
-# Reset crs to avoid GDAL issues
-st_crs(melbourne$geometry) <- 4326
 # Return data that intersects melbourne
-watercourse_intersects <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
+rail_intersects <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>% # layer to query
   filter(INTERSECTS(melbourne)) %>% # more advanced geometric filter
   collect()
 
-watercourse_bbox <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+rail_bbox <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>%
   filter(BBOX(sf::st_bbox(melbourne))) %>%
   collect()
 
-watercourse_dwithin <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+rail_dwithin <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>%
   filter(DWITHIN(melbourne %>% sf::st_centroid(), distance = 10000, units = "meters")) %>%
   collect()
 
+leaflet(width = "100%") %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  addPolygons(data = melbourne, color = "grey", group = "Melbourne polygon") %>%
+  addPolygons(data = sf::st_bbox(melbourne) %>% st_as_sfc(), color = "black", group = "Melbourne bbox") %>%
+  addPolylines(data = rail_intersects, color = "Red", group = "INTERSECTS") %>% 
+  addPolylines(data = rail_bbox, color = "Blue", group = "BBOX") %>%
+  addPolylines(data = rail_dwithin, color = "Green", group = "DWITHIN") %>%
+  addLayersControl(baseGroups = c("Melbourne polygon", "Melbourne bbox"), 
+                   overlayGroups = c("INTERSECTS", "BBOX", "DWITHIN")) %>%
+  hideGroup(c("BBOX", "DWITHIN"))
 ```
 
-```{r paginate, eval = FALSE}
-data <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "1.0.0") %>%
-  collect()
-```
-
-
-```{r filter_spatial, eval = FALSE}
-melbourne <- st_read(system.file("shapes/melbourne.geojson", package="VicmapR"))
-
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326) %>%
-#  filter(HIERARCHY == "L") %>%
-  filter(BBOX(sf::st_bbox(melbourne))) %>%
-  collect() %>%
-  plot(max.plot = 2, lwd = 10, cex = 10)
-```
-
-```{r filter_spatial_2,eval=FALSE}
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
-  filter(VicmapR::DWITHIN(melbourne %>% sf::st_centroid(), distance = 1000, units = "meters")) %>%
-  show_query()
-  
-  library(lineprof)
-
-prof <- lineprof({vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
-  filter(VicmapR::DWITHIN(melbourne %>% sf::st_centroid(), distance = 1000, units = "meters")) %>%
-  collect()})
-
-shine(prof)
-#  filter(HIERARCHY == "L") %>%
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-  filter(INTERSECTS(melbourne %>% polygonFormat())) %>%
-  show_query() %>% nchar()
-
-
-# points <- list(melbz = c(144.9436,-37.81073))
-# 
-# closest_feature <- lapply(points, function(y) {
-#   
-# n_hits <- 0    
-# i <- 0
-# 
-# while(n_hits < 1) { 
-#   i <- i + 1
-#   x <- 100*i
-# data <- paste0("http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?service=wfs&version=1.0.0&request=GetFeature&typeNames=datavic%3AVMHYDRO_WATERCOURSE_DRAIN&outputFormat=application%2Fjson&count=70000&srsName=EPSG%3A4326&CQL_FILTER=%28DWITHIN%28SHAPE%2C%20POINT%20%28",y[1],"%20", y[2],"%29%2C%20", x,"%2C%20meters%29%29") %>% sf::read_sf()
-# n_hits <- nrow(data)
-# 
-# }
-# point_poly <- sf::st_as_sf(x = data.frame(long = y[1], lat = y[2]),
-#                            coords = c("long", "lat")) %>% sf::`st_crs<-`(4326)
-# 
-# data$distance_from_point <- sf::st_distance(point_poly, 
-#                                             data, by_element = TRUE) 
-# 
-# data <- data %>%
-#   dplyr::arrange(distance_from_point) %>%
-#   dplyr::slice(1)
-# 
-# # nearest_points <- sf::st_nearest_points(point_poly, 
-# #                                         data) %>% sf::st_cast("MULTIPOINT") %>%
-# #   as.data.frame()
-# 
-# return(data)
-# })
-
-```
-
-
-```{r loop_dwithin, eval=FALSE}
-# remotes::install_github("justincally/VicmapR", ref = "3-vicmap-promise")
-# library(sf)
-# library(dplyr)
-# library(VicmapR)
-
-melbourne <- st_read(system.file("shapes/melbourne.geojson", package="VicmapR"))
-
-some_point <- melbourne %>% sf::st_centroid()
-
-# How many hits 
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "2.0.0") %>%
-  filter(VicmapR::DWITHIN(some_point, distance = 2000, units = "meters")) %>%
-  feature_hits()
-
-data <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 32755, wfs_version = "2.0.0") %>%
-  filter(VicmapR::DWITHIN(some_point, distance = 1000, units = "meters")) %>%
-  collect()
-```
-
-
-```{r query_select, eval = FALSE}
-small.df <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-  head(50) %>%
-  select(HIERARCHY, PFI) %>%
-  collect()
-```
