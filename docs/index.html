@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -47,6 +47,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/query_vicmap.html">How to Query Vicmap Data</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -68,8 +80,8 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#vicmapr" class="anchor"></a>VicmapR</h1></div>
 <!-- badges: start -->
-<!-- badges: end -->
-<p>The goal of VicmapR is to provide functions to easily access Victorin Government spatial data through their WFS (Web Feature Service).</p>
+
+<p>The goal of VicmapR is to provide functions to easily access Victorin Government spatial data through their WFS (Web Feature Service). The package is currently in an early development stage.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -84,50 +96,73 @@
 <h3 class="hasAnchor">
 <a href="#searching-for-data" class="anchor"></a>Searching for data</h3>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">VicmapR</span>)
-<span class="co">## basic example code</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'VicmapR'</span>
+<span class="co">#&gt; The following object is masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter</span>
 
-<span class="co"># Create new client</span>
-<span class="no">VicmapClient</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/newClient.html">newClient</a></span>()
-<span class="co">#&gt; Loading ISO 19139 XML schemas...</span>
-<span class="co">#&gt; Loading ISO 19115 codelists...</span>
-
-<span class="fu"><a href="reference/listLayers.html">listLayers</a></span>(<span class="no">VicmapClient</span>, <span class="kw">pattern</span> <span class="kw">=</span> <span class="kw pkg">stringr</span><span class="kw ns">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"trees"</span>, <span class="kw">ignore_case</span> <span class="kw">=</span> <span class="no">T</span>))
-<span class="co">#&gt;                                name</span>
+<span class="fu"><a href="reference/listLayers.html">listLayers</a></span>(<span class="kw">pattern</span> <span class="kw">=</span> <span class="kw pkg">stringr</span><span class="kw ns">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"trees"</span>, <span class="kw">ignore_case</span> <span class="kw">=</span> <span class="no">T</span>))
+<span class="co">#&gt;                                Name</span>
 <span class="co">#&gt; 1 datavic:WATER_ISC2010_LARGE_TREES</span>
-<span class="co">#&gt;                                                           title</span>
+<span class="co">#&gt;                                                           Title</span>
 <span class="co">#&gt; 1 2010 Index of Stream Condition - Large Trees polygon features</span></pre></div>
 </div>
 <div id="reading-in-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reading-in-data" class="anchor"></a>Reading in data</h3>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/read_layer_sf.html">read_layer_sf</a></span>(<span class="kw">layer_name</span> <span class="kw">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span>,
-                      <span class="kw">boundbox</span> <span class="kw">=</span> <span class="fu"><a href="reference/boundbox.html">boundbox</a></span>(<span class="kw">xmin</span> <span class="kw">=</span> <span class="fl">144.25</span>,
-                                          <span class="kw">ymin</span> <span class="kw">=</span> -<span class="fl">38.44</span>,
-                                          <span class="kw">xmax</span> <span class="kw">=</span> <span class="fl">144.50</span>,
-                                          <span class="kw">ymax</span> <span class="kw">=</span> -<span class="fl">38.25</span>),
-                      <span class="kw">filter</span> <span class="kw">=</span> <span class="st">"HIERARCHY = 'L'"</span>)
+<p>As of VicmapR version <code>0.1.0</code> data is read in using a lazy evaluation method with the convenience of pipe operators (<code><a href="reference/pipe.html">%&gt;%</a></code>). A lot of the methods and code have already been written for a similar package (<a href="https://github.com/bcgov/bcdata">bcdata</a>) that downloads data from the British Columbia WFS catalogue. Using a similar approach to <a href="https://github.com/bcgov/bcdata">bcdata</a>, VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until <code><a href="reference/collect-methods.html">collect()</a></code> is used on the <code>vicmap_promise</code>. The example below shows an extensive example of how the to easily read in spatial data:</p>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># Read in an example shape to restrict our query to using geometric filtering</span>
+<span class="no">melbourne</span> <span class="kw">&lt;-</span> <span class="kw pkg">sf</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"shapes/melbourne.geojson"</span>, <span class="kw">package</span><span class="kw">=</span><span class="st">"VicmapR"</span>), <span class="kw">quiet</span> <span class="kw">=</span> <span class="no">T</span>)
 
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">data</span>)
-<span class="co">#&gt; tibble [45 x 16] (S3: sf/tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;  $ gml_id            : chr [1:45] "VMHYDRO_WATERCOURSE_DRAIN.fid-61502c02_17457a9736c_-51d3" "VMHYDRO_WATERCOURSE_DRAIN.fid-61502c02_17457a9736c_-51d2" "VMHYDRO_WATERCOURSE_DRAIN.fid-61502c02_17457a9736c_-51d1" "VMHYDRO_WATERCOURSE_DRAIN.fid-61502c02_17457a9736c_-51d0" ...</span>
-<span class="co">#&gt;  $ PFI               : num [1:45] 8916168 8916172 13480993 13481015 13481019 ...</span>
-<span class="co">#&gt;  $ UFI               : num [1:45] 2915212 2915216 20931940 20931966 20931973 ...</span>
-<span class="co">#&gt;  $ FEATURE_TYPE_CODE : chr [1:45] "watercourse_channel_drain" "watercourse_channel_drain" "watercourse_channel_drain" "watercourse_channel_drain" ...</span>
-<span class="co">#&gt;  $ NAME              : chr [1:45] NA NA NA NA ...</span>
-<span class="co">#&gt;  $ NAMED_FEATURE_ID  : num [1:45] NA NA NA NA NA NA 0 0 NA NA ...</span>
-<span class="co">#&gt;  $ ORIGIN            : chr [1:45] "2" "2" "2" "2" ...</span>
-<span class="co">#&gt;  $ CONSTRUCTION      : chr [1:45] NA NA "2" "2" ...</span>
-<span class="co">#&gt;  $ USAGE             : chr [1:45] NA NA NA NA ...</span>
-<span class="co">#&gt;  $ HIERARCHY         : chr [1:45] "L" "L" "L" "L" ...</span>
-<span class="co">#&gt;  $ FEATURE_QUALITY_ID: num [1:45] 100 100 100 100 100 100 100 100 100 100 ...</span>
-<span class="co">#&gt;  $ CREATE_DATE_PFI   : chr [1:45] "2001-04-04T02:54:03" "2001-04-04T02:54:04" "2008-11-20T08:22:38" "2008-11-20T08:22:39" ...</span>
-<span class="co">#&gt;  $ SUPERCEDED_PFI    : num [1:45] NA NA 8915893 8915893 8915988 ...</span>
-<span class="co">#&gt;  $ CREATE_DATE_UFI   : chr [1:45] "2001-04-04T02:54:03" "2001-04-04T02:54:04" "2008-11-20T08:22:38" "2008-11-20T08:22:39" ...</span>
-<span class="co">#&gt;  $ OBJECTID          : num [1:45] 193900 193901 1467760 1467812 1467819 ...</span>
-<span class="co">#&gt;  $ SHAPE             :sfc_LINESTRING of length 45; first list element:  'XY' num [1:2, 1:2] 144.4 144.4 -38.3 -38.3</span>
-<span class="co">#&gt;  - attr(*, "sf_column")= chr "SHAPE"</span>
-<span class="co">#&gt;  - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA NA NA NA NA NA NA NA ...</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr [1:15] "gml_id" "PFI" "UFI" "FEATURE_TYPE_CODE" ...</span></pre></div>
+<span class="co"># Obtain a promise of what data will be returned for a given layer</span>
+<span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span>(<span class="kw">layer</span> <span class="kw">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span>)
+<span class="co">#&gt; * Using collect() on this object will return 187445 features and 16</span>
+<span class="co">#&gt; * fields</span>
+<span class="co">#&gt; * At most six rows of the record are printed here</span>
+<span class="co">#&gt; -------------------------------------------------------------------------------------------------------</span>
+<span class="co">#&gt; Simple feature collection with 6 features and 15 fields</span>
+<span class="co">#&gt; geometry type:  LINESTRING</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559</span>
+<span class="co">#&gt; geographic CRS: GDA94</span>
+<span class="co">#&gt; # A tibble: 6 x 16</span>
+<span class="co">#&gt;   id       PFI    UFI FEATURE_TYPE_CO~ NAME  NAMED_FEATURE_ID ORIGIN</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt; </span>
+<span class="co">#&gt; 1 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 2 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 3 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 4 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 5 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 6 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; # ... with 9 more variables: CONSTRUCTION &lt;chr&gt;, USAGE &lt;chr&gt;, HIERARCHY &lt;chr&gt;,</span>
+<span class="co">#&gt; #   FEATURE_QUALITY_ID &lt;int&gt;, CREATE_DATE_PFI &lt;dttm&gt;, SUPERCEDED_PFI &lt;chr&gt;,</span>
+<span class="co">#&gt; #   CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;, geometry &lt;LINESTRING [°]&gt;</span>
+
+<span class="co"># Build a more specific query and collect the results</span>
+<span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span>(<span class="kw">layer</span> <span class="kw">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span>) <span class="kw">%&gt;%</span> <span class="co"># layer to query</span>
+  <span class="fu"><a href="reference/filter.html">filter</a></span>(<span class="no">HIERARCHY</span> <span class="kw">==</span> <span class="st">"L"</span>) <span class="kw">%&gt;%</span> <span class="co"># simple filter for a column</span>
+  <span class="fu"><a href="reference/filter.html">filter</a></span>(<span class="fu"><a href="reference/cql_geom_predicates.html">INTERSECTS</a></span>(<span class="no">melbourne</span>)) <span class="kw">%&gt;%</span> <span class="co"># more advanced geometric filter</span>
+  <span class="fu"><a href="reference/select.html">select</a></span>(<span class="no">HIERARCHY</span>, <span class="no">PFI</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="reference/collect-methods.html">collect</a></span>()
+<span class="co">#&gt; Warning: The object is too large to perform exact spatial operations using VicmapR.</span>
+<span class="co">#&gt;              To simplify the polygon, sf::st_simplify() was used to reduce the size of the query</span>
+<span class="co">#&gt; Simple feature collection with 8 features and 5 fields</span>
+<span class="co">#&gt; geometry type:  LINESTRING</span>
+<span class="co">#&gt; dimension:      XY</span>
+<span class="co">#&gt; bbox:           xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198</span>
+<span class="co">#&gt; geographic CRS: GDA94</span>
+<span class="co">#&gt; # A tibble: 8 x 6</span>
+<span class="co">#&gt;   id               PFI    UFI HIERARCHY OBJECTID                        geometry</span>
+<span class="co">#&gt;   &lt;chr&gt;          &lt;int&gt;  &lt;int&gt; &lt;chr&gt;        &lt;int&gt;                &lt;LINESTRING [°]&gt;</span>
+<span class="co">#&gt; 1 VMHYDRO_WAT~  1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.9359 ~</span>
+<span class="co">#&gt; 2 VMHYDRO_WAT~  1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294 -~</span>
+<span class="co">#&gt; 3 VMHYDRO_WAT~  1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.9292 ~</span>
+<span class="co">#&gt; 4 VMHYDRO_WAT~  1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.9401 ~</span>
+<span class="co">#&gt; 5 VMHYDRO_WAT~  1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.9414 ~</span>
+<span class="co">#&gt; 6 VMHYDRO_WAT~  1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.9441 ~</span>
+<span class="co">#&gt; 7 VMHYDRO_WAT~  1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186 -~</span>
+<span class="co">#&gt; 8 VMHYDRO_WAT~  1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.9202 ~</span></pre></div>
 </div>
 </div>
 </div>
@@ -148,7 +183,14 @@
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://codecov.io/gh/JustinCally/VicmapR?branch=master"><img src="https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 

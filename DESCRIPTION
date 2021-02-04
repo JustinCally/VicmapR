@@ -1,6 +1,6 @@
 Package: VicmapR
 Title: R Functions for Accessing Victorian Spatial Data Through WFS 
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(given = "Justin",
            family = "Cally",
@@ -16,13 +16,22 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Suggests: 
     testthat (>= 2.1.0),
-    covr
+    covr,
+    knitr,
+    rmarkdown
 Imports: 
     magrittr,
     httr,
-    ows4R,
     sf,
     dplyr,
     stringr,
     purrr,
-    methods
+    methods,
+    cli,
+    DBI,
+    tidyselect,
+    xml2,
+    glue,
+    dbplyr,
+    rlang
+VignetteBuilder: knitr

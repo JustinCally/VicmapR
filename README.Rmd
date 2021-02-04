@@ -36,24 +36,26 @@ remotes::install_github("JustinCally/VicmapR")
 
 ```{r example}
 library(VicmapR)
-## basic example code
 
-# Create new client
-VicmapClient <- newClient()
-
-listLayers(VicmapClient, pattern = stringr::regex("trees", ignore_case = T))
+listLayers(pattern = stringr::regex("trees", ignore_case = T))
 ```
 
 ### Reading in data
 
-```{r}
-data <- read_layer_sf(layer_name = "datavic:VMHYDRO_WATERCOURSE_DRAIN",
-                      boundbox = boundbox(xmin = 144.25, 
-                                          ymin = -38.44, 
-                                          xmax = 144.50,  
-                                          ymax = -38.25),  
-                      filter = "HIERARCHY = 'L'")
+As of VicmapR version `0.1.0` data is read in using a lazy evaluation method with the convenience of pipe operators (`%>%`). A lot of the methods and code have already been written for a similar package ([bcdata](https://github.com/bcgov/bcdata)) that downloads data from the British Columbia WFS catalogue. Using a similar approach to [bcdata](https://github.com/bcgov/bcdata), VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until `collect()` is used on the `vicmap_promise`. The example below shows an extensive example of how the to easily read in spatial data:
 
-str(data)
+```{r query_example}
+# Read in an example shape to restrict our query to using geometric filtering
+melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = T)
+
+# Obtain a promise of what data will be returned for a given layer
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+
+# Build a more specific query and collect the results
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
+  filter(HIERARCHY == "L") %>% # simple filter for a column
+  filter(INTERSECTS(melbourne)) %>% # more advanced geometric filter
+  select(HIERARCHY, PFI) %>% 
+  collect()
 ```
 
