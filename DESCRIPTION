@@ -1,6 +1,6 @@
 Package: VicmapR
 Title: R Functions for Accessing Victorian Spatial Data Through WFS 
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(given = "Justin",
            family = "Cally",
