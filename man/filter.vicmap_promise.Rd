@@ -4,10 +4,10 @@
 \alias{filter.vicmap_promise}
 \title{filter}
 \usage{
-\method{filter}{vicmap_promise}(x, ...)
+\method{filter}{vicmap_promise}(.data, ...)
 }
 \arguments{
-\item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
+\item{.data}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
 
 \item{...}{filter statements}
 }
@@ -16,4 +16,8 @@ object of class \code{vicmap_promise}
 }
 \description{
 filter
+}
+\examples{
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+ filter(HIERARCHY == "L", PFI == 8553127)
 }

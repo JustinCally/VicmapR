@@ -28,7 +28,7 @@ feature_hits <- function(x) {
 #' @param x object of class `vicmap_promise`
 #'
 #' @return character
-#' @describeIn geom_col_name 
+#' @describeIn geom_col_name vector of column names
 #' @export
 #'
 #' @examples
@@ -61,10 +61,9 @@ geom_col_name <- function(x) {
 
 #' apply cql to geom
 #'
-#' @param x 
-#' @param CQL_statement 
-#'
-#' @return
+#' @param x object of class `vicmap_promise` 
+#' @param CQL_statement CQL filter statement
+#' @noRd
 specify_geom_name <- function(x, CQL_statement){
   # Find the geometry field and get the name of the field
   geom_col <- geom_col_name(x)
@@ -77,7 +76,8 @@ specify_geom_name <- function(x, CQL_statement){
 #'
 #' @param x object of class `vicmap_promise` 
 #'
-#' @describeIn geom_col_name
+#' @describeIn geom_col_name data.frame of column names and classes
+#' 
 #' @return data.frame
 #' @export
 #'

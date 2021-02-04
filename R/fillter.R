@@ -11,29 +11,31 @@ NULL
 
 #' filter
 #'
-#' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
+#' @param .data object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... filter statements
 #'
 #' @return object of class `vicmap_promise`
 #' @export
 #'
 #' @examples
-filter.vicmap_promise <- function(x, ...) {
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#'  filter(HIERARCHY == "L", PFI == 8553127)
+filter.vicmap_promise <- function(.data, ...) {
   
-  if(x$query$version != "2.0.0") {
+  if(.data$query$version != "2.0.0") {
     warning("wfs_version is not 2.0.0. Filtering may not be correctly applied as certain CRS's requests require axis flips")
   }
   
   current_cql = cql_translate(...)
   ## Change CQL query on the fly if geom is not GEOMETRY
-  current_cql = specify_geom_name(x, current_cql)
+  current_cql = specify_geom_name(.data, current_cql)
   
   # Add cql filter statement to any existing cql filter statements.
   # ensure .data$query_list$CQL_FILTER is class sql even if NULL, so
   # dispatches on sql class and dbplyr::c.sql method is used
-  x$query$CQL_FILTER <- c(dbplyr::sql(x$query$CQL_FILTER),
+  .data$query$CQL_FILTER <- c(dbplyr::sql(.data$query$CQL_FILTER),
                                    current_cql,
                                    drop_null = TRUE)
   
-  as.vicmap_promise(x)
+  as.vicmap_promise(.data)
 }

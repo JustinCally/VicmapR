@@ -43,6 +43,7 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 #' show_query
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
+#' @param ... Other parameters possibly used by generic
 #'
 #' @return vicmap_promise (invisible), query printed to console
 #' @export
@@ -144,7 +145,8 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 #' head
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
-#' @param n number of rows to return
+#' @param n integer; number of rows to return
+#' @param ... Other parameters possibly used by generic
 #'
 #' @return vicmap_promise
 #' @export
@@ -154,7 +156,7 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 #' head(50) %>%
 #' collect()
 
-head.vicmap_promise <- function(x, n = 5) {
+head.vicmap_promise <- function(x, n = 5, ...) {
   
   # Different names for versions
   
@@ -172,6 +174,7 @@ head.vicmap_promise <- function(x, n = 5) {
 #' print
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
+#' @param ... arguments to be passed to \link[base]{print}
 #'
 #' @return vicmap_promise (invisible), promise sample printed to console
 #' @export
@@ -179,7 +182,7 @@ head.vicmap_promise <- function(x, n = 5) {
 #' @examples
 #' query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
 #' print(query)
-print.vicmap_promise <- function(x) {
+print.vicmap_promise <- function(x, ...) {
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
   
@@ -203,7 +206,7 @@ print.vicmap_promise <- function(x) {
                                 "and {cli::col_green(fields)} fields")))
   cli::cat_bullet(strwrap("At most six rows of the record are printed here"))
   cli::cat_rule()
-  print(sample_data)
+  print(sample_data, ...)
   invisible(x)
   
 }

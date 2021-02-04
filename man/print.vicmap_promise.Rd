@@ -4,10 +4,12 @@
 \alias{print.vicmap_promise}
 \title{print}
 \usage{
-\method{print}{vicmap_promise}(x)
+\method{print}{vicmap_promise}(x, ...)
 }
 \arguments{
 \item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
+
+\item{...}{arguments to be passed to \link[base]{print}}
 }
 \value{
 vicmap_promise (invisible), promise sample printed to console

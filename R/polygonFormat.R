@@ -1,7 +1,7 @@
 #' Simplify polygon
 #'
 #' @param shape sf
-#' @param ... 
+#' @param ... Additional arguments to be passed to formatting
 #'
 #' @return
 #' @noRd

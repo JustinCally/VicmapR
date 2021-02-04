@@ -4,12 +4,12 @@
 \alias{select.vicmap_promise}
 \title{select}
 \usage{
-\method{select}{vicmap_promise}(x, ...)
+\method{select}{vicmap_promise}(.data, ...)
 }
 \arguments{
-\item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
+\item{.data}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
 
-\item{...}{}
+\item{...}{Other parameters possibly used by generic}
 }
 \value{
 object of class \code{vicmap_promise}

@@ -3,11 +3,14 @@
 \name{feature_cols}
 \alias{feature_cols}
 \alias{geom_col_name}
+\alias{get_col_df}
 \title{feature column names}
 \usage{
 feature_cols(x)
 
 geom_col_name(x)
+
+get_col_df(x)
 }
 \arguments{
 \item{x}{object of class \code{vicmap_promise}}
@@ -16,19 +19,27 @@ geom_col_name(x)
 character
 
 character
+
+data.frame
 }
 \description{
 feature column names
 
 geom column name
+
+return df of column names and types
 }
 \section{Functions}{
 \itemize{
-\item \code{feature_cols}: 
+\item \code{feature_cols}: vector of column names
+
+\item \code{get_col_df}: data.frame of column names and classes
 }}
 
 \examples{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% feature_cols()
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% 
 geom_col_name()
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% 
+get_col_df()
 }

@@ -1,4 +1,4 @@
-#' filter
+#' show_query
 #'
 #' See \code{dplyr::\link[dplyr:explain]{show_query}} for details.
 #'

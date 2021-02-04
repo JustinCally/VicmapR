@@ -4,12 +4,14 @@
 \alias{head.vicmap_promise}
 \title{head}
 \usage{
-\method{head}{vicmap_promise}(x, n = 5)
+\method{head}{vicmap_promise}(x, n = 5, ...)
 }
 \arguments{
 \item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
 
-\item{n}{number of rows to return}
+\item{n}{integer; number of rows to return}
+
+\item{...}{Other parameters possibly used by generic}
 }
 \value{
 vicmap_promise

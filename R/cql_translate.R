@@ -1,11 +1,7 @@
 #' cql translate
 #'
-#' @param ... 
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' @param ... cql to translate
+#' @noRd
 cql_translate <- function(...) {
   ## convert dots to list of quosures
   dots <- rlang::quos(...)
@@ -54,7 +50,7 @@ build_where <- function(where, con = wfs_con) {
   }
 }
 
-bcdc_identity <- function(f) {
+vicmap_identity <- function(f) {
   function(x, ...) {
     do.call(f, c(x, list(...)))
   }
@@ -78,10 +74,10 @@ cql_scalar <- dbplyr::sql_translator(
   `$` = `$`,
   as.Date = function(x, ...) as.character(as.Date(x, ...)),
   as.POSIXct = function(x, ...) as.character(as.POSIXct(x, ...)),
-  as.numeric = bcdc_identity("as.numeric"),
-  as.double = bcdc_identity("as.double"),
-  as.integer = bcdc_identity("as.integer"),
-  as.character = bcdc_identity("as.character"),
+  as.numeric = vicmap_identity("as.numeric"),
+  as.double = vicmap_identity("as.double"),
+  as.integer = vicmap_identity("as.integer"),
+  as.character = vicmap_identity("as.character"),
   as.logical = function(x, ...) as.character(as.logical(x, ...)),
   # Geometry predicates
   EQUALS = EQUALS,

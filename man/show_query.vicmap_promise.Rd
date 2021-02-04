@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
+
+\item{...}{Other parameters possibly used by generic}
 }
 \value{
 vicmap_promise (invisible), query printed to console

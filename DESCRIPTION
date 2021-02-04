@@ -22,7 +22,6 @@ Suggests:
 Imports: 
     magrittr,
     httr,
-    ows4R,
     sf,
     dplyr,
     stringr,
@@ -31,5 +30,8 @@ Imports:
     cli,
     DBI,
     tidyselect,
-    xml2
+    xml2,
+    glue,
+    dbplyr,
+    rlang
 VignetteBuilder: knitr

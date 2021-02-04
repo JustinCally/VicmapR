@@ -121,7 +121,7 @@ sf_text <- function(x) {
 #' CQL Geometry Predicates
 #'
 #' Functions to construct a CQL expression to be used
-#' to filter results from [vicmap_query_geodata()].
+#' to filter results from [vicmap_query()].
 #' See [the geoserver CQL documentation for details](https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#spatial-predicate).
 #' The sf object is automatically converted in a
 #' bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
