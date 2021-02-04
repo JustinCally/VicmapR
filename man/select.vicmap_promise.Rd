@@ -12,8 +12,12 @@
 \item{...}{}
 }
 \value{
-
+object of class \code{vicmap_promise}
 }
 \description{
 select
+}
+\examples{
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+select(HIERARCHY, PFI)
 }

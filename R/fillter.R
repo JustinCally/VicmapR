@@ -14,7 +14,7 @@ NULL
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... filter statements
 #'
-#' @return
+#' @return object of class `vicmap_promise`
 #' @export
 #'
 #' @examples

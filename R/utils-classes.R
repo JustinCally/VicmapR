@@ -1,11 +1,9 @@
 #' vicmap promise
 #'
-#' @param res 
+#' @param res httr query object
 #'
-#' @return
-#' @export
-#'
-#' @examples
+#' @return object of class `vicmap_promise`
+#' @noRd
 as.vicmap_promise <- function(res) {
   
   structure(res,
@@ -16,13 +14,11 @@ as.vicmap_promise <- function(res) {
 # collapse vector of cql statements into one
 #' finalize cql
 #'
-#' @param x 
-#' @param con 
+#' @param x cql filter list from the query of an object of class `vicmap_promise`
+#' @param con dummy wfs connection (wfs_con)
 #'
-#' @return
-#' @export
-#'
-#' @examples
+#' @return cql character string
+#' @noRd
 finalize_cql <- function(x, con = wfs_con) {
   
   if (is.null(x) || !length(x)) return(NULL)

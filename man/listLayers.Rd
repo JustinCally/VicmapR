@@ -2,28 +2,19 @@
 % Please edit documentation in R/listFeatures.R
 \name{listLayers}
 \alias{listLayers}
-\alias{listFields}
 \title{List available WFS layers}
 \usage{
 listLayers(...)
-
-listFields(Client, layer_name)
 }
 \arguments{
 \item{...}{Additional arguments passed to \link[stringr]{str_detect}. The \code{pattern} argument can be used to search for specific layers with matching names or titles.}
-
-\item{layer_name}{character; name of the WFS layer}
 }
 \value{
 data.frame
-
-character; fields/columns of data
 }
 \description{
 Lists layers available from Vicmap
 }
 \examples{
 listLayers(pattern = stringr::regex("flood height contour", ignore_case = TRUE))
-VicmapClient <- newClient()
-listFields(VicmapClient, "datavic:VMLITE_TR_AIRPORT")
 }

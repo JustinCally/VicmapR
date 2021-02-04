@@ -14,10 +14,12 @@ NULL
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... 
 #'
-#' @return
+#' @return object of class `vicmap_promise`
 #' @export
 #'
 #' @examples
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' select(HIERARCHY, PFI)
 select.vicmap_promise <- function(x, ...){
   
   ## Eventually have to migrate to tidyselect::eval_select

@@ -10,7 +10,7 @@
 \item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
 }
 \value{
-
+vicmap_promise (invisible), query printed to console
 }
 \description{
 show_query

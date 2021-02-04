@@ -1,36 +1,24 @@
-#### Format Polygon ####
 #' Simplify polygon
 #'
-#' @param shape 
+#' @param shape sf
 #' @param ... 
 #'
 #' @return
-#' @export
-#'
-#' @examples
+#' @noRd
 polygonFormat <- function(shape, ...) {
-  
-  UseMethod("polygonFormat", shape)
-}
-
-#' Simplify polygon
-#'
-#' @param shape 
-#' @param ... 
-#'
-#' @return
-#' @export
-#'
-#' @examples
-polygonFormat.sf <- function(shape, ...) {
   
   shape_crs <- sf::st_crs(shape)
   shape <- sf::st_union(shape) %>% sf::st_transform(3111)
   if(hasArg(dTolerance)) {
     tol <- dTolerance
   } else {
-    perim <- sf::st_boundary(shape) %>% sf::st_length() 
-    tol <- perim/10
+    if(sf::st_geometry_type(shape) %in% c("POLYGON", "MULTIPOLYGON")) {
+      line <- sf::st_boundary(shape)
+    } else {
+      line <- shape
+    }
+    perim <- line %>% sf::st_length() 
+    tol <- perim/500
   }
   shape %>%
     sf::st_simplify(dTolerance = tol) %>% 

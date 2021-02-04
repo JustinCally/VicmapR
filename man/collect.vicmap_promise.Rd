@@ -13,10 +13,10 @@
 
 \item{paginate}{logical; whether to allow pagination of results to extract all records (default is TRUE)}
 
-\item{...}{}
+\item{...}{additional arguments passed to \link[sf]{read_sf}}
 }
 \value{
-
+sf/tbl_df/tbl/data.frame
 }
 \description{
 collect

@@ -7,11 +7,15 @@
 get_col_df(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{object of class \code{vicmap_promise}}
 }
 \value{
-
+data.frame
 }
 \description{
 return df of column names and types
+}
+\examples{
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% 
+get_col_df()
 }

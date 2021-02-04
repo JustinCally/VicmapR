@@ -73,9 +73,9 @@ prof <- lineprof({vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS 
 
 shine(prof)
 #  filter(HIERARCHY == "L") %>%
-data <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 4326, wfs_version = "1.0.0") %>%
-  filter(CROSSES(melbourne %>% polygonFormat())) %>%
-  collect() 
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  filter(INTERSECTS(melbourne %>% polygonFormat())) %>%
+  show_query() %>% nchar()
 
 
 # points <- list(melbz = c(144.9436,-37.81073))

@@ -1,11 +1,13 @@
 #' number of rows
 #'
-#' @param x 
+#' @param x object of class `vicmap_promise`
 #'
-#' @return
+#' @return numeric
 #' @export
 #'
 #' @examples
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#'  feature_hits()
 feature_hits <- function(x) {
 
   x$query$resultType <- "hits"
@@ -23,12 +25,14 @@ feature_hits <- function(x) {
 
 #' feature column names
 #'
-#' @param x 
+#' @param x object of class `vicmap_promise`
 #'
-#' @return
+#' @return character
+#' @describeIn geom_col_name 
 #' @export
 #'
 #' @examples
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% feature_cols()
 feature_cols <- function(x) {
   
   return(get_col_df(x)$name)
@@ -37,12 +41,14 @@ feature_cols <- function(x) {
 
 #' geom column name
 #'
-#' @param x 
+#' @param x object of class `vicmap_promise`
 #'
-#' @return
+#' @return character
 #' @export
 #'
 #' @examples
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+#' geom_col_name()
 geom_col_name <- function(x) {
   
   geom_col <- get_col_df(x) %>% 
@@ -59,9 +65,6 @@ geom_col_name <- function(x) {
 #' @param CQL_statement 
 #'
 #' @return
-#' @export
-#'
-#' @examples
 specify_geom_name <- function(x, CQL_statement){
   # Find the geometry field and get the name of the field
   geom_col <- geom_col_name(x)
@@ -72,12 +75,15 @@ specify_geom_name <- function(x, CQL_statement){
 
 #' return df of column names and types 
 #'
-#' @param x 
+#' @param x object of class `vicmap_promise` 
 #'
-#' @return
+#' @describeIn geom_col_name
+#' @return data.frame
 #' @export
 #'
 #' @examples
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+#' get_col_df()
 get_col_df <- function(x) {
   
   layer <- x$query$version

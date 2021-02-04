@@ -82,6 +82,13 @@ cql_geom_predicate_list <- function() {
     "DWITHIN", "BEYOND", "BBOX")
 }
 
+#' Sf as text
+#'
+#' @param x sf object
+#'
+#' @return character string
+#'
+#' @noRd
 sf_text <- function(x) {
   
   if (!inherits(x, c("sf", "sfc", "sfg", "bbox"))) {
@@ -90,12 +97,10 @@ sf_text <- function(x) {
   }
   
   ## If too big here, drawing bounding
-  if (utils::object.size(x) > getOption("bcdata.max_geom_pred_size", 5E5)) {
-    warning("The object is too large to perform exact spatial operations using bcdata.
-             To simplify the polygon, a bounding box was drawn around the polygon and all
-             features within the box will be returned. Options include further processing
-             with on the returned object or simplify the object.", call. = FALSE)
-    x <- sf::st_bbox(x)
+  if (utils::object.size(x) > getOption("vicmap.max_geom_pred_size", 4400)) {
+    warning("The object is too large to perform exact spatial operations using VicmapR.
+             To simplify the polygon, sf::st_simplify() was used to reduce the size of the query", call. = FALSE)
+    x <- polygonFormat(x)
   }
   
   if (inherits(x, "bbox")) {

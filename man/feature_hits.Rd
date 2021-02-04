@@ -7,11 +7,15 @@
 feature_hits(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{object of class \code{vicmap_promise}}
 }
 \value{
-
+numeric
 }
 \description{
 number of rows
+}
+\examples{
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+ feature_hits()
 }

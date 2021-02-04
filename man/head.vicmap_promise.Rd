@@ -12,7 +12,7 @@
 \item{n}{number of rows to return}
 }
 \value{
-
+vicmap_promise
 }
 \description{
 head

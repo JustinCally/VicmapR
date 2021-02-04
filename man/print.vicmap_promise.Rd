@@ -10,8 +10,12 @@
 \item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
 }
 \value{
-
+vicmap_promise (invisible), promise sample printed to console
 }
 \description{
 print
+}
+\examples{
+query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+print(query)
 }

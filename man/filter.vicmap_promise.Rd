@@ -12,7 +12,7 @@
 \item{...}{filter statements}
 }
 \value{
-
+object of class \code{vicmap_promise}
 }
 \description{
 filter

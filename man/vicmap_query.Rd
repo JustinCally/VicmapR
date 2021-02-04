@@ -10,12 +10,14 @@ vicmap_query(layer, CRS = 4283, wfs_version = "2.0.0")
 \item{layer}{vicmap layer to query. Options are listed in `VicmapR::listLayers()``}
 
 \item{CRS}{Coordinate Reference System (default is 4283)}
+
+\item{wfs_version}{The current version of WFS is 2.0.0. GeoServer supports versions 2.0.0, 1.1.0, and 1.0.0. However in order for filtering to be correctly applied wfs_version must be 2.0.0 (default is 2.0.0)}
 }
 \value{
-
+vicmap_promise
 }
 \description{
-vicmap_query
+Begin a Vicmap WFS query by selecting a WFS layer.
 }
 \examples{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
