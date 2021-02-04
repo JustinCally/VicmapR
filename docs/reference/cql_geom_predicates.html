@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • VicmapR</title>
+<title>CQL Geometry Predicates — cql_geom_predicates • VicmapR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,13 @@
 
 
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
+<meta property="og:title" content="CQL Geometry Predicates — cql_geom_predicates" />
+<meta property="og:description" content="Functions to construct a CQL expression to be used
+to filter results from vicmap_query().
+See the geoserver CQL documentation for details.
+The sf object is automatically converted in a
+bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
+filtering may be needed to achieve exact results." />
 
 
 
@@ -118,18 +123,79 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
+    <h1>CQL Geometry Predicates</h1>
     
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <div class="hidden name"><code>cql_geom_predicates.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
+    <p>Functions to construct a CQL expression to be used
+to filter results from <code><a href='vicmap_query.html'>vicmap_query()</a></code>.
+See <a href='https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#spatial-predicate'>the geoserver CQL documentation for details</a>.
+The sf object is automatically converted in a
+bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
+filtering may be needed to achieve exact results.</p>
     </div>
 
-    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>EQUALS</span>(<span class='no'>geom</span>)
 
+<span class='fu'>DISJOINT</span>(<span class='no'>geom</span>)
 
+<span class='fu'>INTERSECTS</span>(<span class='no'>geom</span>)
+
+<span class='fu'>TOUCHES</span>(<span class='no'>geom</span>)
+
+<span class='fu'>CROSSES</span>(<span class='no'>geom</span>)
+
+<span class='fu'>WITHIN</span>(<span class='no'>geom</span>)
+
+<span class='fu'>CONTAINS</span>(<span class='no'>geom</span>)
+
+<span class='fu'>OVERLAPS</span>(<span class='no'>geom</span>)
+
+<span class='fu'>BBOX</span>(<span class='no'>coords</span>, <span class='kw'>crs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>DWITHIN</span>(
+  <span class='no'>geom</span>,
+  <span class='no'>distance</span>,
+  <span class='kw'>units</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"meters"</span>, <span class='st'>"feet"</span>, <span class='st'>"statute miles"</span>, <span class='st'>"nautical miles"</span>, <span class='st'>"kilometers"</span>)
+)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>geom</th>
+      <td><p>an <code>sf</code>/<code>sfc</code>/<code>sfg</code> or <code>bbox</code> object (from the <code>sf</code> package)</p></td>
+    </tr>
+    <tr>
+      <th>coords</th>
+      <td><p>the coordinates of the bounding box as four-element numeric
+vector <code><a href='https://rdrr.io/r/base/c.html'>c(xmin, ymin, xmax, ymax)</a></code>, a <code>bbox</code> object from the <code>sf</code>
+package (the result of running <code><a href='https://rdrr.io/pkg/sf/man/st_bbox.html'>sf::st_bbox()</a></code> on an <code>sf</code> object), or
+an <code>sf</code> object which then gets converted to a bounding box on the fly.</p></td>
+    </tr>
+    <tr>
+      <th>crs</th>
+      <td><p>(Optional) A numeric value or string containing an SRS code. If
+<code>coords</code> is a <code>bbox</code> object with non-empty crs, it is taken from that.
+(For example, <code>'EPSG:3005'</code> or just <code>3005</code>. The default is to use the CRS of
+the queried layer)</p></td>
+    </tr>
+    <tr>
+      <th>distance</th>
+      <td><p>numeric value for distance tolerance</p></td>
+    </tr>
+    <tr>
+      <th>units</th>
+      <td><p>units that distance is specified in. One of
+<code>"feet"</code>, <code>"meters"</code>, <code>"statute miles"</code>, <code>"nautical miles"</code>, <code>"kilometers"</code></p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a CQL expression to be passed on to the WFS call</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
