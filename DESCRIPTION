@@ -22,7 +22,7 @@ Suggests:
 Imports: 
     magrittr,
     httr,
-    sf,
+    sf (>= 0.7),
     dplyr,
     stringr,
     purrr,
