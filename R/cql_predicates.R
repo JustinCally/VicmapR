@@ -109,9 +109,15 @@ sf_text <- function(x) {
     x <- sf::st_union(x)
   }
   
-  ## Flip axis for certain crs's ##
+  ## Flip axis for certain crs's using GDAL 3 ##
   
-  x <- sf::st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1")
+  if (sf_extSoftVersion()["GDAL"] >= "3.0.0") {
+    x <- sf::st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1") # reverse axes
+  } else {
+    warning("GDAL > 3.0.0 is required")
+  }
+  
+  
   
   sf::st_as_text(x)
 }
