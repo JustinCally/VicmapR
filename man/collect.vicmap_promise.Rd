@@ -2,9 +2,10 @@
 % Please edit documentation in R/build-query.R
 \name{collect.vicmap_promise}
 \alias{collect.vicmap_promise}
-\title{collect}
+\title{Collect data}
 \usage{
-\method{collect}{vicmap_promise}(x, quiet = FALSE, paginate = TRUE, ...)
+\method{collect}{vicmap_promise}(x, quiet = FALSE, paginate = TRUE,
+  ...)
 }
 \arguments{
 \item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
@@ -19,7 +20,7 @@
 sf/tbl_df/tbl/data.frame
 }
 \description{
-collect
+Collect data
 }
 \examples{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%

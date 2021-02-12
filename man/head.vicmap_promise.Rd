@@ -2,7 +2,7 @@
 % Please edit documentation in R/build-query.R
 \name{head.vicmap_promise}
 \alias{head.vicmap_promise}
-\title{head}
+\title{Return the first n rows of the data}
 \usage{
 \method{head}{vicmap_promise}(x, n = 5, ...)
 }
@@ -17,7 +17,7 @@
 vicmap_promise
 }
 \description{
-head
+Return the first n rows of the data
 }
 \examples{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%

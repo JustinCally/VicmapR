@@ -1,1 +1,29 @@
 destination: docs
+
+development:
+  mode: auto
+
+url: https://justincally.github.io/VicmapR
+
+reference:
+  - title: "Querying the Vicmap/Vicplan Web File Services (WFS) Catalogue"
+    desc: >
+      Functions used to query Vicmap data through the `vicmap_promise` class. 
+      This includes generic methods adapted from dplyr such as `filter`, `select` and `collect`
+    contents:
+      - '`listLayers`'
+      - '`vicmap_query`'
+      - '`feature_cols`'
+      - '`head.vicmap_promise`'
+      - '`feature_hits`'
+      - '`select.vicmap_promise`'
+      - '`filter_vicmap_promise`'
+      - '`cql_geom_predicates`'
+      - '`show_query.vicmap_prommise`'
+      - '`collect.vicmap_promise`'
+      - '`print.vicmap_promise`'
+  - title: "Vicmap Options"
+    desc: >
+      Vicmap package options for querying data
+    contents:
+      - '`vicmap_options`'

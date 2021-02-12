@@ -2,7 +2,7 @@
 % Please edit documentation in R/build-query.R
 \name{show_query.vicmap_promise}
 \alias{show_query.vicmap_promise}
-\title{show_query}
+\title{Show the query}
 \usage{
 \method{show_query}{vicmap_promise}(x, ...)
 }
@@ -15,7 +15,7 @@
 vicmap_promise (invisible), query printed to console
 }
 \description{
-show_query
+Show the query
 }
 \examples{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%

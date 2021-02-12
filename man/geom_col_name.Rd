@@ -14,6 +14,10 @@ get_col_df(x)
 }
 \arguments{
 \item{x}{object of class \code{vicmap_promise}}
+
+\item{x}{object of class \code{vicmap_promise}}
+
+\item{x}{object of class \code{vicmap_promise}}
 }
 \value{
 character

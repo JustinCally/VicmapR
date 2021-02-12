@@ -1,4 +1,4 @@
-#' vicmap_query
+#' Query Vicmap data
 #'
 #' @description Begin a Vicmap WFS query by selecting a WFS layer.  
 #'
@@ -40,7 +40,7 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   
 }
 
-#' show_query
+#' Show the query
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... Other parameters possibly used by generic
@@ -70,7 +70,7 @@ show_query.vicmap_promise <- function(x, ...) {
   
 }
 
-#' collect
+#' Collect data
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param quiet logical; whether to suppress the printing of messages and progress
@@ -142,7 +142,7 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   
 }
 
-#' head
+#' Return the first n rows of the data
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param n integer; number of rows to return
@@ -171,7 +171,7 @@ head.vicmap_promise <- function(x, n = 5, ...) {
 }
 
 
-#' print
+#' Print a snapshot of the data
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... arguments to be passed to \link[base]{print}

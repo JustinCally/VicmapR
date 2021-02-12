@@ -83,9 +83,8 @@ Vicmap translates numerous geometric filter functions available in the Victorian
 + `TOUCHES`   
 + `CROSSES`   
 + `WITHIN`   
-+ `CONTAINS` **  
++ `CONTAINS` 
 + `OVERLAPS`   
-+ `RELATE`   
 + `DWITHIN`   
 + `BEYOND`  
 + `BBOX`  
@@ -121,4 +120,5 @@ leaflet(width = "100%") %>%
                    overlayGroups = c("INTERSECTS", "BBOX", "DWITHIN")) %>%
   hideGroup(c("BBOX", "DWITHIN"))
 ```
+
 
