@@ -32,11 +32,8 @@ OVERLAPS(geom)
 
 BBOX(coords, crs = NULL)
 
-DWITHIN(
-  geom,
-  distance,
-  units = c("meters", "feet", "statute miles", "nautical miles", "kilometers")
-)
+DWITHIN(geom, distance, units = c("meters", "feet", "statute miles",
+  "nautical miles", "kilometers"))
 }
 \arguments{
 \item{geom}{an \code{sf}/\code{sfc}/\code{sfg} or \code{bbox} object (from the \code{sf} package)}

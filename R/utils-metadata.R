@@ -87,7 +87,9 @@ specify_geom_name <- function(x, CQL_statement){
 get_col_df <- function(x) {
   
   layer <- x$query$version
-  r <- httr::GET(paste0("http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/", x$query$typeNames, "/wfs?service=wfs&version=", x$query$version, "&request=DescribeFeatureType"))
+  base_url_n_wfs <- substr(getOption("vicmap.base_url", default = base_wfs_url), start = 0, stop = nchar(getOption("vicmap.base_url", default = base_wfs_url)) - 3)
+  
+  r <- httr::GET(paste0(base_url_n_wfs, x$query$typeNames, "/wfs?service=wfs&version=", x$query$version, "&request=DescribeFeatureType"))
   c <- httr::content(r, encoding = "UTF-8", type="text/xml") 
   
   list <- xml2::xml_child(xml2::xml_child(xml2::xml_child(xml2::xml_child(c, "xsd:complexType"), 
