@@ -15,6 +15,8 @@
 #' been downloaded. VicmapR does this all for you but using this option you can set the size of the chunk
 #' requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
 #' it is advisable to lower the chunk limit. Chunks must be less than 70000.
+#' 
+#' `vicmap.base_url` is the base wfs url used to query the geoserver.
 #'
 #' @return data.frame
 #' @export
@@ -26,8 +28,9 @@ vicmap_options <- function() {
   
   dplyr::tribble(
     ~ option, ~ value, ~default,
-    "vicmap.max_geom_pred_size", null_to_na(getOption("vicmap.max_geom_pred_size")), 4400,
-    "vicmap.chunk_limit",null_to_na(getOption("vicmap.chunk_limit")), 70000
+    "vicmap.max_geom_pred_size", null_to_na(getOption("vicmap.max_geom_pred_size")), as.character(4400),
+    "vicmap.chunk_limit",null_to_na(getOption("vicmap.chunk_limit")), as.character(70000),
+    "vicmap.base_url", getOption("vicmap.base_url"), base_wfs_url
   )
 }
 

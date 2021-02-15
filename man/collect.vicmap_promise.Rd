@@ -4,7 +4,8 @@
 \alias{collect.vicmap_promise}
 \title{collect}
 \usage{
-\method{collect}{vicmap_promise}(x, quiet = FALSE, paginate = TRUE, ...)
+\method{collect}{vicmap_promise}(x, quiet = FALSE, paginate = TRUE,
+  ...)
 }
 \arguments{
 \item{x}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}

@@ -1,3 +1,5 @@
+base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs"
+
 #' vicmap_query
 #'
 #' @description Begin a Vicmap WFS query by selecting a WFS layer.  
@@ -16,7 +18,7 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   # Check if query exceeds vicmap limit 
   check_chunk_limit()
   
-  url <- httr::parse_url("http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs")
+  url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))
   url$query <- list(service = "wfs",
                     version = wfs_version,
                     request = "GetFeature",
