@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Collect data — collect.vicmap_promise • VicmapR</title>
+<title>Return Data — collect.vicmap_promise • VicmapR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -36,9 +36,10 @@
 
 
 
-<meta property="og:title" content="Collect data — collect.vicmap_promise" />
+<meta property="og:title" content="Return Data — collect.vicmap_promise" />
 
-<meta property="og:description" content="Collect data" />
+<meta property="og:description" content="collect() will force the execution of the vicmap_promise query.
+In doing so it will return an sf object into memory." />
 
 
 
@@ -104,7 +105,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/justincally/VicmapR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -118,20 +124,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Collect data</h1>
-    
+    <h1>Return Data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/justincally/VicmapR/blob/master/R/build-query.R'><code>R/build-query.R</code></a></small>
     <div class="hidden name"><code>collect.vicmap_promise.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Collect data</p>
+    <p><code><a href='collect.html'>collect()</a></code> will force the execution of the <code>vicmap_promise</code> query.
+In doing so it will return an <code>sf</code> object into memory.</p>
     
     </div>
 
     <pre class="usage"><span class='co'># S3 method for vicmap_promise</span>
-<span class='fu'><a href='collect.html'>collect</a></span><span class='op'>(</span><span class='va'>x</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span>, paginate <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'><a href='collect.html'>collect</a></span><span class='op'>(</span><span class='va'>x</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span>, paginate <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,7 +152,8 @@
     </tr>
     <tr>
       <th>paginate</th>
-      <td><p>logical; whether to allow pagination of results to extract all records (default is TRUE)</p></td>
+      <td><p>logical; whether to allow pagination of results to extract all records (default is TRUE,
+meaning all data will be returned but it will take more time)</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -157,6 +164,13 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>sf/tbl_df/tbl/data.frame</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Collecting certain datasets without filters will likely result in a large object being returned. Given
+that their is a limit on the number of rows that can be returned from the Vicmap geoserver (70,000) data will be
+paginated; which essentially means that multiple queries will be sent with the data bound together at the end. This
+process may take a while to run, thus it is recommended to filter large datasets before collection.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

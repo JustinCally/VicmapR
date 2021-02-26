@@ -11,19 +11,20 @@ reference:
       Functions used to query Vicmap data through the `vicmap_promise` class. 
       This includes generic methods adapted from dplyr such as `filter`, `select` and `collect`
     contents:
-      - '`listLayers`'
       - '`vicmap_query`'
-      - '`feature_cols`'
       - '`head.vicmap_promise`'
-      - '`feature_hits`'
       - '`select.vicmap_promise`'
       - '`filter_vicmap_promise`'
       - '`cql_geom_predicates`'
-      - '`show_query.vicmap_prommise`'
+      - '`show_query.vicmap_promise`'
       - '`collect.vicmap_promise`'
       - '`print.vicmap_promise`'
-  - title: "Vicmap Options"
+  - title: "Vicmap Options and Utilities"
     desc: >
-      Vicmap package options for querying data
+      Vicmap package options for querying data and functions that return potentially useful data 
+      for such as column names, number of rows or layers available. 
     contents:
+      - '`listLayers`'
+      - '`geom_col_name`'
+      - '`feature_hits`'
       - '`vicmap_options`'

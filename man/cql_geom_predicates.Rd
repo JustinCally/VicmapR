@@ -32,8 +32,11 @@ OVERLAPS(geom)
 
 BBOX(coords, crs = NULL)
 
-DWITHIN(geom, distance, units = c("meters", "feet", "statute miles",
-  "nautical miles", "kilometers"))
+DWITHIN(
+  geom,
+  distance,
+  units = c("meters", "feet", "statute miles", "nautical miles", "kilometers")
+)
 }
 \arguments{
 \item{geom}{an \code{sf}/\code{sfc}/\code{sfg} or \code{bbox} object (from the \code{sf} package)}
@@ -63,4 +66,7 @@ See \href{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#s
 The sf object is automatically converted in a
 bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
 filtering may be needed to achieve exact results.
+}
+\details{
+The code for thses cql predicates was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
 }

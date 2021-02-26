@@ -30,6 +30,17 @@ You can install the the development version from [GitHub](https://github.com/) w
 # install.packages("remotes")
 remotes::install_github("JustinCally/VicmapR")
 ```
+
+### Dependencies  
+
+Currently, the ability to use accurate geometric filters using `VicmapR` requires GDAL > 3.0. To see how to upgrade your version of GDAL and link it to the `sf` package visit: https://r-spatial.github.io/sf/#installing  
+
+```{r dependencies}
+library(sf)
+sf_extSoftVersion()
+```
+
+
 ## Example
 
 ### Searching for data

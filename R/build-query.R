@@ -1,11 +1,16 @@
-#' Query Vicmap data
+#' Query Vicmap Data
 #'
-#' @description Begin a Vicmap WFS query by selecting a WFS layer.  
+#' @description Begin a Vicmap WFS query by selecting a WFS layer. The record must be available as a 
+#' Web Feature Service (WFS) layer (listed in `listLayers()`)  
 #'
-#' @param layer vicmap layer to query. Options are listed in `VicmapR::listLayers()``
+#' @param layer vicmap layer to query. Options are listed in `listLayers()`
 #' @param CRS Coordinate Reference System (default is 4283)
-#' @param wfs_version The current version of WFS is 2.0.0. GeoServer supports versions 2.0.0, 1.1.0, and 1.0.0. However in order for filtering to be correctly applied wfs_version must be 2.0.0 (default is 2.0.0)
+#' @param wfs_version The current version of WFS is 2.0.0. 
+#' GeoServer supports versions 2.0.0, 1.1.0, and 1.0.0. 
+#' However in order for filtering to be correctly applied wfs_version must be 2.0.0 (default is 2.0.0)
 #'
+#' @details The returned `vicmap_promise` object is not data, rather it is a 'promise' of the data that can 
+#' be returned if `collect()` is used; which returns an `sf` object. 
 #' @return vicmap_promise
 #' @export
 #'
@@ -40,7 +45,17 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   
 }
 
-#' Show the query
+#' Show The Query
+#' 
+#' @description `show_query()` summarises the constructed query that has been passed to it by printing details 
+#' about the query in a human readable format.
+#' 
+#' @details The printed information consists of three sections: 
+#' \itemize{
+#'  \item{\strong{<base url>}}{ The base url of the query, this can be changed with options(vicmap.base_url = another_url)}
+#'  \item{\strong{<body>}}{ Lists the parameters of the WFS query, these can be modified through various functions such as `vicmap_query()`, `filter()`, `select()` and `head()`}
+#'  \item{\strong{<full query url>}}{ The constructed url of the final query to be collected}
+#' }
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... Other parameters possibly used by generic
@@ -70,11 +85,20 @@ show_query.vicmap_promise <- function(x, ...) {
   
 }
 
-#' Collect data
+#' Return Data
+#' 
+#' @description `collect()` will force the execution of the `vicmap_promise` query. 
+#' In doing so it will return an `sf` object into memory.  
+#' 
+#' @details Collecting certain datasets without filters will likely result in a large object being returned. Given 
+#' that their is a limit on the number of rows that can be returned from the Vicmap geoserver (70,000) data will be 
+#' paginated; which essentially means that multiple queries will be sent with the data bound together at the end. This 
+#' process may take a while to run, thus it is recommended to filter large datasets before collection.
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param quiet logical; whether to suppress the printing of messages and progress
-#' @param paginate logical; whether to allow pagination of results to extract all records (default is TRUE)
+#' @param paginate logical; whether to allow pagination of results to extract all records (default is TRUE, 
+#' meaning all data will be returned but it will take more time)
 #' @param ... additional arguments passed to \link[sf]{read_sf}
 #'
 #' @return sf/tbl_df/tbl/data.frame
@@ -171,7 +195,10 @@ head.vicmap_promise <- function(x, n = 5, ...) {
 }
 
 
-#' Print a snapshot of the data
+#' Print a Snapshot of the Data
+#' 
+#' @description  `print()` displays a cut of the data (no more than  six rows) 
+#' alongside the number of rows and columns that would be returned.
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... arguments to be passed to \link[base]{print}

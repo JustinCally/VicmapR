@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>feature column names — feature_cols • VicmapR</title>
+<title>Get Column Information — geom_col_name • VicmapR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -36,11 +36,13 @@
 
 
 
-<meta property="og:title" content="feature column names — feature_cols" />
+<meta property="og:title" content="Get Column Information — geom_col_name" />
 
-<meta property="og:description" content="feature column names
-geom column name
-return df of column names and types" />
+<meta property="og:description" content="geom_col_name returns a single value for the name of the geometry column for the
+WFS layer selected in the vicmap_promise object (e.g. SHAPE). This column will become the geometry column
+when using collect(). feature_cols() provides a vector of all column names for the WFS layer selected in the
+vicmap_promise object and  get_col_df() returns a data.frame with the column names and their XML schema string
+datatypes." />
 
 
 
@@ -106,7 +108,12 @@ return df of column names and types" />
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/justincally/VicmapR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -120,22 +127,24 @@ return df of column names and types" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>feature column names</h1>
-    
+    <h1>Get Column Information</h1>
+    <small class="dont-index">Source: <a href='https://github.com/justincally/VicmapR/blob/master/R/utils-metadata.R'><code>R/utils-metadata.R</code></a></small>
     <div class="hidden name"><code>geom_col_name.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>feature column names</p>
-<p>geom column name</p>
-<p>return df of column names and types</p>
+    <p><code>geom_col_name</code> returns a single value for the name of the geometry column for the
+WFS layer selected in the <code>vicmap_promise</code> object (e.g. <code>SHAPE</code>). This column will become the <code>geometry</code> column
+when using <code><a href='collect.html'>collect()</a></code>. <code>feature_cols()</code> provides a vector of all column names for the WFS layer selected in the
+<code>vicmap_promise</code> object and  <code>get_col_df()</code> returns a data.frame with the column names and their XML schema string
+datatypes.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>feature_cols</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>geom_col_name</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
-<span class='fu'>geom_col_name</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'>feature_cols</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
 <span class='fu'>get_col_df</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
     
@@ -146,43 +155,31 @@ return df of column names and types" />
       <th>x</th>
       <td><p>object of class <code>vicmap_promise</code></p></td>
     </tr>
-    <tr>
-      <th>x</th>
-      <td><p>object of class <code>vicmap_promise</code></p></td>
-    </tr>
-    <tr>
-      <th>x</th>
-      <td><p>object of class <code>vicmap_promise</code></p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>character</p>
-<p>character</p>
-<p>data.frame</p>
-    
-    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
-
-    
-<ul>
-<li><p><code>feature_cols</code>: vector of column names</p></li>
-<li><p><code>get_col_df</code>: data.frame of column names and classes</p></li>
-</ul>
+    <p>character/data.frame</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>feature_cols</span><span class='op'>(</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='co'># Return the name of the geometry column</span>
+<span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>geom_col_name</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "SHAPE"</div><div class='input'>  
+<span class='co'># Return the column names as a character vector</span>
+<span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>feature_cols</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  [1] "COUPEID"          "OBJECTID"         "AREA_NAME"        "DFW_TYPE"        
 #&gt;  [5] "AUTHOR"           "EDIT_DATE"        "STATUS"           "SITEACCESS"      
 #&gt;  [9] "COMMENTS"         "OPEN_DATE"        "CLOSE_DATE"       "REGION"          
 #&gt; [13] "DISTRICT"         "LEGL_NUM"         "SF_NAME"          "NEAR_TOWN_1"     
 #&gt; [17] "NEAR_TOWN_2"      "NEAR_TOWN_3"      "VOLUME"           "PBURN"           
 #&gt; [21] "RESTRICTIONS"     "ROAD_NAME"        "SE_ANNO_CAD_DATA" "UFI"             
-#&gt; [25] "UFI_CREATED"      "SHAPE"           </div><div class='input'><span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-<span class='fu'>geom_col_name</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "SHAPE"</div><div class='input'><span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-<span class='fu'>get_col_df</span><span class='op'>(</span><span class='op'>)</span>
+#&gt; [25] "UFI_CREATED"      "SHAPE"           </div><div class='input'>  
+<span class='co'># Return a data.frame of the columns and their XML schema string datatypes</span>
+<span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>get_col_df</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;                name                  type
 #&gt; 1           COUPEID            xsd:string
 #&gt; 2          OBJECTID           xsd:decimal
@@ -209,7 +206,8 @@ return df of column names and types" />
 #&gt; 23 SE_ANNO_CAD_DATA         xsd:hexBinary
 #&gt; 24              UFI           xsd:decimal
 #&gt; 25      UFI_CREATED          xsd:dateTime
-#&gt; 26            SHAPE gml:PointPropertyType</div></pre>
+#&gt; 26            SHAPE gml:PointPropertyType</div><div class='input'>  
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

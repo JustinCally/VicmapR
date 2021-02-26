@@ -2,7 +2,7 @@
 % Please edit documentation in R/build-query.R
 \name{print.vicmap_promise}
 \alias{print.vicmap_promise}
-\title{Print a snapshot of the data}
+\title{Print a Snapshot of the Data}
 \usage{
 \method{print}{vicmap_promise}(x, ...)
 }
@@ -15,7 +15,8 @@
 vicmap_promise (invisible), promise sample printed to console
 }
 \description{
-Print a snapshot of the data
+\code{print()} displays a cut of the data (no more than  six rows)
+alongside the number of rows and columns that would be returned.
 }
 \examples{
 query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/listFeatures.R
 \name{listLayers}
 \alias{listLayers}
-\title{List available WFS layers}
+\title{List Available WFS Layers}
 \usage{
 listLayers(...)
 }
@@ -13,7 +13,10 @@ listLayers(...)
 data.frame
 }
 \description{
-Lists layers available from Vicmap
+Lists layers available from the WFS geoserver. This is similar to sending the
+WFS request of \code{getFeatureTypes}. \code{listLayers()} returns a data.frame with the 'Name' and title of the
+layers available. The 'Name' is what is used within \code{vicmap_query()} while the title provides somewhat of a
+description/clarification about the layer.
 }
 \examples{
 listLayers(pattern = stringr::regex("flood height contour", ignore_case = TRUE))

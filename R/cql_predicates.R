@@ -131,7 +131,9 @@ sf_text <- function(x) {
 #' See [the geoserver CQL documentation for details](https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#spatial-predicate).
 #' The sf object is automatically converted in a
 #' bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
-#' filtering may be needed to achieve exact results.
+#' filtering may be needed to achieve exact results. 
+#' 
+#' @details The code for thses cql predicates was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
 #'
 #' @param geom an `sf`/`sfc`/`sfg` or `bbox` object (from the `sf` package)
 #' @name cql_geom_predicates

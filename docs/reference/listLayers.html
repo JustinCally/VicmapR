@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List available WFS layers — listLayers • VicmapR</title>
+<title>List Available WFS Layers — listLayers • VicmapR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -36,9 +36,12 @@
 
 
 
-<meta property="og:title" content="List available WFS layers — listLayers" />
+<meta property="og:title" content="List Available WFS Layers — listLayers" />
 
-<meta property="og:description" content="Lists layers available from Vicmap" />
+<meta property="og:description" content="Lists layers available from the WFS geoserver. This is similar to sending the
+WFS request of getFeatureTypes. listLayers() returns a data.frame with the 'Name' and title of the
+layers available. The 'Name' is what is used within vicmap_query() while the title provides somewhat of a
+description/clarification about the layer." />
 
 
 
@@ -104,7 +107,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/justincally/VicmapR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -118,14 +126,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List available WFS layers</h1>
-    
+    <h1>List Available WFS Layers</h1>
+    <small class="dont-index">Source: <a href='https://github.com/justincally/VicmapR/blob/master/R/listFeatures.R'><code>R/listFeatures.R</code></a></small>
     <div class="hidden name"><code>listLayers.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Lists layers available from Vicmap</p>
+    <p>Lists layers available from the WFS geoserver. This is similar to sending the
+WFS request of <code>getFeatureTypes</code>. <code>listLayers()</code> returns a data.frame with the 'Name' and title of the
+layers available. The 'Name' is what is used within <code><a href='vicmap_query.html'>vicmap_query()</a></code> while the title provides somewhat of a
+description/clarification about the layer.</p>
     
     </div>
 

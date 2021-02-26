@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print a snapshot of the data — print.vicmap_promise • VicmapR</title>
+<title>Print a Snapshot of the Data — print.vicmap_promise • VicmapR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -36,9 +36,10 @@
 
 
 
-<meta property="og:title" content="Print a snapshot of the data — print.vicmap_promise" />
+<meta property="og:title" content="Print a Snapshot of the Data — print.vicmap_promise" />
 
-<meta property="og:description" content="Print a snapshot of the data" />
+<meta property="og:description" content="print() displays a cut of the data (no more than  six rows)
+alongside the number of rows and columns that would be returned." />
 
 
 
@@ -104,7 +105,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/justincally/VicmapR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -118,14 +124,15 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Print a snapshot of the data</h1>
-    
+    <h1>Print a Snapshot of the Data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/justincally/VicmapR/blob/master/R/build-query.R'><code>R/build-query.R</code></a></small>
     <div class="hidden name"><code>print.vicmap_promise.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Print a snapshot of the data</p>
+    <p><code><a href='https://rdrr.io/r/base/print.html'>print()</a></code> displays a cut of the data (no more than  six rows)
+alongside the number of rows and columns that would be returned.</p>
     
     </div>
 
@@ -156,7 +163,7 @@
 </div><div class='output co'>#&gt; ● Using <span style='color: #0000BB;'>collect()</span><span> on this object will return </span><span style='color: #00BB00;'>187445</span><span>
 #&gt; ● features and </span><span style='color: #00BB00;'>16</span><span> fields
 #&gt; ● At most six rows of the record are printed here
-#&gt; ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#&gt; ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #&gt; Simple feature collection with 6 features and 15 fields
 #&gt; geometry type:  LINESTRING
 #&gt; dimension:      XY

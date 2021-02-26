@@ -100,7 +100,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/justincally/VicmapR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -140,33 +145,15 @@
       <tr>
         
         <td>
-          <p><code><a href="listLayers.html">listLayers()</a></code> </p>
-        </td>
-        <td><p>List available WFS layers</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="vicmap_query.html">vicmap_query()</a></code> </p>
         </td>
-        <td><p>Query Vicmap data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="geom_col_name.html">feature_cols()</a></code> <code><a href="geom_col_name.html">geom_col_name()</a></code> <code><a href="geom_col_name.html">get_col_df()</a></code> </p>
-        </td>
-        <td><p>feature column names</p></td>
+        <td><p>Query Vicmap Data</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="head.vicmap_promise.html">head(<i>&lt;vicmap_promise&gt;</i>)</a></code> </p>
         </td>
         <td><p>Return the first n rows of the data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="feature_hits.html">feature_hits()</a></code> </p>
-        </td>
-        <td><p>number of rows</p></td>
       </tr><tr>
         
         <td>
@@ -182,21 +169,27 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="show_query.vicmap_promise.html">show_query(<i>&lt;vicmap_promise&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Show The Query</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="collect.vicmap_promise.html">collect(<i>&lt;vicmap_promise&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Collect data</p></td>
+        <td><p>Return Data</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="print.vicmap_promise.html">print(<i>&lt;vicmap_promise&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Print a snapshot of the data</p></td>
+        <td><p>Print a Snapshot of the Data</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-vicmap-options" class="hasAnchor"><a href="#section-vicmap-options" class="anchor"></a>Vicmap Options</h2>
-          <p class="section-desc"><p>Vicmap package options for querying data</p></p>
+          <h2 id="section-vicmap-options-and-utilities" class="hasAnchor"><a href="#section-vicmap-options-and-utilities" class="anchor"></a>Vicmap Options and Utilities</h2>
+          <p class="section-desc"><p>Vicmap package options for querying data and functions that return potentially useful data for such as column names, number of rows or layers available.</p></p>
         </th>
       </tr>
       
@@ -205,6 +198,24 @@
       
       
       <tr>
+        
+        <td>
+          <p><code><a href="listLayers.html">listLayers()</a></code> </p>
+        </td>
+        <td><p>List Available WFS Layers</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="geom_col_name.html">geom_col_name()</a></code> <code><a href="geom_col_name.html">feature_cols()</a></code> <code><a href="geom_col_name.html">get_col_df()</a></code> </p>
+        </td>
+        <td><p>Get Column Information</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="feature_hits.html">feature_hits()</a></code> </p>
+        </td>
+        <td><p>The Number of Rows of the Promised Data</p></td>
+      </tr><tr>
         
         <td>
           <p><code><a href="vicmap_options.html">vicmap_options()</a></code> </p>

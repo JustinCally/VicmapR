@@ -109,7 +109,12 @@ filtering may be needed to achieve exact results." />
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/justincally/VicmapR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -124,7 +129,7 @@ filtering may be needed to achieve exact results." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>CQL Geometry Predicates</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/justincally/VicmapR/blob/master/R/cql_predicates.R'><code>R/cql_predicates.R</code></a></small>
     <div class="hidden name"><code>cql_geom_predicates.Rd</code></div>
     </div>
 
@@ -157,8 +162,11 @@ filtering may be needed to achieve exact results.</p>
 
 <span class='fu'>BBOX</span><span class='op'>(</span><span class='va'>coords</span>, crs <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>DWITHIN</span><span class='op'>(</span><span class='va'>geom</span>, <span class='va'>distance</span>, units <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"meters"</span>, <span class='st'>"feet"</span>, <span class='st'>"statute miles"</span>,
-  <span class='st'>"nautical miles"</span>, <span class='st'>"kilometers"</span><span class='op'>)</span><span class='op'>)</span></pre>
+<span class='fu'>DWITHIN</span><span class='op'>(</span>
+  <span class='va'>geom</span>,
+  <span class='va'>distance</span>,
+  units <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"meters"</span>, <span class='st'>"feet"</span>, <span class='st'>"statute miles"</span>, <span class='st'>"nautical miles"</span>, <span class='st'>"kilometers"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -195,6 +203,10 @@ the queried layer)</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a CQL expression to be passed on to the WFS call</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The code for thses cql predicates was developed by the bcdata team: <a href='https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html'>https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html</a></p>
     
 
   </div>
