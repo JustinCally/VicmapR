@@ -49,7 +49,8 @@ vicmap.chunk_limit is an option useful when dealing with very large data sets. W
 from the catalogue, the request is broken up into smaller chunks which are then recombined after they've
 been downloaded. VicmapR does this all for you but using this option you can set the size of the chunk
 requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
-it is advisable to lower the chunk limit. Chunks must be less than 70000." />
+it is advisable to lower the chunk limit. Chunks must be less than 70000.
+vicmap.base_url is the base wfs url used to query the geoserver." />
 
 
 
@@ -82,7 +83,7 @@ it is advisable to lower the chunk limit. Chunks must be less than 70000." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -153,10 +154,13 @@ from the catalogue, the request is broken up into smaller chunks which are then 
 been downloaded. VicmapR does this all for you but using this option you can set the size of the chunk
 requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
 it is advisable to lower the chunk limit. Chunks must be less than 70000.</p>
+<p><code>vicmap.base_url</code> is the base wfs url used to query the geoserver.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>vicmap_options</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>vicmap_options</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'>check_chunk_limit</span><span class='op'>(</span><span class='op'>)</span></pre>
         
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 

@@ -14,11 +14,12 @@ reference:
       - '`vicmap_query`'
       - '`head.vicmap_promise`'
       - '`select.vicmap_promise`'
-      - '`filter_vicmap_promise`'
+      - '`filter.vicmap_promise`'
       - '`cql_geom_predicates`'
       - '`show_query.vicmap_promise`'
       - '`collect.vicmap_promise`'
       - '`print.vicmap_promise`'
+      - '`CQL`'
   - title: "Vicmap Options and Utilities"
     desc: >
       Vicmap package options for querying data and functions that return potentially useful data 

@@ -4,6 +4,7 @@
 * A vignette on how to use Vicmap has been added
 * Enhanced documentation and references
 * Specified that GDAL > 3.0.0 is required  
+* Additional tests have been written
 
 # VicmapR 0.1.0
 

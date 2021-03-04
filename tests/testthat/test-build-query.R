@@ -1,4 +1,5 @@
 test_that("vicmap_query works", {
+  skip_if_offline()
   q <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 3111, wfs_version = "1.0.0")
   q2 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "2.0.0")
   expect_error(vicmap_query(), regexp = 'argument "layer" is missing, with no default')
@@ -22,11 +23,13 @@ test_that("vicmap_query works", {
 })
 
 test_that("print.vicmap_promise works", {
+  skip_if_offline()
   expect_error(print(vicmap_query('not a layer')), regexp = "No data available to query. Check your layer and query parameters")
   expect_output(print(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "2.0.0")), regexp = NULL)
 })
 
 test_that("head.vicmap_promise works", {
+  skip_if_offline()
   r <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
     head(10) %>%
     collect() %>% 
@@ -39,6 +42,7 @@ test_that("head.vicmap_promise works", {
 })
 
 test_that("collect.vicmap_promise works", {
+  skip_if_offline()
   d <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
     head(10) %>% 
     collect()
@@ -54,6 +58,7 @@ test_that("collect.vicmap_promise works", {
 })
 
 test_that("show_query.vicmap_promise works", {
+  skip_if_offline()
   expect_output({vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
                   show_query()}, regexp = NULL)
 })

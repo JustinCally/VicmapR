@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -123,11 +123,25 @@
       <small>Source: <a href='https://github.com/justincally/VicmapR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="vicmapr-0-1-1" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.1">
+<a href="#vicmapr-0-1-1" class="anchor"></a>VicmapR 0.1.1</h1>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/options.html">options(vicmap.base_url)</a></code> now accepts other base wfs urls to be used instead of the Vicplan one (e.g. the BOM wfs: <code><a href="https://rdrr.io/r/base/options.html">options(vicmap.base_url = "http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs")</a></code>)<br>
+</li>
+<li>A vignette on how to use Vicmap has been added</li>
+<li>Enhanced documentation and references</li>
+<li>Specified that GDAL &gt; 3.0.0 is required<br>
+</li>
+<li>Additional tests have been written</li>
+</ul>
+</div>
     <div id="vicmapr-0-1-0" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
 <a href="#vicmapr-0-1-0" class="anchor"></a>VicmapR 0.1.0</h1>
 <ul>
-<li>VicmapR now buidls queries in a step-wise fashion through the use of a <code>vicmap_promise</code> class. Similar to how <a href="https://github.com/bcgov/bcdata">bcdata</a> works.</li>
+<li>VicmapR now buidls queries in a step-wise fashion through the use of a <code>vicmap_promise</code> class. Similar to how <a href="https://github.com/bcgov/bcdata">bcdata</a> works</li>
 <li>Generic functions like <code>filter</code>, <code>select</code>, <code>head</code> can be used to refine the query.</li>
 <li>Data is returned using <code>collect</code>
 </li>
@@ -139,9 +153,9 @@
 <h1 class="page-header" data-toc-text="0.0.0.9000">
 <a href="#vicmapr-0-0-0-9000" class="anchor"></a>VicmapR 0.0.0.9000</h1>
 <ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.<br>
+<li>Added a <code>NEWS.md</code> file to track changes to the package<br>
 </li>
-<li>Wrote functions for basic WFS querying of data names and fields (<code>listLayers</code> and <code>listFields</code>).<br>
+<li>Wrote functions for basic WFS querying of data names and fields (<code>listLayers</code> and <code>listFields</code>)<br>
 </li>
 <li>Wrote a function to download and read in spatial data from Vicmap as <code>sf</code> objects (<code>read_layer_sf</code>)</li>
 </ul>

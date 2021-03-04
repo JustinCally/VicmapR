@@ -98,8 +98,8 @@ sf_text <- function(x) {
   
   ## If too big here, drawing bounding
   if (utils::object.size(x) > getOption("vicmap.max_geom_pred_size", 4400)) {
-    warning("The object is too large to perform exact spatial operations using VicmapR.
-             To simplify the polygon, sf::st_simplify() was used to reduce the size of the query", call. = FALSE)
+    message("The object is too large to perform exact spatial operations using VicmapR. 
+            To simplify the polygon, sf::st_simplify() was used to reduce the size of the query", call. = FALSE)
     x <- polygonFormat(x)
   }
   
@@ -111,7 +111,7 @@ sf_text <- function(x) {
   
   ## Flip axis for certain crs's using GDAL 3 ##
   
-  if (sf_extSoftVersion()["GDAL"] >= "3.0.0") {
+  if (sf::sf_extSoftVersion()["GDAL"] >= "3.0.0") {
     x <- sf::st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1") # reverse axes
   } else {
     warning("GDAL > 3.0.0 is required")
@@ -192,7 +192,7 @@ OVERLAPS <- function(geom) {
 #' @param pattern spatial relationship specified by a DE-9IM matrix pattern.
 #' A DE-9IM pattern is a string of length 9 specified using the characters
 #' `*TF012`. Example: `'1*T***T**'`
-#' @noRd
+#' @export
 RELATE <- function(geom, pattern) {
   if (!is.character(pattern) ||
       length(pattern) != 1L ||
@@ -254,7 +254,7 @@ DWITHIN <- function(geom, distance,
 }
 
 #' @rdname cql_geom_predicates
-#' @noRd
+#' @export
 # https://osgeo-org.atlassian.net/browse/GEOS-8922
 BEYOND <- function(geom, distance,
                    units = c("meters", "feet", "statute miles", "nautical miles", "kilometers")) {
