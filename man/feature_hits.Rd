@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-metadata.R
 \name{feature_hits}
 \alias{feature_hits}
-\title{number of rows}
+\title{The Number of Rows of the Promised Data}
 \usage{
 feature_hits(x)
 }
@@ -10,10 +10,12 @@ feature_hits(x)
 \item{x}{object of class \code{vicmap_promise}}
 }
 \value{
-numeric
+integer
 }
 \description{
-number of rows
+\code{feature_hits()} returns an integer of the number of rows that match the passed query/promise.
+This is similar to how \code{nrow()} works for a data.frame, however it will evaluate the number of rows to be returned
+without having to download the data.
 }
 \examples{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%

@@ -2,7 +2,7 @@
 % Please edit documentation in R/build-query.R
 \name{show_query.vicmap_promise}
 \alias{show_query.vicmap_promise}
-\title{show_query}
+\title{Show The Query}
 \usage{
 \method{show_query}{vicmap_promise}(x, ...)
 }
@@ -15,7 +15,16 @@
 vicmap_promise (invisible), query printed to console
 }
 \description{
-show_query
+\code{show_query()} summarises the constructed query that has been passed to it by printing details
+about the query in a human readable format.
+}
+\details{
+The printed information consists of three sections:
+\itemize{
+\item{\strong{<base url>}}{ The base url of the query, this can be changed with options(vicmap.base_url = another_url)}
+\item{\strong{<body>}}{ Lists the parameters of the WFS query, these can be modified through various functions such as \code{vicmap_query()}, \code{filter()}, \code{select()} and \code{head()}}
+\item{\strong{<full query url>}}{ The constructed url of the final query to be collected}
+}
 }
 \examples{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%

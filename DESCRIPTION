@@ -1,11 +1,12 @@
 Package: VicmapR
 Title: R Functions for Accessing Victorian Spatial Data Through WFS 
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person(given = "Justin",
            family = "Cally",
            role = c("aut", "cre"),
-           email = "justin.cally@epa.vic.gov.au")
+           email = "justin.g.cally@gmail.com",
+           comment = c(ORCID = "0000-0003-4584-2220"))
 Description: Easily interfaces R to spatial datasets freely available through 
   the Victorian Government's WFS (Web Feature Service). Allows users to read 
   in `sf` data from these sources and wraps methods from `ows4R`. 
@@ -13,16 +14,21 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
+URL: https://justincally.github.io/VicmapR/,
+    https://mapshare.vic.gov.au/vicplan/, https://github.com/justincally/VicmapR/
+BugReports: https://github.com/justincally/VicmapR/issues
+SystemRequirements: GDAL (>= 3.0.0)
 Suggests: 
     testthat (>= 2.1.0),
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    leaflet
 Imports: 
     magrittr,
     httr,
-    sf,
+    sf (>= 0.7),
     dplyr,
     stringr,
     purrr,
@@ -35,3 +41,18 @@ Imports:
     dbplyr,
     rlang
 VignetteBuilder: knitr
+Collate: 
+    'build-query.R'
+    'cql-predicates.R'
+    'cql-translate.R'
+    'filter.R'
+    'select.R'
+    'listFeatures.R'
+    'polygonFormat.R'
+    'utils-collect.R'
+    'utils-classes.R'
+    'utils-head.R'
+    'utils-metadata.R'
+    'utils-options.R'
+    'utils-pipe.R'
+    'utils-show_query.R'

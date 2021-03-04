@@ -1,8 +1,12 @@
-#' number of rows
+#' The Number of Rows of the Promised Data
+#' 
+#' @description `feature_hits()` returns an integer of the number of rows that match the passed query/promise. 
+#' This is similar to how `nrow()` works for a data.frame, however it will evaluate the number of rows to be returned
+#' without having to download the data. 
 #'
 #' @param x object of class `vicmap_promise`
 #'
-#' @return numeric
+#' @return integer
 #' @export
 #'
 #' @examples
@@ -23,32 +27,23 @@ feature_hits <- function(x) {
   return(n_hits)
 }
 
-#' feature column names
+#' Get Column Information
+#' @description `geom_col_name` returns a single value for the name of the geometry column for the 
+#' WFS layer selected in the `vicmap_promise` object (e.g. `SHAPE`). This column will become the `geometry` column 
+#' when using `collect()`. `feature_cols()` provides a vector of all column names for the WFS layer selected in the 
+#' `vicmap_promise` object and  `get_col_df()` returns a data.frame with the column names and their XML schema string 
+#' datatypes.
 #'
 #' @param x object of class `vicmap_promise`
 #'
-#' @return character
-#' @describeIn geom_col_name vector of column names
+#' @return character/data.frame
 #' @export
 #'
 #' @examples
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% feature_cols()
-feature_cols <- function(x) {
-  
-  return(get_col_df(x)$name)
-
-}
-
-#' geom column name
-#'
-#' @param x object of class `vicmap_promise`
-#'
-#' @return character
-#' @export
-#'
-#' @examples
+#' # Return the name of the geometry column
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
-#' geom_col_name()
+#'   geom_col_name()
+#'   
 geom_col_name <- function(x) {
   
   geom_col <- get_col_df(x) %>% 
@@ -56,6 +51,20 @@ geom_col_name <- function(x) {
     dplyr::pull(name)
   
   return(geom_col)
+  
+}
+
+#' feature column names
+#' @rdname geom_col_name
+#' @export
+#' @examples
+#' # Return the column names as a character vector
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+#'   feature_cols()
+#'   
+feature_cols <- function(x) {
+  
+  return(get_col_df(x)$name)
   
 }
 
@@ -72,18 +81,13 @@ specify_geom_name <- function(x, CQL_statement){
   dbplyr::sql(glue::glue(CQL_statement, geom_name = geom_col))
 }
 
-#' return df of column names and types 
-#'
-#' @param x object of class `vicmap_promise` 
-#'
-#' @describeIn geom_col_name data.frame of column names and classes
-#' 
-#' @return data.frame
+#' @rdname geom_col_name  
 #' @export
-#'
 #' @examples
+#' # Return a data.frame of the columns and their XML schema string datatypes
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
-#' get_col_df()
+#'   get_col_df()
+#'   
 get_col_df <- function(x) {
   
   layer <- x$query$version

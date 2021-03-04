@@ -30,6 +30,17 @@ You can install the the development version from [GitHub](https://github.com/) w
 # install.packages("remotes")
 remotes::install_github("JustinCally/VicmapR")
 ```
+
+### Dependencies  
+
+Currently, the ability to use accurate geometric filters using `VicmapR` requires GDAL > 3.0. To see how to upgrade your version of GDAL and link it to the `sf` package visit: https://r-spatial.github.io/sf/#installing  
+
+```{r dependencies}
+library(sf)
+sf::sf_extSoftVersion()
+```
+
+
 ## Example
 
 ### Searching for data
@@ -57,5 +68,24 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
   filter(INTERSECTS(melbourne)) %>% # more advanced geometric filter
   select(HIERARCHY, PFI) %>% 
   collect()
+```
+
+### Using other WFS urls  
+
+Using `options(vicmap.base_url)` VicmapR can query data from other WFS services; while this remains somewhat untested it is relatively easy to point VicmapR to another WFS url. This option would need to be set every session to override the base VicmapR url. For instance, the BOM WFS can be used as follows:  
+
+```{r}
+# set the new base url
+options(vicmap.base_url = "http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs")
+
+# list available data
+listLayers()
+
+# collect a data sample
+catchments <- vicmap_query("ahgf_shcatch:AHGFCatchment") %>% 
+  head(10) %>% 
+  collect()
+
+str(catchments)
 ```
 

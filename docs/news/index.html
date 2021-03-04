@@ -8,13 +8,11 @@
 
 <title>Changelog • VicmapR</title>
 
-
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -38,9 +36,7 @@
 
 
 
-
 <meta property="og:title" content="Changelog" />
-
 
 
 
@@ -71,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -102,8 +98,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/justincally/VicmapR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -118,14 +120,28 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      
+      <small>Source: <a href='https://github.com/justincally/VicmapR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="vicmapr-010" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0">
-<a href="#vicmapr-010" class="anchor"></a>VicmapR 0.1.0</h1>
+    <div id="vicmapr-0-1-1" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.1">
+<a href="#vicmapr-0-1-1" class="anchor"></a>VicmapR 0.1.1</h1>
 <ul>
-<li>VicmapR now buidls queries in a step-wise fashion through the use of a <code>vicmap_promise</code> class. Similar to how <a href="https://github.com/bcgov/bcdata">bcdata</a> works.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/options.html">options(vicmap.base_url)</a></code> now accepts other base wfs urls to be used instead of the Vicplan one (e.g. the BOM wfs: <code><a href="https://rdrr.io/r/base/options.html">options(vicmap.base_url = "http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs")</a></code>)<br>
+</li>
+<li>A vignette on how to use Vicmap has been added</li>
+<li>Enhanced documentation and references</li>
+<li>Specified that GDAL &gt; 3.0.0 is required<br>
+</li>
+<li>Additional tests have been written</li>
+</ul>
+</div>
+    <div id="vicmapr-0-1-0" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#vicmapr-0-1-0" class="anchor"></a>VicmapR 0.1.0</h1>
+<ul>
+<li>VicmapR now buidls queries in a step-wise fashion through the use of a <code>vicmap_promise</code> class. Similar to how <a href="https://github.com/bcgov/bcdata">bcdata</a> works</li>
 <li>Generic functions like <code>filter</code>, <code>select</code>, <code>head</code> can be used to refine the query.</li>
 <li>Data is returned using <code>collect</code>
 </li>
@@ -133,13 +149,13 @@
 <li>Other supporting functions such as <code>feature_cols</code>, <code>feature_hits</code>, <code>show_query</code> exist to help refine a query</li>
 </ul>
 </div>
-    <div id="vicmapr-0009000" class="section level1">
+    <div id="vicmapr-0-0-0-9000" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9000">
-<a href="#vicmapr-0009000" class="anchor"></a>VicmapR 0.0.0.9000</h1>
+<a href="#vicmapr-0-0-0-9000" class="anchor"></a>VicmapR 0.0.0.9000</h1>
 <ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.<br>
+<li>Added a <code>NEWS.md</code> file to track changes to the package<br>
 </li>
-<li>Wrote functions for basic WFS querying of data names and fields (<code>listLayers</code> and <code>listFields</code>).<br>
+<li>Wrote functions for basic WFS querying of data names and fields (<code>listLayers</code> and <code>listFields</code>)<br>
 </li>
 <li>Wrote a function to download and read in spatial data from Vicmap as <code>sf</code> objects (<code>read_layer_sf</code>)</li>
 </ul>
@@ -161,7 +177,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

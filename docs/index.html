@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -64,7 +64,14 @@
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/justincally/VicmapR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -86,8 +93,20 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("remotes")</span>
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JustinCally/VicmapR"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"JustinCally/VicmapR"</span><span class="op">)</span></code></pre></div>
+<div id="dependencies" class="section level3">
+<h3 class="hasAnchor">
+<a href="#dependencies" class="anchor"></a>Dependencies</h3>
+<p>Currently, the ability to use accurate geometric filters using <code>VicmapR</code> requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and link it to the <code>sf</code> package visit: <a href="https://r-spatial.github.io/sf/#installing" class="uri">https://r-spatial.github.io/sf/#installing</a></p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
+<span class="co">#&gt; Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1</span>
+<span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf_extSoftVersion.html">sf_extSoftVersion</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt;           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H </span>
+<span class="co">#&gt;        "3.9.0"        "3.2.1"        "7.2.1"         "true"         "true"</span></code></pre></div>
+</div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -95,81 +114,151 @@
 <div id="searching-for-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#searching-for-data" class="anchor"></a>Searching for data</h3>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">VicmapR</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://justincally.github.io/VicmapR/">VicmapR</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'VicmapR'</span>
 <span class="co">#&gt; The following object is masked from 'package:stats':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     filter</span>
 
-<span class="fu"><a href="reference/listLayers.html">listLayers</a></span>(<span class="kw">pattern</span> <span class="kw">=</span> <span class="kw pkg">stringr</span><span class="kw ns">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span>(<span class="st">"trees"</span>, <span class="kw">ignore_case</span> <span class="kw">=</span> <span class="no">T</span>))
+<span class="fu"><a href="reference/listLayers.html">listLayers</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">regex</a></span><span class="op">(</span><span class="st">"trees"</span>, ignore_case <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;                                Name</span>
 <span class="co">#&gt; 1 datavic:WATER_ISC2010_LARGE_TREES</span>
 <span class="co">#&gt;                                                           Title</span>
-<span class="co">#&gt; 1 2010 Index of Stream Condition - Large Trees polygon features</span></pre></div>
+<span class="co">#&gt; 1 2010 Index of Stream Condition - Large Trees polygon features</span></code></pre></div>
 </div>
 <div id="reading-in-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reading-in-data" class="anchor"></a>Reading in data</h3>
-<p>As of VicmapR version <code>0.1.0</code> data is read in using a lazy evaluation method with the convenience of pipe operators (<code><a href="reference/pipe.html">%&gt;%</a></code>). A lot of the methods and code have already been written for a similar package (<a href="https://github.com/bcgov/bcdata">bcdata</a>) that downloads data from the British Columbia WFS catalogue. Using a similar approach to <a href="https://github.com/bcgov/bcdata">bcdata</a>, VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until <code><a href="reference/collect-methods.html">collect()</a></code> is used on the <code>vicmap_promise</code>. The example below shows an extensive example of how the to easily read in spatial data:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># Read in an example shape to restrict our query to using geometric filtering</span>
-<span class="no">melbourne</span> <span class="kw">&lt;-</span> <span class="kw pkg">sf</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_read.html">st_read</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"shapes/melbourne.geojson"</span>, <span class="kw">package</span><span class="kw">=</span><span class="st">"VicmapR"</span>), <span class="kw">quiet</span> <span class="kw">=</span> <span class="no">T</span>)
+<p>As of VicmapR version <code>0.1.0</code> data is read in using a lazy evaluation method with the convenience of pipe operators (<code><a href="reference/%&gt;%.html">%&gt;%</a></code>). A lot of the methods and code have already been written for a similar package (<a href="https://github.com/bcgov/bcdata">bcdata</a>) that downloads data from the British Columbia WFS catalogue. Using a similar approach to <a href="https://github.com/bcgov/bcdata">bcdata</a>, VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until <code><a href="reference/collect.html">collect()</a></code> is used on the <code>vicmap_promise</code>. The example below shows an extensive example of how the to easily read in spatial data:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Read in an example shape to restrict our query to using geometric filtering</span>
+<span class="va">melbourne</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"shapes/melbourne.geojson"</span>, package<span class="op">=</span><span class="st">"VicmapR"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 
 <span class="co"># Obtain a promise of what data will be returned for a given layer</span>
-<span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span>(<span class="kw">layer</span> <span class="kw">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span>)
-<span class="co">#&gt; * Using collect() on this object will return 187445 features and 16</span>
-<span class="co">#&gt; * fields</span>
-<span class="co">#&gt; * At most six rows of the record are printed here</span>
-<span class="co">#&gt; -------------------------------------------------------------------------------------------------------</span>
+<span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span>
+<span class="co">#&gt; ● Using collect() on this object will return 187445 features and 16</span>
+<span class="co">#&gt; ● fields</span>
+<span class="co">#&gt; ● At most six rows of the record are printed here</span>
+<span class="co">#&gt; ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Simple feature collection with 6 features and 15 fields</span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
 <span class="co">#&gt; bbox:           xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559</span>
 <span class="co">#&gt; geographic CRS: GDA94</span>
 <span class="co">#&gt; # A tibble: 6 x 16</span>
-<span class="co">#&gt;   id       PFI    UFI FEATURE_TYPE_CO~ NAME  NAMED_FEATURE_ID ORIGIN</span>
+<span class="co">#&gt;   id       PFI    UFI FEATURE_TYPE_CO… NAME  NAMED_FEATURE_ID ORIGIN</span>
 <span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt; </span>
-<span class="co">#&gt; 1 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 2 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 3 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 4 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 5 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 6 VMHY~ 8.55e6 2.55e6 watercourse_cha~ &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; # ... with 9 more variables: CONSTRUCTION &lt;chr&gt;, USAGE &lt;chr&gt;, HIERARCHY &lt;chr&gt;,</span>
-<span class="co">#&gt; #   FEATURE_QUALITY_ID &lt;int&gt;, CREATE_DATE_PFI &lt;dttm&gt;, SUPERCEDED_PFI &lt;chr&gt;,</span>
-<span class="co">#&gt; #   CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;, geometry &lt;LINESTRING [°]&gt;</span>
+<span class="co">#&gt; 1 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 2 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 3 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 4 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 5 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 6 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; # … with 9 more variables: CONSTRUCTION &lt;chr&gt;, USAGE &lt;chr&gt;,</span>
+<span class="co">#&gt; #   HIERARCHY &lt;chr&gt;, FEATURE_QUALITY_ID &lt;int&gt;, CREATE_DATE_PFI &lt;dttm&gt;,</span>
+<span class="co">#&gt; #   SUPERCEDED_PFI &lt;chr&gt;, CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;,</span>
+<span class="co">#&gt; #   geometry &lt;LINESTRING [°]&gt;</span>
 
 <span class="co"># Build a more specific query and collect the results</span>
-<span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span>(<span class="kw">layer</span> <span class="kw">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span>) <span class="kw">%&gt;%</span> <span class="co"># layer to query</span>
-  <span class="fu"><a href="reference/filter.html">filter</a></span>(<span class="no">HIERARCHY</span> <span class="kw">==</span> <span class="st">"L"</span>) <span class="kw">%&gt;%</span> <span class="co"># simple filter for a column</span>
-  <span class="fu"><a href="reference/filter.html">filter</a></span>(<span class="fu"><a href="reference/cql_geom_predicates.html">INTERSECTS</a></span>(<span class="no">melbourne</span>)) <span class="kw">%&gt;%</span> <span class="co"># more advanced geometric filter</span>
-  <span class="fu"><a href="reference/select.html">select</a></span>(<span class="no">HIERARCHY</span>, <span class="no">PFI</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="reference/collect-methods.html">collect</a></span>()
-<span class="co">#&gt; Warning: The object is too large to perform exact spatial operations using VicmapR.</span>
-<span class="co">#&gt;              To simplify the polygon, sf::st_simplify() was used to reduce the size of the query</span>
+<span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># layer to query</span>
+  <span class="fu"><a href="reference/filter.html">filter</a></span><span class="op">(</span><span class="va">HIERARCHY</span> <span class="op">==</span> <span class="st">"L"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># simple filter for a column</span>
+  <span class="fu"><a href="reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="reference/cql_geom_predicates.html">INTERSECTS</a></span><span class="op">(</span><span class="va">melbourne</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># more advanced geometric filter</span>
+  <span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">HIERARCHY</span>, <span class="va">PFI</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="reference/collect.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; The object is too large to perform exact spatial operations using VicmapR. </span>
+<span class="co">#&gt;             To simplify the polygon, sf::st_simplify() was used to reduce the size of the queryFALSE</span>
+<span class="co">#&gt; although coordinates are longitude/latitude, st_union assumes that they are planar</span>
+<span class="co">#&gt; although coordinates are longitude/latitude, st_union assumes that they are planar</span>
 <span class="co">#&gt; Simple feature collection with 8 features and 5 fields</span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
 <span class="co">#&gt; bbox:           xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198</span>
 <span class="co">#&gt; geographic CRS: GDA94</span>
 <span class="co">#&gt; # A tibble: 8 x 6</span>
-<span class="co">#&gt;   id               PFI    UFI HIERARCHY OBJECTID                        geometry</span>
-<span class="co">#&gt;   &lt;chr&gt;          &lt;int&gt;  &lt;int&gt; &lt;chr&gt;        &lt;int&gt;                &lt;LINESTRING [°]&gt;</span>
-<span class="co">#&gt; 1 VMHYDRO_WAT~  1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.9359 ~</span>
-<span class="co">#&gt; 2 VMHYDRO_WAT~  1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294 -~</span>
-<span class="co">#&gt; 3 VMHYDRO_WAT~  1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.9292 ~</span>
-<span class="co">#&gt; 4 VMHYDRO_WAT~  1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.9401 ~</span>
-<span class="co">#&gt; 5 VMHYDRO_WAT~  1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.9414 ~</span>
-<span class="co">#&gt; 6 VMHYDRO_WAT~  1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.9441 ~</span>
-<span class="co">#&gt; 7 VMHYDRO_WAT~  1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186 -~</span>
-<span class="co">#&gt; 8 VMHYDRO_WAT~  1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.9202 ~</span></pre></div>
+<span class="co">#&gt;   id            PFI    UFI HIERARCHY OBJECTID                      geometry</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt; &lt;chr&gt;        &lt;int&gt;              &lt;LINESTRING [°]&gt;</span>
+<span class="co">#&gt; 1 VMHYDRO_W… 1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.935…</span>
+<span class="co">#&gt; 2 VMHYDRO_W… 1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294…</span>
+<span class="co">#&gt; 3 VMHYDRO_W… 1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.929…</span>
+<span class="co">#&gt; 4 VMHYDRO_W… 1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.940…</span>
+<span class="co">#&gt; 5 VMHYDRO_W… 1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.941…</span>
+<span class="co">#&gt; 6 VMHYDRO_W… 1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.944…</span>
+<span class="co">#&gt; 7 VMHYDRO_W… 1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186…</span>
+<span class="co">#&gt; 8 VMHYDRO_W… 1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.920…</span></code></pre></div>
+</div>
+<div id="using-other-wfs-urls" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-other-wfs-urls" class="anchor"></a>Using other WFS urls</h3>
+<p>Using <code><a href="https://rdrr.io/r/base/options.html">options(vicmap.base_url)</a></code> VicmapR can query data from other WFS services; while this remains somewhat untested it is relatively easy to point VicmapR to another WFS url. This option would need to be set every session to override the base VicmapR url. For instance, the BOM WFS can be used as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># set the new base url</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>vicmap.base_url <span class="op">=</span> <span class="st">"http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs"</span><span class="op">)</span>
+
+<span class="co"># list available data</span>
+<span class="fu"><a href="reference/listLayers.html">listLayers</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt;                                       Name                       Title</span>
+<span class="co">#&gt; 1               ahgf_shcatch:AHGFCatchment               AHGFCatchment</span>
+<span class="co">#&gt; 2           ahgf_shcatch:AHGFCatchmentType           AHGFCatchmentType</span>
+<span class="co">#&gt; 3   ahgf_shcatch:NCBLevel1DrainageDivision   NCBLevel1DrainageDivision</span>
+<span class="co">#&gt; 4 ahgf_shcatch:NCBLevel2DrainageBasinGroup NCBLevel2DrainageBasinGroup</span>
+<span class="co">#&gt; 5              ahgf_shcatch:NCBPfafstetter              NCBPfafstetter</span>
+
+<span class="co"># collect a data sample</span>
+<span class="va">catchments</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span><span class="st">"ahgf_shcatch:AHGFCatchment"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="reference/head.html">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="reference/collect.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">catchments</span><span class="op">)</span>
+<span class="co">#&gt; tibble [10 × 25] (S3: sf/tbl_df/tbl/data.frame)</span>
+<span class="co">#&gt;  $ id          : chr [1:10] "AHGFCatchment.1052476" "AHGFCatchment.1052477" "AHGFCatchment.1052478" "AHGFCatchment.1052479" ...</span>
+<span class="co">#&gt;  $ hydroid     : int [1:10] 6671286 6671287 6671288 6671289 6671290 6671291 6671292 6671293 6671294 6671295</span>
+<span class="co">#&gt;  $ ahgfftype   : int [1:10] 21 21 21 21 21 21 21 21 21 21</span>
+<span class="co">#&gt;  $ netnodeid   : int [1:10] 169435 169435 169437 169437 174211 174211 184147 196792 196793 200192</span>
+<span class="co">#&gt;  $ ncb_id      : int [1:10] 538304 538305 538306 538307 538308 538309 538310 538311 538312 538313</span>
+<span class="co">#&gt;  $ segmentno   : int [1:10] 538304 538305 538306 538307 538308 538309 538310 538311 538312 538313</span>
+<span class="co">#&gt;  $ streamname  : chr [1:10] " " " " " " " " ...</span>
+<span class="co">#&gt;  $ hassegment  : int [1:10] 2 2 2 2 2 2 2 2 2 2</span>
+<span class="co">#&gt;  $ extrnlbasn  : int [1:10] 0 0 0 0 0 0 0 0 0 0</span>
+<span class="co">#&gt;  $ nextdownid  : int [1:10] 6671312 6671312 6671169 6671169 6671239 6671239 6670984 6671217 6671270 6671415</span>
+<span class="co">#&gt;  $ srcfcname   : chr [1:10] "NCBs" "NCBs" "NCBs" "NCBs" ...</span>
+<span class="co">#&gt;  $ srcftype    : chr [1:10] " " " " " " " " ...</span>
+<span class="co">#&gt;  $ srctype     : chr [1:10] NA NA NA NA ...</span>
+<span class="co">#&gt;  $ sourceid    : int [1:10] 538304 538305 538306 538307 538308 538309 538310 538311 538312 538313</span>
+<span class="co">#&gt;  $ featrel     : POSIXct[1:10], format: "2005-07-01 10:00:00" "2005-07-01 10:00:00" ...</span>
+<span class="co">#&gt;  $ fsource     : chr [1:10] "GEOSCIENCE AUSTRALIA" "GEOSCIENCE AUSTRALIA" "GEOSCIENCE AUSTRALIA" "GEOSCIENCE AUSTRALIA" ...</span>
+<span class="co">#&gt;  $ attrrel     : POSIXct[1:10], format: "2003-01-01 11:00:00" "2003-01-01 11:00:00" ...</span>
+<span class="co">#&gt;  $ attrsource  : chr [1:10] "GEOSCIENCE AUSTRALIA" "GEOSCIENCE AUSTRALIA" "GEOSCIENCE AUSTRALIA" "GEOSCIENCE AUSTRALIA" ...</span>
+<span class="co">#&gt;  $ planacc     : int [1:10] 125 125 125 125 125 125 125 125 125 125</span>
+<span class="co">#&gt;  $ symbol      : chr [1:10] NA NA NA NA ...</span>
+<span class="co">#&gt;  $ textnote    : chr [1:10] NA NA NA NA ...</span>
+<span class="co">#&gt;  $ albersarea  : num [1:10] 2246203 272290 476475 4084463 2994741 ...</span>
+<span class="co">#&gt;  $ shape_length: num [1:10] 0.07 0.025 0.04 0.09 0.085 ...</span>
+<span class="co">#&gt;  $ shape_area  : num [1:10] 2.06e-04 2.50e-05 4.38e-05 3.75e-04 2.75e-04 ...</span>
+<span class="co">#&gt;  $ geometry    :sfc_MULTIPOLYGON of length 10; first list element: List of 1</span>
+<span class="co">#&gt;   ..$ :List of 1</span>
+<span class="co">#&gt;   .. ..$ : num [1:23, 1:2] 121 121 121 121 121 ...</span>
+<span class="co">#&gt;   ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span>
+<span class="co">#&gt;  - attr(*, "sf_column")= chr "geometry"</span>
+<span class="co">#&gt;  - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA NA NA NA NA NA NA NA ...</span>
+<span class="co">#&gt;   ..- attr(*, "names")= chr [1:24] "id" "hydroid" "ahgfftype" "netnodeid" ...</span></code></pre></div>
 </div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/justincally/VicmapR/">https://​github.com/​justincally/​VicmapR/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/justincally/VicmapR/issues">https://​github.com/​justincally/​VicmapR/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
@@ -179,7 +268,7 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Justin Cally <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Justin Cally <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-4584-2220" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -199,7 +288,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

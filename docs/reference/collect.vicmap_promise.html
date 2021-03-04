@@ -6,15 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>collect — collect.vicmap_promise • VicmapR</title>
-
+<title>Return Data — collect.vicmap_promise • VicmapR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -38,9 +36,11 @@
 
 
 
+<meta property="og:title" content="Return Data — collect.vicmap_promise" />
 
-<meta property="og:title" content="collect — collect.vicmap_promise" />
-<meta property="og:description" content="collect" />
+<meta property="og:description" content="collect() will force the execution of the vicmap_promise query.
+In doing so it will return an sf object into memory." />
+
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -103,8 +103,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/justincally/VicmapR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -118,18 +124,21 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>collect</h1>
-    
+    <h1>Return Data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/justincally/VicmapR/blob/master/R/build-query.R'><code>R/build-query.R</code></a></small>
     <div class="hidden name"><code>collect.vicmap_promise.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>collect</p>
+    
+    <p><code><a href='collect.html'>collect()</a></code> will force the execution of the <code>vicmap_promise</code> query.
+In doing so it will return an <code>sf</code> object into memory.</p>
+    
     </div>
 
     <pre class="usage"><span class='co'># S3 method for vicmap_promise</span>
-<span class='fu'><a href='collect-methods.html'>collect</a></span>(<span class='no'>x</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>paginate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-
+<span class='fu'><a href='collect.html'>collect</a></span><span class='op'>(</span><span class='va'>x</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span>, paginate <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -143,43 +152,27 @@
     </tr>
     <tr>
       <th>paginate</th>
-      <td><p>logical; whether to allow pagination of results to extract all records (default is TRUE)</p></td>
+      <td><p>logical; whether to allow pagination of results to extract all records (default is TRUE,
+meaning all data will be returned but it will take more time)</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional arguments passed to <a href='https://rdrr.io/pkg/sf/man/st_read.html'>read_sf</a></p></td>
+      <td><p>additional arguments passed to <a href='https://r-spatial.github.io/sf/reference/st_read.html'>read_sf</a></p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>sf/tbl_df/tbl/data.frame</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span>(<span class='kw'>layer</span> <span class='kw'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span>) <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='head.html'>head</a></span>(<span class='fl'>50</span>) <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='collect-methods.html'>collect</a></span>()</div><div class='output co'>#&gt; Simple feature collection with 50 features and 15 fields
-#&gt; geometry type:  LINESTRING
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 141.6188 ymin: -35.13205 xmax: 143.3381 ymax: -34.801
-#&gt; geographic CRS: GDA94
-#&gt; <span style='color: #555555;'># A tibble: 50 x 16</span><span>
-#&gt;    id       PFI    UFI FEATURE_TYPE_CO~ NAME  NAMED_FEATURE_ID ORIGIN
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'> 1</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 2</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 3</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 4</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 5</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 6</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 7</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 8</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 9</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'>10</span><span> VMHY~ 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'># ... with 40 more rows, and 9 more variables: CONSTRUCTION </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, USAGE </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   HIERARCHY </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, FEATURE_QUALITY_ID </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, CREATE_DATE_PFI </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   SUPERCEDED_PFI </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, CREATE_DATE_UFI </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, OBJECTID </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   geometry </span><span style='color: #555555;font-style: italic;'>&lt;LINESTRING [°]&gt;</span><span></div></span></pre>
+    <p>Collecting certain datasets without filters will likely result in a large object being returned. Given
+that their is a limit on the number of rows that can be returned from the Vicmap geoserver (70,000) data will be
+paginated; which essentially means that multiple queries will be sent with the data bound together at the end. This
+process may take a while to run, thus it is recommended to filter large datasets before collection.</p>
+    
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -195,7 +188,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

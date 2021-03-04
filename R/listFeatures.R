@@ -1,5 +1,8 @@
-#' List available WFS layers
-#' @description Lists layers available from Vicmap
+#' List Available WFS Layers
+#' @description Lists layers available from the WFS geoserver. This is similar to sending the 
+#' WFS request of `getFeatureTypes`. `listLayers()` returns a data.frame with the 'Name' and title of the
+#' layers available. The 'Name' is what is used within `vicmap_query()` while the title provides somewhat of a 
+#' description/clarification about the layer.
 #'
 #' @param ... Additional arguments passed to \link[stringr]{str_detect}. The `pattern` argument can be used to search for specific layers with matching names or titles. 
 #'

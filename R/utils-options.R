@@ -35,7 +35,7 @@ vicmap_options <- function() {
 }
 
 #' check chunk limit
-#' @noRd
+#' @rdname vicmap_options
 check_chunk_limit <- function(){
   
   chunk_value <- options("vicmap.chunk_limit")$vicmap.chunk_limit
