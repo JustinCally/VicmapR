@@ -45,8 +45,15 @@ test_that("collect.vicmap_promise works", {
   
   expect_is(d, c("data.frame", "sf", "tbl_df", "tbl"))
   
+  options(vicmap.chunk_limit = 100)
+  expect_message(object = {d2 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+    head(101) %>% select(id) %>%
+    collect()}, regexp = NULL)
   
-  d2<- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-    head(70001) %>% select(id) %>%
-    collect()
+  options(vicmap.chunk_limit = 70000)
+})
+
+test_that("show_query.vicmap_promise works", {
+  expect_output({vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+                  show_query()}, regexp = NULL)
 })

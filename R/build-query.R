@@ -21,6 +21,7 @@ base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_
 vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   
   # Check if query exceeds vicmap limit 
+  check_chunk_limit()
   
   url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))
   url$query <- list(service = "wfs",
