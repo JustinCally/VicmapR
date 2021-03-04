@@ -40,3 +40,18 @@ Imports:
     dbplyr,
     rlang
 VignetteBuilder: knitr
+Collate: 
+    'build-query.R'
+    'cql-predicates.R'
+    'cql-translate.R'
+    'filter.R'
+    'select.R'
+    'listFeatures.R'
+    'polygonFormat.R'
+    'utils-collect.R'
+    'utils-classes.R'
+    'utils-head.R'
+    'utils-metadata.R'
+    'utils-options.R'
+    'utils-pipe.R'
+    'utils-show_query.R'

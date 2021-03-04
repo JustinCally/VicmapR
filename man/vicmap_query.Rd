@@ -2,7 +2,7 @@
 % Please edit documentation in R/build-query.R
 \name{vicmap_query}
 \alias{vicmap_query}
-\title{Query Vicmap Data}
+\title{vicmap_query}
 \usage{
 vicmap_query(layer, CRS = 4283, wfs_version = "2.0.0")
 }

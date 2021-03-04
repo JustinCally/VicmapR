@@ -13,7 +13,7 @@
 #' listLayers(pattern = stringr::regex("flood height contour", ignore_case = TRUE))
 
 listLayers <- function(...) {
-  url <- httr::parse_url("http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs")
+  url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))
   url$query <- list(service = "wfs",
                     version = "2.0.0",
                     request = "GetCapabilities")

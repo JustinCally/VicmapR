@@ -29,8 +29,3 @@ that their is a limit on the number of rows that can be returned from the Vicmap
 paginated; which essentially means that multiple queries will be sent with the data bound together at the end. This
 process may take a while to run, thus it is recommended to filter large datasets before collection.
 }
-\examples{
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
-head(50) \%>\%
-collect()
-}

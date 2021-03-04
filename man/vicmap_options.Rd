@@ -2,9 +2,12 @@
 % Please edit documentation in R/utils-options.R
 \name{vicmap_options}
 \alias{vicmap_options}
+\alias{check_chunk_limit}
 \title{options}
 \usage{
 vicmap_options()
+
+check_chunk_limit()
 }
 \value{
 data.frame
@@ -24,4 +27,6 @@ from the catalogue, the request is broken up into smaller chunks which are then 
 been downloaded. VicmapR does this all for you but using this option you can set the size of the chunk
 requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
 it is advisable to lower the chunk limit. Chunks must be less than 70000.
+
+\code{vicmap.base_url} is the base wfs url used to query the geoserver.
 }

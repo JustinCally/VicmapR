@@ -1,4 +1,6 @@
-#' Query Vicmap Data
+base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs"
+
+#' vicmap_query
 #'
 #' @description Begin a Vicmap WFS query by selecting a WFS layer. The record must be available as a 
 #' Web Feature Service (WFS) layer (listed in `listLayers()`)  
@@ -19,9 +21,8 @@
 vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   
   # Check if query exceeds vicmap limit 
-  check_chunk_limit()
   
-  url <- httr::parse_url("http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs")
+  url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))
   url$query <- list(service = "wfs",
                     version = wfs_version,
                     request = "GetFeature",
@@ -32,7 +33,6 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
                     srsName = paste0("EPSG:", CRS))
   
   #maxFeatures or count depends on version
-  
   if(url$query$version == "2.0.0") {
     url$query$maxFeatures <- NULL 
   } else {
@@ -105,9 +105,9 @@ show_query.vicmap_promise <- function(x, ...) {
 #' @export
 #'
 #' @examples
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-#' head(50) %>%
-#' collect()
+# vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+# head(50) %>%
+# collect()
 collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
@@ -122,13 +122,18 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
     the_count <- x$query$maxFeatures 
   }
   
+  # For when head is used
+  if(the_count > getOption("vicmap.chunk_limit", default = 70000L)) {
+    number_of_records <- the_count
+  }
+  
   #paginate?
-  if(number_of_records > getOption("vicmap.chunk_limit", default = 70000L) & paginate == TRUE & the_count == getOption("vicmap.chunk_limit", default = 70000L)) {
+  if(number_of_records > getOption("vicmap.chunk_limit", default = 70000L) & paginate == TRUE & the_count >= getOption("vicmap.chunk_limit", default = 70000L)) {
     # number of times to loop
-    loop_times <- ceiling(number_of_records/the_count)
+    loop_times <- ceiling(number_of_records/getOption("vicmap.chunk_limit", default = 70000L))
     # inform user of delay
     if(!quiet) {
-    message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (70,000). The collection of data might take some time."))
+    message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (", getOption("vicmap.chunk_limit", default = 70000L),"). The collection of data will be paginated and might take some time."))
     }
     # pick something to sort by
     cols <- feature_cols(x)
@@ -143,8 +148,13 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
     }
     
     for(i in 1:loop_times) {
-      x$query$startIndex <- (i-1)*the_count
+      x$query$startIndex <- (i-1)*getOption("vicmap.chunk_limit", default = 70000L)
       x$query$sortBy <- sort_col 
+      if(x$query$version == "2.0.0") {
+        x$query$count <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 70000L))
+      } else {
+        x$query$maxFeatures <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 70000L))
+      }
       request <- httr::build_url(x)
       returned_sf[[i]] <- sf::read_sf(request, ...)
       
@@ -214,6 +224,10 @@ print.vicmap_promise <- function(x, ...) {
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
   
   number_of_records <- feature_hits(x)
+  
+  if(is.null(number_of_records) || is.na(number_of_records) || number_of_records == 0) {
+    stop("No data available to query. Check your layer and query parameters")
+  }
   
   if(number_of_records > 6) {
     if(x$query$version == "2.0.0") {
