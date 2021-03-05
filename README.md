@@ -9,6 +9,8 @@
 coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://codecov.io/gh/JustinCally/VicmapR?branch=master)
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![R build
+status](https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/VicmapR/actions)
 <!-- badges: end -->
 
 The goal of VicmapR is to provide functions to easily access Victorin
@@ -81,7 +83,7 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
 #> ● Using collect() on this object will return 187445 features and 16
 #> ● fields
 #> ● At most six rows of the record are printed here
-#> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Simple feature collection with 6 features and 15 fields
 #> geometry type:  LINESTRING
 #> dimension:      XY
