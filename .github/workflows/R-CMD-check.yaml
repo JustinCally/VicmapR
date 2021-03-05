@@ -28,6 +28,7 @@ jobs:
       CRAN: ${{ matrix.config.cran }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       cache-version: v5
+      PKG_CONFIG_PATH: /opt/software/lib/pkgconfig
 
     steps:
       - uses: actions/checkout@v2
@@ -69,7 +70,6 @@ jobs:
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
           # install spatial dependencies
-          export PKG_CONFIG_PATH="/opt/software/lib/pkgconfig"
           sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
           sudo apt update
           sudo apt install \
