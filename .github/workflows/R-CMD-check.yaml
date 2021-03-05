@@ -66,7 +66,6 @@ jobs:
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          echo "options(repos = c(CRAN='https://packagemanager.rstudio.com/cran/__linux__/bionic/latest'))" >> /usr/local/lib/R/etc/Rprofile.site 
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
@@ -80,6 +79,7 @@ jobs:
             libproj-dev
       - name: Install dependencies
         run: |
+          options(repos = c(CRAN='https://packagemanager.rstudio.com/cran/__linux__/bionic/latest'))
           remotes::install_deps(dependencies = TRUE, configure.args = c('sf' = '${{ matrix.config.sf_args }}'))
           install.packages("rcmdcheck")
         shell: Rscript {0}
