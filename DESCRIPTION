@@ -29,7 +29,6 @@ Imports:
     httr,
     sf (>= 0.7),
     dplyr,
-    stringr,
     purrr,
     methods,
     cli,
@@ -38,8 +37,7 @@ Imports:
     xml2,
     glue,
     dbplyr,
-    rlang,
-    stringi
+    rlang
 VignetteBuilder: knitr
 Collate: 
     'build-query.R'

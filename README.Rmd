@@ -49,7 +49,7 @@ sf::sf_extSoftVersion()
 ```{r example}
 library(VicmapR)
 
-listLayers(pattern = stringr::regex("trees", ignore_case = T))
+listLayers(pattern = "trees", ignore.case = T)
 ```
 
 ### Reading in data

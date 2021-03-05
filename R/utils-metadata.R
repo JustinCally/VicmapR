@@ -47,7 +47,7 @@ feature_hits <- function(x) {
 geom_col_name <- function(x) {
   
   geom_col <- get_col_df(x) %>% 
-    dplyr::filter(stringr::str_detect(string = type, pattern = "gml:")) %>%
+    dplyr::filter(grepl(x = type, pattern = "gml:")) %>%
     dplyr::pull(name)
   
   return(geom_col)

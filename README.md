@@ -54,7 +54,7 @@ library(VicmapR)
 #> 
 #>     filter
 
-listLayers(pattern = stringr::regex("trees", ignore_case = T))
+listLayers(pattern = "trees", ignore.case = T)
 #>                                Name
 #> 1 datavic:WATER_ISC2010_LARGE_TREES
 #>                                                           Title

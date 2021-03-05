@@ -4,13 +4,13 @@
 #' layers available. The 'Name' is what is used within `vicmap_query()` while the title provides somewhat of a 
 #' description/clarification about the layer.
 #'
-#' @param ... Additional arguments passed to \link[stringr]{str_detect}. The `pattern` argument can be used to search for specific layers with matching names or titles. 
+#' @param ... Additional arguments passed to \link[base]{regexpr}. The `pattern` argument can be used to search for specific layers with matching names or titles. 
 #'
 #' @return data.frame
 #' @export
 #'
 #' @examples
-#' listLayers(pattern = stringr::regex("flood height contour", ignore_case = TRUE))
+#' listLayers(pattern = "flood height contour")
 
 listLayers <- function(...) {
   url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))
@@ -29,7 +29,7 @@ listLayers <- function(...) {
   }) %>% dplyr::bind_rows()
   
   if(methods::hasArg('pattern')){
-    df <- dplyr::filter_all(df, dplyr::any_vars(stringr::str_detect(string = ., ...)))
+    df <- dplyr::filter_all(df, dplyr::any_vars(grepl(x = ., ...)))
   }
   return(df)
 }  
