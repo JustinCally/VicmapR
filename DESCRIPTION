@@ -38,7 +38,8 @@ Imports:
     xml2,
     glue,
     dbplyr,
-    rlang
+    rlang,
+    stringi
 VignetteBuilder: knitr
 Collate: 
     'build-query.R'
