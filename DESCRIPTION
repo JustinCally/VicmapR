@@ -18,7 +18,6 @@ RoxygenNote: 7.1.1
 URL: https://justincally.github.io/VicmapR/,
     https://mapshare.vic.gov.au/vicplan/, https://github.com/justincally/VicmapR/
 BugReports: https://github.com/justincally/VicmapR/issues
-SystemRequirements: GDAL (>= 3.0.0)
 Suggests: 
     testthat (>= 2.1.0),
     covr,
