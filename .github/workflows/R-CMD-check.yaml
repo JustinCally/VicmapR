@@ -27,7 +27,7 @@ jobs:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       CRAN: ${{ matrix.config.cran }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      cache-version: v5
+      cache-version: v6
       PKG_CONFIG_PATH: /opt/software/lib/pkgconfig
 
     steps:
@@ -69,6 +69,9 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
+          sudo apt update 
+          sudo apt install \
+            libicu-dev 
           # install spatial dependencies
           sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
           sudo apt update
@@ -76,8 +79,7 @@ jobs:
             libudunits2-dev \
             libgdal-dev \
             libgeos-dev \
-            libproj-dev \
-            libicu-dev
+            libproj-dev
       - name: Install dependencies
         run: |
           options(repos = c(CRAN='https://packagemanager.rstudio.com/cran/__linux__/bionic/latest'))
