@@ -76,7 +76,8 @@ jobs:
             libudunits2-dev \
             libgdal-dev \
             libgeos-dev \
-            libproj-dev 
+            libproj-dev \
+            libicu-dev
       - name: Install dependencies
         run: |
           options(repos = c(CRAN='https://packagemanager.rstudio.com/cran/__linux__/bionic/latest'))
