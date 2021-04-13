@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# VicmapR
+# VicmapR <img src='man/figures/VicmapR-Hex-2.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 [![Codecov test coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://codecov.io/gh/JustinCally/VicmapR?branch=master)
