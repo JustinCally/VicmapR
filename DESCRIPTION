@@ -2,15 +2,15 @@ Package: VicmapR
 Title: R Functions for Accessing Victorian Spatial Data Through WFS 
 Version: 0.1.1
 Authors@R: 
-    person(given = "Justin",
+    c(person(given = "Justin",
            family = "Cally",
            role = c("aut", "cre"),
            email = "justin.g.cally@gmail.com",
-           comment = c(ORCID = "0000-0003-4584-2220"))
+           comment = c(ORCID = "0000-0003-4584-2220")),
     person(given = "Rachel",
            family = "Swain",
            role = c("ctb"),
-           email = "rachelswain1@gmail.com")
+           email = "rachelswain1@gmail.com"))
 Description: Easily interfaces R to spatial datasets freely available through 
   the Victorian Government's WFS (Web Feature Service). Allows users to read 
   in `sf` data from these sources and wraps methods from `ows4R`. 
