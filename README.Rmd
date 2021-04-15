@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# VicmapR
+# VicmapR <img src='man/figures/VicmapR-Hex-2.png' align="right" height="139" />
 
 <!-- badges: start -->
 [![Codecov test coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://codecov.io/gh/JustinCally/VicmapR?branch=master)
@@ -75,7 +75,7 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
 
 Using `options(vicmap.base_url)` VicmapR can query data from other WFS services; while this remains somewhat untested it is relatively easy to point VicmapR to another WFS url. This option would need to be set every session to override the base VicmapR url. For instance, the BOM WFS can be used as follows:  
 
-```{r}
+```{r, eval=FALSE}
 # set the new base url
 options(vicmap.base_url = "http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs")
 
