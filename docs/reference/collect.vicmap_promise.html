@@ -8,11 +8,13 @@
 
 <title>Return Data — collect.vicmap_promise • VicmapR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,11 +38,10 @@
 
 
 
-<meta property="og:title" content="Return Data — collect.vicmap_promise" />
 
+<meta property="og:title" content="Return Data — collect.vicmap_promise" />
 <meta property="og:description" content="collect() will force the execution of the vicmap_promise query.
 In doing so it will return an sf object into memory." />
-
 
 
 
@@ -80,7 +81,7 @@ In doing so it will return an sf object into memory." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -103,11 +104,10 @@ In doing so it will return an sf object into memory." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/justincally/VicmapR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -130,15 +130,13 @@ In doing so it will return an sf object into memory." />
     </div>
 
     <div class="ref-description">
-    
     <p><code><a href='collect.html'>collect()</a></code> will force the execution of the <code>vicmap_promise</code> query.
 In doing so it will return an <code>sf</code> object into memory.</p>
-    
     </div>
 
     <pre class="usage"><span class='co'># S3 method for vicmap_promise</span>
 <span class='fu'><a href='collect.html'>collect</a></span><span class='op'>(</span><span class='va'>x</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span>, paginate <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -160,18 +158,16 @@ meaning all data will be returned but it will take more time)</p></td>
       <td><p>additional arguments passed to <a href='https://r-spatial.github.io/sf/reference/st_read.html'>read_sf</a></p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>sf/tbl_df/tbl/data.frame</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Collecting certain datasets without filters will likely result in a large object being returned. Given
 that their is a limit on the number of rows that can be returned from the Vicmap geoserver (70,000) data will be
 paginated; which essentially means that multiple queries will be sent with the data bound together at the end. This
 process may take a while to run, thus it is recommended to filter large datasets before collection.</p>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

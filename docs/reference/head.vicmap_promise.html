@@ -8,11 +8,13 @@
 
 <title>Return the first n rows of the data — head.vicmap_promise • VicmapR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,10 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Return the first n rows of the data — head.vicmap_promise" />
-
 <meta property="og:description" content="Return the first n rows of the data" />
-
 
 
 
@@ -79,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,11 +103,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/justincally/VicmapR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -129,14 +129,12 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Return the first n rows of the data</p>
-    
     </div>
 
     <pre class="usage"><span class='co'># S3 method for vicmap_promise</span>
 <span class='fu'><a href='head.html'>head</a></span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>5</span>, <span class='va'>...</span><span class='op'>)</span></pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -153,38 +151,37 @@
       <td><p>Other parameters possibly used by generic</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>vicmap_promise</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='head.html'>head</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='collect.html'>collect</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Simple feature collection with 50 features and 15 fields
-#&gt; geometry type:  LINESTRING
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 141.6188 ymin: -35.13205 xmax: 143.3381 ymax: -34.801
-#&gt; geographic CRS: GDA94
-#&gt; <span style='color: #555555;'># A tibble: 50 x 16</span><span>
-#&gt;    id       PFI    UFI FEATURE_TYPE_CO… NAME  NAMED_FEATURE_ID ORIGIN
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'> 1</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 2</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 3</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 4</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 5</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 6</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 7</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 8</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'> 9</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'>10</span><span> VMHY… 8.55</span><span style='color: #555555;'>e</span><span>6 2.55</span><span style='color: #555555;'>e</span><span>6 watercourse_cha… </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
-#&gt; </span><span style='color: #555555;'># … with 40 more rows, and 9 more variables: CONSTRUCTION </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, USAGE </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   HIERARCHY </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, FEATURE_QUALITY_ID </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, CREATE_DATE_PFI </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   SUPERCEDED_PFI </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, CREATE_DATE_UFI </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, OBJECTID </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   geometry </span><span style='color: #555555;font-style: italic;'>&lt;LINESTRING [°]&gt;</span><span></div></span></pre>
+#&gt; Geometry type: LINESTRING
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 141.6188 ymin: -35.13205 xmax: 143.3381 ymax: -34.801
+#&gt; Geodetic CRS:  GDA94
+#&gt; <span style='color: #949494;'># A tibble: 50 x 16</span><span>
+#&gt;    id                 PFI    UFI FEATURE_TYPE_CODE NAME  NAMED_FEATURE_ID ORIGIN
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> VMHYDRO_WATERC~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 watercourse_chan~ </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>               2     
+#&gt; </span><span style='color: #949494;'># ... with 40 more rows, and 9 more variables: CONSTRUCTION &lt;chr&gt;, USAGE &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   HIERARCHY &lt;chr&gt;, FEATURE_QUALITY_ID &lt;int&gt;, CREATE_DATE_PFI &lt;dttm&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   SUPERCEDED_PFI &lt;chr&gt;, CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   geometry &lt;LINESTRING [°]&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
