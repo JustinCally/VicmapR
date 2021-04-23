@@ -28,7 +28,7 @@ jobs:
       RSPM: ${{ matrix.config.rspm }}
       CRAN: ${{ matrix.config.cran }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      cache-version: v9
+      cache-version: v10
       PKG_CONFIG_PATH: /opt/software/lib/pkgconfig
 
     steps:
@@ -67,10 +67,7 @@ jobs:
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          Rscript -e "remotes::install_github('r-hub/sysreqs')"
           Rscript -e "install.packages('stringi')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
           sudo apt install \
             libicu-dev 
           # install spatial dependencies
