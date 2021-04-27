@@ -17,6 +17,11 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
 
       - uses: r-lib/actions/setup-pandoc@v1
+      
+      - name: install macOS system dependencies
+        continue-on-error: true
+        run: |
+          brew install pkg-config gdal udunits
 
       - name: Query dependencies
         run: |
