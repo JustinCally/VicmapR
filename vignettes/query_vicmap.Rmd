@@ -102,8 +102,6 @@ melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="Vicmap
 
 st_crs(melbourne)
 
-cat(showSRID("EPSG:4283", multiline="YES"), "\n")
-
 sf::st_transform(melbourne %>% sf::st_union(), pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1") %>% sf::st_as_text()
 
 sf::st_transform(melbourne %>% sf::st_union(), pipeline = "+proj=pipeline +step +proj=axisswap +order=1,2") %>% sf::st_as_text()
