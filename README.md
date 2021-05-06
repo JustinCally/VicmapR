@@ -11,11 +11,17 @@ coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.sv
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![R build
 status](https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/VicmapR/actions)
+[![Devel
+version](https://img.shields.io/badge/devel%20version-0.1.1-blue.svg)](https://github.com/JustinCally/VicmapR)
+[![Code
+size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR)
 <!-- badges: end -->
 
-The goal of VicmapR is to provide functions to easily access Victorin
-Government spatial data through their WFS (Web Feature Service). The
-package is currently in an early development stage.
+The goal of VicmapR is to provide functions to easily access Victorian
+Government spatial data through their WFS (Web Feature Service). VicmapR
+uses a lazy querying approach (developed in approach to
+[bcdata](https://github.com/bcgov/bcdata)), which allows for a
+responsive and precise querying process.
 
 ## Installation
 
@@ -30,7 +36,7 @@ remotes::install_github("JustinCally/VicmapR")
 ### Dependencies
 
 Currently, the ability to use accurate geometric filters using `VicmapR`
-requires GDAL \> 3.0. To see how to upgrade your version of GDAL and
+requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and
 link it to the `sf` package visit:
 <https://r-spatial.github.io/sf/#installing>
 
@@ -67,7 +73,7 @@ As of VicmapR version `0.1.0` data is read in using a lazy evaluation
 method with the convenience of pipe operators (`%>%`). A lot of the
 methods and code have already been written for a similar package
 ([bcdata](https://github.com/bcgov/bcdata)) that downloads data from the
-British Columbia WFS catalogue. Using a similar approach to
+British Columbia WFS catalogues. Using a similar approach to
 [bcdata](https://github.com/bcgov/bcdata), VicmapR allows users to
 construct a WFS query in a step-wise format. In doing so a query is
 reserved until `collect()` is used on the `vicmap_promise`. The example
@@ -80,10 +86,10 @@ melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="Vicmap
 
 # Obtain a promise of what data will be returned for a given layer
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
-#> ● Using collect() on this object will return 187446 features and 16
+#> ● Using collect() on this object will return 187447 features and 16
 #> ● fields
 #> ● At most six rows of the record are printed here
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 #> Simple feature collection with 6 features and 15 fields
 #> geometry type:  LINESTRING
 #> dimension:      XY
@@ -131,6 +137,26 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
 #> 8 VMHYDRO_W… 1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.920…
 ```
 
+Vicmap translates numerous geometric filter functions available in the
+Victorian Government’s WFS Geoserver supports numerous [geometric
+filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):
+
+-   `EQUALS`  
+-   `DISJOINT`  
+-   `INTERSECTS`  
+-   `TOUCHES`  
+-   `CROSSES`  
+-   `WITHIN`  
+-   `CONTAINS`
+-   `OVERLAPS`  
+-   `DWITHIN`  
+-   `BEYOND`  
+-   `BBOX`
+
+These filters can be used within the `filter()` function by providing
+them an object of class `sf/sfc/sfg/bbox` as shown above with the
+`melbourne` object.
+
 ### Using other WFS urls
 
 Using `options(vicmap.base_url)` VicmapR can query data from other WFS
@@ -143,13 +169,12 @@ be used as follows:
 # set the new base url
 options(vicmap.base_url = "http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs")
 
-# list available data
-listLayers()
-
 # collect a data sample
 catchments <- vicmap_query("ahgf_shcatch:AHGFCatchment") %>% 
   head(10) %>% 
   collect()
-
-str(catchments)
 ```
+
+***Note**: Using other Geoserver WFS urls will not necessarily work as
+expected due to the potential differences in the capabilities of the
+Geoserver instance*

@@ -12,6 +12,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
+  message = FALSE,
   comment = "#>"
 )
 ```
@@ -75,7 +76,7 @@ str(watercourse_data)
 
 ## Geometric filters
 
-Vicmap translates numerous geometric filter functions available in the Victorian Government's WFS Geoserver supports numerous [geometric filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):  
+VicmapR translates numerous geometric filter functions available in the Victorian Government's WFS Geoserver supports numerous [geometric filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):  
 
 + `EQUALS`   
 + `DISJOINT`   
@@ -100,6 +101,8 @@ melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="Vicmap
 rail_intersects <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>% # layer to query
   filter(INTERSECTS(melbourne)) %>% # more advanced geometric filter
   collect()
+
+str(rail_intersects)
 
 rail_bbox <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>%
   filter(BBOX(sf::st_bbox(melbourne))) %>%
