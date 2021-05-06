@@ -107,6 +107,8 @@ sf::st_transform(melbourne %>% sf::st_union(), pipeline = "+proj=pipeline +step 
 
 sf::st_transform(melbourne %>% sf::st_union(), pipeline = "+proj=pipeline +step +proj=axisswap +order=1,2", reverse = F) %>% sf::st_as_text()
 
+
+st_axis_order(FALSE)
 # Return data that intersects melbourne
 rail_intersects <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>% # layer to query
   filter(INTERSECTS(melbourne)) %>% # more advanced geometric filter
