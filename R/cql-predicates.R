@@ -110,6 +110,8 @@ sf_text <- function(x) {
   }
   
   ## Flip axis for certain crs's using GDAL 3 ##
+  ao <- sf::st_axis_order()
+  sf::st_axis_order(TRUE)
   
   if (sf::sf_extSoftVersion()["GDAL"] >= "3.0.0") {
     x <- sf::st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1") # reverse axes
@@ -117,9 +119,9 @@ sf_text <- function(x) {
     warning("GDAL > 3.0.0 is required")
   }
   
-  
-  
-  sf::st_as_text(x)
+  filter_string <- sf::st_as_text(x)
+  sf::st_axis_order(ao)
+  return(filter_string)
 }
 
 # Separate functions for all CQL geometry predicates

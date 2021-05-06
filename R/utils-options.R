@@ -45,3 +45,11 @@ check_chunk_limit <- function(){
   }
 }
 
+#' Is the PROJ Pipeline Reversed
+#'
+#' @param x object of class `sf` 
+#' @noRd
+is_rev <- function(x) {
+  x <- sf::st_transform(x, 4283)
+  sf::st_bbox(x)[2] > 0 && sf::st_bbox(x)[1] < 0 
+}
