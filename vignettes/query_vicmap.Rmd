@@ -12,7 +12,6 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
-  message = FALSE,
   comment = "#>"
 )
 ```
@@ -21,6 +20,8 @@ knitr::opts_chunk$set(
 library(VicmapR)
 library(sf)
 library(leaflet)
+
+packageVersion("sf")
 ```
 
 # How to query data
@@ -103,6 +104,9 @@ rail_intersects <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>% # layer t
   collect()
 
 str(rail_intersects)
+vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>% # layer to query
+  filter(INTERSECTS(melbourne)) %>% 
+  show_query()
 
 rail_bbox <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>%
   filter(BBOX(sf::st_bbox(melbourne))) %>%
