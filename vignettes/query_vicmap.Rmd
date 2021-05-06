@@ -96,16 +96,16 @@ These filters can be used within the `filter()` function by providing them an ob
 
 ```{r filter_spatial, warning = FALSE, message=FALSE, out.width="100%"}
 #### Return objects that intersect melbourne ####
-st_axis_order()
+st_axis_order(TRUE)
 # Read in an example shape to restrict our query to using geometric filtering
 melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = F) %>% 
-  sf::`st_crs<-`(4283)
+  sf::st_transform(4283)
 
 st_crs(melbourne)
 
 sf::st_transform(melbourne %>% sf::st_union(), pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1") %>% sf::st_as_text()
 
-sf::st_transform(melbourne %>% sf::st_union(), pipeline = "+proj=pipeline +step +proj=axisswap +order=1,2") %>% sf::st_as_text()
+sf::st_transform(melbourne %>% sf::st_union(), pipeline = "+proj=pipeline +step +proj=axisswap +order=1,2", reverse = F) %>% sf::st_as_text()
 
 # Return data that intersects melbourne
 rail_intersects <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>% # layer to query
