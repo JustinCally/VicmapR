@@ -96,7 +96,7 @@ These filters can be used within the `filter()` function by providing them an ob
 
 ```{r filter_spatial, warning = FALSE, message=FALSE, out.width="100%"}
 #### Return objects that intersect melbourne ####
-
+st_axis_order()
 # Read in an example shape to restrict our query to using geometric filtering
 melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = F) %>% 
   sf::`st_crs<-`(4283)
