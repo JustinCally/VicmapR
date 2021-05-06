@@ -189,9 +189,22 @@
 <span class="co">#&gt;             To simplify the polygon, sf::st_simplify() was used to reduce the size of the queryFALSE</span>
 <span class="co">#&gt; although coordinates are longitude/latitude, st_union assumes that they are planar</span>
 <span class="co">#&gt; although coordinates are longitude/latitude, st_union assumes that they are planar</span>
-<span class="co">#&gt; Warning in CPL_read_ogr(dsn, layer, query, as.character(options), quiet, : GDAL</span>
-<span class="co">#&gt; Error 1: Recv failure: Connection reset by peer</span>
-<span class="co">#&gt; Error: Cannot open "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?service=wfs&amp;version=2.0.0&amp;request=GetFeature&amp;typeNames=datavic%3AVMHYDRO_WATERCOURSE_DRAIN&amp;outputFormat=application%2Fjson&amp;count=70000&amp;srsName=EPSG%3A4283&amp;CQL_FILTER=%28%28%22HIERARCHY%22%20%3D%20%27L%27%29%20AND%20%28INTERSECTS%28SHAPE%2C%20POLYGON%20%28%28-37.78762%20144.9404%2C%20-37.77779%20144.9371%2C%20-37.77545%20144.9388%2C%20-37.77833%20144.9616%2C%20-37.78238%20144.964%2C%20-37.785%20144.9636%2C%20-37.78562%20144.9695%2C%20-37.79226%20144.9684%2C%20-37.79305%20144.9757%2C%20-37.80792%20144.9732%2C%20-37.80985%20144.9913%2C%20-37.85066%20144.9842%2C%20-37.85021%20144.9806%2C%20-37.83601%20144.9755%2C%20-37.83225%20144.9718%2C%20-37.8299%20144.9713%2C%20-37.83149%20144.9658%2C%20-37.82815%20144.9618%2C%20-37.82853%20144.9573%2C%20-37.82598%20144.9421%2C%20-37.82647%20144.9323%2C%20-37.82842%20144.9232%2C%20-37.83226%20144.9182%2C%20-37.83403%20144.9133%2C%20-37.83862%20144.9154%2C%20-37.84099%20144.9125%2C%20-37.84439%20144.9148%2C%20-37.84577%20144.9125%2C%20-37.84856%20144.9145%2C%20-37.84948%20144.9126%2C%20-37.84024%20144.9057%2C%20-37.84143%20144.9032%2C%20-37.84969%20144.9069%2C%20-37.84279%20144.8987%2C%20-37.83309%20144.8972%2C%20-37.8291%20144.8988%2C%20-37.821%20144.9066%2C%20-37.81455%20144.9054%2C%20-37.80823%20144.9067%2C%20-37.80032%20144.9107%2C%20-37.80019%20144.9149%2C%20-37.79805%20144.9165%2C%20-37.79541%20144.9135%2C%20-37.79167%20144.9038%2C%20-37.78965%20144.9027%2C%20-37.7873%20144.9049%2C%20-37.78745%20144.9063%2C%20-37.78252%20144.9083%2C%20-37.77939%20144.9136%2C%20-37.78746%20144.9213%2C%20-37.78898%20144.9382%2C%20-37.78762%20144.9404%29%29%29%29%29&amp;propertyName=SHAPE%2CHIERARCHY%2CPFI"; The file doesn't seem to exist.</span></code></pre></div>
+<span class="co">#&gt; Simple feature collection with 8 features and 5 fields</span>
+<span class="co">#&gt; Geometry type: LINESTRING</span>
+<span class="co">#&gt; Dimension:     XY</span>
+<span class="co">#&gt; Bounding box:  xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198</span>
+<span class="co">#&gt; Geodetic CRS:  GDA94</span>
+<span class="co">#&gt; # A tibble: 8 x 6</span>
+<span class="co">#&gt;   id               PFI    UFI HIERARCHY OBJECTID                        geometry</span>
+<span class="co">#&gt;   &lt;chr&gt;          &lt;int&gt;  &lt;int&gt; &lt;chr&gt;        &lt;int&gt;                &lt;LINESTRING [°]&gt;</span>
+<span class="co">#&gt; 1 VMHYDRO_WAT…  1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.9359 …</span>
+<span class="co">#&gt; 2 VMHYDRO_WAT…  1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294 -…</span>
+<span class="co">#&gt; 3 VMHYDRO_WAT…  1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.9292 …</span>
+<span class="co">#&gt; 4 VMHYDRO_WAT…  1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.9401 …</span>
+<span class="co">#&gt; 5 VMHYDRO_WAT…  1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.9414 …</span>
+<span class="co">#&gt; 6 VMHYDRO_WAT…  1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.9441 …</span>
+<span class="co">#&gt; 7 VMHYDRO_WAT…  1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186 -…</span>
+<span class="co">#&gt; 8 VMHYDRO_WAT…  1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.9202 …</span></code></pre></div>
 <p>VicmapR translates numerous geometric filter functions available in the Victorian Government’s WFS Geoserver supports numerous <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters">geometric filters</a>:</p>
 <ul>
 <li>
