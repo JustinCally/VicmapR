@@ -189,11 +189,22 @@
 <span class="co">#&gt;             To simplify the polygon, sf::st_simplify() was used to reduce the size of the queryFALSE</span>
 <span class="co">#&gt; although coordinates are longitude/latitude, st_union assumes that they are planar</span>
 <span class="co">#&gt; although coordinates are longitude/latitude, st_union assumes that they are planar</span>
-<span class="co">#&gt; Simple feature collection with 0 features and 0 fields</span>
-<span class="co">#&gt; Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA</span>
-<span class="co">#&gt; Geodetic CRS:  WGS 84</span>
-<span class="co">#&gt; # A tibble: 0 x 1</span>
-<span class="co">#&gt; # … with 1 variable: geometry &lt;GEOMETRY [°]&gt;</span></code></pre></div>
+<span class="co">#&gt; Simple feature collection with 8 features and 5 fields</span>
+<span class="co">#&gt; Geometry type: LINESTRING</span>
+<span class="co">#&gt; Dimension:     XY</span>
+<span class="co">#&gt; Bounding box:  xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198</span>
+<span class="co">#&gt; Geodetic CRS:  GDA94</span>
+<span class="co">#&gt; # A tibble: 8 x 6</span>
+<span class="co">#&gt;   id               PFI    UFI HIERARCHY OBJECTID                        geometry</span>
+<span class="co">#&gt;   &lt;chr&gt;          &lt;int&gt;  &lt;int&gt; &lt;chr&gt;        &lt;int&gt;                &lt;LINESTRING [°]&gt;</span>
+<span class="co">#&gt; 1 VMHYDRO_WAT…  1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.9359 …</span>
+<span class="co">#&gt; 2 VMHYDRO_WAT…  1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294 -…</span>
+<span class="co">#&gt; 3 VMHYDRO_WAT…  1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.9292 …</span>
+<span class="co">#&gt; 4 VMHYDRO_WAT…  1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.9401 …</span>
+<span class="co">#&gt; 5 VMHYDRO_WAT…  1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.9414 …</span>
+<span class="co">#&gt; 6 VMHYDRO_WAT…  1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.9441 …</span>
+<span class="co">#&gt; 7 VMHYDRO_WAT…  1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186 -…</span>
+<span class="co">#&gt; 8 VMHYDRO_WAT…  1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.9202 …</span></code></pre></div>
 <p>VicmapR translates numerous geometric filter functions available in the Victorian Government’s WFS Geoserver supports numerous <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters">geometric filters</a>:</p>
 <ul>
 <li>
