@@ -100,21 +100,10 @@ These filters can be used within the `filter()` function by providing them an ob
 melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = F) %>% 
   sf::st_transform(4283)
 
-st_crs(melbourne)
-
-sf::st_transform(melbourne %>% sf::st_union(), pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1") %>% sf::st_as_text()
-
-sf::st_transform(melbourne %>% sf::st_union(), pipeline = "+proj=pipeline +step +proj=axisswap +order=1,2") %>% sf::st_as_text()
-
 # Return data that intersects melbourne
 rail_intersects <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>% # layer to query
   filter(INTERSECTS(melbourne)) %>% # more advanced geometric filter
   collect()
-
-str(rail_intersects)
-vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>% # layer to query
-  filter(INTERSECTS(melbourne)) %>% 
-  show_query()
 
 rail_bbox <- vicmap_query(layer = "datavic:VMTRANS_TR_RAIL") %>%
   filter(BBOX(sf::st_bbox(melbourne))) %>%

@@ -28,7 +28,7 @@ jobs:
       RSPM: ${{ matrix.config.rspm }}
       CRAN: ${{ matrix.config.cran }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      cache-version: v10
+      cache-version: v11
       PKG_CONFIG_PATH: /opt/software/lib/pkgconfig
 
     steps:
@@ -68,10 +68,11 @@ jobs:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
           Rscript -e "install.packages('stringi')"
-          sudo apt install \
-            libicu-dev 
+          Rscript -e "remotes::install_github('r-hub/sysreqs')"
+          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
+          sudo -s eval "$sysreqs"
           # install spatial dependencies
-          # sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+          sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
           sudo apt update
           sudo apt install \
             libudunits2-dev \
