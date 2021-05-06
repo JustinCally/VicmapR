@@ -22,7 +22,7 @@ library(sf)
 library(leaflet)
 
 #check sf installation
-sf::sf_extSoftVersion("sf")
+sf::sf_extSoftVersion()
 sf::sf_proj_search_paths()
 ```
 
