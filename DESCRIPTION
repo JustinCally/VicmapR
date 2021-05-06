@@ -43,6 +43,8 @@ Imports:
     dbplyr,
     rlang
 VignetteBuilder: knitr
+SystemRequirements: GDAL (>= 3.0.0), GEOS (>= 3.4.0),
+    PROJ (>= 4.8.0)
 Collate: 
     'build-query.R'
     'cql-predicates.R'
