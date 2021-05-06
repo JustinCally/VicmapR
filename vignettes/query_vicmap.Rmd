@@ -98,7 +98,7 @@ These filters can be used within the `filter()` function by providing them an ob
 #### Return objects that intersect melbourne ####
 
 # Read in an example shape to restrict our query to using geometric filtering
-melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = T)
+melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = F)
 
 st_crs(melbourne)
 
