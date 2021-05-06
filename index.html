@@ -89,7 +89,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of VicmapR is to provide functions to easily access Victorin Government spatial data through their WFS (Web Feature Service). The package is currently in an early development stage.</p>
+<p>The goal of VicmapR is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). VicmapR uses a lazy querying approach (developed in approach to <a href="https://github.com/bcgov/bcdata">bcdata</a>), which allows for a responsive and precise querying process.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -132,17 +132,17 @@
 <div id="reading-in-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reading-in-data" class="anchor"></a>Reading in data</h3>
-<p>As of VicmapR version <code>0.1.0</code> data is read in using a lazy evaluation method with the convenience of pipe operators (<code><a href="reference/%&gt;%.html">%&gt;%</a></code>). A lot of the methods and code have already been written for a similar package (<a href="https://github.com/bcgov/bcdata">bcdata</a>) that downloads data from the British Columbia WFS catalogue. Using a similar approach to <a href="https://github.com/bcgov/bcdata">bcdata</a>, VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until <code><a href="reference/collect.html">collect()</a></code> is used on the <code>vicmap_promise</code>. The example below shows an extensive example of how the to easily read in spatial data:</p>
+<p>As of VicmapR version <code>0.1.0</code> data is read in using a lazy evaluation method with the convenience of pipe operators (<code><a href="reference/%&gt;%.html">%&gt;%</a></code>). A lot of the methods and code have already been written for a similar package (<a href="https://github.com/bcgov/bcdata">bcdata</a>) that downloads data from the British Columbia WFS catalogues. Using a similar approach to <a href="https://github.com/bcgov/bcdata">bcdata</a>, VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until <code><a href="reference/collect.html">collect()</a></code> is used on the <code>vicmap_promise</code>. The example below shows an extensive example of how the to easily read in spatial data:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Read in an example shape to restrict our query to using geometric filtering</span>
 <span class="va">melbourne</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"shapes/melbourne.geojson"</span>, package<span class="op">=</span><span class="st">"VicmapR"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 
 <span class="co"># Obtain a promise of what data will be returned for a given layer</span>
 <span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span>
-<span class="co">#&gt; ● Using collect() on this object will return 187446 features and 16</span>
+<span class="co">#&gt; ● Using collect() on this object will return 187447 features and 16</span>
 <span class="co">#&gt; ● fields</span>
 <span class="co">#&gt; ● At most six rows of the record are printed here</span>
-<span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span class="co">#&gt; ──────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Simple feature collection with 6 features and 15 fields</span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
@@ -188,6 +188,39 @@
 <span class="co">#&gt; 6 VMHYDRO_W… 1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.944…</span>
 <span class="co">#&gt; 7 VMHYDRO_W… 1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186…</span>
 <span class="co">#&gt; 8 VMHYDRO_W… 1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.920…</span></code></pre></div>
+<p>Vicmap translates numerous geometric filter functions available in the Victorian Government’s WFS Geoserver supports numerous <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters">geometric filters</a>:</p>
+<ul>
+<li>
+<code>EQUALS</code><br>
+</li>
+<li>
+<code>DISJOINT</code><br>
+</li>
+<li>
+<code>INTERSECTS</code><br>
+</li>
+<li>
+<code>TOUCHES</code><br>
+</li>
+<li>
+<code>CROSSES</code><br>
+</li>
+<li>
+<code>WITHIN</code><br>
+</li>
+<li><code>CONTAINS</code></li>
+<li>
+<code>OVERLAPS</code><br>
+</li>
+<li>
+<code>DWITHIN</code><br>
+</li>
+<li>
+<code>BEYOND</code><br>
+</li>
+<li><code>BBOX</code></li>
+</ul>
+<p>These filters can be used within the <code><a href="reference/filter.html">filter()</a></code> function by providing them an object of class <code>sf/sfc/sfg/bbox</code> as shown above with the <code>melbourne</code> object.</p>
 </div>
 <div id="using-other-wfs-urls" class="section level3">
 <h3 class="hasAnchor">
@@ -197,15 +230,11 @@
 <code class="sourceCode R"><span class="co"># set the new base url</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>vicmap.base_url <span class="op">=</span> <span class="st">"http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs"</span><span class="op">)</span>
 
-<span class="co"># list available data</span>
-<span class="fu"><a href="reference/listLayers.html">listLayers</a></span><span class="op">(</span><span class="op">)</span>
-
 <span class="co"># collect a data sample</span>
 <span class="va">catchments</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span><span class="st">"ahgf_shcatch:AHGFCatchment"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="reference/head.html">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="reference/collect.html">collect</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">catchments</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="reference/collect.html">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p><em><strong>Note</strong>: Using other Geoserver WFS urls will not necessarily work as expected due to the potential differences in the capabilities of the Geoserver instance</em></p>
 </div>
 </div>
 </div>
@@ -242,6 +271,8 @@
 <li><a href="https://codecov.io/gh/JustinCally/VicmapR?branch=master"><img src="https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a></li>
 <li><a href="https://github.com/JustinCally/VicmapR/actions"><img src="https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://github.com/JustinCally/VicmapR"><img src="https://img.shields.io/badge/devel%20version-0.1.1-blue.svg" alt="Devel version"></a></li>
+<li><a href="https://github.com/JustinCally/VicmapR"><img src="https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg" alt="Code size"></a></li>
 </ul>
 </div>
 </div>
