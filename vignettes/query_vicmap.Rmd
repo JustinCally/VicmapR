@@ -21,7 +21,9 @@ library(VicmapR)
 library(sf)
 library(leaflet)
 
-packageVersion("sf")
+#check sf installation
+sf::sf_extSoftVersion("sf")
+sf::sf_proj_search_paths()
 ```
 
 # How to query data
