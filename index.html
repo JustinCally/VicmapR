@@ -83,6 +83,13 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
+<hr>
+<div id="output-github_document" class="section level2">
+<h2 class="hasAnchor">
+<a href="#output-github_document" class="anchor"></a>output: github_document</h2>
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+</div>
 <div id="vicmapr-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#vicmapr-" class="anchor"></a>VicmapR <img src="reference/figures/VicmapR-Hex-2.png" align="right" height="139">
@@ -103,10 +110,12 @@
 <p>Currently, the ability to use accurate geometric filters using <code>VicmapR</code> requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and link it to the <code>sf</code> package visit: <a href="https://r-spatial.github.io/sf/#installing" class="uri">https://r-spatial.github.io/sf/#installing</a></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
-<span class="co">#&gt; Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1</span>
+<span class="co">#&gt; Linking to GEOS 3.9.1, GDAL 3.2.2, PROJ 7.2.1</span>
 <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf_extSoftVersion.html">sf_extSoftVersion</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt;           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H </span>
-<span class="co">#&gt;        "3.9.0"        "3.2.1"        "7.2.1"         "true"         "true"</span></code></pre></div>
+<span class="co">#&gt;        "3.9.1"        "3.2.2"        "7.2.1"         "true"         "true" </span>
+<span class="co">#&gt;           PROJ </span>
+<span class="co">#&gt;        "7.2.1"</span></code></pre></div>
 </div>
 </div>
 <div id="example" class="section level2">
@@ -139,28 +148,27 @@
 
 <span class="co"># Obtain a promise of what data will be returned for a given layer</span>
 <span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span>
-<span class="co">#&gt; ● Using collect() on this object will return 187447 features and 16</span>
-<span class="co">#&gt; ● fields</span>
-<span class="co">#&gt; ● At most six rows of the record are printed here</span>
-<span class="co">#&gt; ──────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span class="co">#&gt; • Using collect() on this object will return 187447 features and 16</span>
+<span class="co">#&gt; • fields</span>
+<span class="co">#&gt; • At most six rows of the record are printed here</span>
+<span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span>
 <span class="co">#&gt; Simple feature collection with 6 features and 15 fields</span>
-<span class="co">#&gt; geometry type:  LINESTRING</span>
-<span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559</span>
-<span class="co">#&gt; geographic CRS: GDA94</span>
+<span class="co">#&gt; Geometry type: LINESTRING</span>
+<span class="co">#&gt; Dimension:     XY</span>
+<span class="co">#&gt; Bounding box:  xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559</span>
+<span class="co">#&gt; Geodetic CRS:  GDA94</span>
 <span class="co">#&gt; # A tibble: 6 x 16</span>
-<span class="co">#&gt;   id       PFI    UFI FEATURE_TYPE_CO… NAME  NAMED_FEATURE_ID ORIGIN</span>
-<span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt; </span>
-<span class="co">#&gt; 1 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 2 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 3 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 4 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 5 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 6 VMHY… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; # … with 9 more variables: CONSTRUCTION &lt;chr&gt;, USAGE &lt;chr&gt;,</span>
-<span class="co">#&gt; #   HIERARCHY &lt;chr&gt;, FEATURE_QUALITY_ID &lt;int&gt;, CREATE_DATE_PFI &lt;dttm&gt;,</span>
-<span class="co">#&gt; #   SUPERCEDED_PFI &lt;chr&gt;, CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;,</span>
-<span class="co">#&gt; #   geometry &lt;LINESTRING [°]&gt;</span>
+<span class="co">#&gt;   id                  PFI    UFI FEATURE_TYPE_CODE NAME  NAMED_FEATURE_ID ORIGIN</span>
+<span class="co">#&gt;   &lt;chr&gt;             &lt;int&gt;  &lt;int&gt; &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt; </span>
+<span class="co">#&gt; 1 VMHYDRO_WATERC… 8553127 2.55e6 watercourse_chan… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 2 VMHYDRO_WATERC… 8553130 2.55e6 watercourse_chan… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 3 VMHYDRO_WATERC… 8553143 2.55e6 watercourse_chan… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 4 VMHYDRO_WATERC… 8553149 2.55e6 watercourse_chan… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 5 VMHYDRO_WATERC… 8553158 2.55e6 watercourse_chan… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; 6 VMHYDRO_WATERC… 8553168 2.55e6 watercourse_chan… &lt;NA&gt;  &lt;NA&gt;             2     </span>
+<span class="co">#&gt; # … with 9 more variables: CONSTRUCTION &lt;chr&gt;, USAGE &lt;chr&gt;, HIERARCHY &lt;chr&gt;,</span>
+<span class="co">#&gt; #   FEATURE_QUALITY_ID &lt;int&gt;, CREATE_DATE_PFI &lt;dttm&gt;, SUPERCEDED_PFI &lt;chr&gt;,</span>
+<span class="co">#&gt; #   CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;, geometry &lt;LINESTRING [°]&gt;</span>
 
 <span class="co"># Build a more specific query and collect the results</span>
 <span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># layer to query</span>
@@ -168,27 +176,25 @@
   <span class="fu"><a href="reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="reference/cql_geom_predicates.html">INTERSECTS</a></span><span class="op">(</span><span class="va">melbourne</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># more advanced geometric filter</span>
   <span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">HIERARCHY</span>, <span class="va">PFI</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="reference/collect.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',</span>
+<span class="co">#&gt;  target signature 'wfsConnection#ident'.</span>
+<span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span>
+<span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',</span>
+<span class="co">#&gt;  target signature 'wfsConnection#character'.</span>
+<span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span>
+<span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteString',</span>
+<span class="co">#&gt;  target signature 'wfsConnection#character'.</span>
+<span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span>
 <span class="co">#&gt; The object is too large to perform exact spatial operations using VicmapR. </span>
 <span class="co">#&gt;             To simplify the polygon, sf::st_simplify() was used to reduce the size of the queryFALSE</span>
 <span class="co">#&gt; although coordinates are longitude/latitude, st_union assumes that they are planar</span>
 <span class="co">#&gt; although coordinates are longitude/latitude, st_union assumes that they are planar</span>
-<span class="co">#&gt; Simple feature collection with 8 features and 5 fields</span>
-<span class="co">#&gt; geometry type:  LINESTRING</span>
-<span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198</span>
-<span class="co">#&gt; geographic CRS: GDA94</span>
-<span class="co">#&gt; # A tibble: 8 x 6</span>
-<span class="co">#&gt;   id            PFI    UFI HIERARCHY OBJECTID                      geometry</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt; &lt;chr&gt;        &lt;int&gt;              &lt;LINESTRING [°]&gt;</span>
-<span class="co">#&gt; 1 VMHYDRO_W… 1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.935…</span>
-<span class="co">#&gt; 2 VMHYDRO_W… 1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294…</span>
-<span class="co">#&gt; 3 VMHYDRO_W… 1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.929…</span>
-<span class="co">#&gt; 4 VMHYDRO_W… 1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.940…</span>
-<span class="co">#&gt; 5 VMHYDRO_W… 1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.941…</span>
-<span class="co">#&gt; 6 VMHYDRO_W… 1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.944…</span>
-<span class="co">#&gt; 7 VMHYDRO_W… 1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186…</span>
-<span class="co">#&gt; 8 VMHYDRO_W… 1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.920…</span></code></pre></div>
-<p>Vicmap translates numerous geometric filter functions available in the Victorian Government’s WFS Geoserver supports numerous <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters">geometric filters</a>:</p>
+<span class="co">#&gt; Simple feature collection with 0 features and 0 fields</span>
+<span class="co">#&gt; Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA</span>
+<span class="co">#&gt; Geodetic CRS:  WGS 84</span>
+<span class="co">#&gt; # A tibble: 0 x 1</span>
+<span class="co">#&gt; # … with 1 variable: geometry &lt;GEOMETRY [°]&gt;</span></code></pre></div>
+<p>VicmapR translates numerous geometric filter functions available in the Victorian Government’s WFS Geoserver supports numerous <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters">geometric filters</a>:</p>
 <ul>
 <li>
 <code>EQUALS</code><br>
@@ -238,6 +244,7 @@
 </div>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
