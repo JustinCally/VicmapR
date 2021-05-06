@@ -18,6 +18,8 @@ Used when writing filter expressions in \code{\link[=vicmap_query]{vicmap_query(
 }
 \details{
 See \href{https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html}{the CQL/ECQL for Geoserver website}.
+
+The code for cql escaping was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
 }
 \examples{
 CQL("FOO > 12 & NAME LIKE 'A&'")

@@ -8,6 +8,9 @@
 #' @param ... Character vectors that will be combined into a single CQL statement.
 #'
 #' @return An object of class `c("CQL", "SQL")`
+#' 
+#' @details The code for cql escaping was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
+#'
 #' @export
 #'
 #' @examples
@@ -21,8 +24,8 @@ CQL <- function(...) {
 #'
 #' Convenience wrapper to convert sf objects and geometric operations into CQL
 #' filter strings which can then be supplied to filter.vicmap_promise.
-#' The sf object is automatically converted in a
-#' bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
+#' The sf object is may be simplified in complexity to reduce 
+#' the complexity of the Web Service call. Subsequent in-memory
 #' filtering may be need to achieve exact results.
 #'
 #'
@@ -135,7 +138,7 @@ sf_text <- function(x) {
 #' bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
 #' filtering may be needed to achieve exact results. 
 #' 
-#' @details The code for thses cql predicates was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
+#' @details The code for these cql predicates was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
 #'
 #' @param geom an `sf`/`sfc`/`sfg` or `bbox` object (from the `sf` package)
 #' @name cql_geom_predicates

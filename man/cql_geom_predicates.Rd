@@ -82,5 +82,5 @@ bounding box to reduce the complexity of the Web Service call. Subsequent in-mem
 filtering may be needed to achieve exact results.
 }
 \details{
-The code for thses cql predicates was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
+The code for these cql predicates was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
 }

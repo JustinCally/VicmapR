@@ -10,7 +10,7 @@ vicmap_options()
 check_chunk_limit()
 }
 \value{
-data.frame
+vicmap_options() returns a \code{data.frame}
 }
 \description{
 #' This function retrieves bcdata specific options that can be set. These options can be set
@@ -29,4 +29,7 @@ requested. On faster internet connections, a bigger chunk limit could be useful 
 it is advisable to lower the chunk limit. Chunks must be less than 70000.
 
 \code{vicmap.base_url} is the base wfs url used to query the geoserver.
+}
+\examples{
+vicmap_options()
 }

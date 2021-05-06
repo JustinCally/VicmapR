@@ -18,8 +18,10 @@
 #' 
 #' `vicmap.base_url` is the base wfs url used to query the geoserver.
 #'
-#' @return data.frame
+#' @return vicmap_options() returns a \code{data.frame}
 #' @export
+#' @examples 
+#' vicmap_options()
 vicmap_options <- function() {
   
   null_to_na <- function(x) {
@@ -43,13 +45,4 @@ check_chunk_limit <- function(){
   if(!is.null(chunk_value) && chunk_value > 70000){
     stop(glue::glue("Your chunk value of {chunk_value} exceed the Vicmap Data Catalogue chunk limit"), call. = FALSE)
   }
-}
-
-#' Is the PROJ Pipeline Reversed
-#'
-#' @param x object of class `sf` 
-#' @noRd
-is_rev <- function(x) {
-  x <- sf::st_transform(x, 4283)
-  sf::st_bbox(x)[2] > 0 && sf::st_bbox(x)[1] < 0 
 }

@@ -19,5 +19,5 @@ layers available. The 'Name' is what is used within \code{vicmap_query()} while 
 description/clarification about the layer.
 }
 \examples{
-listLayers(pattern = "flood height contour")
+listLayers(pattern = "trees", ignore.case = T)
 }
