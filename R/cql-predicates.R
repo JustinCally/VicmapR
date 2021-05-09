@@ -112,18 +112,19 @@ sf_text <- function(x) {
     x <- sf::st_union(x)
   }
   
-  ## Flip axis for certain crs's using GDAL 3 ##
-  ao <- sf::st_axis_order()
-  sf::st_axis_order(TRUE)
-  
   if (sf::sf_extSoftVersion()["GDAL"] >= "3.0.0") {
+    ## Flip axis for certain crs's using GDAL 3 ##
+    ao <- sf::st_axis_order()
+    sf::st_axis_order(TRUE)
     x <- sf::st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1") # reverse axes
+    filter_string <- sf::st_as_text(x)
+    sf::st_axis_order(ao)
+    
   } else {
     warning("GDAL > 3.0.0 is required")
+    filter_string <- sf::st_as_text(x)
   }
-  
-  filter_string <- sf::st_as_text(x)
-  sf::st_axis_order(ao)
+
   return(filter_string)
 }
 
