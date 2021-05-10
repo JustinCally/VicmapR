@@ -21,9 +21,9 @@ about the query in a human readable format.
 \details{
 The printed information consists of three sections:
 \itemize{
-\item{\strong{<base url>}}{ The base url of the query, this can be changed with options(vicmap.base_url = another_url)}
-\item{\strong{<body>}}{ Lists the parameters of the WFS query, these can be modified through various functions such as \code{vicmap_query()}, \code{filter()}, \code{select()} and \code{head()}}
-\item{\strong{<full query url>}}{ The constructed url of the final query to be collected}
+\item{\strong{base url}}{ The base url of the query, this can be changed with options(vicmap.base_url = another_url)}
+\item{\strong{body}}{ Lists the parameters of the WFS query, these can be modified through various functions such as \code{vicmap_query()}, \code{filter()}, \code{select()} and \code{head()}}
+\item{\strong{full query url}}{ The constructed url of the final query to be collected}
 }
 }
 \examples{

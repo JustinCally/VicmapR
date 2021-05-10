@@ -4,7 +4,7 @@
 #' layers available. The 'Name' is what is used within `vicmap_query()` while the title provides somewhat of a 
 #' description/clarification about the layer.
 #'
-#' @param ... Additional arguments passed to \link[base]{regexpr}. The `pattern` argument can be used to search for specific layers with matching names or titles. 
+#' @param ... Additional arguments passed to \link[base]{grep}. The `pattern` argument can be used to search for specific layers with matching names or titles. 
 #'
 #' @return data.frame
 #' @export

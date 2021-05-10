@@ -14,7 +14,7 @@
 \item{paginate}{logical; whether to allow pagination of results to extract all records (default is TRUE,
 meaning all data will be returned but it will take more time)}
 
-\item{...}{additional arguments passed to \link[sf]{read_sf}}
+\item{...}{additional arguments passed to \link[sf]{st_read}}
 }
 \value{
 sf/tbl_df/tbl/data.frame
@@ -28,4 +28,9 @@ Collecting certain datasets without filters will likely result in a large object
 that their is a limit on the number of rows that can be returned from the Vicmap geoserver (70,000) data will be
 paginated; which essentially means that multiple queries will be sent with the data bound together at the end. This
 process may take a while to run, thus it is recommended to filter large datasets before collection.
+}
+\examples{
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+head(50) \%>\%
+collect()
 }

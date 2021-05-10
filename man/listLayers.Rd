@@ -7,7 +7,7 @@
 listLayers(...)
 }
 \arguments{
-\item{...}{Additional arguments passed to \link[base]{regexpr}. The \code{pattern} argument can be used to search for specific layers with matching names or titles.}
+\item{...}{Additional arguments passed to \link[base]{grep}. The \code{pattern} argument can be used to search for specific layers with matching names or titles.}
 }
 \value{
 data.frame

@@ -84,6 +84,7 @@ jobs:
           options(repos = c(CRAN='https://packagemanager.rstudio.com/cran/__linux__/bionic/latest'))
           remotes::install_deps(dependencies = TRUE, configure.args = c('sf' = '${{ matrix.config.sf_args }}'))
           install.packages("rcmdcheck")
+          sf::sf_extSoftVersion()
         shell: Rscript {0}
 
       - name: Check

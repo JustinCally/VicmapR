@@ -53,9 +53,9 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 #' 
 #' @details The printed information consists of three sections: 
 #' \itemize{
-#'  \item{\strong{<base url>}}{ The base url of the query, this can be changed with options(vicmap.base_url = another_url)}
-#'  \item{\strong{<body>}}{ Lists the parameters of the WFS query, these can be modified through various functions such as `vicmap_query()`, `filter()`, `select()` and `head()`}
-#'  \item{\strong{<full query url>}}{ The constructed url of the final query to be collected}
+#'  \item{\strong{base url}}{ The base url of the query, this can be changed with options(vicmap.base_url = another_url)}
+#'  \item{\strong{body}}{ Lists the parameters of the WFS query, these can be modified through various functions such as `vicmap_query()`, `filter()`, `select()` and `head()`}
+#'  \item{\strong{full query url}}{ The constructed url of the final query to be collected}
 #' }
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
@@ -100,15 +100,15 @@ show_query.vicmap_promise <- function(x, ...) {
 #' @param quiet logical; whether to suppress the printing of messages and progress
 #' @param paginate logical; whether to allow pagination of results to extract all records (default is TRUE, 
 #' meaning all data will be returned but it will take more time)
-#' @param ... additional arguments passed to \link[sf]{read_sf}
+#' @param ... additional arguments passed to \link[sf]{st_read}
 #'
 #' @return sf/tbl_df/tbl/data.frame
 #' @export
 #'
 #' @examples
-# vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-# head(50) %>%
-# collect()
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' head(50) %>%
+#' collect()
 collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
