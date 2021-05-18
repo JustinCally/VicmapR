@@ -61,7 +61,6 @@ jobs:
         if: runner.os == 'macOS'
         continue-on-error: true
         run: |
-          brew install netcdf
           brew install pkg-config 
           brew install gdal proj geos udunits
           export LDFLAGS="-L/usr/local/opt/libpq/lib"
