@@ -28,7 +28,7 @@ jobs:
       RSPM: ${{ matrix.config.rspm }}
       CRAN: ${{ matrix.config.cran }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      cache-version: v13
+      cache-version: v14
       PKG_CONFIG_PATH: /opt/software/lib/pkgconfig
 
     steps:
@@ -61,7 +61,11 @@ jobs:
         if: runner.os == 'macOS'
         continue-on-error: true
         run: |
-          brew install pkg-config gdal udunits
+          brew install netcdf
+          brew install pkg-config 
+          brew install gdal proj geos udunits
+          export LDFLAGS="-L/usr/local/opt/libpq/lib"
+          export CPPFLAGS="-I/usr/local/opt/libpq/include"
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
