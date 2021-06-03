@@ -20,7 +20,8 @@ vicmap_promise
 Return the first n rows of the data
 }
 \examples{
+\dontrun{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
-head(50) \%>\%
-collect()
+head(50)
+}
 }

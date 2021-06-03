@@ -10,7 +10,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' listLayers(pattern = "trees", ignore.case = TRUE)
+#' }
 
 listLayers <- function(...) {
   url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))

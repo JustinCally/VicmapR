@@ -1,3 +1,9 @@
+## Resubmission  
+This is a resubmission (0.1.2 from 0.1.1). Two cran notes were ammended as part of this resubmission:  
+
+* Global variables for `:=`, `name`, `type` and `.` were included with `utils::globalVariables()`  
+* `\dontrun{}` added to examples collecting or filtering data and `listLayers()`, as these took over 10 seconds in CRAN checks.  
+
 ## Test environments
 * local R installation, R 3.6.3
 * ubuntu 16.04 (on travis-ci), R 3.6.3

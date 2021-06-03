@@ -42,10 +42,12 @@ link it to the `sf` package visit:
 
 ``` r
 library(sf)
-#> Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1
+#> Linking to GEOS 3.9.1, GDAL 3.2.2, PROJ 7.2.1
 sf::sf_extSoftVersion()
 #>           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
-#>        "3.9.0"        "3.2.1"        "7.2.1"         "true"         "true"
+#>        "3.9.1"        "3.2.2"        "7.2.1"         "true"         "true" 
+#>           PROJ 
+#>        "7.2.1"
 ```
 
 ## Example
@@ -86,15 +88,15 @@ melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="Vicmap
 
 # Obtain a promise of what data will be returned for a given layer
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
-#> ● Using collect() on this object will return 187447 features and 16
-#> ● fields
-#> ● At most six rows of the record are printed here
-#> ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+#> • Using collect() on this object will return 187436 features and 16
+#> • fields
+#> • At most six rows of the record are printed here
+#> ───────────────────────────────────────────────────────────────────────────
 #> Simple feature collection with 6 features and 15 fields
-#> geometry type:  LINESTRING
-#> dimension:      XY
-#> bbox:           xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559
-#> geographic CRS: GDA94
+#> Geometry type: LINESTRING
+#> Dimension:     XY
+#> Bounding box:  xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559
+#> Geodetic CRS:  GDA94
 #> # A tibble: 6 x 16
 #>   id       PFI    UFI FEATURE_TYPE_CO… NAME  NAMED_FEATURE_ID ORIGIN
 #>   <chr>  <int>  <int> <chr>            <chr> <chr>            <chr> 
@@ -119,25 +121,14 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
 #>             To simplify the polygon, sf::st_simplify() was used to reduce the size of the queryFALSE
 #> although coordinates are longitude/latitude, st_union assumes that they are planar
 #> although coordinates are longitude/latitude, st_union assumes that they are planar
-#> Simple feature collection with 8 features and 5 fields
-#> geometry type:  LINESTRING
-#> dimension:      XY
-#> bbox:           xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198
-#> geographic CRS: GDA94
-#> # A tibble: 8 x 6
-#>   id            PFI    UFI HIERARCHY OBJECTID                      geometry
-#>   <chr>       <int>  <int> <chr>        <int>              <LINESTRING [°]>
-#> 1 VMHYDRO_W… 1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.935…
-#> 2 VMHYDRO_W… 1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294…
-#> 3 VMHYDRO_W… 1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.929…
-#> 4 VMHYDRO_W… 1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.940…
-#> 5 VMHYDRO_W… 1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.941…
-#> 6 VMHYDRO_W… 1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.944…
-#> 7 VMHYDRO_W… 1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186…
-#> 8 VMHYDRO_W… 1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.920…
+#> Simple feature collection with 0 features and 0 fields
+#> Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA
+#> Geodetic CRS:  WGS 84
+#> # A tibble: 0 x 1
+#> # … with 1 variable: geometry <GEOMETRY [°]>
 ```
 
-Vicmap translates numerous geometric filter functions available in the
+VicmapR translates numerous geometric filter functions available in the
 Victorian Government’s WFS Geoserver supports numerous [geometric
 filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):
 

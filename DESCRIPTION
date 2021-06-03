@@ -1,6 +1,6 @@
 Package: VicmapR
 Title: Access Victorian Spatial Data Through Web File Services (WFS) 
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     c(person(given = "Justin",
            family = "Cally",
@@ -44,6 +44,7 @@ Imports:
     rlang
 VignetteBuilder: knitr
 Collate: 
+    'globals.R'
     'build-query.R'
     'cql-predicates.R'
     'cql-translate.R'

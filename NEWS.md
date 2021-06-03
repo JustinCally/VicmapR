@@ -1,3 +1,8 @@
+# VicmapR 0.1.2
+* Global variables for `:=`, `name`, `type` and `.` were included with `utils::globalVariables()`  
+* `\dontrun{}` added to examples collecting or filtering data and `listLayers()`, as these took over 10 seconds in CRAN checks.  
+* Improvements to github actions  
+
 # VicmapR 0.1.1
 
 * `options(vicmap.base_url)` now accepts other base wfs urls to be used instead of the Vicplan one (e.g. the BOM wfs: `options(vicmap.base_url = "http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs")`)  
