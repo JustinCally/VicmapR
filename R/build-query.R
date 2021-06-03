@@ -106,9 +106,11 @@ show_query.vicmap_promise <- function(x, ...) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #' head(50) %>%
 #' collect()
+#' }
 collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
@@ -187,9 +189,10 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-#' head(50) %>%
-#' collect()
+#' head(50)
+#' }
 
 head.vicmap_promise <- function(x, n = 5, ...) {
   

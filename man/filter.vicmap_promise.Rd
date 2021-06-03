@@ -18,6 +18,8 @@ object of class \code{vicmap_promise}
 filter
 }
 \examples{
+\dontrun{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
  filter(HIERARCHY == "L", PFI == 8553127)
+ }
 }

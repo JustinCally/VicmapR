@@ -30,7 +30,9 @@ paginated; which essentially means that multiple queries will be sent with the d
 process may take a while to run, thus it is recommended to filter large datasets before collection.
 }
 \examples{
+\dontrun{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
 head(50) \%>\%
 collect()
+}
 }

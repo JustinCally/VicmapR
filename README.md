@@ -1,64 +1,52 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+
 
 # VicmapR <img src='man/figures/VicmapR-Hex-2.png' align="right" height="139" />
 
 <!-- badges: start -->
-
-[![Codecov test
-coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://codecov.io/gh/JustinCally/VicmapR?branch=master)
-[![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![R build
-status](https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/VicmapR/actions)
-[![Devel
-version](https://img.shields.io/badge/devel%20version-0.1.1-blue.svg)](https://github.com/JustinCally/VicmapR)
-[![Code
-size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR)
+[![Codecov test coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://codecov.io/gh/JustinCally/VicmapR?branch=master)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![R build status](https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/VicmapR/actions)
+[![Devel version](https://img.shields.io/badge/devel%20version-0.1.1-blue.svg)](https://github.com/JustinCally/VicmapR)
+[![Code size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR)
 <!-- badges: end -->
 
-The goal of VicmapR is to provide functions to easily access Victorian
-Government spatial data through their WFS (Web Feature Service). VicmapR
-uses a lazy querying approach (developed in approach to
-[bcdata](https://github.com/bcgov/bcdata)), which allows for a
-responsive and precise querying process.
+The goal of VicmapR is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). VicmapR uses a lazy querying approach (developed in approach to [bcdata](https://github.com/bcgov/bcdata)), which allows for a responsive and precise querying process.
 
 ## Installation
 
-You can install the the development version from
-[GitHub](https://github.com/) with:
+You can install the the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("JustinCally/VicmapR")
 ```
 
-### Dependencies
+### Dependencies  
 
-Currently, the ability to use accurate geometric filters using `VicmapR`
-requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and
-link it to the `sf` package visit:
-<https://r-spatial.github.io/sf/#installing>
+Currently, the ability to use accurate geometric filters using `VicmapR` requires GDAL > 3.0. To see how to upgrade your version of GDAL and link it to the `sf` package visit: https://r-spatial.github.io/sf/#installing  
 
-``` r
+
+```r
 library(sf)
-#> Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1
 sf::sf_extSoftVersion()
 #>           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
 #>        "3.9.0"        "3.2.1"        "7.2.1"         "true"         "true"
 ```
 
+
 ## Example
 
 ### Searching for data
 
-``` r
+
+```r
 library(VicmapR)
-#> 
-#> Attaching package: 'VicmapR'
-#> The following object is masked from 'package:stats':
-#> 
-#>     filter
 
 listLayers(pattern = "trees", ignore.case = T)
 #>                                Name
@@ -69,18 +57,10 @@ listLayers(pattern = "trees", ignore.case = T)
 
 ### Reading in data
 
-As of VicmapR version `0.1.0` data is read in using a lazy evaluation
-method with the convenience of pipe operators (`%>%`). A lot of the
-methods and code have already been written for a similar package
-([bcdata](https://github.com/bcgov/bcdata)) that downloads data from the
-British Columbia WFS catalogues. Using a similar approach to
-[bcdata](https://github.com/bcgov/bcdata), VicmapR allows users to
-construct a WFS query in a step-wise format. In doing so a query is
-reserved until `collect()` is used on the `vicmap_promise`. The example
-below shows an extensive example of how the to easily read in spatial
-data:
+As of VicmapR version `0.1.0` data is read in using a lazy evaluation method with the convenience of pipe operators (`%>%`). A lot of the methods and code have already been written for a similar package ([bcdata](https://github.com/bcgov/bcdata)) that downloads data from the British Columbia WFS catalogues. Using a similar approach to [bcdata](https://github.com/bcgov/bcdata), VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until `collect()` is used on the `vicmap_promise`. The example below shows an extensive example of how the to easily read in spatial data:
 
-``` r
+
+```r
 # Read in an example shape to restrict our query to using geometric filtering
 melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = T)
 
@@ -137,35 +117,28 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
 #> 8 VMHYDRO_W… 1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.920…
 ```
 
-Vicmap translates numerous geometric filter functions available in the
-Victorian Government’s WFS Geoserver supports numerous [geometric
-filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):
+VicmapR translates numerous geometric filter functions available in the Victorian Government's WFS Geoserver supports numerous [geometric filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):  
 
--   `EQUALS`  
--   `DISJOINT`  
--   `INTERSECTS`  
--   `TOUCHES`  
--   `CROSSES`  
--   `WITHIN`  
--   `CONTAINS`
--   `OVERLAPS`  
--   `DWITHIN`  
--   `BEYOND`  
--   `BBOX`
++ `EQUALS`   
++ `DISJOINT`   
++ `INTERSECTS`   
++ `TOUCHES`   
++ `CROSSES`   
++ `WITHIN`   
++ `CONTAINS` 
++ `OVERLAPS`   
++ `DWITHIN`   
++ `BEYOND`  
++ `BBOX`  
 
-These filters can be used within the `filter()` function by providing
-them an object of class `sf/sfc/sfg/bbox` as shown above with the
-`melbourne` object.
+These filters can be used within the `filter()` function by providing them an object of class `sf/sfc/sfg/bbox` as shown above with the `melbourne` object. 
 
-### Using other WFS urls
+### Using other WFS urls  
 
-Using `options(vicmap.base_url)` VicmapR can query data from other WFS
-services; while this remains somewhat untested it is relatively easy to
-point VicmapR to another WFS url. This option would need to be set every
-session to override the base VicmapR url. For instance, the BOM WFS can
-be used as follows:
+Using `options(vicmap.base_url)` VicmapR can query data from other WFS services; while this remains somewhat untested it is relatively easy to point VicmapR to another WFS url. This option would need to be set every session to override the base VicmapR url. For instance, the BOM WFS can be used as follows:  
 
-``` r
+
+```r
 # set the new base url
 options(vicmap.base_url = "http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs")
 
@@ -175,6 +148,4 @@ catchments <- vicmap_query("ahgf_shcatch:AHGFCatchment") %>%
   collect()
 ```
 
-***Note**: Using other Geoserver WFS urls will not necessarily work as
-expected due to the potential differences in the capabilities of the
-Geoserver instance*
+*__Note__: Using other Geoserver WFS urls will not necessarily work as expected due to the potential differences in the capabilities of the Geoserver instance*

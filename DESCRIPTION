@@ -44,6 +44,7 @@ Imports:
     rlang
 VignetteBuilder: knitr
 Collate: 
+    'globals.R'
     'build-query.R'
     'cql-predicates.R'
     'cql-translate.R'
