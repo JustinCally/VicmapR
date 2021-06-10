@@ -1,4 +1,4 @@
-#' filter
+#' Filter Data
 #'
 #' See \code{dplyr::\link[dplyr]{filter}} for details.
 #'
@@ -9,16 +9,17 @@
 #' @importFrom dplyr filter
 NULL
 
-#' filter
+#' Filter Data
 #'
 #' @param .data object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... filter statements
 #'
-#' @return object of class `vicmap_promise`
+#' @describeIn filter filter.vicmap_promise
+#' @return Object of class `vicmap_promise`, which is a 'promise' of the data that can  be returned if `collect()` is used
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #'  filter(HIERARCHY == "L", PFI == 8553127)
 #'  }

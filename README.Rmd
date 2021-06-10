@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 [![Code size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR)
 <!-- badges: end -->
 
-The goal of VicmapR is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). VicmapR uses a lazy querying approach (developed in approach to [bcdata](https://github.com/bcgov/bcdata)), which allows for a responsive and precise querying process.
+The goal of VicmapR is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). VicmapR uses a lazy querying approach (developed from [bcdata](https://github.com/bcgov/bcdata)), which allows for a responsive and precise querying process.
 
 ## Installation
 
@@ -56,7 +56,7 @@ listLayers(pattern = "trees", ignore.case = T)
 
 ### Reading in data
 
-As of VicmapR version `0.1.0` data is read in using a lazy evaluation method with the convenience of pipe operators (`%>%`). A lot of the methods and code have already been written for a similar package ([bcdata](https://github.com/bcgov/bcdata)) that downloads data from the British Columbia WFS catalogues. Using a similar approach to [bcdata](https://github.com/bcgov/bcdata), VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until `collect()` is used on the `vicmap_promise`. The example below shows an extensive example of how the to easily read in spatial data:
+As of VicmapR version `0.1.0` data is read in using a lazy evaluation method with the convenience of pipe operators (`%>%`). A lot of the methods and code have already been written for a similar package ([bcdata](https://github.com/bcgov/bcdata)) that downloads data from the British Columbia WFS catalogues. Using a similar approach, VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until `collect()` is used on the `vicmap_promise`. The example below shows an extensive example of how the to easily read in spatial data:
 
 ```{r query_example}
 # Read in an example shape to restrict our query to using geometric filtering

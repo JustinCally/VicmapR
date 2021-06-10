@@ -19,7 +19,7 @@ size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)
 
 The goal of VicmapR is to provide functions to easily access Victorian
 Government spatial data through their WFS (Web Feature Service). VicmapR
-uses a lazy querying approach (developed in approach to
+uses a lazy querying approach (developed from
 [bcdata](https://github.com/bcgov/bcdata)), which allows for a
 responsive and precise querying process.
 
@@ -36,18 +36,16 @@ remotes::install_github("JustinCally/VicmapR")
 ### Dependencies
 
 Currently, the ability to use accurate geometric filters using `VicmapR`
-requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and
+requires GDAL \> 3.0. To see how to upgrade your version of GDAL and
 link it to the `sf` package visit:
 <https://r-spatial.github.io/sf/#installing>
 
 ``` r
 library(sf)
-#> Linking to GEOS 3.9.1, GDAL 3.2.2, PROJ 7.2.1
+#> Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1
 sf::sf_extSoftVersion()
 #>           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
-#>        "3.9.1"        "3.2.2"        "7.2.1"         "true"         "true" 
-#>           PROJ 
-#>        "7.2.1"
+#>        "3.9.0"        "3.2.1"        "7.2.1"         "true"         "true"
 ```
 
 ## Example
@@ -75,12 +73,11 @@ As of VicmapR version `0.1.0` data is read in using a lazy evaluation
 method with the convenience of pipe operators (`%>%`). A lot of the
 methods and code have already been written for a similar package
 ([bcdata](https://github.com/bcgov/bcdata)) that downloads data from the
-British Columbia WFS catalogues. Using a similar approach to
-[bcdata](https://github.com/bcgov/bcdata), VicmapR allows users to
-construct a WFS query in a step-wise format. In doing so a query is
-reserved until `collect()` is used on the `vicmap_promise`. The example
-below shows an extensive example of how the to easily read in spatial
-data:
+British Columbia WFS catalogues. Using a similar approach, VicmapR
+allows users to construct a WFS query in a step-wise format. In doing so
+a query is reserved until `collect()` is used on the `vicmap_promise`.
+The example below shows an extensive example of how the to easily read
+in spatial data:
 
 ``` r
 # Read in an example shape to restrict our query to using geometric filtering
@@ -88,28 +85,27 @@ melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="Vicmap
 
 # Obtain a promise of what data will be returned for a given layer
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
-#> • Using collect() on this object will return 187436 features and 16
-#> • fields
-#> • At most six rows of the record are printed here
-#> ───────────────────────────────────────────────────────────────────────────
+#> * Using collect() on this object will return 187436 features and 16
+#> * fields
+#> * At most six rows of the record are printed here
+#> --------------------------------------------------------------------------------
 #> Simple feature collection with 6 features and 15 fields
-#> Geometry type: LINESTRING
-#> Dimension:     XY
-#> Bounding box:  xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559
-#> Geodetic CRS:  GDA94
+#> geometry type:  LINESTRING
+#> dimension:      XY
+#> bbox:           xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559
+#> geographic CRS: GDA94
 #> # A tibble: 6 x 16
-#>   id       PFI    UFI FEATURE_TYPE_CO… NAME  NAMED_FEATURE_ID ORIGIN
-#>   <chr>  <int>  <int> <chr>            <chr> <chr>            <chr> 
-#> 1 VMHY… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 2 VMHY… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 3 VMHY… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 4 VMHY… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 5 VMHY… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 6 VMHY… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> # … with 9 more variables: CONSTRUCTION <chr>, USAGE <chr>,
-#> #   HIERARCHY <chr>, FEATURE_QUALITY_ID <int>, CREATE_DATE_PFI <dttm>,
-#> #   SUPERCEDED_PFI <chr>, CREATE_DATE_UFI <dttm>, OBJECTID <int>,
-#> #   geometry <LINESTRING [°]>
+#>   id                  PFI    UFI FEATURE_TYPE_CODE NAME  NAMED_FEATURE_ID ORIGIN
+#>   <chr>             <int>  <int> <chr>             <chr> <chr>            <chr> 
+#> 1 VMHYDRO_WATERC~ 8553127 2.55e6 watercourse_chan~ NA    NA               2     
+#> 2 VMHYDRO_WATERC~ 8553130 2.55e6 watercourse_chan~ NA    NA               2     
+#> 3 VMHYDRO_WATERC~ 8553143 2.55e6 watercourse_chan~ NA    NA               2     
+#> 4 VMHYDRO_WATERC~ 8553149 2.55e6 watercourse_chan~ NA    NA               2     
+#> 5 VMHYDRO_WATERC~ 8553158 2.55e6 watercourse_chan~ NA    NA               2     
+#> 6 VMHYDRO_WATERC~ 8553168 2.55e6 watercourse_chan~ NA    NA               2     
+#> # ... with 9 more variables: CONSTRUCTION <chr>, USAGE <chr>, HIERARCHY <chr>,
+#> #   FEATURE_QUALITY_ID <int>, CREATE_DATE_PFI <dttm>, SUPERCEDED_PFI <chr>,
+#> #   CREATE_DATE_UFI <dttm>, OBJECTID <int>, geometry <LINESTRING [°]>
 
 # Build a more specific query and collect the results
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
@@ -117,32 +113,52 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
   filter(INTERSECTS(melbourne)) %>% # more advanced geometric filter
   select(HIERARCHY, PFI) %>% 
   collect()
+#> Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',
+#>  target signature 'wfsConnection#ident'.
+#>  "wfsConnection#ANY" would also be valid
+#> Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',
+#>  target signature 'wfsConnection#character'.
+#>  "wfsConnection#ANY" would also be valid
+#> Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteString',
+#>  target signature 'wfsConnection#character'.
+#>  "wfsConnection#ANY" would also be valid
 #> The object is too large to perform exact spatial operations using VicmapR. 
 #>             To simplify the polygon, sf::st_simplify() was used to reduce the size of the queryFALSE
 #> although coordinates are longitude/latitude, st_union assumes that they are planar
 #> although coordinates are longitude/latitude, st_union assumes that they are planar
-#> Simple feature collection with 0 features and 0 fields
-#> Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA
-#> Geodetic CRS:  WGS 84
-#> # A tibble: 0 x 1
-#> # … with 1 variable: geometry <GEOMETRY [°]>
+#> Simple feature collection with 8 features and 5 fields
+#> geometry type:  LINESTRING
+#> dimension:      XY
+#> bbox:           xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198
+#> geographic CRS: GDA94
+#> # A tibble: 8 x 6
+#>   id               PFI    UFI HIERARCHY OBJECTID                        geometry
+#>   <chr>          <int>  <int> <chr>        <int>                <LINESTRING [°]>
+#> 1 VMHYDRO_WAT~  1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.9359 ~
+#> 2 VMHYDRO_WAT~  1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294 -~
+#> 3 VMHYDRO_WAT~  1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.9292 ~
+#> 4 VMHYDRO_WAT~  1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.9401 ~
+#> 5 VMHYDRO_WAT~  1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.9414 ~
+#> 6 VMHYDRO_WAT~  1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.9441 ~
+#> 7 VMHYDRO_WAT~  1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186 -~
+#> 8 VMHYDRO_WAT~  1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.9202 ~
 ```
 
 VicmapR translates numerous geometric filter functions available in the
 Victorian Government’s WFS Geoserver supports numerous [geometric
 filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):
 
--   `EQUALS`  
--   `DISJOINT`  
--   `INTERSECTS`  
--   `TOUCHES`  
--   `CROSSES`  
--   `WITHIN`  
--   `CONTAINS`
--   `OVERLAPS`  
--   `DWITHIN`  
--   `BEYOND`  
--   `BBOX`
+  - `EQUALS`  
+  - `DISJOINT`  
+  - `INTERSECTS`  
+  - `TOUCHES`  
+  - `CROSSES`  
+  - `WITHIN`  
+  - `CONTAINS`
+  - `OVERLAPS`  
+  - `DWITHIN`  
+  - `BEYOND`  
+  - `BBOX`
 
 These filters can be used within the `filter()` function by providing
 them an object of class `sf/sfc/sfg/bbox` as shown above with the

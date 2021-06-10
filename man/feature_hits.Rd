@@ -18,6 +18,8 @@ This is similar to how \code{nrow()} works for a data.frame, however it will eva
 without having to download the data.
 }
 \examples{
+\donttest{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
  feature_hits()
+ }
 }

@@ -19,7 +19,7 @@ layers available. The 'Name' is what is used within \code{vicmap_query()} while 
 description/clarification about the layer.
 }
 \examples{
-\dontrun{
+\donttest{
 listLayers(pattern = "trees", ignore.case = TRUE)
 }
 }

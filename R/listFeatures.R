@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' listLayers(pattern = "trees", ignore.case = TRUE)
 #' }
 
