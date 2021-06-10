@@ -3,7 +3,7 @@
 \name{select}
 \alias{select}
 \alias{select.vicmap_promise}
-\title{select}
+\title{Select Columns}
 \usage{
 \method{select}{vicmap_promise}(.data, ...)
 }

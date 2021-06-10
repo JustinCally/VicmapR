@@ -1,4 +1,4 @@
-#' select
+#' Select Columns 
 #'
 #' See \code{dplyr::\link[dplyr]{select}} for details.
 #'
@@ -9,7 +9,7 @@
 #' @importFrom dplyr select
 NULL
 
-#' select
+#' Select Columns  
 #'
 #' @param .data object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... Other parameters possibly used by generic

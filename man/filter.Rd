@@ -3,7 +3,7 @@
 \name{filter}
 \alias{filter}
 \alias{filter.vicmap_promise}
-\title{filter}
+\title{Filter Data}
 \usage{
 \method{filter}{vicmap_promise}(.data, ...)
 }

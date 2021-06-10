@@ -1,6 +1,6 @@
 base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs"
 
-#' vicmap_query
+#' Establish Vicmap Query
 #'
 #' @description Begin a Vicmap WFS query by selecting a WFS layer. The record must be available as a 
 #' Web Feature Service (WFS) layer (listed in `listLayers()`)  

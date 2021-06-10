@@ -1,4 +1,4 @@
-#' filter
+#' Filter Data
 #'
 #' See \code{dplyr::\link[dplyr]{filter}} for details.
 #'
@@ -9,7 +9,7 @@
 #' @importFrom dplyr filter
 NULL
 
-#' filter
+#' Filter Data
 #'
 #' @param .data object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... filter statements
