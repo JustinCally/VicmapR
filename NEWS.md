@@ -1,3 +1,11 @@
+# VicmapR 0.1.3  
+* Fixed issues relating to CRAN submission for version 0.1.2. They were:  
+    - Link to the used webservices added to the description field of DESCRIPTION.
+    - Used only undirected quotation marks in the description text. e.g. `sf` --> 'sf'
+    - Added \value to .Rd files regarding exported methods and explain the functions results in the documentation. Missing Rd-tags were:
+    - `\dontrun{}` replaced with with `\donttest{}` for examples requirying connection to WFS. WFS speeds may vary and in some cases examples could take > 5 seconds.  
+* Edited github actions to only run on push for main/master and pull requests
+
 # VicmapR 0.1.2
 * Global variables for `:=`, `name`, `type` and `.` were included with `utils::globalVariables()`  
 * `\dontrun{}` added to examples collecting or filtering data and `listLayers()`, as these took over 10 seconds in CRAN checks.  
