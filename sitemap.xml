@@ -7,10 +7,7 @@
     <loc>https://justincally.github.io/VicmapR/reference/CQL.html</loc>
   </url>
   <url>
-    <loc>https://justincally.github.io/VicmapR/reference/collect-methods.html</loc>
-  </url>
-  <url>
-    <loc>https://justincally.github.io/VicmapR/reference/collect.vicmap_promise.html</loc>
+    <loc>https://justincally.github.io/VicmapR/reference/collect.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/cql_geom_predicates.html</loc>
@@ -22,16 +19,10 @@
     <loc>https://justincally.github.io/VicmapR/reference/filter.html</loc>
   </url>
   <url>
-    <loc>https://justincally.github.io/VicmapR/reference/filter.vicmap_promise.html</loc>
-  </url>
-  <url>
     <loc>https://justincally.github.io/VicmapR/reference/geom_col_name.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/head.html</loc>
-  </url>
-  <url>
-    <loc>https://justincally.github.io/VicmapR/reference/head.vicmap_promise.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/listLayers.html</loc>
@@ -46,13 +37,7 @@
     <loc>https://justincally.github.io/VicmapR/reference/select.html</loc>
   </url>
   <url>
-    <loc>https://justincally.github.io/VicmapR/reference/select.vicmap_promise.html</loc>
-  </url>
-  <url>
     <loc>https://justincally.github.io/VicmapR/reference/show_query.html</loc>
-  </url>
-  <url>
-    <loc>https://justincally.github.io/VicmapR/reference/show_query.vicmap_promise.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/vicmap_options.html</loc>
