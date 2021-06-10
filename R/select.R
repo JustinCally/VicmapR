@@ -14,12 +14,15 @@ NULL
 #' @param .data object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... Other parameters possibly used by generic
 #'
-#' @return object of class `vicmap_promise`
+#' @describeIn select select.vicmap_promise
+#' @return Object of class `vicmap_promise`, which is a 'promise' of the data that can  be returned if `collect()` is used
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #' select(HIERARCHY, PFI)
+#' }
 select.vicmap_promise <- function(.data, ...){
   
   ## Eventually have to migrate to tidyselect::eval_select

@@ -13,11 +13,13 @@ base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_
 #'
 #' @details The returned `vicmap_promise` object is not data, rather it is a 'promise' of the data that can 
 #' be returned if `collect()` is used; which returns an `sf` object. 
-#' @return vicmap_promise
+#' @return object of class `vicmap_promise`, which is a 'promise' of the data that can  be returned if `collect()` is used
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' }
 vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   
   # Check if query exceeds vicmap limit 
@@ -58,16 +60,19 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 #'  \item{\strong{full query url}}{ The constructed url of the final query to be collected}
 #' }
 #'
-#' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
+#' @param x Object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... Other parameters possibly used by generic
 #'
-#' @return vicmap_promise (invisible), query printed to console
+#' @describeIn show_query show_query.vicmap_promise
+#' @return object of class `vicmap_promise` (invsible: query printed to console), which is a 'promise' of the data that can  be returned if `collect()` is used
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #' head(50) %>%
 #' show_query()
+#' }
 
 show_query.vicmap_promise <- function(x, ...) {
   
@@ -95,6 +100,8 @@ show_query.vicmap_promise <- function(x, ...) {
 #' that their is a limit on the number of rows that can be returned from the Vicmap geoserver (70,000) data will be 
 #' paginated; which essentially means that multiple queries will be sent with the data bound together at the end. This 
 #' process may take a while to run, thus it is recommended to filter large datasets before collection.
+#' 
+#' @describeIn collect collect.vicmap_promise
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param quiet logical; whether to suppress the printing of messages and progress
@@ -102,11 +109,11 @@ show_query.vicmap_promise <- function(x, ...) {
 #' meaning all data will be returned but it will take more time)
 #' @param ... additional arguments passed to \link[sf]{st_read}
 #'
-#' @return sf/tbl_df/tbl/data.frame
+#' @return sf/tbl_df/tbl/data.frame matching the query parameters
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #' head(50) %>%
 #' collect()
@@ -185,11 +192,12 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 #' @param n integer; number of rows to return
 #' @param ... Other parameters possibly used by generic
 #'
-#' @return vicmap_promise
+#' @describeIn head head.vicmap_promise
+#' @return Object of class `vicmap_promise`, which is a 'promise' of the data that can  be returned if `collect()` is used
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #' head(50)
 #' }
@@ -221,8 +229,10 @@ head.vicmap_promise <- function(x, n = 5, ...) {
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
 #' print(query)
+#' }
 print.vicmap_promise <- function(x, ...) {
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)

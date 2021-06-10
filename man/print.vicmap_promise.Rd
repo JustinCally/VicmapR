@@ -19,6 +19,8 @@ vicmap_promise (invisible), promise sample printed to console
 alongside the number of rows and columns that would be returned.
 }
 \examples{
+\donttest{
 query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
 print(query)
+}
 }

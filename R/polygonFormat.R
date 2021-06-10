@@ -3,7 +3,7 @@
 #' @param shape sf
 #' @param dTol dTolerance for `sf::st_simplify()``
 #'
-#' @return
+#' @return sf
 #' @noRd
 polygonFormat <- function(shape, dTol) {
   

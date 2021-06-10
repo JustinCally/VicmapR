@@ -10,8 +10,10 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #'  feature_hits()
+#'  }
 feature_hits <- function(x) {
 
   x$query$resultType <- "hits"
@@ -40,10 +42,11 @@ feature_hits <- function(x) {
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' # Return the name of the geometry column
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
 #'   geom_col_name()
-#'   
+#'  }
 geom_col_name <- function(x) {
   
   geom_col <- get_col_df(x) %>% 
@@ -58,10 +61,11 @@ geom_col_name <- function(x) {
 #' @rdname geom_col_name
 #' @export
 #' @examples
+#' \donttest{
 #' # Return the column names as a character vector
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
 #'   feature_cols()
-#'   
+#' }   
 feature_cols <- function(x) {
   
   return(get_col_df(x)$name)
@@ -84,10 +88,11 @@ specify_geom_name <- function(x, CQL_statement){
 #' @rdname geom_col_name  
 #' @export
 #' @examples
+#' \donttest{
 #' # Return a data.frame of the columns and their XML schema string datatypes
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
 #'   get_col_df()
-#'   
+#'  }
 get_col_df <- function(x) {
   
   layer <- x$query$version

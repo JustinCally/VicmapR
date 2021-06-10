@@ -12,8 +12,8 @@ Authors@R:
            role = c("ctb"),
            email = "rachelswain1@gmail.com"))
 Description: Easily interfaces R to spatial datasets available through 
-  the Victorian Government's WFS (Web Feature Service). Allows users to read 
-  in `sf` data from these sources using lazy evaluation. 
+  the Victorian Government's WFS (Web Feature Service): <https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities>. 
+  Which allows users to read in 'sf' data from these sources using lazy evaluation. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false

@@ -2,8 +2,31 @@
 % Please edit documentation in R/select.R
 \name{select}
 \alias{select}
+\alias{select.vicmap_promise}
 \title{select}
+\usage{
+\method{select}{vicmap_promise}(.data, ...)
+}
+\arguments{
+\item{.data}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
+
+\item{...}{Other parameters possibly used by generic}
+}
+\value{
+Object of class \code{vicmap_promise}, which is a 'promise' of the data that can  be returned if \code{collect()} is used
+}
 \description{
 See \code{dplyr::\link[dplyr]{select}} for details.
+}
+\section{Methods (by class)}{
+\itemize{
+\item \code{vicmap_promise}: select.vicmap_promise
+}}
+
+\examples{
+\donttest{
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+select(HIERARCHY, PFI)
+}
 }
 \keyword{internal}
