@@ -11,10 +11,11 @@ coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.sv
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R build
 status](https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/VicmapR/actions)
-[![Devel
-version](https://img.shields.io/badge/devel%20version-0.1.1-blue.svg)](https://github.com/JustinCally/VicmapR)
-[![Code
-size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/VicmapR)](https://CRAN.R-project.org/package=VicmapR)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/VicmapR?color=ff69b4)](https://cran.r-project.org/package=VicmapR)
+<!-- [![Devel version](https://img.shields.io/badge/devel%20version-0.1.3-blue.svg)](https://github.com/JustinCally/VicmapR) -->
+<!-- [![Code size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR) -->
 <!-- badges: end -->
 
 The goal of VicmapR is to provide functions to easily access Victorian
@@ -25,7 +26,13 @@ responsive and precise querying process.
 
 ## Installation
 
-You can install the the development version from
+You can install the released version from CRAN with:
+
+``` r
+install.packages("VicmapR")
+```
+
+Or you can install the the development version from
 [GitHub](https://github.com/) with:
 
 ``` r

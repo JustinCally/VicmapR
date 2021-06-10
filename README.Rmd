@@ -19,16 +19,22 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://codecov.io/gh/JustinCally/VicmapR?branch=master)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R build status](https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/VicmapR/actions)
-[![Devel version](https://img.shields.io/badge/devel%20version-0.1.1-blue.svg)](https://github.com/JustinCally/VicmapR)
-[![Code size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR)
+[![CRAN status](https://www.r-pkg.org/badges/version/VicmapR)](https://CRAN.R-project.org/package=VicmapR)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/VicmapR?color=ff69b4)](https://cran.r-project.org/package=VicmapR)
+<!-- [![Devel version](https://img.shields.io/badge/devel%20version-0.1.3-blue.svg)](https://github.com/JustinCally/VicmapR) -->
+<!-- [![Code size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR) -->
 <!-- badges: end -->
 
 The goal of VicmapR is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). VicmapR uses a lazy querying approach (developed from [bcdata](https://github.com/bcgov/bcdata)), which allows for a responsive and precise querying process.
 
-## Installation
+## Installation  
 
-You can install the the development version from [GitHub](https://github.com/) with:
+You can install the released version from CRAN with:  
+``` r
+install.packages("VicmapR")
+```
 
+Or you can install the the development version from [GitHub](https://github.com/) with:  
 ``` r
 # install.packages("remotes")
 remotes::install_github("JustinCally/VicmapR")
