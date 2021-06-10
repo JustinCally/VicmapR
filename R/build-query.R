@@ -1,5 +1,11 @@
 base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs"
 
+#' Vicmap Base WMS URL
+#' 
+#' @description Base WMS URL to be used with like services (e.g. making interactive maps in leaflet)
+#' @export
+base_wms_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wms"
+
 #' vicmap_query
 #'
 #' @description Begin a Vicmap WFS query by selecting a WFS layer. The record must be available as a 

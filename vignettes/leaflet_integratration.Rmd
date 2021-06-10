@@ -1,0 +1,68 @@
+---
+title: "Leaflet Integration"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Leaflet Integration}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(VicmapR)
+library(leaflet)
+library(leaflet.extras2)
+```
+
+
+```{r choose_layers, eval = FALSE}
+available_layers <- listLayers()
+filtered_l <- filter(available_layers, stringr::str_detect(Name, "VMTRANS"))
+
+filtered_l$Name
+```
+
+```{r leaflet_plot}
+melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = F) %>% 
+  sf::st_transform(4283)
+
+# Test map 
+map <- leaflet::leaflet() %>% 
+  leaflet::addProviderTiles("CartoDB.Positron") %>%
+  leaflet::addWMSTiles(baseUrl = base_wms_url, 
+                       layers = filtered_l$Name, 
+                       options = WMSTileOptions(format = "image/png", transparent = TRUE), 
+                       group = "Transport") %>%
+  leaflet::addPolygons(data = melbourne, 
+                       color = "grey", 
+                       group = "Melbourne polygon") %>%
+  leaflet::addLayersControl(overlayGroups = c("Transport", "Melbourne polygon"))
+
+map
+```
+
+```{r leaflet_loop}
+addWMSLoop <- function(map, layers, ...) {
+for(x in unique(layers)) {
+  map <- leaflet::addWMSTiles(map, baseUrl = base_wms_url, layers = x, 
+                                        options = WMSTileOptions(format = "image/png", transparent = TRUE), 
+                       group = x, ...)
+}
+return(map)
+}
+
+leaflet::leaflet() %>% 
+  leaflet::addProviderTiles("CartoDB.Positron") %>%
+  addWMSLoop(filtered_l$Name) %>%
+  leaflet::addPolygons(data = melbourne, 
+                       color = "grey", 
+                       group = "Melbourne polygon") %>%
+  leaflet::addLayersControl(overlayGroups = c(filtered_l$Name, "Melbourne polygon"))
+```
+
