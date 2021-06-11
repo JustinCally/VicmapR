@@ -139,16 +139,16 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
 #> bbox:           xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198
 #> geographic CRS: GDA94
 #> # A tibble: 8 x 6
-#>   id               PFI    UFI HIERARCHY OBJECTID                        geometry
-#>   <chr>          <int>  <int> <chr>        <int>                <LINESTRING [°]>
-#> 1 VMHYDRO_WAT~  1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.9359 ~
-#> 2 VMHYDRO_WAT~  1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294 -~
-#> 3 VMHYDRO_WAT~  1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.9292 ~
-#> 4 VMHYDRO_WAT~  1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.9401 ~
-#> 5 VMHYDRO_WAT~  1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.9414 ~
-#> 6 VMHYDRO_WAT~  1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.9441 ~
-#> 7 VMHYDRO_WAT~  1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186 -~
-#> 8 VMHYDRO_WAT~  1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.9202 ~
+#>   id              PFI    UFI HIERARCHY OBJECTID                         geometry
+#>   <chr>         <int>  <int> <chr>        <int>                 <LINESTRING [°]>
+#> 1 VMHYDRO_WAT~ 1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144.9359 -~
+#> 2 VMHYDRO_WAT~ 1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.9294 -3~
+#> 3 VMHYDRO_WAT~ 1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144.9292 -~
+#> 4 VMHYDRO_WAT~ 1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144.9401 -~
+#> 5 VMHYDRO_WAT~ 1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144.9414 -~
+#> 6 VMHYDRO_WAT~ 1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.9441 -~
+#> 7 VMHYDRO_WAT~ 1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186 -3~
+#> 8 VMHYDRO_WAT~ 1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.9202 -~
 ```
 
 VicmapR translates numerous geometric filter functions available in the
