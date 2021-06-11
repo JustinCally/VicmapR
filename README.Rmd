@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# VicmapR <img src='man/figures/VicmapR-Hex-2.png' align="right" height="139" />
+# VicmapR <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 [![Codecov test coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://codecov.io/gh/JustinCally/VicmapR?branch=master)
@@ -56,6 +56,9 @@ sf::sf_extSoftVersion()
 
 ```{r example}
 library(VicmapR)
+
+# Check to see if the geoserver is working. It will error if it is not working  
+check_geoserver()
 
 listLayers(pattern = "trees", ignore.case = T)
 ```

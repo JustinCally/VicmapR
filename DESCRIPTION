@@ -41,11 +41,13 @@ Imports:
     xml2,
     glue,
     dbplyr,
-    rlang
+    rlang,
+    curl
 VignetteBuilder: knitr
 Collate: 
     'globals.R'
     'build-query.R'
+    'check_geoserver.R'
     'cql-predicates.R'
     'cql-translate.R'
     'filter.R'

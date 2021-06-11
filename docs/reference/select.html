@@ -8,6 +8,13 @@
 
 <title>Select Columns — select • VicmapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,7 @@
 
 <meta property="og:title" content="Select Columns — select" />
 <meta property="og:description" content="See dplyr::select for details." />
+<meta property="og:image" content="https://justincally.github.io/VicmapR/logo.png" />
 
 
 
@@ -171,14 +179,14 @@
 #&gt; bbox:           xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559
 #&gt; geographic CRS: GDA94
 #&gt; </span><span style='color: #949494;'># A tibble: 6 x 6</span><span>
-#&gt;   id              PFI    UFI HIERARCHY OBJECTID                         geometry
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>                 </span><span style='color: #949494;font-style: italic;'>&lt;LINESTRING [°]&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> VMHYDRO_WAT~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>973 (143.3209 -35.06721, 143.321 -3~
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> VMHYDRO_WAT~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>975 (142.7845 -35.06031, 142.7846 -~
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> VMHYDRO_WAT~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>978 (142.7731 -35.06204, 142.7731 -~
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> VMHYDRO_WAT~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>981 (142.9148 -35.0603, 142.9149 -3~
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> VMHYDRO_WAT~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>987 (142.8513 -35.06451, 142.8534 -~
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> VMHYDRO_WAT~ 8.55</span><span style='color: #949494;'>e</span><span>6 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>992 (142.8574 -35.06384, 142.8578 -~</div><div class='input'># }
+#&gt;   id               PFI    UFI HIERARCHY OBJECTID                        geometry
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>                </span><span style='color: #949494;font-style: italic;'>&lt;LINESTRING [°]&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> VMHYDRO_WAT~ 8</span><span style='text-decoration: underline;'>553</span><span>127 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>973 (143.3209 -35.06721, 143.321 -~
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> VMHYDRO_WAT~ 8</span><span style='text-decoration: underline;'>553</span><span>130 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>975 (142.7845 -35.06031, 142.7846 ~
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> VMHYDRO_WAT~ 8</span><span style='text-decoration: underline;'>553</span><span>143 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>978 (142.7731 -35.06204, 142.7731 ~
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> VMHYDRO_WAT~ 8</span><span style='text-decoration: underline;'>553</span><span>149 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>981 (142.9148 -35.0603, 142.9149 -~
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> VMHYDRO_WAT~ 8</span><span style='text-decoration: underline;'>553</span><span>158 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>987 (142.8513 -35.06451, 142.8534 ~
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> VMHYDRO_WAT~ 8</span><span style='text-decoration: underline;'>553</span><span>168 2.55</span><span style='color: #949494;'>e</span><span>6 L             </span><span style='text-decoration: underline;'>2</span><span>992 (142.8574 -35.06384, 142.8578 ~</div><div class='input'># }
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
