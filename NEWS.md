@@ -1,4 +1,7 @@
 # VicmapR 0.1.4
+* Add `httr::stop_for_status()` in several places for mor einformative errors  
+* Add a `check_geoserver()` function to test whether the geoserver is operatonal (tests added)  
+* Add pkgdown favicons  
 
 # VicmapR 0.1.3  
 * Fixed issues relating to CRAN submission for version 0.1.2. They were:  

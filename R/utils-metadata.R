@@ -23,6 +23,9 @@ feature_hits <- function(x) {
   request <- httr::build_url(x)
   response <- httr::GET(request)
   
+  # stop if broken
+  httr::stop_for_status(response)
+  
   parsed <- httr::content(response, encoding = "UTF-8")
   
   n_hits <- as.numeric(xml2::xml_attrs(parsed)["numberMatched"])
@@ -99,6 +102,10 @@ get_col_df <- function(x) {
   base_url_n_wfs <- substr(getOption("vicmap.base_url", default = base_wfs_url), start = 0, stop = nchar(getOption("vicmap.base_url", default = base_wfs_url)) - 3)
   
   r <- httr::GET(paste0(base_url_n_wfs, x$query$typeNames, "/wfs?service=wfs&version=", x$query$version, "&request=DescribeFeatureType"))
+  
+  # stop if broken
+  httr::stop_for_status(r)
+  
   c <- httr::content(r, encoding = "UTF-8", type="text/xml") 
   
   list <- xml2::xml_child(xml2::xml_child(xml2::xml_child(xml2::xml_child(c, "xsd:complexType"), 

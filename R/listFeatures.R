@@ -23,6 +23,9 @@ listLayers <- function(...) {
   request <- httr::build_url(url)
   response <- httr::GET(request)
   
+  # stop if broken
+  httr::stop_for_status(response)
+  
   parsed <- httr::content(response, encoding = "UTF-8") %>% xml2::xml_child(4)
   attr_list <- xml2::as_list(parsed)
   

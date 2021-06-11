@@ -1,7 +1,7 @@
 #' options
 #' 
 #' @description 
-#' #' This function retrieves bcdata specific options that can be set. These options can be set
+#' This function retrieves bcdata specific options that can be set. These options can be set
 #' using `option({name of the option} = {value of the option})`. The default options are purposefully
 #' set conservatively to hopefully ensure successful requests. Resetting these options may result in
 #' failed calls to the data catalogue. Options in R are reset every time R is re-started.
