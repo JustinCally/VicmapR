@@ -11,7 +11,9 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' check_geoserver()
+#' }
 check_geoserver <- function(timeout = 10, quiet = FALSE) {
   
   check_internet()

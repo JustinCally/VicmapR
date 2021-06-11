@@ -20,5 +20,7 @@ VicmapR relies upon a functioning geoserver. If for whatever reason the geoserve
 in this package will not work. This function will check the response of the geoserver; erroring out if the connection is down.
 }
 \examples{
+\donttest{
 check_geoserver()
+}
 }
