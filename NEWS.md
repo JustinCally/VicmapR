@@ -1,4 +1,4 @@
-# VicmapR (development version)
+# VicmapR 0.1.4
 
 # VicmapR 0.1.3  
 * Fixed issues relating to CRAN submission for version 0.1.2. They were:  
