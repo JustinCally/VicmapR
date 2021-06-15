@@ -200,7 +200,8 @@ Geoserver instance*
 
 ### License
 
-Modifications Copyright 2020 Justin Cally  
+Modifications Copyright (c) 2020 Justin Cally MIT License
+
 Copyright 2018 Province of British Columbia
 
 Licensed under the Apache License, Version 2.0 (the “License”); you may
