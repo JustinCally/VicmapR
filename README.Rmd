@@ -116,7 +116,7 @@ catchments <- vicmap_query("ahgf_shcatch:AHGFCatchment") %>%
 
 
 ### License
-Modifications Copyright (C) 2020 Justin Cally
+Modifications Copyright 2020 Justin Cally
 Copyright 2018 Province of British Columbia
 
 Licensed under the Apache License, Version 2.0 (the "License");
