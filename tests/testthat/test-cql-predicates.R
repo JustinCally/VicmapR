@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 
-
 # Tests here have been implemented from bcdata: https://github.com/bcgov/bcdata/blob/master/tests/testthat/test-cql-string.R
 
 suppressPackageStartupMessages(library(sf, quietly = TRUE))
