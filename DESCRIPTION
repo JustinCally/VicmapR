@@ -15,27 +15,24 @@ Authors@R:
              family = "Teucher",
              role = c("aut"),
              email = "andy.teucher@gov.bc.ca",
-             comment = c(ORCID = "0000-0002-7840-692X"),
-             comment = "bcdata author"),
+             comment = c(ORCID = "0000-0002-7840-692X", "bcdata author")),
       person(given = "Sam",
              family = "Albers",
              role = c("aut"),
              email = "sam.albers@gov.bc.ca",
-             comment = c(ORCID = "0000-0002-9270-7884"),
-             comment = "bcdata author"),
+             comment = c(ORCID = "0000-0002-9270-7884", "bcdata author")),
       person(given = "Stephanie",
              family = "Hazlitt",
              role = c("aut"),
              email = "stephanie.hazlitt@gov.bc.ca",
-             comment = c(ORCID = "0000-0002-3161-2304"),
-             comment = "bcdata author"),
+             comment = c(ORCID = "0000-0002-3161-2304", "bcdata author")),
       person(given = "Province of British Columbia",
              role = "cph",
-             comment = "bcdata copyright")))
+             comment = "bcdata copyright"))
 Description: Easily interfaces R to spatial datasets available through 
   the Victorian Government's WFS (Web Feature Service): <https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities>, 
   which allows users to read in 'sf' data from these sources. VicmapsR uses the lazy querying approach and code developed by Teucher et al. (2021) for the {bcdata} R package <https://doi.org/10.21105/joss.02927>.
-License: Apache License (== 2.0) + file LICENSE-APACHE2 | MIT + file LICENSE
+License: Apache License (== 2.0)
 Encoding: UTF-8
 LazyData: false
 Roxygen: list(markdown = TRUE)
