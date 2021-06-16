@@ -10,7 +10,23 @@
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
-
+# 
+# Modifications/State changes made to original work: 
+# + base url is now the Victorian WFS server (vs Province of British Columbia WFS server)
+# + vicmap_query() is derived from bcdc_query_geodata, modifications made are: 
+#   - Does not use S3 methods
+#   - Specifications of url query are different 
+#   - Depending on WFS version adds either maxFeatures or count to the query
+#   - Returns object of 'vicmap_promise' (class similar to 'bcdc_promise')
+# + Adds a show_query.vicmap_promise() function
+# + For collect() No trycatch is used 
+# + The method of collection of results has been changed from using crul::Paginator to using a for 
+#   loop and the 'startIndex' parameter within the wfs query. Modified collect then reads the object in from the url 
+#   using sf::read_sf() while bcdata calls another internal function to read it in as an sf object
+# + head.vicmap_promise() has been rewritten from head.bcdc_promise()
+# + print.vicmap_promise() has laregly been rewritten but produces a similar desired output as formatting (using cli) 
+#   is retained and only six records are printed to the screen, which was the case in bcdata. print.bcdc_promise() uses
+#   several utility function (like bcdc_tidy_resources) not developed in this package.
 
 base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs"
 
