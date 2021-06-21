@@ -43,7 +43,7 @@ CQL <- function(...) {
 #'
 #' Convenience wrapper to convert sf objects and geometric operations into CQL
 #' filter strings which can then be supplied to filter.vicmap_promise.
-#' The sf object is may be simplified in complexity to reduce 
+#' The sf object is simplified in complexity to reduce 
 #' the complexity of the Web Service call. Subsequent in-memory
 #' filtering may be need to achieve exact results.
 #'
@@ -154,8 +154,8 @@ sf_text <- function(x) {
 #' Functions to construct a CQL expression to be used
 #' to filter results from [vicmap_query()].
 #' See [the geoserver CQL documentation for details](https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#spatial-predicate).
-#' The sf object is automatically converted in a
-#' bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
+#' The sf object is automatically simplified to a less complex sf object
+#' to reduce the complexity of the Web Service call. Subsequent in-memory
 #' filtering may be needed to achieve exact results. 
 #' 
 #' @details The code for these cql predicates was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}

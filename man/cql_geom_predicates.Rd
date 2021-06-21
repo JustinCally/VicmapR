@@ -77,8 +77,8 @@ a CQL expression to be passed on to the WFS call
 Functions to construct a CQL expression to be used
 to filter results from \code{\link[=vicmap_query]{vicmap_query()}}.
 See \href{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#spatial-predicate}{the geoserver CQL documentation for details}.
-The sf object is automatically converted in a
-bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
+The sf object is automatically simplified to a less complex sf object
+to reduce the complexity of the Web Service call. Subsequent in-memory
 filtering may be needed to achieve exact results.
 }
 \details{
