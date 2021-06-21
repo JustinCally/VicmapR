@@ -10,6 +10,10 @@
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
+#
+# Modifications/state changes made to the original work: 
+# + modified the select.vicmap_promise() function (e.g. removed the remove_id_col and wrote a similar line of code)
+# + property name element combined with previous values slightly differently
 
 
 #' Select Columns 
