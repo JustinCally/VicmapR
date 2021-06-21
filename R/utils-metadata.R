@@ -14,6 +14,7 @@
 # Modifications/State changes made to original work: 
 # + retained the specify_geom_name() and geom_col_name() but rewrote geom_col_name() to just look for 'gml:' string 
 # + feature_hits() does a similar job to bcdc_number_wfs_records() but has been rewritten to work with the Vicmap geoserver
+# + get_col_df() added and uses the DescribeFeatureType service to 
 
 
 #' The Number of Rows of the Promised Data
