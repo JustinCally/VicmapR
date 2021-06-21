@@ -10,6 +10,11 @@
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
+# 
+# Modifications/State changes made to original work: 
+# + filter method renamed to filter.vicmap_promise()
+# + warning added  
+# + returned promise object is not a list: only 1 element (.data)
 
 
 #' Filter Data
