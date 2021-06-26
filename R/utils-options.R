@@ -10,6 +10,11 @@
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
+#
+# Modifications/State changes made to original work: 
+# + Modified the options in vicmap_options() (from bcdc_options()) and changed their descriptions to be suited for the vicmap wfs
+# + Added vicmap.base_url as an options
+# + check_chunk_limit() rewritten for the vicmap WFS
 
 
 #' options
