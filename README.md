@@ -20,9 +20,10 @@ status](https://www.r-pkg.org/badges/version/VicmapR)](https://CRAN.R-project.or
 
 The goal of VicmapR is to provide functions to easily access Victorian
 Government spatial data through their WFS (Web Feature Service). VicmapR
-uses a lazy querying approach (developed from
-[bcdata](https://github.com/bcgov/bcdata)), which allows for a
-responsive and precise querying process.
+leverages code and a lazy querying approach developed by [Teucher et
+al. (2021)](https://joss.theoj.org/papers/10.21105/joss.02927) for the
+[{bcdata} R package](https://bcgov.github.io/bcdata/), which allows for
+a responsive and precise querying process.
 
 ## Installation
 
@@ -196,3 +197,20 @@ catchments <- vicmap_query("ahgf_shcatch:AHGFCatchment") %>%
 ***Note**: Using other Geoserver WFS urls will not necessarily work as
 expected due to the potential differences in the capabilities of the
 Geoserver instance*
+
+### License
+
+Copyright 2018 Province of British Columbia  
+Modifications Copyright 2020 Justin Cally
+
+Licensed under the Apache License, Version 2.0 (the “License”); you may
+not use this file except in compliance with the License. You may obtain
+a copy of the License at
+
+<http://www.apache.org/licenses/LICENSE-2.0>
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
