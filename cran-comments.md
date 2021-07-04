@@ -1,3 +1,9 @@
+## Resubmission 0.1.5  
+This is a resubmission (0.1.5 from 0.1.3; version 0.1.4 was unreleased on CRAN). Briefly, this upgrade makes two main additions to the package:  
+
++ 0.1.4: Functions amended to include more informative errors when the geoserver is not responding (see NEWS.md).  
++ 0.1.5: VicmapR now using Apache licencing and properly recognising and stating modifications in cases where code was developed in [bcdata](https://github.com/bcgov/bcdata) (see NEWS.md).  
+
 ## Resubmission 0.1.3 
 This is a resubmission (0.1.3 from 0.1.2). The following items were ammended as part of this resubmission:  
 
