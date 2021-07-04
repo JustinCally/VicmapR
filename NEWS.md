@@ -1,6 +1,10 @@
+# VicmapR 0.1.5
+* Pull request [#26](https://github.com/JustinCally/VicmapR/pull/26) added Apache licencing to the VicmapR package (changed from MIT). The Apache licencing is the same as [bcdata](https://github.com/bcgov/bcdata) and properly recognises the contributions of the authors. R scripts that used code from bcdata now have modifications listed as per the Apache 2.0 guidelines. 
+* Andy Teucher, Sam Albers and Stephanie Hazlitt added as authors.  
+
 # VicmapR 0.1.4
-* Add `httr::stop_for_status()` in several places for mor einformative errors  
-* Add a `check_geoserver()` function to test whether the geoserver is operatonal (tests added)  
+* Add `httr::stop_for_status()` in several places for more informative errors  
+* Add a `check_geoserver()` function to test whether the geoserver is operational (tests added)  
 * Add pkgdown favicons  
 
 # VicmapR 0.1.3  
