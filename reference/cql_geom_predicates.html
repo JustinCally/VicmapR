@@ -50,8 +50,8 @@
 <meta property="og:description" content="Functions to construct a CQL expression to be used
 to filter results from vicmap_query().
 See the geoserver CQL documentation for details.
-The sf object is automatically converted in a
-bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
+The sf object is automatically simplified to a less complex sf object
+to reduce the complexity of the Web Service call. Subsequent in-memory
 filtering may be needed to achieve exact results." />
 <meta property="og:image" content="https://justincally.github.io/VicmapR/logo.png" />
 
@@ -85,7 +85,7 @@ filtering may be needed to achieve exact results." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
       </span>
     </div>
 
@@ -145,8 +145,8 @@ filtering may be needed to achieve exact results." />
     <p>Functions to construct a CQL expression to be used
 to filter results from <code><a href='vicmap_query.html'>vicmap_query()</a></code>.
 See <a href='https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#spatial-predicate'>the geoserver CQL documentation for details</a>.
-The sf object is automatically converted in a
-bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
+The sf object is automatically simplified to a less complex sf object
+to reduce the complexity of the Web Service call. Subsequent in-memory
 filtering may be needed to achieve exact results.</p>
     </div>
 
@@ -238,7 +238,7 @@ the queried layer)</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Justin Cally.</p>
+  <p>Developed by Justin Cally, Andy Teucher, Sam Albers, Stephanie Hazlitt.</p>
 </div>
 
 <div class="pkgdown">
