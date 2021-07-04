@@ -4,10 +4,10 @@
 \alias{check_geoserver}
 \title{Check Geoserver Response}
 \usage{
-check_geoserver(timeout = 10, quiet = FALSE)
+check_geoserver(timeout = 15, quiet = FALSE)
 }
 \arguments{
-\item{timeout}{numeric: the time (in seconds) to wait for the response before timing out (default is 10)}
+\item{timeout}{numeric: the time (in seconds) to wait for the response before timing out (default is 15)}
 
 \item{quiet}{logical: whether to silently check the connection and if working, return nothing. If \code{FALSE} (default),
 the status message will be printed (\link[httr]{http_status})}

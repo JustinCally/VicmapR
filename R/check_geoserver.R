@@ -14,7 +14,7 @@
 #' @description VicmapR relies upon a functioning geoserver. If for whatever reason the geoserver is not functioning then the functions 
 #' in this package will not work. This function will check the response of the geoserver; erroring out if the connection is down. 
 #'
-#' @param timeout numeric: the time (in seconds) to wait for the response before timing out (default is 10)
+#' @param timeout numeric: the time (in seconds) to wait for the response before timing out (default is 15)
 #' @param quiet logical: whether to silently check the connection and if working, return nothing. If `FALSE` (default), 
 #' the status message will be printed (\link[httr]{http_status})
 #'
@@ -25,7 +25,7 @@
 #' \donttest{
 #' check_geoserver()
 #' }
-check_geoserver <- function(timeout = 10, quiet = FALSE) {
+check_geoserver <- function(timeout = 15, quiet = FALSE) {
   
   check_internet()
   
