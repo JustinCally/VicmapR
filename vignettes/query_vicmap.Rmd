@@ -94,7 +94,7 @@ VicmapR translates numerous geometric filter functions available in the Victoria
 
 These filters can be used within the `filter()` function by providing them an object of class `sf/sfc/sfg/bbox`. Below is a leaflet map with the melbourne rail network being read in with the use of three different types of filter functions: `INTERSECTS()`, `BBOX()` and `DWITHIN()`.
 
-```{r filter_spatial, warning = FALSE, message=FALSE, out.width="100%"}
+```{r filter_spatial, warning = FALSE, message=FALSE, out.width="100%", eval = knitr::is_html_output(excludes = "markdown")}
 #### Return objects that intersect melbourne ####
 # Read in an example shape to restrict our query to using geometric filtering
 melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = F) %>% 
