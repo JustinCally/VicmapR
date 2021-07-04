@@ -13,7 +13,7 @@
 \item{...}{Other parameters possibly used by generic}
 }
 \value{
-object of class \code{vicmap_promise} (invsible: query printed to console), which is a 'promise' of the data that can  be returned if \code{collect()} is used
+object of class \code{vicmap_promise} (invisible: query printed to console), which is a 'promise' of the data that can  be returned if \code{collect()} is used
 }
 \description{
 \code{show_query()} summarises the constructed query that has been passed to it by printing details

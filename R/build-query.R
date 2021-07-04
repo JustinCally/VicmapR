@@ -94,7 +94,7 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 #' @param ... Other parameters possibly used by generic
 #'
 #' @describeIn show_query show_query.vicmap_promise
-#' @return object of class `vicmap_promise` (invsible: query printed to console), which is a 'promise' of the data that can  be returned if `collect()` is used
+#' @return object of class `vicmap_promise` (invisible: query printed to console), which is a 'promise' of the data that can  be returned if `collect()` is used
 #' @export
 #'
 #' @examples
