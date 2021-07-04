@@ -30,7 +30,7 @@ check_geoserver <- function(timeout = 15, quiet = FALSE) {
   check_internet()
   
   # Get response or timeout
-  response <- httr::GET(paste0(base_wfs_url, "?request=getCapabilities"), httr::timeout(timeout))
+  response <- httr::GET(paste0(base_wfs_url), httr::timeout(timeout))
   
   httr::stop_for_status(response)
   
