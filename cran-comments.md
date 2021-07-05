@@ -1,4 +1,9 @@
-## Resubmission 0.1.5  
+## Resubmission 0.1.6 (2020-07-05)
+Fixed two NOTES as part of the previous CRAN submission:  
++ Apache licence is now located at: https://www.apache.org/licenses/LICENSE-2.0.txt, replaced references to this throughout the package (including Readme.Rmd)  
++ The doi address for Teucher et al. (2021) {bcdata} R package paper is now formatted correctly: <doi:10.21105/joss.02927>  
+
+## Resubmission 0.1.5  (2020-07-04)
 This is a resubmission (0.1.5 from 0.1.3; version 0.1.4 was unreleased on CRAN). Briefly, this upgrade makes two main additions to the package:  
 
 + 0.1.4: Functions amended to include more informative errors when the geoserver is not responding (see NEWS.md).  
