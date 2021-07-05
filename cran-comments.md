@@ -1,3 +1,6 @@
+## Resubmission 0.1.6 (2020-07-06)
+Changed {bcdata} to 'bcdata' in the DESCRIPION file
+
 ## Resubmission 0.1.6 (2020-07-05)
 Fixed two NOTES as part of the previous CRAN submission:  
 + Apache licence is now located at: https://www.apache.org/licenses/LICENSE-2.0.txt, replaced references to this throughout the package (including Readme.Rmd)  

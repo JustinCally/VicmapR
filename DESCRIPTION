@@ -31,7 +31,7 @@ Authors@R:
              comment = "bcdata copyright"))
 Description: Easily interfaces R to spatial datasets available through 
   the Victorian Government's WFS (Web Feature Service): <https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities>, 
-  which allows users to read in 'sf' data from these sources. VicmapR uses the lazy querying approach and code developed by Teucher et al. (2021) for the {bcdata} R package <doi:10.21105/joss.02927>.
+  which allows users to read in 'sf' data from these sources. VicmapR uses the lazy querying approach and code developed by Teucher et al. (2021) for the 'bcdata' R package <doi:10.21105/joss.02927>.
 License: Apache License (== 2.0)
 Encoding: UTF-8
 LazyData: false
