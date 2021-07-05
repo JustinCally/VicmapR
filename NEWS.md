@@ -1,3 +1,7 @@
+# VicmapR 0.1.6  
+* Apache licence is now located at: https://www.apache.org/licenses/LICENSE-2.0.txt, replaced references to this throughout the package (including Readme.Rmd)  
+* The doi address for Teucher et al. (2021) {bcdata} R package paper is now formatted correctly: <doi:10.21105/joss.02927>
+
 # VicmapR 0.1.5
 * Pull request [#26](https://github.com/JustinCally/VicmapR/pull/26) added Apache licencing to the VicmapR package (changed from MIT). The Apache licencing is the same as [bcdata](https://github.com/bcgov/bcdata) and properly recognises the contributions of the authors. R scripts that used code from bcdata now have modifications listed as per the Apache 2.0 guidelines. 
 * Andy Teucher, Sam Albers and Stephanie Hazlitt added as authors.  
