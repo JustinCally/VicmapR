@@ -1,6 +1,6 @@
 Package: VicmapR
 Title: Access Victorian Spatial Data Through Web File Services (WFS) 
-Version: 0.1.6
+Version: 0.1.6.9000
 Authors@R: 
     c(person(given = "Justin",
            family = "Cally",
@@ -55,7 +55,6 @@ Imports:
     methods,
     cli,
     DBI,
-    tidyselect,
     xml2,
     glue,
     dbplyr,

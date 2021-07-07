@@ -1,3 +1,5 @@
+# VicmapR (development version)
+
 # VicmapR 0.1.6  
 * Apache licence is now located at: https://www.apache.org/licenses/LICENSE-2.0.txt, replaced references to this throughout the package (including Readme.Rmd)  
 * The doi address for Teucher et al. (2021) {bcdata} R package paper is now formatted correctly in the DESCRIPTION
