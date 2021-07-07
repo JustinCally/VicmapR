@@ -8,6 +8,13 @@
 
 <title>options — vicmap_options • VicmapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,7 +47,7 @@
 
 
 <meta property="og:title" content="options — vicmap_options" />
-<meta property="og:description" content="#' This function retrieves bcdata specific options that can be set. These options can be set
+<meta property="og:description" content="This function retrieves bcdata specific options that can be set. These options can be set
 using option({name of the option} = {value of the option}). The default options are purposefully
 set conservatively to hopefully ensure successful requests. Resetting these options may result in
 failed calls to the data catalogue. Options in R are reset every time R is re-started.
@@ -53,6 +60,7 @@ been downloaded. VicmapR does this all for you but using this option you can set
 requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
 it is advisable to lower the chunk limit. Chunks must be less than 70000.
 vicmap.base_url is the base wfs url used to query the geoserver." />
+<meta property="og:image" content="https://justincally.github.io/VicmapR/logo.png" />
 
 
 <meta name="robots" content="noindex">
@@ -84,7 +92,7 @@ vicmap.base_url is the base wfs url used to query the geoserver." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.3.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.6.9000</span>
       </span>
     </div>
 
@@ -141,7 +149,7 @@ vicmap.base_url is the base wfs url used to query the geoserver." />
     </div>
 
     <div class="ref-description">
-    <p>#' This function retrieves bcdata specific options that can be set. These options can be set
+    <p>This function retrieves bcdata specific options that can be set. These options can be set
 using <code>option({name of the option} = {value of the option})</code>. The default options are purposefully
 set conservatively to hopefully ensure successful requests. Resetting these options may result in
 failed calls to the data catalogue. Options in R are reset every time R is re-started.</p>
@@ -184,7 +192,7 @@ it is advisable to lower the chunk limit. Chunks must be less than 70000.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Justin Cally.</p>
+  <p>Developed by Justin Cally, Andy Teucher, Sam Albers, Stephanie Hazlitt.</p>
 </div>
 
 <div class="pkgdown">

@@ -8,6 +8,13 @@
 
 <title>Changelog • VicmapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 
 
 <meta property="og:title" content="Changelog" />
+<meta property="og:image" content="https://justincally.github.io/VicmapR/logo.png" />
 
 
 <meta name="robots" content="noindex">
@@ -71,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.3.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.6.9000</span>
       </span>
     </div>
 
@@ -130,6 +138,37 @@
 <h1 class="page-header" data-toc-text="development version">
 <a href="#vicmapr-development-version" class="anchor"></a>VicmapR (development version)<small> Unreleased </small>
 </h1>
+</div>
+    <div id="vicmapr-016" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.6">
+<a href="#vicmapr-016" class="anchor"></a>VicmapR 0.1.6<small> 2021-07-06 </small>
+</h1>
+<ul>
+<li>Apache licence is now located at: <a href="https://www.apache.org/licenses/LICENSE-2.0.txt" class="uri">https://www.apache.org/licenses/LICENSE-2.0.txt</a>, replaced references to this throughout the package (including Readme.Rmd)<br>
+</li>
+<li>The doi address for Teucher et al. (2021) {bcdata} R package paper is now formatted correctly in the DESCRIPTION</li>
+</ul>
+</div>
+    <div id="vicmapr-015" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.5">
+<a href="#vicmapr-015" class="anchor"></a>VicmapR 0.1.5<small> Unreleased </small>
+</h1>
+<ul>
+<li>Pull request <a href="https://github.com/JustinCally/VicmapR/pull/26"><a href='https://github.com/justincally/VicmapR/issues/26'>#26</a></a> added Apache licencing to the VicmapR package (changed from MIT). The Apache licencing is the same as <a href="https://github.com/bcgov/bcdata">bcdata</a> and properly recognises the contributions of the authors. R scripts that used code from bcdata now have modifications listed as per the Apache 2.0 guidelines.</li>
+<li>Andy Teucher, Sam Albers and Stephanie Hazlitt added as authors.</li>
+</ul>
+</div>
+    <div id="vicmapr-014" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.4">
+<a href="#vicmapr-014" class="anchor"></a>VicmapR 0.1.4<small> Unreleased </small>
+</h1>
+<ul>
+<li>Add <code><a href="https://httr.r-lib.org/reference/stop_for_status.html">httr::stop_for_status()</a></code> in several places for more informative errors<br>
+</li>
+<li>Add a <code><a href="../reference/check_geoserver.html">check_geoserver()</a></code> function to test whether the geoserver is operational (tests added)<br>
+</li>
+<li>Add pkgdown favicons</li>
+</ul>
 </div>
     <div id="vicmapr-013" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.3">
@@ -216,7 +255,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Justin Cally.</p>
+  <p>Developed by Justin Cally, Andy Teucher, Sam Albers, Stephanie Hazlitt.</p>
 </div>
 
 <div class="pkgdown">
