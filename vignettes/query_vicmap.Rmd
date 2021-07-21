@@ -9,10 +9,14 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+geoserver_connected <- VicmapR::check_geoserver()
+off_cran <- !identical(Sys.getenv("NOT_CRAN"), "true")
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
-  comment = "#>"
+  comment = "#>", 
+  eval = all(geoserver_connected, off_cran)
 )
 ```
 
@@ -20,6 +24,7 @@ knitr::opts_chunk$set(
 library(VicmapR)
 library(sf)
 library(leaflet)
+
 
 #check sf installation
 sf::sf_extSoftVersion()

@@ -34,6 +34,10 @@
 #'  feature_hits()
 #'  }
 feature_hits <- function(x) {
+  
+  if(!check_geoserver()) {
+    return(0)
+  }
 
   x$query$resultType <- "hits"
   x$query$outputFormat <- "text/xml"
@@ -116,6 +120,10 @@ specify_geom_name <- function(x, CQL_statement){
 #'   get_col_df()
 #'  }
 get_col_df <- function(x) {
+  
+  if(!check_geoserver()) {
+    return(NULL)
+  }
   
   layer <- x$query$version
   base_url_n_wfs <- substr(getOption("vicmap.base_url", default = base_wfs_url), start = 0, stop = nchar(getOption("vicmap.base_url", default = base_wfs_url)) - 3)
