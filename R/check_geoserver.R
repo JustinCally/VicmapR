@@ -18,7 +18,7 @@
 #' @param quiet logical: whether to silently check the connection and if working, return nothing. If `FALSE` (default), 
 #' the status message will be printed (\link[httr]{http_status})
 #'
-#' @return character (if successful), error message if geoserver is not working 
+#' @return logical, TRUE if the geoserver is working
 #' @export
 #'
 #' @examples

@@ -1,4 +1,6 @@
-# VicmapR (development version)
+# VicmapR 0.1.7  
+* __BUG FIX:__ Accoriding to the capabilities of the Victorian Land Services geoserver (https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities) the maximum records/features able to be returned is 70,000. This value was set as the default chunk limit (`options(vicmap.chunk_limit)`). However, it appears various layers have a limit of 1,500. As such the default has now been changed to 1,500. Users should either allow pagination during collect (the default); or if the user is sure 70,000 features can be returned for a layer they can change the default using `options(vicmap.chunk_limit = 70000)`. If this chunk limit is set to greater than 1,500 but the maximum chunk limit for that layer is restricted to 1,500 then only 1,500 features will be returned and there will be no pagination. This may mean incomplete data is returned.  
+* CRAN checks now do not throw an error or warning if there is an issue with the geoserver as the `check_geoserver()` function has been amended and included in other functions to avoid errors being thrown for examples. 
 
 # VicmapR 0.1.6  
 * Apache licence is now located at: https://www.apache.org/licenses/LICENSE-2.0.txt, replaced references to this throughout the package (including Readme.Rmd)  
