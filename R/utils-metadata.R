@@ -75,6 +75,10 @@ feature_hits <- function(x) {
 #'  }
 geom_col_name <- function(x) {
   
+  if(!check_geoserver(timeout = 10, quiet = TRUE)) {
+    return(NULL)
+  }
+  
   geom_col <- get_col_df(x) %>% 
     dplyr::filter(grepl(x = type, pattern = "gml:")) %>%
     dplyr::pull(name)
@@ -121,7 +125,7 @@ specify_geom_name <- function(x, CQL_statement){
 #'  }
 get_col_df <- function(x) {
   
-  if(!check_geoserver()) {
+  if(!check_geoserver(timeout = 10, quiet = TRUE)) {
     return(NULL)
   }
   

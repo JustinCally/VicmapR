@@ -29,6 +29,7 @@
 #   several utility function (like bcdc_tidy_resources) not developed in this package.
 
 base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs"
+base_chunk_lim <- 1500L
 
 #' Establish Vicmap Query
 #'
@@ -61,8 +62,8 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
                     request = "GetFeature",
                     typeNames = layer,
                     outputFormat = "application/json",
-                    count = getOption("vicmap.chunk_limit", default = 70000L),
-                    maxFeatures = getOption("vicmap.chunk_limit", default = 70000L),
+                    count = getOption("vicmap.chunk_limit", default = 1500L),
+                    maxFeatures = getOption("vicmap.chunk_limit", default = 1500L),
                     srsName = paste0("EPSG:", CRS))
   
   #maxFeatures or count depends on version
@@ -145,10 +146,20 @@ show_query.vicmap_promise <- function(x, ...) {
 #' @examples
 #' \donttest{
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-#' head(50) %>%
+#' head(5) %>%
 #' collect()
 #' }
 collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
+  
+  # Exit out if null
+  if(is.null(x)){
+    return(NULL)
+  }
+  
+  # Exit out if problem with connection
+  if(!check_geoserver(timeout = 10, quiet = TRUE)) {
+    return(NULL)
+  }
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
   
@@ -163,17 +174,17 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   }
   
   # For when head is used
-  if(the_count > getOption("vicmap.chunk_limit", default = 70000L)) {
+  if(the_count > getOption("vicmap.chunk_limit", default = 1500L)) {
     number_of_records <- the_count
   }
   
   #paginate?
-  if(number_of_records > getOption("vicmap.chunk_limit", default = 70000L) & paginate == TRUE & the_count >= getOption("vicmap.chunk_limit", default = 70000L)) {
+  if(number_of_records > getOption("vicmap.chunk_limit", default = 1500L) & paginate == TRUE & the_count >= getOption("vicmap.chunk_limit", default = 1500L)) {
     # number of times to loop
-    loop_times <- ceiling(number_of_records/getOption("vicmap.chunk_limit", default = 70000L))
+    loop_times <- ceiling(number_of_records/getOption("vicmap.chunk_limit", default = 1500L))
     # inform user of delay
     if(!quiet) {
-    message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (", getOption("vicmap.chunk_limit", default = 70000L),"). The collection of data will be paginated and might take some time."))
+    message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (", getOption("vicmap.chunk_limit", default = 1500L),"). The collection of data will be paginated and might take some time."))
     }
     # pick something to sort by
     cols <- feature_cols(x)
@@ -188,12 +199,12 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
     }
     
     for(i in 1:loop_times) {
-      x$query$startIndex <- (i-1)*getOption("vicmap.chunk_limit", default = 70000L)
+      x$query$startIndex <- (i-1)*getOption("vicmap.chunk_limit", default = 1500L)
       x$query$sortBy <- sort_col 
       if(x$query$version == "2.0.0") {
-        x$query$count <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 70000L))
+        x$query$count <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 1500L))
       } else {
-        x$query$maxFeatures <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 70000L))
+        x$query$maxFeatures <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 1500L))
       }
       request <- httr::build_url(x)
       returned_sf[[i]] <- sf::read_sf(request, ...)
@@ -264,6 +275,16 @@ head.vicmap_promise <- function(x, n = 5, ...) {
 #' print(query)
 #' }
 print.vicmap_promise <- function(x, ...) {
+  
+  # Exit out if null
+  if(is.null(x)){
+    return(NULL)
+  }
+  
+  # Exit out if problem with connection
+  if(!check_geoserver(timeout = 10, quiet = TRUE)) {
+    return(NULL)
+  }
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
   

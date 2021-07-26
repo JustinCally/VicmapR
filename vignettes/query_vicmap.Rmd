@@ -23,7 +23,7 @@ See the License for the specific language governing permissions and limitations 
 -->
 
 ```{r, include = FALSE}
-geoserver_connected <- VicmapR::check_geoserver()
+geoserver_connected <- VicmapR::check_geoserver(quiet = TRUE)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
