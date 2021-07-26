@@ -34,6 +34,10 @@
 #'  feature_hits()
 #'  }
 feature_hits <- function(x) {
+  
+  if(!check_geoserver()) {
+    return(0)
+  }
 
   x$query$resultType <- "hits"
   x$query$outputFormat <- "text/xml"
@@ -70,6 +74,10 @@ feature_hits <- function(x) {
 #'   geom_col_name()
 #'  }
 geom_col_name <- function(x) {
+  
+  if(!check_geoserver(timeout = 10, quiet = TRUE)) {
+    return(NULL)
+  }
   
   geom_col <- get_col_df(x) %>% 
     dplyr::filter(grepl(x = type, pattern = "gml:")) %>%
@@ -116,6 +124,10 @@ specify_geom_name <- function(x, CQL_statement){
 #'   get_col_df()
 #'  }
 get_col_df <- function(x) {
+  
+  if(!check_geoserver(timeout = 10, quiet = TRUE)) {
+    return(NULL)
+  }
   
   layer <- x$query$version
   base_url_n_wfs <- substr(getOption("vicmap.base_url", default = base_wfs_url), start = 0, stop = nchar(getOption("vicmap.base_url", default = base_wfs_url)) - 3)

@@ -40,7 +40,7 @@ process may take a while to run, thus it is recommended to filter large datasets
 \examples{
 \donttest{
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
-head(50) \%>\%
+head(5) \%>\%
 collect()
 }
 }

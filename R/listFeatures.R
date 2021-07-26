@@ -27,6 +27,11 @@
 #' }
 
 listLayers <- function(...) {
+  
+  if(!check_geoserver()) {
+    return(NULL)
+  }
+  
   url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))
   url$query <- list(service = "wfs",
                     version = "2.0.0",

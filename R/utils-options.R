@@ -50,7 +50,7 @@ vicmap_options <- function() {
   dplyr::tribble(
     ~ option, ~ value, ~default,
     "vicmap.max_geom_pred_size", null_to_na(getOption("vicmap.max_geom_pred_size")), as.character(4400),
-    "vicmap.chunk_limit",null_to_na(getOption("vicmap.chunk_limit")), as.character(70000),
+    "vicmap.chunk_limit",null_to_na(getOption("vicmap.chunk_limit")), as.character(1500),
     "vicmap.base_url", getOption("vicmap.base_url"), base_wfs_url
   )
 }

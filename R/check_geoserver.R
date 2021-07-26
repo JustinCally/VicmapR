@@ -18,7 +18,7 @@
 #' @param quiet logical: whether to silently check the connection and if working, return nothing. If `FALSE` (default), 
 #' the status message will be printed (\link[httr]{http_status})
 #'
-#' @return character (if successful), error message if geoserver is not working 
+#' @return logical, TRUE if the geoserver is working
 #' @export
 #'
 #' @examples
@@ -27,19 +27,37 @@
 #' }
 check_geoserver <- function(timeout = 15, quiet = FALSE) {
   
-  check_internet()
-  
+  if(!curl::has_internet()) {
+    message <- list(success = FALSE, 
+                    reason = "No Internet. Please check your internet connection")
+  } else{
   # Get response or timeout
-  response <- httr::GET(paste0(base_wfs_url), httr::timeout(timeout))
-  
-  httr::stop_for_status(response)
-  
-  message <- httr::http_status(response)$message
+  message <- tryCatch({
+    # Get response
+    response <- httr::GET(paste0(base_wfs_url), httr::timeout(timeout))
+    # Check failure
+    if(httr::http_error(response)) {
+      returned_list <- list(success = FALSE, 
+                            reason = httr::http_status(response)$message) 
+    } else { # Get success message
+    returned_list <- list(success = TRUE, 
+                          reason = httr::http_status(response)$message) 
+    } # return list
+    returned_list
+    
+  }, error = function(e) {
+    list(success = FALSE, 
+         reason = e)
+  })
+  }
   
   if(quiet) {
-   return(invisible(message)) 
+   return(message[["success"]]) 
   } else {
-  return(message)
+    if(!message[["success"]]) {
+    message(message[["reason"]])
+    }
+  return(message[["success"]])
   }
   
 }
@@ -50,7 +68,10 @@ check_geoserver <- function(timeout = 15, quiet = FALSE) {
 check_internet <- function(){
 
   if(!curl::has_internet()) {
-    stop("Please check your internet connection")
+    message("No Internet. Please check your internet connection")
+    return(FALSE)
+  } else {
+    return(TRUE)
   }
 }
 

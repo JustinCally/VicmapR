@@ -86,13 +86,6 @@ test_that("CQL functions fail correctly", {
                "must be a character string")
 })
 
-test_that("passing an non-existent object to a geom predicate", {
-  skip_if_offline()
-  expect_error(vicmap_query("datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-                 filter(INTERSECTS(districts)),
-               'object "districts" not found.\nThe object passed to INTERSECTS needs to be valid sf object.')
-})
-
 test_that("CQL translate works", {
   expect_is(VicmapR:::cql_translate(CQL(INTERSECTS(the_geom))), c("sql", "character"))
 })

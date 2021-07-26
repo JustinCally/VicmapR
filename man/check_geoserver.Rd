@@ -13,7 +13,7 @@ check_geoserver(timeout = 15, quiet = FALSE)
 the status message will be printed (\link[httr]{http_status})}
 }
 \value{
-character (if successful), error message if geoserver is not working
+logical, TRUE if the geoserver is working
 }
 \description{
 VicmapR relies upon a functioning geoserver. If for whatever reason the geoserver is not functioning then the functions
