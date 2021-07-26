@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   query_vicmap: query_vicmap.html
-last_built: 2021-07-07T01:09Z
+last_built: 2021-07-26T08:40Z
 urls:
   reference: https://justincally.github.io/VicmapR/reference
   article: https://justincally.github.io/VicmapR/articles
