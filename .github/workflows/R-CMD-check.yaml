@@ -31,7 +31,7 @@ jobs:
       RSPM: ${{ matrix.config.rspm }}
       CRAN: ${{ matrix.config.cran }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      cache-version: v14
+      cache-version: v15
       PKG_CONFIG_PATH: /opt/software/lib/pkgconfig
 
     steps:
