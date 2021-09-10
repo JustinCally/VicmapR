@@ -59,7 +59,9 @@ Imports:
     glue,
     dbplyr,
     rlang,
-    curl
+    curl,
+    rvest,
+    lubridate
 VignetteBuilder: knitr
 Collate: 
     'globals.R'
@@ -78,3 +80,4 @@ Collate:
     'utils-options.R'
     'utils-pipe.R'
     'utils-show_query.R'
+    'metadata.R'
