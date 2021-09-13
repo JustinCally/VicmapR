@@ -6,14 +6,16 @@
 \alias{get_metadata}
 \title{Layer Metadata}
 \usage{
-data_citation(x)
+data_citation(x = NULL, anzlicId = NULL)
 
-data_dictionary(x)
+data_dictionary(x = NULL, anzlicId = NULL)
 
-get_metadata(x)
+get_metadata(x = NULL, anzlicId = NULL)
 }
 \arguments{
 \item{x}{Object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
+
+\item{anzlicId}{character: ID of data (useful if data is not available through WFS)}
 }
 \value{
 citation, data.frame or list
