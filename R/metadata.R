@@ -19,6 +19,7 @@
 #' metadata for the record.   
 #'
 #' @param x Object of class `vicmap_promise` (likely passed from [vicmap_query()])
+#' @param anzlicId character: ID of data (useful if data is not available through WFS)
 #'
 #' @return citation, data.frame or list
 #' @export
@@ -28,13 +29,13 @@
 #' data_citation(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
 #' }
 
-data_citation <- function(x) {
+data_citation <- function(x = NULL, anzlicId = NULL) {
   
-  md <- get_metadata(x)
+  md <- get_metadata(x, anzlicId)
   nl <- as.character(md[[1]][[2]])
   names(nl) <- as.character(md[[1]][[1]])
   
-  cat("  @ELECTRONIC{", x[["query"]][["typeNames"]], ",", sep = "")
+  cat("  @ELECTRONIC{", nl["Resource Name"], ",", sep = "")
   cat("\n")
   cat("        author = {", nl["Custodian"], "},", sep = "")
   cat("\n")
@@ -57,9 +58,35 @@ data_citation <- function(x) {
 #' \donttest{
 #' data_dictionary(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
 #' }
-data_dictionary <- function(x) {
+data_dictionary <- function(x = NULL, anzlicId = NULL) {
   
-  get_metadata(x)[[2]]
+  get_metadata(x, anzlicId)[[2]]
+}
+
+get_anzlicId <- function(x) {
+  url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))
+  url$query <- list(service = "wfs",
+                    version = "2.0.0",
+                    request = "GetCapabilities")
+  
+  request <- httr::build_url(url)
+  response <- httr::GET(request)
+  
+  # stop if broken
+  httr::stop_for_status(response)
+  
+  parsed <- httr::content(response, encoding = "UTF-8") %>% xml2::xml_child(4)
+  attr_list <- xml2::as_list(parsed)
+  
+  feat_names <- unlist(lapply(attr_list, function(x) x[["Name"]]))
+  
+  feat <- which(x[["query"]][["typeNames"]] == feat_names)
+  
+  keywords <- unlist(attr_list[[feat]][["Keywords"]]) %>% 
+    unique()
+  
+  key_lookup <- grep(pattern = "^ANZVI", x = keywords, value = TRUE)
+  return(key_lookup)
 }
 
 #' @rdname data_citation
@@ -68,30 +95,19 @@ data_dictionary <- function(x) {
 #' \donttest{
 #' get_metadata(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
 #' }
-get_metadata <- function(x) {
+get_metadata <- function(x = NULL, anzlicId = NULL) {
+  
+  if(is.null(x) & is.null(anzlicId)) {
+    stop("x or anzlicId must be provided")
+  }
+  
+  if(is.null(anzlicId)) {
 
-url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))
-url$query <- list(service = "wfs",
-                  version = "2.0.0",
-                  request = "GetCapabilities")
+key_lookup <- get_anzlicId(x)
 
-request <- httr::build_url(url)
-response <- httr::GET(request)
-
-# stop if broken
-httr::stop_for_status(response)
-
-parsed <- httr::content(response, encoding = "UTF-8") %>% xml2::xml_child(4)
-attr_list <- xml2::as_list(parsed)
-
-feat_names <- unlist(lapply(attr_list, function(x) x[["Name"]]))
-
-feat <- which(x[["query"]][["typeNames"]] == feat_names)
-
-keywords <- unlist(attr_list[[feat]][["Keywords"]]) %>% 
-  unique()
-
-key_lookup <- grep(pattern = "^ANZVI", x = keywords, value = TRUE)
+  } else {
+  key_lookup <- anzlicId
+}
 
 key_url <- paste0("http://services.land.vic.gov.au/catalogue/metadata?anzlicId=",key_lookup,"&publicId=guest&extractionProviderId=1")
 
