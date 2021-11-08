@@ -20,6 +20,8 @@ description/clarification about the layer.
 }
 \examples{
 \donttest{
+try(
 listLayers(pattern = "trees", ignore.case = TRUE)
+)
 }
 }

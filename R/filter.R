@@ -39,8 +39,10 @@ NULL
 #'
 #' @examples
 #' \donttest{
+#' try(
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #'  filter(HIERARCHY == "L", PFI == 8553127)
+#'  )
 #'  }
 filter.vicmap_promise <- function(.data, ...) {
   

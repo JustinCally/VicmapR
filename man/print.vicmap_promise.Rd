@@ -20,7 +20,11 @@ alongside the number of rows and columns that would be returned.
 }
 \examples{
 \donttest{
+try(
 query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+)
+try(
 print(query)
+)
 }
 }

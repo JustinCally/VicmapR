@@ -27,8 +27,10 @@ See \code{utils::\link[utils]{head}} for details.
 
 \examples{
 \donttest{
+try(
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
 head(50)
+)
 }
 }
 \keyword{internal}

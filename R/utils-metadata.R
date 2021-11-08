@@ -120,8 +120,10 @@ specify_geom_name <- function(x, CQL_statement){
 #' @examples
 #' \donttest{
 #' # Return a data.frame of the columns and their XML schema string datatypes
+#' try(
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
 #'   get_col_df()
+#'   )
 #'  }
 get_col_df <- function(x) {
   
