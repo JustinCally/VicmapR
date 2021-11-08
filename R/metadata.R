@@ -43,7 +43,7 @@ data_citation <- function(x = NULL, anzlicId = NULL) {
   cat("\n")
   cat("        year = {", lubridate::year(as.POSIXct(nl["Metadata Date"])), "},", sep = "")
   cat("\n")
-  cat("        howpublished = {\\url=", md[[3]] , "},", sep = "")
+  cat("        url = {", md[[3]] , "},", sep = "")
   cat("\n")
   cat("        owner = {", nl["Owner"], "},", sep = "")
   cat("\n")
