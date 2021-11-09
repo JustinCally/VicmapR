@@ -179,27 +179,28 @@ about the query in a human readable format.</p>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span>
-<span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'><a href='head.vicmap_promise.html'>head</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>show_query</span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; &lt;base url&gt;
-#&gt; http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs
-#&gt; 
-#&gt; &lt;body&gt;
-#&gt; service: wfs 
-#&gt; version: 2.0.0 
-#&gt; request: GetFeature 
-#&gt; typeNames: datavic:VMHYDRO_WATERCOURSE_DRAIN 
-#&gt; outputFormat: application/json 
-#&gt; count: 50 
-#&gt; srsName: EPSG:4283 
-#&gt; 
-#&gt; &lt;full query url&gt;
-#&gt; http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?service=wfs&amp;version=2.0.0&amp;request=GetFeature&amp;typeNames=datavic%3AVMHYDRO_WATERCOURSE_DRAIN&amp;outputFormat=application%2Fjson&amp;count=50&amp;srsName=EPSG%3A4283</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span></span>
+<span class='r-in'><span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'><span class='fu'><a href='head.vicmap_promise.html'>head</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'><span class='fu'>show_query</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;base url&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;body&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> service: wfs </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> version: 2.0.0 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> request: GetFeature </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> typeNames: datavic:VMHYDRO_WATERCOURSE_DRAIN </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> outputFormat: application/json </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> count: 50 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> srsName: EPSG:4283 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> &lt;full query url&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?service=wfs&amp;version=2.0.0&amp;request=GetFeature&amp;typeNames=datavic%3AVMHYDRO_WATERCOURSE_DRAIN&amp;outputFormat=application%2Fjson&amp;count=50&amp;srsName=EPSG%3A4283</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

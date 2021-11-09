@@ -151,7 +151,7 @@
 </h1>
 <ul>
 <li>
-<strong>BUG FIX:</strong> Accoriding to the capabilities of the Victorian Land Services geoserver (<a href="https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities" class="uri">https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities</a>) the maximum records/features able to be returned is 70,000. This value was set as the default chunk limit (<code><a href="https://rdrr.io/r/base/options.html">options(vicmap.chunk_limit)</a></code>). However, it appears various layers have a limit of 1,500. As such the default has now been changed to 1,500. Users should either allow pagination during collect (the default); or if the user is sure 70,000 features can be returned for a layer they can change the default using <code><a href="https://rdrr.io/r/base/options.html">options(vicmap.chunk_limit = 70000)</a></code>. If this chunk limit is set to greater than 1,500 but the maximum chunk limit for that layer is restricted to 1,500 then only 1,500 features will be returned and there will be no pagination. This may mean incomplete data is returned.<br>
+<strong>BUG FIX:</strong> Accoriding to the capabilities of the Victorian Land Services geoserver (<a href="https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities" class="uri">https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities</a>) the maximum records/features able to be returned is 70,000. This value was set as the default chunk limit (<code>options(vicmap.chunk_limit)</code>). However, it appears various layers have a limit of 1,500. As such the default has now been changed to 1,500. Users should either allow pagination during collect (the default); or if the user is sure 70,000 features can be returned for a layer they can change the default using <code>options(vicmap.chunk_limit = 70000)</code>. If this chunk limit is set to greater than 1,500 but the maximum chunk limit for that layer is restricted to 1,500 then only 1,500 features will be returned and there will be no pagination. This may mean incomplete data is returned.<br>
 </li>
 <li>CRAN checks now do not throw an error or warning if there is an issue with the geoserver as the <code><a href="../reference/check_geoserver.html">check_geoserver()</a></code> function has been amended and included in other functions to avoid errors being thrown for examples.</li>
 </ul>
@@ -224,7 +224,7 @@
 </h1>
 <ul>
 <li>
-<code><a href="https://rdrr.io/r/base/options.html">options(vicmap.base_url)</a></code> now accepts other base wfs urls to be used instead of the Vicplan one (e.g. the BOM wfs: <code><a href="https://rdrr.io/r/base/options.html">options(vicmap.base_url = "http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs")</a></code>)<br>
+<code>options(vicmap.base_url)</code> now accepts other base wfs urls to be used instead of the Vicplan one (e.g. the BOM wfs: <code>options(vicmap.base_url = "http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs")</code>)<br>
 </li>
 <li>A vignette on how to use Vicmap has been added</li>
 <li>Enhanced documentation and references</li>

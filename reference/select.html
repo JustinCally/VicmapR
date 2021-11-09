@@ -167,30 +167,31 @@
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span>
-<span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-<span class='fu'>select</span><span class='op'>(</span><span class='va'>HIERARCHY</span>, <span class='va'>PFI</span><span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; • Using <span style='color: #0000BB;'>collect()</span> on this object will return <span style='color: #00BB00;'>191506</span>
-#&gt; • features and <span style='color: #00BB00;'>6</span> fields
-#&gt; • At most six rows of the record are printed here
-#&gt; ────────────────────────────────────────────────────────────────────────────────
-#&gt; Simple feature collection with 6 features and 5 fields
-#&gt; Geometry type: LINESTRING
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559
-#&gt; Geodetic CRS:  GDA94
-#&gt; <span style='color: #949494;'># A tibble: 6 × 6</span>
-#&gt;   id              PFI    UFI HIERARCHY OBJECTID                         geometry
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;LINESTRING [°]&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> VMHYDRO_WAT… 8.55<span style='color: #949494;'>e</span>6 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>973 (143.3209 -35.06721, 143.321 -3…
-#&gt; <span style='color: #BCBCBC;'>2</span> VMHYDRO_WAT… 8.55<span style='color: #949494;'>e</span>6 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>975 (142.7845 -35.06031, 142.7846 -…
-#&gt; <span style='color: #BCBCBC;'>3</span> VMHYDRO_WAT… 8.55<span style='color: #949494;'>e</span>6 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>978 (142.7731 -35.06204, 142.7731 -…
-#&gt; <span style='color: #BCBCBC;'>4</span> VMHYDRO_WAT… 8.55<span style='color: #949494;'>e</span>6 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>981 (142.9148 -35.0603, 142.9149 -3…
-#&gt; <span style='color: #BCBCBC;'>5</span> VMHYDRO_WAT… 8.55<span style='color: #949494;'>e</span>6 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>987 (142.8513 -35.06451, 142.8534 -…
-#&gt; <span style='color: #BCBCBC;'>6</span> VMHYDRO_WAT… 8.55<span style='color: #949494;'>e</span>6 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>992 (142.8574 -35.06384, 142.8578 -…</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span></span>
+<span class='r-in'><span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span></span>
+<span class='r-in'><span class='fu'>select</span><span class='op'>(</span><span class='va'>HIERARCHY</span>, <span class='va'>PFI</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> • Using <span style='color: #0000BB;'>collect()</span> on this object will return <span style='color: #00BB00;'>191506</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> • features and <span style='color: #00BB00;'>6</span> fields</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> • At most six rows of the record are printed here</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ────────────────────────────────────────────────────────────────────────────────</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Simple feature collection with 6 features and 5 fields</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Geometry type: LINESTRING</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Dimension:     XY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Bounding box:  xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Geodetic CRS:  GDA94</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   id               PFI    UFI HIERARCHY OBJECTID                        geometry</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>                <span style='color: #949494; font-style: italic;'>&lt;LINESTRING [°]&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> VMHYDRO_WAT… 8<span style='text-decoration: underline;'>553</span>127 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>973 (143.3209 -35.06721, 143.321 -…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> VMHYDRO_WAT… 8<span style='text-decoration: underline;'>553</span>130 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>975 (142.7845 -35.06031, 142.7846 …</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> VMHYDRO_WAT… 8<span style='text-decoration: underline;'>553</span>143 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>978 (142.7731 -35.06204, 142.7731 …</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> VMHYDRO_WAT… 8<span style='text-decoration: underline;'>553</span>149 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>981 (142.9148 -35.0603, 142.9149 -…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> VMHYDRO_WAT… 8<span style='text-decoration: underline;'>553</span>158 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>987 (142.8513 -35.06451, 142.8534 …</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> VMHYDRO_WAT… 8<span style='text-decoration: underline;'>553</span>168 2.55<span style='color: #949494;'>e</span>6 L             <span style='text-decoration: underline;'>2</span>992 (142.8574 -35.06384, 142.8578 …</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
