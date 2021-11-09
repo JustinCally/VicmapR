@@ -1,3 +1,8 @@
+## Resubmission 0.1.8 (2020-12-09)  
++ Add the ability to create bibtex citations of data through `data_citation()`, as well as obtain a data dictionary (`data_dictionary()`) and other metadata (`get_metadata()`).  
++ Prevent examples failing on CRAN by adding `try()`  
++ codecov url changed
+
 ## Resubmission 0.1.7 (2020-07-26)  
 
 + Fixed the check errors and check warnings associated with temporarily unavailable internet resources. If internet resources (geoserver instance) is down the checks should still pass as per CRAN policy.   
