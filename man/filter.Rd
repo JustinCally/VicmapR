@@ -25,8 +25,10 @@ See \code{dplyr::\link[dplyr]{filter}} for details.
 
 \examples{
 \donttest{
+try(
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
  filter(HIERARCHY == "L", PFI == 8553127)
+ )
  }
 }
 \keyword{internal}

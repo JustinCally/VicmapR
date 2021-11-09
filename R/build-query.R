@@ -49,7 +49,9 @@ base_chunk_lim <- 1500L
 #'
 #' @examples
 #' \donttest{
+#' try(
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' )
 #' }
 vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   
@@ -100,9 +102,11 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 #'
 #' @examples
 #' \donttest{
+#' try(
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #' head(50) %>%
 #' show_query()
+#' )
 #' }
 
 show_query.vicmap_promise <- function(x, ...) {
@@ -145,9 +149,11 @@ show_query.vicmap_promise <- function(x, ...) {
 #'
 #' @examples
 #' \donttest{
+#' try(
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #' head(5) %>%
 #' collect()
+#' )
 #' }
 collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   
@@ -239,8 +245,10 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 #'
 #' @examples
 #' \donttest{
+#' try(
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #' head(50)
+#' )
 #' }
 
 head.vicmap_promise <- function(x, n = 5, ...) {
@@ -271,8 +279,12 @@ head.vicmap_promise <- function(x, n = 5, ...) {
 #'
 #' @examples
 #' \donttest{
+#' try(
 #' query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' )
+#' try(
 #' print(query)
+#' )
 #' }
 print.vicmap_promise <- function(x, ...) {
   

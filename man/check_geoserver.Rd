@@ -21,6 +21,8 @@ in this package will not work. This function will check the response of the geos
 }
 \examples{
 \donttest{
+try(
 check_geoserver()
+)
 }
 }

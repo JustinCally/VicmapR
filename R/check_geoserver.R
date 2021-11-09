@@ -23,7 +23,9 @@
 #'
 #' @examples
 #' \donttest{
+#' try(
 #' check_geoserver()
+#' )
 #' }
 check_geoserver <- function(timeout = 15, quiet = FALSE) {
   

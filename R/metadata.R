@@ -26,7 +26,9 @@
 #'
 #' @examples
 #' \donttest{
+#' try(
 #' data_citation(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
+#' )
 #' }
 
 data_citation <- function(x = NULL, anzlicId = NULL) {
@@ -56,7 +58,9 @@ data_citation <- function(x = NULL, anzlicId = NULL) {
 #' @export
 #' @examples
 #' \donttest{
+#' try(
 #' data_dictionary(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
+#' )
 #' }
 data_dictionary <- function(x = NULL, anzlicId = NULL) {
   
@@ -93,7 +97,9 @@ get_anzlicId <- function(x) {
 #' @export
 #' @examples
 #' \donttest{
+#' try(
 #' get_metadata(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
+#' )
 #' }
 get_metadata <- function(x = NULL, anzlicId = NULL) {
   

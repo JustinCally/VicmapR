@@ -36,9 +36,11 @@ The printed information consists of three sections:
 
 \examples{
 \donttest{
+try(
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
 head(50) \%>\%
 show_query()
+)
 }
 }
 \keyword{internal}

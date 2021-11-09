@@ -39,9 +39,11 @@ process may take a while to run, thus it is recommended to filter large datasets
 
 \examples{
 \donttest{
+try(
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
 head(5) \%>\%
 collect()
+)
 }
 }
 \keyword{internal}

@@ -29,12 +29,18 @@ metadata for the record.
 }
 \examples{
 \donttest{
+try(
 data_citation(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
+)
 }
 \donttest{
+try(
 data_dictionary(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
+)
 }
 \donttest{
+try(
 get_metadata(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
+)
 }
 }

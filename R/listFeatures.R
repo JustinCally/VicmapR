@@ -23,7 +23,9 @@
 #'
 #' @examples
 #' \donttest{
+#' try(
 #' listLayers(pattern = "trees", ignore.case = TRUE)
+#' )
 #' }
 
 listLayers <- function(...) {
