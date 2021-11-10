@@ -1,3 +1,5 @@
+# VicmapR (development version)
+
 # VicmapR 0.1.8
 * Add the ability to create bibtex citations of data through `data_citation()`, as well as obtain a data dictionary (`data_dictionary()`) and other metadata (`get_metadata()`).  
 * Prevent examples failing on CRAN by adding `try()`
