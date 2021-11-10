@@ -84,7 +84,7 @@ datatypes." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.7.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
       </span>
     </div>
 
@@ -188,8 +188,10 @@ datatypes.</p>
 <span class='r-in'><span class='co'># }   </span></span>
 <span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='co'># Return a data.frame of the columns and their XML schema string datatypes</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span></span>
 <span class='r-in'><span class='fu'><a href='vicmap_query.html'>vicmap_query</a></span><span class='op'>(</span>layer <span class='op'>=</span> <span class='st'>"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class='op'>)</span> <span class='op'><a href='%>%.html'>%&gt;%</a></span> </span>
 <span class='r-in'>  <span class='fu'>get_col_df</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>                name                  type</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> 1           COUPEID            xsd:string</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> 2          OBJECTID           xsd:decimal</span>
