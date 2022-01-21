@@ -8,11 +8,13 @@
 
 <title>List Available WFS Layers — listLayers • VicmapR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,13 +38,12 @@
 
 
 
-<meta property="og:title" content="List Available WFS Layers — listLayers" />
 
+<meta property="og:title" content="List Available WFS Layers — listLayers" />
 <meta property="og:description" content="Lists layers available from the WFS geoserver. This is similar to sending the
 WFS request of getFeatureTypes. listLayers() returns a data.frame with the 'Name' and title of the
 layers available. The 'Name' is what is used within vicmap_query() while the title provides somewhat of a
 description/clarification about the layer." />
-
 
 
 
@@ -82,7 +83,7 @@ description/clarification about the layer." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,6 +98,9 @@ description/clarification about the layer." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
+    </li>
+    <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
     </li>
   </ul>
@@ -105,11 +109,10 @@ description/clarification about the layer." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/justincally/VicmapR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,48 +135,31 @@ description/clarification about the layer." />
     </div>
 
     <div class="ref-description">
-    
     <p>Lists layers available from the WFS geoserver. This is similar to sending the
 WFS request of <code>getFeatureTypes</code>. <code>listLayers()</code> returns a data.frame with the 'Name' and title of the
 layers available. The 'Name' is what is used within <code><a href='vicmap_query.html'>vicmap_query()</a></code> while the title provides somewhat of a
 description/clarification about the layer.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>listLayers</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments passed to <a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a>. The <code>pattern</code> argument can be used to search for specific layers with matching names or titles.</p></td>
+      <td><p>Additional arguments passed to <a href='https://rdrr.io/r/base/grep.html'>regexpr</a>. The <code>pattern</code> argument can be used to search for specific layers with matching names or titles.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data.frame</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>listLayers</span><span class='op'>(</span>pattern <span class='op'>=</span> <span class='fu'>stringr</span><span class='fu'>::</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/modifiers.html'>regex</a></span><span class='op'>(</span><span class='st'>"flood height contour"</span>, ignore_case <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                             Name
-#&gt; 1  datavic:FLOOD_CONTOUR_20Y_ARI
-#&gt; 2  datavic:FLOOD_CONTOUR_50Y_ARI
-#&gt; 3  datavic:FLOOD_CONTOUR_10Y_ARI
-#&gt; 4 datavic:FLOOD_CONTOUR_100Y_ARI
-#&gt; 5 datavic:FLOOD_CONTOUR_200Y_ARI
-#&gt; 6   datavic:FLOOD_CONTOUR_5Y_ARI
-#&gt; 7 datavic:FLOOD_CONTOUR_500Y_ARI
-#&gt;                                                       Title
-#&gt; 1    Victoria Flood Database - Flood Height Contour 20 year
-#&gt; 2    Victoria Flood Database - Flood Height Contour 50 year
-#&gt; 3   Victoria Flood Database - Flood Height Contours 10 year
-#&gt; 4 Victoria Flood Database - Flood Height Contours 100  year
-#&gt; 5  Victoria Flood Database - Flood Height Contours 200 year
-#&gt; 6    Victoria Flood Database - Flood Height Contours 5 year
-#&gt; 7 Victoria Flood Database - Flood Height Contours 500 years</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>listLayers</span><span class='op'>(</span>pattern <span class='op'>=</span> <span class='st'>"flood height contour"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] Name  Title
+#&gt; &lt;0 rows&gt; (or 0-length row.names)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

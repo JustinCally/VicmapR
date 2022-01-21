@@ -1,5 +1,5 @@
 ---
-title: "VicmapR Tutorial"
+title: "Vicmap for Beginners"
 author: "Rachel Swain"
 date: "10/01/2022"
 output: html_document
@@ -18,7 +18,7 @@ The purpose of this tutorial is:
 
  - To introduce Vicmap
  - To explain the advantages of VicmapR in more detail
- - To provide simple examples of downloading and visualising Vicmap spatial data
+ - To provide simple examples of querying, visualising and working with Vicmap spatial data
  
 The end goal of this tutorial is for R users with minimal spatial experience to be able to search for, download and visualise Vicmap data. While this tutorial is aimed at spatial beginners, it can still be used as a reference for more experienced users.
 
@@ -29,39 +29,39 @@ Vicmap is the Victorian Government's catalogue of spatial datasets. The catalogu
 
 ### Accessing Vicmap datasets
 
-This data catalogue is freely available to the public and can be accessed via several methods. For users of R, the fastest way to access up to date Vicmap datasets is to utilise the Web Feature Service (WFS). WFS is a standardised interface to request geographic information on the internet, regardless of the platform on which it is stored. 
+This data catalogue is freely available to the public and can be accessed via several methods. For users of R, the fastest way to access up to date Vicmap datasets is to utilise the Web Feature Service (WFS). WFS is a standardised interface to request geographic information, regardless of the platform on which it is stored. 
 
-To use WFS, a URL must be built that describes the desired query or retrieval instructions. This of course requires understanding of the WFS terminology and the time-consuming process of manually building the URL string. 
+WFS requires a URL that contains the instructions for the query and is written in WFS specific terminology. This of course requires understanding of the WFS terminology and the time-consuming process of manually building the URL string. 
 
 
 ## Enter, VicmapR.
 
-### WFS, without the fuss!
+#### WFS, without the fuss!
 
 VicmapR allows users to make WFS queries by taking human readable keywords and automatically building the correctly formatted URL string. 
 The functions in VicmapR therefore provide a much faster and more robust method for acquiring Vicmap data.
 
-### Lazy evaluation
+#### Lazy evaluation
 
-VicmapR uses *lazy evaluation*, where data can be filtered for a desired subset before downloading. This saves downloading the entire dataset if only a small subset of the data is required. Similarly, the user can filter the first n rows of data before downloading to quickly sample the dataset.
+VicmapR uses *lazy evaluation*, where data can be filtered before downloading. This saves downloading the entire dataset if only a small subset of the data is required. Similarly, the user can filter the first n rows of data before downloading to quickly sample the dataset.
 
 
 
-## Worked example - swooping birds
+## Worked example - Swooping birds
 
 <!-- Load swoops for reporting -->
-```{r, echo=FALSE, include=FALSE}
+```{r, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE}
 swoops <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% collect() 
 ```
 
-
 To demonstrate VicmapR's features, we will download and explore a dataset from the Vicmap catalogue.
-Australian spring is famous for the presence of swooping birds. Swooping birds in Victoria include the masked lapwing (plover), butcherbird, magpie-lark, noisy miner and perhaps most famously, the magpie. The Vicmap catalogue has a dataset of 'swoop' locations, recorded by members of the public. 
+
+Australian spring is famous for the presence of swooping birds. Some species of birds swoop during the breeding season to protect their nest from potential predators. Swooping birds in Victoria include the masked lapwing (plover), butcherbird, magpie-lark, noisy miner and perhaps most famously, the magpie. The Vicmap catalogue has a dataset of 'swoop' locations, recorded by members of the public. 
 
 ### Searching for data 
 First, we need to search for the dataset. We can view all layers, or do a keyword search. Use `ignore.case = TRUE` for a case-insensitive search.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 #Don't forget to load VicmapR library
 library(VicmapR) 
 
@@ -75,26 +75,29 @@ search <- listLayers(pattern = "swoop", ignore.case = T)
 
 Viewing our search results shows us the name of the dataset and its description.
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(knitr)
-search %>% kable()
+library(kableExtra)
+search %>% kable() %>% kable_styling("bordered")
 ```
 
 Once we have the name of the Vicmap dataset we would like to download, in this case *'datavic:FLORAFUANA1_SWOOPING_BIRD'*, we can query the Vicmap database. 
 
 However, if we are still not sure from the description that this is the desired dataset, we can investigate further two more ways. The first way is to execute the Vicmap query, without collecting the data. This is called creating a 'Vicmap Promise'. By viewing the Vicmap promise we get an overview of the dataset as follows.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") 
 ```
 
+We can see that the dataset contains, swoop date, location and species. At a glance this data should be adequate to start analysing the spatial distribution of bird swoops. 
+
 ### Downloading the data
 
-We can see that the dataset contains, swoop date, location and species. At a glance this seems enough to start analysing the spatial distribution of bird swoops. The summary also shows that there are `r nrow(swoops)` entries in this dataset and `r ncol(swoops)` fields. This isn't a very large dataset, however if we are using this data in an interactive report or application, waiting to download the full dataset may be impractical. 
+The summary also shows that there are `r nrow(swoops)` entries in this dataset and `r ncol(swoops)` fields. This isn't a very large dataset, however if we are using this data in an interactive report or application, waiting to download the full dataset may be impractical. 
 
 In VicmapR, we can use pipes to filter and subset the data, so that we only collect the desired subset. Let's just look at the first 10 rows.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 query <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
   head(10) %>% collect()
 
@@ -102,27 +105,33 @@ query
 
 ```
 
-Let's only look at swoops that occurred in 2021, where STATUS is OK. For our analysis, we will look only at the swoop date, species, number of birds, comments and geometry. Note that Vicmap datasets will retain id and OBJECTID columns even if not selected in the Vicmap promise. As this a simple features (sf) dataset, the geometry corresponding to the features (in this case, swoops) does not need to be selected as it is always included. The geometry column is only ever removed by specifically using the `st_drop_geometry()` function in the `sf` package.
+### Subsetting data
 
-```{r}
+Now let's only look at swoops that occurred in 2021, where STATUS is OK. For our analysis, we will look only at the swoop date, species, number of birds, comments and geometry. Note that Vicmap datasets will retain id and OBJECTID columns even if not selected in the Vicmap promise. As this a simple features (sf) dataset, the geometry corresponding to the features (in this case, swoops) does not need to be selected as it is always attached. The geometry column can only be removed intentionally, for example, by using the `st_drop_geometry()` function in the `sf` package.
+
+```{r warning=FALSE, message=FALSE}
 library(dplyr)
+
 swoops_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
   filter(SWOOP_DATE > "2020-12-31z") %>% 
   filter(STATUS == "OK") %>% 
   select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
   collect()
 
-swoops_2021 %>% head(5) %>% kable()
+swoops_2021 %>% head(5) %>% 
+  kable() %>% 
+  column_spec(1, width = "10em") %>%
+  kable_styling()
 ```
 
 In filtering the Vicmap promise before collecting, we only need to download `r nrow(swoops_2021)` rows of data instead of `r nrow(swoops)`.
 
 
-### Quick visualisation of spatial data
+### Quick visualisation of spatial data with Mapview
 
 Often the first thing we want to do is see the data on a map. The simplest and quickest way to visualise spatial data is to use the `mapview` package:
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(mapview)
 mapview(swoops_2021)
 ```
@@ -130,13 +139,13 @@ mapview(swoops_2021)
 While the output is basic, it is very simple to achieve and points can be clicked on to obtain the details from the other fields.
 
 
-### Visualisation with leaflet
+### Visualisation with Leaflet
 
 For more customisation, you might want to consider plotting your map in leaflet. Leaflet is JavaScript library that allows users to produce interactive maps that work efficiently across most desktop and mobile platforms. Using the `leaflet` package in R, we have the flexibility of plotting more complex map products.
 
 We will start by plotting the most basic map in leaflet. Instead of using a single function like `mapview()`, in leaflet we need to add each component to the map. At a minimum we specify the leaflet object, add a basemap and add the markers. Note: different to mapview, marker labels are not included by default in a leaflet map and must be added with the `popup` parameter.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(leaflet)
 
 swoops_2021 %>%
@@ -148,7 +157,7 @@ swoops_2021 %>%
 
 There are a lot of points in this dataset and leaflet's default marker appears very large and crowded. `addCircleMarkers()` is a quick and easy way to customise markers to suit your data.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 swoops_2021 %>%
   leaflet() %>%
   addTiles() %>%
@@ -162,12 +171,13 @@ swoops_2021 %>%
 ```
 
 We can also easily conditionally format our markers and basemaps in leaflet. Let's:
+
 *  Change the size (radius) of the marker depending on the number of birds reported.
 *  Colour the marker depending on the species. Leaflet's `colorFactor()` function can be used to create the desired palette.
 *  Change the basemap to something more simple. There are many popular and free third-party base maps to choose from that can be added with `addProviderTiles()`.
 *  Add more details to the popup. Text in the popup parameter can be formatted with html tags.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 
 # Create a palette
 pal <- colorFactor("Accent", levels = swoops_2021$SPECIES) #define a colour palette
@@ -186,15 +196,17 @@ swoops_2021 %>%
   )
 ```
 
+### Spatial filtering
+
 Let's say we want to know about the swoop spots only in our LGA (e.g. Darebin). We can apply a spatial filter to our dataset so that only the swoops in our suburb are shown. Where do we get the spatial data for our LGA you ask? From the Vicmap catalogue of course!
 
-#### Introducing, the sf package
+#### The sf package
 
 The sf package for R provides tools for dealing with 'simple feature' datasets, i.e. a data frame or tibble with a geometry list-column. The sf package allows us to manupulate spatial data and perform spatial operations. In this case, we want to find which points in our swoops data intersect with the polygon for our suburb polygon.
 
 To do this we can use `sf::st_intersection()`. Before performing any spatial operations on more than one dataset, you want to make sure the coordinate reference system (crs) is correct and that the crs is the same for each dataset. You can check the crs system with `sf::st_crs()`.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 # Suburb polygon for Macleod
 darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
   select(LGA_NAME) %>% 
@@ -210,13 +222,15 @@ sf::st_crs(swoops_2021)
 
 # Intersection
 darebin_swoops <- sf::st_intersection(swoops_2021, darebin)
-mapview(darebin_swoops)
+mapview(darebin_swoops) + mapview(darebin, alpha = 0.9, col.regions= "yellow")
 
 ```
 
+#### Filtering within a radius 
+
 We probably regularly travel a bit further afield though, so lets look at a radius from our home address. We can create the radius geometry with st_buffer() but first need to define the coordinates for the centre of the radius (home). Don't forget to specify the crs as 4326 as we are dealing with a latitude and longitude coordinate system.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 lat <- -37.75215888969604
 lon <- 145.02927170548745
 
@@ -226,7 +240,7 @@ home <- st_sfc(st_point(c(lon, lat)), crs = 4326)
 
 We have a problem though, st_buffer assumes units of meters, not degrees (this is what latitude and longitude are measured in). To convert from degrees to metres we need to project our latitude and longitude, which are represented as a point on a curved surface, onto a flat plane. To do this, we use a projection standard chosen specifically for the zone containing the coordinates. The standard is called the EPSG code and for our coordinates is zone 55.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 # Project coordinates
 home_utm <- st_transform(home, "+proj=utm +zone=55")
 
@@ -238,19 +252,21 @@ mapview(home_utm) + mapview(home_radius)
 
 Now we can use this radius to filter our swoops data. Don't forget, we need to convert the crs to 4283 to work with our swoops data
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 st_crs(home_radius) #crs is UTM Zone 55
 
 home_radius <- st_transform(home_radius, crs = 4283)
 st_crs(home_radius)
 
 swoops_10k <- st_intersection(swoops_2021, home_radius)
-mapview(swoops_10k)
+mapview(swoops_10k) + mapview(home_radius, alpha = 0.9, col.regions = "yellow")
 ```
+
+#### Finding nearby points
 
 Let's say we feel like a ride. We've picked a route but want to know which areas to avoid so as not to disturb too many nesting birds. This is a more difficult problem as the ride travels through several LGAs and we only really want to know about reported swoops that are very close to the route. 
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 # library(trackeR) #a handy library for handling gps data in R
 # route <- readTCX(file = "Mount_Pleasant_Loop_Ride.tcx")
 

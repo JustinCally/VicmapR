@@ -4,13 +4,13 @@
     <loc>https://justincally.github.io/VicmapR/index.html</loc>
   </url>
   <url>
-    <loc>https://justincally.github.io/VicmapR/reference/CQL.html</loc>
-  </url>
-  <url>
     <loc>https://justincally.github.io/VicmapR/reference/collect-methods.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/collect.vicmap_promise.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/CQL.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/cql_geom_predicates.html</loc>
@@ -62,6 +62,9 @@
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/wfsConnection-class.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/articles/beginner_vicmap.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/articles/query_vicmap.html</loc>

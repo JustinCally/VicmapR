@@ -8,11 +8,13 @@
 
 <title>options — vicmap_options • VicmapR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
@@ -36,8 +38,8 @@
 
 
 
-<meta property="og:title" content="options — vicmap_options" />
 
+<meta property="og:title" content="options — vicmap_options" />
 <meta property="og:description" content="#' This function retrieves bcdata specific options that can be set. These options can be set
 using option({name of the option} = {value of the option}). The default options are purposefully
 set conservatively to hopefully ensure successful requests. Resetting these options may result in
@@ -51,7 +53,6 @@ been downloaded. VicmapR does this all for you but using this option you can set
 requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
 it is advisable to lower the chunk limit. Chunks must be less than 70000.
 vicmap.base_url is the base wfs url used to query the geoserver." />
-
 
 
 
@@ -91,7 +92,7 @@ vicmap.base_url is the base wfs url used to query the geoserver." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -106,6 +107,9 @@ vicmap.base_url is the base wfs url used to query the geoserver." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
+    </li>
+    <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
     </li>
   </ul>
@@ -114,11 +118,10 @@ vicmap.base_url is the base wfs url used to query the geoserver." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/justincally/VicmapR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,7 +144,6 @@ vicmap.base_url is the base wfs url used to query the geoserver." />
     </div>
 
     <div class="ref-description">
-    
     <p>#' This function retrieves bcdata specific options that can be set. These options can be set
 using <code>option({name of the option} = {value of the option})</code>. The default options are purposefully
 set conservatively to hopefully ensure successful requests. Resetting these options may result in
@@ -155,17 +157,16 @@ been downloaded. VicmapR does this all for you but using this option you can set
 requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
 it is advisable to lower the chunk limit. Chunks must be less than 70000.</p>
 <p><code>vicmap.base_url</code> is the base wfs url used to query the geoserver.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>vicmap_options</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='fu'>check_chunk_limit</span><span class='op'>(</span><span class='op'>)</span></pre>
-        
+
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data.frame</p>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
