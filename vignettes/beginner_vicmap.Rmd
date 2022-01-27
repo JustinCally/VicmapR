@@ -38,14 +38,12 @@ WFS requires a URL that contains the instructions for the query and is written i
 
 #### WFS, without the fuss!
 
-VicmapR allows users to make WFS queries by taking human readable keywords and automatically building the correctly formatted URL string. 
+VicmapR simplifies WFS queries by taking user supplied keywords and automatically building the correctly formatted URL string.  
 The functions in VicmapR therefore provide a much faster and more robust method for acquiring Vicmap data.
 
 #### Lazy evaluation
 
-VicmapR uses *lazy evaluation*, where data can be filtered before downloading. This saves downloading the entire dataset if only a small subset of the data is required. Similarly, the user can filter the first n rows of data before downloading to quickly sample the dataset.
-
-
+VicmapR uses *lazy evaluation*,  in which we query but do not collect the data from the Vicmap database. This is called making a 'Vicmap Promise'. A Vicmap Promise contains the dataset information but not the data itself. This promise can be filtered for a subset of the data before collecting. Using lazy evaluation we can collect the desired subset, instead of the entire dataset.
 
 ## Worked example - Swooping birds
 
@@ -56,7 +54,7 @@ swoops <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% collect(
 
 To demonstrate VicmapR's features, we will download and explore a dataset from the Vicmap catalogue.
 
-Australian spring is famous for the presence of swooping birds. Some species of birds swoop during the breeding season to protect their nest from potential predators. Swooping birds in Victoria include the masked lapwing (plover), butcherbird, magpie-lark, noisy miner and perhaps most famously, the magpie. The Vicmap catalogue has a dataset of 'swoop' locations, recorded by members of the public. 
+Australian spring is famous for the presence of swooping birds. Certain species of birds swoop during the breeding season to protect their nest from potential predators. Swooping birds in Victoria include the masked lapwing (plover), butcherbird, magpie-lark, noisy miner and perhaps most famously, the magpie. The Vicmap catalogue has a dataset of 'swoop' locations, recorded by members of the public. 
 
 ### Searching for data 
 First, we need to search for the dataset. We can view all layers, or do a keyword search. Use `ignore.case = TRUE` for a case-insensitive search.
@@ -78,12 +76,12 @@ Viewing our search results shows us the name of the dataset and its description.
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(knitr)
 library(kableExtra)
-search %>% kable() %>% kable_styling("bordered")
+search %>% kable() #%>% kable_styling("bordered")
 ```
 
 Once we have the name of the Vicmap dataset we would like to download, in this case *'datavic:FLORAFUANA1_SWOOPING_BIRD'*, we can query the Vicmap database. 
 
-However, if we are still not sure from the description that this is the desired dataset, we can investigate further two more ways. The first way is to execute the Vicmap query, without collecting the data. This is called creating a 'Vicmap Promise'. By viewing the Vicmap promise we get an overview of the dataset as follows.
+If we are still not sure from the name and description that this is the right dataset, we can look at the Vicmap Promise to get a snippet of the dataset contents. 
 
 ```{r warning=FALSE, message=FALSE}
 vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") 
@@ -93,9 +91,9 @@ We can see that the dataset contains, swoop date, location and species. At a gla
 
 ### Downloading the data
 
-The summary also shows that there are `r nrow(swoops)` entries in this dataset and `r ncol(swoops)` fields. This isn't a very large dataset, however if we are using this data in an interactive report or application, waiting to download the full dataset may be impractical. 
+The summary also shows that there are `r nrow(swoops)` rows in this dataset. This isn't a very large dataset, but if we are using this data in an interactive report or application, waiting to download the full dataset may be impractical. 
 
-In VicmapR, we can use pipes to filter and subset the data, so that we only collect the desired subset. Let's just look at the first 10 rows.
+Using lazy evaluation, we can use pipes to filter and subset the data, so that we only collect the desired subset. For example, let's just look at the first 10 rows.
 
 ```{r warning=FALSE, message=FALSE}
 query <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
@@ -119,12 +117,12 @@ swoops_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   collect()
 
 swoops_2021 %>% head(5) %>% 
+  select(-id) %>% #condense table for viewing
   kable() %>% 
-  column_spec(1, width = "10em") %>%
   kable_styling()
 ```
 
-In filtering the Vicmap promise before collecting, we only need to download `r nrow(swoops_2021)` rows of data instead of `r nrow(swoops)`.
+**By filtering the Vicmap promise before collecting, we have downloaded only `r nrow(swoops_2021)` rows of data instead of `r nrow(swoops)`.**
 
 
 ### Quick visualisation of spatial data with Mapview
@@ -141,9 +139,9 @@ While the output is basic, it is very simple to achieve and points can be clicke
 
 ### Visualisation with Leaflet
 
-For more customisation, you might want to consider plotting your map in leaflet. Leaflet is JavaScript library that allows users to produce interactive maps that work efficiently across most desktop and mobile platforms. Using the `leaflet` package in R, we have the flexibility of plotting more complex map products.
+For more customisation, you might want to consider plotting your map in `leaflet`. Leaflet is JavaScript library that allows users to produce interactive maps that work efficiently across most desktop and mobile platforms. Using the leaflet package in R, we have the flexibility of plotting more complex map products.
 
-We will start by plotting the most basic map in leaflet. Instead of using a single function like `mapview()`, in leaflet we need to add each component to the map. At a minimum we specify the leaflet object, add a basemap and add the markers. Note: different to mapview, marker labels are not included by default in a leaflet map and must be added with the `popup` parameter.
+We will start by plotting the most basic map in leaflet. Instead of using a single function like `mapview()`, in leaflet we need to add each component to the map. At a minimum we specify the leaflet object, add a basemap and add the markers. Note: differing to mapview, leaflet does not include marker labels by default, these must be added with the `popup` parameter.
 
 ```{r warning=FALSE, message=FALSE}
 library(leaflet)
@@ -165,7 +163,7 @@ swoops_2021 %>%
     radius = 6,
     color = "green",
     stroke = FALSE, #removes outline
-    fillOpacity = 0.7,
+    fillOpacity = 0.6,
     popup = swoops_2021$COMMENTS
   )
 ```
@@ -190,7 +188,7 @@ swoops_2021 %>%
     color = ~pal(SPECIES),
     stroke = FALSE,
     fillOpacity = 0.7,
-    popup = paste0("<b>COMMENT: </b>", swoops_2021$COMMENTS, "<br>", #format the popup with html
+    popup = paste0("<b>COMMENT: </b>", swoops_2021$COMMENTS, "<br>", #format the popup with html tags
                    "<b>NUM. BIRDS: </b>", swoops_2021$NO_OF_BIRDS, "<br>",
                    "<b>SPECIES: </b>", swoops_2021$SPECIES)
   )
@@ -198,13 +196,13 @@ swoops_2021 %>%
 
 ### Spatial filtering
 
-Let's say we want to know about the swoop spots only in our LGA (e.g. Darebin). We can apply a spatial filter to our dataset so that only the swoops in our suburb are shown. Where do we get the spatial data for our LGA you ask? From the Vicmap catalogue of course!
+Let's say we want to know about the swoop spots only in our LGA (e.g. Darebin). We can apply a spatial filter to our dataset so that only the swoops in our suburb are shown. Where do we get the spatial data for our LGA? From the Vicmap catalogue of course!
 
 #### The sf package
 
-The sf package for R provides tools for dealing with 'simple feature' datasets, i.e. a data frame or tibble with a geometry list-column. The sf package allows us to manupulate spatial data and perform spatial operations. In this case, we want to find which points in our swoops data intersect with the polygon for our suburb polygon.
+The `sf` package for R provides tools for dealing with 'simple feature' datasets, i.e. a data frame or tibble with a geometry list-column. The sf package allows us to manupulate spatial data and perform spatial operations. In this case, we want to find which points in our swoops data intersect with the polygon for our suburb polygon.
 
-To do this we can use `sf::st_intersection()`. Before performing any spatial operations on more than one dataset, you want to make sure the coordinate reference system (crs) is correct and that the crs is the same for each dataset. You can check the crs system with `sf::st_crs()`.
+To do this we can use `sf::st_intersection()`. Before performing any spatial operations on a dataset, you want to make sure the coordinate reference system (crs) is correct and if there are multiple datasets, that the crs is the same for each dataset. You can check the crs system with `sf::st_crs()`.
 
 ```{r warning=FALSE, message=FALSE}
 # Suburb polygon for Macleod
@@ -264,7 +262,9 @@ mapview(swoops_10k) + mapview(home_radius, alpha = 0.9, col.regions = "yellow")
 
 #### Finding nearby points
 
-Let's say we feel like a ride. We've picked a route but want to know which areas to avoid so as not to disturb too many nesting birds. This is a more difficult problem as the ride travels through several LGAs and we only really want to know about reported swoops that are very close to the route. 
+Let's say we feel like a bike ride. We've picked a route but want to know which areas to avoid so as not to disturb too many nesting birds. This is a more difficult problem as the ride travels through several LGAs and we only really want to know about reported swoops that are very close to the route. 
+
+We can solve this problem in a similar way, using `st_intersection()`. 
 
 ```{r warning=FALSE, message=FALSE}
 # library(trackeR) #a handy library for handling gps data in R
@@ -290,7 +290,13 @@ mapview(swoops_en_route) + mapview(route_line)
 ```
 
 
+## Debrief
 
+After completing this tutorial you should have a basic undertanding of plotting spatial data and performing some basic spatial operations. This tutorial is a quick guide and designed only to get you started. For further learning, see the following resources:
+
+*  [Simple Features for R](https://r-spatial.github.io/sf/)
+*  [Leaflet for R](http://rstudio.github.io/leaflet/)
+*  [Introduction to Spatial Data Science in R](https://rspatial.org/intr/1-introduction.html)
 
 
  
