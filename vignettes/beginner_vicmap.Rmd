@@ -290,6 +290,56 @@ mapview(swoops_en_route) + mapview(route_line)
 ```
 
 
+## Geometric filters
+
+The VicmapR offers tools for geometric filtering that avoid the need for sf package. The WFS Geoserver on which Vicmap is based supports several geometric filters - see the full list [here](https://justincally.github.io/VicmapR/articles/query_vicmap.html#geometric-filters).
+
+These geometric filters allow us to perform basic spatial manipulation while retaining the benefits of lazy evaluation. So as before, if we want to filter our data before downloading, we can do so with more complex spatial operations. This is particularly useful when presenting Vicmap data in an interactive map, as it reduces the time for downloading data between re-rendering the map. 
+
+Let's revisit our examples above. The first thing to note is the geometric filters available on the geoserver are not as accurate the tools offered in `sf`. To work around this we can use geometric filters first to limit the data for download, then follow up with sf tools. To get the swoops only in Darebin we can filter with `BBOX()`. This filter does not produce a perfect result so we will need to use `st_intersects()` after collecting.
+
+```{r}
+
+# Swoops in Darebin
+darebin_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
+  filter(SWOOP_DATE > "2020-12-31z") %>%
+  filter(STATUS == "OK") %>%
+  select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
+  filter(BBOX(darebin, crs = 4328)) %>%
+  collect()
+
+mapview(darebin_2021) + mapview(darebin, alpha = 0.9, col.regions = "yellow")
+
+# Tidy up with sf package
+darebin_2021_tidy <- st_intersection(darebin_2021, darebin)
+
+mapview(darebin_2021_tidy) + mapview(darebin, alpha = 0.9, col.regions = "yellow")
+
+```
+
+Now let's try the 10km radius.
+
+```{r}
+# Swoops in 10k
+radius_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
+  filter(SWOOP_DATE > "2020-12-31z") %>%
+  filter(STATUS == "OK") %>%
+  select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
+  filter(WITHIN(home_radius)) %>%
+  collect()
+
+mapview(radius_2021)
+
+```
+
+
+```{r}
+# Swoops on route
+```
+
+
+
+
 ## Debrief
 
 After completing this tutorial you should have a basic undertanding of plotting spatial data and performing some basic spatial operations. This tutorial is a quick guide and designed only to get you started. For further learning, see the following resources:
