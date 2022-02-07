@@ -5,6 +5,7 @@ date: "10/01/2022"
 output: html_document
 ---
 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -220,7 +221,7 @@ sf::st_crs(swoops_2021)
 
 # Intersection
 darebin_swoops <- sf::st_intersection(swoops_2021, darebin)
-mapview(darebin_swoops) + mapview(darebin, alpha = 0.9, col.regions= "yellow")
+mapview(darebin_swoops) + mapview(darebin, alpha.regions = 0.3, col.regions= "purple")
 
 ```
 
@@ -257,7 +258,7 @@ home_radius <- st_transform(home_radius, crs = 4283)
 st_crs(home_radius)
 
 swoops_10k <- st_intersection(swoops_2021, home_radius)
-mapview(swoops_10k) + mapview(home_radius, alpha = 0.9, col.regions = "yellow")
+mapview(swoops_10k) + mapview(home_radius, alpha.regions = 0.3, col.regions = "purple")
 ```
 
 #### Finding nearby points
@@ -290,13 +291,13 @@ mapview(swoops_en_route) + mapview(route_line)
 ```
 
 
-## Geometric filters
+## Using the VicmapR Geometric filters
 
 The VicmapR offers tools for geometric filtering that avoid the need for sf package. The WFS Geoserver on which Vicmap is based supports several geometric filters - see the full list [here](https://justincally.github.io/VicmapR/articles/query_vicmap.html#geometric-filters).
 
 These geometric filters allow us to perform basic spatial manipulation while retaining the benefits of lazy evaluation. So as before, if we want to filter our data before downloading, we can do so with more complex spatial operations. This is particularly useful when presenting Vicmap data in an interactive map, as it reduces the time for downloading data between re-rendering the map. 
 
-Let's revisit our examples above. The first thing to note is the geometric filters available on the geoserver are not as accurate the tools offered in `sf`. To work around this we can use geometric filters first to limit the data for download, then follow up with sf tools. To get the swoops only in Darebin we can filter with `BBOX()`. This filter does not produce a perfect result so we will need to use `st_intersects()` after collecting.
+Let's revisit our examples above. To get the swoops only in Darebin we can filter with `INTERSECTS()`.
 
 ```{r}
 
@@ -305,15 +306,10 @@ darebin_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
   filter(STATUS == "OK") %>%
   select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
-  filter(BBOX(darebin, crs = 4328)) %>%
+  filter(INTERSECTS(darebin)) %>%
   collect()
 
-mapview(darebin_2021) + mapview(darebin, alpha = 0.9, col.regions = "yellow")
-
-# Tidy up with sf package
-darebin_2021_tidy <- st_intersection(darebin_2021, darebin)
-
-mapview(darebin_2021_tidy) + mapview(darebin, alpha = 0.9, col.regions = "yellow")
+mapview(darebin_2021) + mapview(darebin, alpha.regions = 0.3, col.regions = "orange")
 
 ```
 
@@ -325,31 +321,34 @@ radius_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
   filter(STATUS == "OK") %>%
   select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
-  filter(WITHIN(home_radius)) %>%
+  filter(INTERSECTS(home_radius)) %>%
   collect()
 
-mapview(radius_2021)
+mapview(radius_2021) + mapview(home_radius, alpha.regions = 0.3, col.regions = "orange")
 
 ```
-
+And finally, the swoops on our cycling route. To find swoops within 300m we use the `DWITHIN()` function.
 
 ```{r}
 # Swoops on route
-```
 
+route_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
+  filter(SWOOP_DATE > "2020-12-31z") %>%
+  filter(STATUS == "OK") %>%
+  select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
+  filter(DWITHIN(route_line, distance = 300)) %>%
+  collect()
+
+mapview(route_2021) + mapview(route_line)
+
+```
 
 
 
 ## Debrief
 
-After completing this tutorial you should have a basic undertanding of plotting spatial data and performing some basic spatial operations. This tutorial is a quick guide and designed only to get you started. For further learning, see the following resources:
+After completing this tutorial you should have a basic understanding of plotting spatial data and performing some basic spatial operations. This tutorial is a quick guide and designed only to get you started. For further learning, see the following resources:
 
 *  [Simple Features for R](https://r-spatial.github.io/sf/)
 *  [Leaflet for R](http://rstudio.github.io/leaflet/)
 *  [Introduction to Spatial Data Science in R](https://rspatial.org/intr/1-introduction.html)
-
-
- 
- 
-
-
