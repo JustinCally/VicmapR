@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # LIBRARIES -----
 library(VicmapR)
+library(sf)
 ```
 
 ## Who is this tutorial for?
@@ -206,7 +207,7 @@ The `sf` package for R provides tools for dealing with 'simple feature' datasets
 To do this we can use `sf::st_intersection()`. Before performing any spatial operations on a dataset, you want to make sure the coordinate reference system (crs) is correct and if there are multiple datasets, that the crs is the same for each dataset. You can check the crs system with `sf::st_crs()`.
 
 ```{r warning=FALSE, message=FALSE}
-# Suburb polygon for Macleod
+# Suburb polygon for Darebin
 darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
   select(LGA_NAME) %>% 
   filter(LGA_NAME == "DAREBIN") %>%
@@ -221,7 +222,7 @@ sf::st_crs(swoops_2021)
 
 # Intersection
 darebin_swoops <- sf::st_intersection(swoops_2021, darebin)
-mapview(darebin_swoops) + mapview(darebin, alpha.regions = 0.3, col.regions= "purple")
+mapview(darebin_swoops) + mapview(darebin, alpha.regions = 0.3, col.regions= "yellow")
 
 ```
 
@@ -258,7 +259,7 @@ home_radius <- st_transform(home_radius, crs = 4283)
 st_crs(home_radius)
 
 swoops_10k <- st_intersection(swoops_2021, home_radius)
-mapview(swoops_10k) + mapview(home_radius, alpha.regions = 0.3, col.regions = "purple")
+mapview(swoops_10k) + mapview(home_radius, alpha.regions = 0.3, col.regions = "yellow")
 ```
 
 #### Finding nearby points
@@ -295,44 +296,44 @@ mapview(swoops_en_route) + mapview(route_line)
 
 The VicmapR offers tools for geometric filtering that avoid the need for sf package. The WFS Geoserver on which Vicmap is based supports several geometric filters - see the full list [here](https://justincally.github.io/VicmapR/articles/query_vicmap.html#geometric-filters).
 
-These geometric filters allow us to perform basic spatial manipulation while retaining the benefits of lazy evaluation. So as before, if we want to filter our data before downloading, we can do so with more complex spatial operations. This is particularly useful when presenting Vicmap data in an interactive map, as it reduces the time for downloading data between re-rendering the map. 
+These geometric filters allow us to perform basic spatial manipulation while retaining the benefits of lazy evaluation. So as before, if we want to filter our data before downloading, we can do so with more complex spatial operations. This is particularly useful when presenting Vicmap data in an interactive map, as it reduces the time for downloading data between re-rendering the map.
 
 Let's revisit our examples above. To get the swoops only in Darebin we can filter with `INTERSECTS()`.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 
 # Swoops in Darebin
-darebin_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
+darebin_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
   filter(STATUS == "OK") %>%
   select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
   filter(INTERSECTS(darebin)) %>%
   collect()
 
-mapview(darebin_2021) + mapview(darebin, alpha.regions = 0.3, col.regions = "orange")
+mapview(darebin_2021) + mapview(darebin, alpha.regions = 0.3, col.regions = "green")
 
 ```
 
 Now let's try the 10km radius.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 # Swoops in 10k
-radius_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
+radius_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
   filter(STATUS == "OK") %>%
   select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
   filter(INTERSECTS(home_radius)) %>%
   collect()
 
-mapview(radius_2021) + mapview(home_radius, alpha.regions = 0.3, col.regions = "orange")
+mapview(radius_2021) + mapview(home_radius, alpha.regions = 0.3, col.regions = "green")
 
 ```
 And finally, the swoops on our cycling route. To find swoops within 300m we use the `DWITHIN()` function.
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 # Swoops on route
 
-route_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
+route_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
   filter(STATUS == "OK") %>%
   select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
