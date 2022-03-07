@@ -2,7 +2,7 @@
 % Please edit documentation in R/build-query.R
 \name{vicmap_query}
 \alias{vicmap_query}
-\title{vicmap_query}
+\title{Establish Vicmap Query}
 \usage{
 vicmap_query(layer, CRS = 4283, wfs_version = "2.0.0")
 }
@@ -16,7 +16,7 @@ GeoServer supports versions 2.0.0, 1.1.0, and 1.0.0.
 However in order for filtering to be correctly applied wfs_version must be 2.0.0 (default is 2.0.0)}
 }
 \value{
-vicmap_promise
+object of class \code{vicmap_promise}, which is a 'promise' of the data that can  be returned if \code{collect()} is used
 }
 \description{
 Begin a Vicmap WFS query by selecting a WFS layer. The record must be available as a
@@ -27,5 +27,9 @@ The returned \code{vicmap_promise} object is not data, rather it is a 'promise' 
 be returned if \code{collect()} is used; which returns an \code{sf} object.
 }
 \examples{
+\donttest{
+try(
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+)
+}
 }

@@ -26,16 +26,21 @@ when using \code{collect()}. \code{feature_cols()} provides a vector of all colu
 datatypes.
 }
 \examples{
+\donttest{
 # Return the name of the geometry column
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% 
   geom_col_name()
-  
+ }
+\donttest{
 # Return the column names as a character vector
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% 
   feature_cols()
-  
+}   
+\donttest{
 # Return a data.frame of the columns and their XML schema string datatypes
+try(
 vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% 
   get_col_df()
-  
+  )
+ }
 }

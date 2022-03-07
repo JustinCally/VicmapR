@@ -1,5 +1,22 @@
+# Copyright 2020 Justin Cally
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# https://www.apache.org/licenses/LICENSE-2.0.txt
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+
+geoserver_down <- !(check_geoserver(timeout = 5, quiet = TRUE))
+
 test_that("vicmap_query works", {
   skip_if_offline()
+  skip_on_cran()
+  skip_if(geoserver_down)
+  
   q <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 3111, wfs_version = "1.0.0")
   q2 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "2.0.0")
   expect_error(vicmap_query(), regexp = 'argument "layer" is missing, with no default')
@@ -24,12 +41,18 @@ test_that("vicmap_query works", {
 
 test_that("print.vicmap_promise works", {
   skip_if_offline()
+  skip_on_cran()
+  skip_if(geoserver_down)
+  
   expect_error(print(vicmap_query('not a layer')), regexp = "No data available to query. Check your layer and query parameters")
   expect_output(print(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "2.0.0")), regexp = NULL)
 })
 
 test_that("head.vicmap_promise works", {
   skip_if_offline()
+  skip_on_cran()
+  skip_if(geoserver_down)
+  
   r <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
     head(10) %>%
     collect() %>% 
@@ -43,6 +66,9 @@ test_that("head.vicmap_promise works", {
 
 test_that("collect.vicmap_promise works", {
   skip_if_offline()
+  skip_on_cran()
+  skip_if(geoserver_down)
+  
   d <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
     head(10) %>% 
     collect()
@@ -54,11 +80,14 @@ test_that("collect.vicmap_promise works", {
     head(101) %>% select(id) %>%
     collect()}, regexp = NULL)
   
-  options(vicmap.chunk_limit = 70000)
+  options(vicmap.chunk_limit = 1500)
 })
 
 test_that("show_query.vicmap_promise works", {
   skip_if_offline()
+  skip_on_cran()
+  skip_if(geoserver_down)
+  
   expect_output({vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
                   show_query()}, regexp = NULL)
 })

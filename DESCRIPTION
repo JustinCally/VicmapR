@@ -1,22 +1,40 @@
 Package: VicmapR
-Title: R Functions for Accessing Victorian Spatial Data Through WFS 
-Version: 0.1.1
+Title: Access Victorian Spatial Data Through Web File Services (WFS) 
+Version: 0.1.8.9000
 Authors@R: 
     c(person(given = "Justin",
            family = "Cally",
            role = c("aut", "cre"),
            email = "justin.g.cally@gmail.com",
            comment = c(ORCID = "0000-0003-4584-2220")),
-    person(given = "Rachel",
+      person(given = "Rachel",
            family = "Swain",
            role = c("ctb"),
-           email = "rachelswain1@gmail.com"))
-Description: Easily interfaces R to spatial datasets freely available through 
-  the Victorian Government's WFS (Web Feature Service). Allows users to read 
-  in `sf` data from these sources and wraps methods from `ows4R`. 
-License: MIT + file LICENSE
+           email = "rachelswain1@gmail.com"),
+      person(given = "Andy",
+             family = "Teucher",
+             role = c("aut"),
+             email = "andy.teucher@gov.bc.ca",
+             comment = c(ORCID = "0000-0002-7840-692X", "bcdata author")),
+      person(given = "Sam",
+             family = "Albers",
+             role = c("aut"),
+             email = "sam.albers@gov.bc.ca",
+             comment = c(ORCID = "0000-0002-9270-7884", "bcdata author")),
+      person(given = "Stephanie",
+             family = "Hazlitt",
+             role = c("aut"),
+             email = "stephanie.hazlitt@gov.bc.ca",
+             comment = c(ORCID = "0000-0002-3161-2304", "bcdata author")),
+      person(given = "Province of British Columbia",
+             role = "cph",
+             comment = "bcdata copyright"))
+Description: Easily interfaces R to spatial datasets available through 
+  the Victorian Government's WFS (Web Feature Service): <https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities>, 
+  which allows users to read in 'sf' data from these sources. VicmapR uses the lazy querying approach and code developed by Teucher et al. (2021) for the 'bcdata' R package <doi:10.21105/joss.02927>.
+License: Apache License (== 2.0)
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 URL: https://justincally.github.io/VicmapR/,
@@ -37,14 +55,18 @@ Imports:
     methods,
     cli,
     DBI,
-    tidyselect,
     xml2,
     glue,
     dbplyr,
-    rlang
+    rlang,
+    curl,
+    rvest,
+    lubridate
 VignetteBuilder: knitr
 Collate: 
+    'globals.R'
     'build-query.R'
+    'check_geoserver.R'
     'cql-predicates.R'
     'cql-translate.R'
     'filter.R'
@@ -58,5 +80,7 @@ Collate:
     'utils-options.R'
     'utils-pipe.R'
     'utils-show_query.R'
+    'metadata.R'
 Depends: 
     R (>= 2.10)
+

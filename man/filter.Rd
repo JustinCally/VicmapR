@@ -2,8 +2,33 @@
 % Please edit documentation in R/filter.R
 \name{filter}
 \alias{filter}
-\title{filter}
+\alias{filter.vicmap_promise}
+\title{Filter Data}
+\usage{
+\method{filter}{vicmap_promise}(.data, ...)
+}
+\arguments{
+\item{.data}{object of class \code{vicmap_promise} (likely passed from \code{\link[=vicmap_query]{vicmap_query()}})}
+
+\item{...}{filter statements}
+}
+\value{
+Object of class \code{vicmap_promise}, which is a 'promise' of the data that can  be returned if \code{collect()} is used
+}
 \description{
 See \code{dplyr::\link[dplyr]{filter}} for details.
+}
+\section{Methods (by class)}{
+\itemize{
+\item \code{vicmap_promise}: filter.vicmap_promise
+}}
+
+\examples{
+\donttest{
+try(
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+ filter(HIERARCHY == "L", PFI == 8553127)
+ )
+ }
 }
 \keyword{internal}

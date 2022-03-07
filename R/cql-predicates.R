@@ -1,3 +1,22 @@
+# Modifications Copyright 2020 Justin Cally
+# Copyright 2019 Province of British Columbia
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# https://www.apache.org/licenses/LICENSE-2.0.txt
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+#
+# Modifications/state changes made to the original work: 
+#   + sf_text() function modified to format the sf differently (using polygonFormat()) and checks GDAL version
+#   + vicmap_cql_string() renamed from bcdc_cql_string()
+#   + cql_geom_predicate_list remains the same
+
+
 #' CQL escaping
 #'
 #' Write a CQL expression to escape its inputs, and return a CQL/SQL object.
@@ -8,6 +27,9 @@
 #' @param ... Character vectors that will be combined into a single CQL statement.
 #'
 #' @return An object of class `c("CQL", "SQL")`
+#' 
+#' @details The code for cql escaping was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
+#'
 #' @export
 #'
 #' @examples
@@ -21,8 +43,8 @@ CQL <- function(...) {
 #'
 #' Convenience wrapper to convert sf objects and geometric operations into CQL
 #' filter strings which can then be supplied to filter.vicmap_promise.
-#' The sf object is automatically converted in a
-#' bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
+#' The sf object is simplified in complexity to reduce 
+#' the complexity of the Web Service call. Subsequent in-memory
 #' filtering may be need to achieve exact results.
 #'
 #'
@@ -99,7 +121,7 @@ sf_text <- function(x) {
   ## If too big here, drawing bounding
   if (utils::object.size(x) > getOption("vicmap.max_geom_pred_size", 4400)) {
     message("The object is too large to perform exact spatial operations using VicmapR. 
-            To simplify the polygon, sf::st_simplify() was used to reduce the size of the query", call. = FALSE)
+            To simplify the polygon, sf::st_simplify() was used to reduce the size of the query")
     x <- polygonFormat(x)
   }
   
@@ -109,17 +131,20 @@ sf_text <- function(x) {
     x <- sf::st_union(x)
   }
   
-  ## Flip axis for certain crs's using GDAL 3 ##
-  
   if (sf::sf_extSoftVersion()["GDAL"] >= "3.0.0") {
+    ## Flip axis for certain crs's using GDAL 3 ##
+    ao <- sf::st_axis_order()
+    sf::st_axis_order(TRUE)
     x <- sf::st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1") # reverse axes
+    filter_string <- sf::st_as_text(x)
+    sf::st_axis_order(ao)
+    
   } else {
     warning("GDAL > 3.0.0 is required")
+    filter_string <- sf::st_as_text(x)
   }
-  
-  
-  
-  sf::st_as_text(x)
+
+  return(filter_string)
 }
 
 # Separate functions for all CQL geometry predicates
@@ -129,11 +154,11 @@ sf_text <- function(x) {
 #' Functions to construct a CQL expression to be used
 #' to filter results from [vicmap_query()].
 #' See [the geoserver CQL documentation for details](https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html#spatial-predicate).
-#' The sf object is automatically converted in a
-#' bounding box to reduce the complexity of the Web Service call. Subsequent in-memory
+#' The sf object is automatically simplified to a less complex sf object
+#' to reduce the complexity of the Web Service call. Subsequent in-memory
 #' filtering may be needed to achieve exact results. 
 #' 
-#' @details The code for thses cql predicates was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
+#' @details The code for these cql predicates was developed by the bcdata team: \url{https://bcgov.github.io/bcdata/reference/cql_geom_predicates.html}
 #'
 #' @param geom an `sf`/`sfc`/`sfg` or `bbox` object (from the `sf` package)
 #' @name cql_geom_predicates

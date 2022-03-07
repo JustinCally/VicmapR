@@ -1,3 +1,17 @@
+# Modifications Copyright 2020 Justin Cally
+# Copyright 2019 Province of British Columbia
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# https://www.apache.org/licenses/LICENSE-2.0.txt
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+
+
 # Tests here have been implemented from bcdata: https://github.com/bcgov/bcdata/blob/master/tests/testthat/test-cql-string.R
 
 suppressPackageStartupMessages(library(sf, quietly = TRUE))
@@ -70,13 +84,6 @@ test_that("CQL functions fail correctly", {
   expect_error(BBOX(c("1","2","3", "4")), "numeric vector")
   expect_error(BBOX(c(1,2,3,4), crs = c("EPSG:4326", "EPSG:3005")),
                "must be a character string")
-})
-
-test_that("passing an non-existent object to a geom predicate", {
-  skip_if_offline()
-  expect_error(vicmap_query("datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-                 filter(INTERSECTS(districts)),
-               'object "districts" not found.\nThe object passed to INTERSECTS needs to be valid sf object.')
 })
 
 test_that("CQL translate works", {

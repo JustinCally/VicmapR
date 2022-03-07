@@ -7,7 +7,7 @@
 listLayers(...)
 }
 \arguments{
-\item{...}{Additional arguments passed to \link[base]{regexpr}. The \code{pattern} argument can be used to search for specific layers with matching names or titles.}
+\item{...}{Additional arguments passed to \link[base]{grep}. The \code{pattern} argument can be used to search for specific layers with matching names or titles.}
 }
 \value{
 data.frame
@@ -19,5 +19,9 @@ layers available. The 'Name' is what is used within \code{vicmap_query()} while 
 description/clarification about the layer.
 }
 \examples{
-listLayers(pattern = "flood height contour")
+\donttest{
+try(
+listLayers(pattern = "trees", ignore.case = TRUE)
+)
+}
 }

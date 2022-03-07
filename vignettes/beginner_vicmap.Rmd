@@ -222,7 +222,7 @@ sf::st_crs(swoops_2021)
 
 # Intersection
 darebin_swoops <- sf::st_intersection(swoops_2021, darebin)
-mapview(darebin_swoops) + mapview(darebin, alpha.regions = 0.3, col.regions= "yellow")
+mapview(darebin_swoops) + mapview(darebin, alpha.regions = 0.3, col.regions= "green")
 
 ```
 
@@ -238,7 +238,7 @@ home <- st_sfc(st_point(c(lon, lat)), crs = 4326)
 
 ```
 
-We have a problem though, st_buffer assumes units of meters, not degrees (this is what latitude and longitude are measured in). To convert from degrees to metres we need to project our latitude and longitude, which are represented as a point on a curved surface, onto a flat plane. To do this, we use a projection standard chosen specifically for the zone containing the coordinates. The standard is called the EPSG code and for our coordinates is zone 55.
+We have a problem though, latitude and longitude units are degrees and st_buffer assumes units of meters. To convert from degrees to metres we need to project our latitude and longitude, which are represented as a point on a curved surface, onto a flat plane. To do this, we use a projection standard chosen specifically for the zone containing the coordinates. The standard is called the EPSG code and for our coordinates is zone 55.
 
 ```{r warning=FALSE, message=FALSE}
 # Project coordinates
@@ -259,7 +259,7 @@ home_radius <- st_transform(home_radius, crs = 4283)
 st_crs(home_radius)
 
 swoops_10k <- st_intersection(swoops_2021, home_radius)
-mapview(swoops_10k) + mapview(home_radius, alpha.regions = 0.3, col.regions = "yellow")
+mapview(swoops_10k) + mapview(home_radius, alpha.regions = 0.3, col.regions = "green")
 ```
 
 #### Finding nearby points
@@ -292,9 +292,9 @@ mapview(swoops_en_route) + mapview(route_line)
 ```
 
 
-## Using the VicmapR Geometric filters
+## Using the VicmapR Geometric Filters
 
-The VicmapR offers tools for geometric filtering that avoid the need for sf package. The WFS Geoserver on which Vicmap is based supports several geometric filters - see the full list [here](https://justincally.github.io/VicmapR/articles/query_vicmap.html#geometric-filters).
+The VicmapR package offers tools for geometric filtering that avoid the need for sf package. The WFS Geoserver on which Vicmap is based supports several geometric filters - see the full list [here](https://justincally.github.io/VicmapR/articles/query_vicmap.html#geometric-filters).
 
 These geometric filters allow us to perform basic spatial manipulation while retaining the benefits of lazy evaluation. So as before, if we want to filter our data before downloading, we can do so with more complex spatial operations. This is particularly useful when presenting Vicmap data in an interactive map, as it reduces the time for downloading data between re-rendering the map.
 
@@ -310,7 +310,7 @@ darebin_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(INTERSECTS(darebin)) %>%
   collect()
 
-mapview(darebin_2021) + mapview(darebin, alpha.regions = 0.3, col.regions = "green")
+mapview(darebin_2021) + mapview(darebin, alpha.regions = 0.3, col.regions = "orange")
 
 ```
 
@@ -325,9 +325,10 @@ radius_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(INTERSECTS(home_radius)) %>%
   collect()
 
-mapview(radius_2021) + mapview(home_radius, alpha.regions = 0.3, col.regions = "green")
+mapview(radius_2021) + mapview(home_radius, alpha.regions = 0.3, col.regions = "orange")
 
 ```
+
 And finally, the swoops on our cycling route. To find swoops within 300m we use the `DWITHIN()` function.
 
 ```{r warning=FALSE, message=FALSE}

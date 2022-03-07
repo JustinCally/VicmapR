@@ -1,6 +1,37 @@
-base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs"
+# Modifications Copyright 2020 Justin Cally
+# Copyright 2019 Province of British Columbia
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# https://www.apache.org/licenses/LICENSE-2.0.txt
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+# 
+# Modifications/State changes made to original work: 
+# + base url is now the Victorian WFS server (vs Province of British Columbia WFS server)
+# + vicmap_query() is derived from bcdc_query_geodata, modifications made are: 
+#   - Does not use S3 methods
+#   - Specifications of url query are different 
+#   - Depending on WFS version adds either maxFeatures or count to the query
+#   - Returns object of 'vicmap_promise' (class similar to 'bcdc_promise')
+# + Adds a show_query.vicmap_promise() function
+# + For collect() No trycatch is used 
+# + The method of collection of results has been changed from using crul::Paginator to using a for 
+#   loop and the 'startIndex' parameter within the wfs query. Modified collect then reads the object in from the url 
+#   using sf::read_sf() while bcdata calls another internal function to read it in as an sf object
+# + head.vicmap_promise() has been rewritten from head.bcdc_promise()
+# + print.vicmap_promise() has laregly been rewritten but produces a similar desired output as formatting (using cli) 
+#   is retained and only six records are printed to the screen, which was the case in bcdata. print.bcdc_promise() uses
+#   several utility function (like bcdc_tidy_resources) not developed in this package.
 
-#' vicmap_query
+base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs"
+base_chunk_lim <- 1500L
+
+#' Establish Vicmap Query
 #'
 #' @description Begin a Vicmap WFS query by selecting a WFS layer. The record must be available as a 
 #' Web Feature Service (WFS) layer (listed in `listLayers()`)  
@@ -13,11 +44,15 @@ base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_
 #'
 #' @details The returned `vicmap_promise` object is not data, rather it is a 'promise' of the data that can 
 #' be returned if `collect()` is used; which returns an `sf` object. 
-#' @return vicmap_promise
+#' @return object of class `vicmap_promise`, which is a 'promise' of the data that can  be returned if `collect()` is used
 #' @export
 #'
 #' @examples
+#' \donttest{
+#' try(
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' )
+#' }
 vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   
   # Check if query exceeds vicmap limit 
@@ -29,8 +64,8 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
                     request = "GetFeature",
                     typeNames = layer,
                     outputFormat = "application/json",
-                    count = getOption("vicmap.chunk_limit", default = 70000L),
-                    maxFeatures = getOption("vicmap.chunk_limit", default = 70000L),
+                    count = getOption("vicmap.chunk_limit", default = 1500L),
+                    maxFeatures = getOption("vicmap.chunk_limit", default = 1500L),
                     srsName = paste0("EPSG:", CRS))
   
   #maxFeatures or count depends on version
@@ -53,21 +88,26 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 #' 
 #' @details The printed information consists of three sections: 
 #' \itemize{
-#'  \item{\strong{<base url>}}{ The base url of the query, this can be changed with options(vicmap.base_url = another_url)}
-#'  \item{\strong{<body>}}{ Lists the parameters of the WFS query, these can be modified through various functions such as `vicmap_query()`, `filter()`, `select()` and `head()`}
-#'  \item{\strong{<full query url>}}{ The constructed url of the final query to be collected}
+#'  \item{\strong{base url}}{ The base url of the query, this can be changed with options(vicmap.base_url = another_url)}
+#'  \item{\strong{body}}{ Lists the parameters of the WFS query, these can be modified through various functions such as `vicmap_query()`, `filter()`, `select()` and `head()`}
+#'  \item{\strong{full query url}}{ The constructed url of the final query to be collected}
 #' }
 #'
-#' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
+#' @param x Object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param ... Other parameters possibly used by generic
 #'
-#' @return vicmap_promise (invisible), query printed to console
+#' @describeIn show_query show_query.vicmap_promise
+#' @return object of class `vicmap_promise` (invisible: query printed to console), which is a 'promise' of the data that can  be returned if `collect()` is used
 #' @export
 #'
 #' @examples
+#' \donttest{
+#' try(
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
 #' head(50) %>%
 #' show_query()
+#' )
+#' }
 
 show_query.vicmap_promise <- function(x, ...) {
   
@@ -95,21 +135,37 @@ show_query.vicmap_promise <- function(x, ...) {
 #' that their is a limit on the number of rows that can be returned from the Vicmap geoserver (70,000) data will be 
 #' paginated; which essentially means that multiple queries will be sent with the data bound together at the end. This 
 #' process may take a while to run, thus it is recommended to filter large datasets before collection.
+#' 
+#' @describeIn collect collect.vicmap_promise
 #'
 #' @param x object of class `vicmap_promise` (likely passed from [vicmap_query()])
 #' @param quiet logical; whether to suppress the printing of messages and progress
 #' @param paginate logical; whether to allow pagination of results to extract all records (default is TRUE, 
 #' meaning all data will be returned but it will take more time)
-#' @param ... additional arguments passed to \link[sf]{read_sf}
+#' @param ... additional arguments passed to \link[sf]{st_read}
 #'
-#' @return sf/tbl_df/tbl/data.frame
+#' @return sf/tbl_df/tbl/data.frame matching the query parameters
 #' @export
 #'
 #' @examples
-# vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-# head(50) %>%
-# collect()
+#' \donttest{
+#' try(
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' head(5) %>%
+#' collect()
+#' )
+#' }
 collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
+  
+  # Exit out if null
+  if(is.null(x)){
+    return(NULL)
+  }
+  
+  # Exit out if problem with connection
+  if(!check_geoserver(timeout = 10, quiet = TRUE)) {
+    return(NULL)
+  }
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
   
@@ -124,17 +180,17 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   }
   
   # For when head is used
-  if(the_count > getOption("vicmap.chunk_limit", default = 70000L)) {
+  if(the_count > getOption("vicmap.chunk_limit", default = 1500L)) {
     number_of_records <- the_count
   }
   
   #paginate?
-  if(number_of_records > getOption("vicmap.chunk_limit", default = 70000L) & paginate == TRUE & the_count >= getOption("vicmap.chunk_limit", default = 70000L)) {
+  if(number_of_records > getOption("vicmap.chunk_limit", default = 1500L) & paginate == TRUE & the_count >= getOption("vicmap.chunk_limit", default = 1500L)) {
     # number of times to loop
-    loop_times <- ceiling(number_of_records/getOption("vicmap.chunk_limit", default = 70000L))
+    loop_times <- ceiling(number_of_records/getOption("vicmap.chunk_limit", default = 1500L))
     # inform user of delay
     if(!quiet) {
-    message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (", getOption("vicmap.chunk_limit", default = 70000L),"). The collection of data will be paginated and might take some time."))
+    message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (", getOption("vicmap.chunk_limit", default = 1500L),"). The collection of data will be paginated and might take some time."))
     }
     # pick something to sort by
     cols <- feature_cols(x)
@@ -149,12 +205,12 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
     }
     
     for(i in 1:loop_times) {
-      x$query$startIndex <- (i-1)*getOption("vicmap.chunk_limit", default = 70000L)
+      x$query$startIndex <- (i-1)*getOption("vicmap.chunk_limit", default = 1500L)
       x$query$sortBy <- sort_col 
       if(x$query$version == "2.0.0") {
-        x$query$count <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 70000L))
+        x$query$count <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 1500L))
       } else {
-        x$query$maxFeatures <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 70000L))
+        x$query$maxFeatures <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 1500L))
       }
       request <- httr::build_url(x)
       returned_sf[[i]] <- sf::read_sf(request, ...)
@@ -183,13 +239,17 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 #' @param n integer; number of rows to return
 #' @param ... Other parameters possibly used by generic
 #'
-#' @return vicmap_promise
+#' @describeIn head head.vicmap_promise
+#' @return Object of class `vicmap_promise`, which is a 'promise' of the data that can  be returned if `collect()` is used
 #' @export
 #'
 #' @examples
+#' \donttest{
+#' try(
 #' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-#' head(50) %>%
-#' collect()
+#' head(50)
+#' )
+#' }
 
 head.vicmap_promise <- function(x, n = 5, ...) {
   
@@ -218,9 +278,25 @@ head.vicmap_promise <- function(x, n = 5, ...) {
 #' @export
 #'
 #' @examples
+#' \donttest{
+#' try(
 #' query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' )
+#' try(
 #' print(query)
+#' )
+#' }
 print.vicmap_promise <- function(x, ...) {
+  
+  # Exit out if null
+  if(is.null(x)){
+    return(NULL)
+  }
+  
+  # Exit out if problem with connection
+  if(!check_geoserver(timeout = 10, quiet = TRUE)) {
+    return(NULL)
+  }
   
   x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
   
