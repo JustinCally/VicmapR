@@ -3,7 +3,7 @@ title: "Vicmap for Beginners"
 output: rmarkdown::html_vignette
 date: "`r Sys.Date()`"
 vignette: >
-  %\VignetteIndexEntry{An introduction to Vicmap and working with spatial data.}
+  %\VignetteIndexEntry{Vicmap for Beginners}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -271,11 +271,10 @@ Let's say we feel like a bike ride. We've picked a route but want to know which 
 We can solve this problem in a similar way, using `st_intersection()`. 
 
 ```{r warning=FALSE, message=FALSE}
-# library(trackeR) #a handy library for handling gps data in R
-# route <- readTCX(file = "Mount_Pleasant_Loop_Ride.tcx")
 
 # Load bike route
-data(route, package = "VicmapR")
+# data(route, package = "VicmapR")
+load("~/Repos/VicmapR/data/route.rda")
 
 # Convert route to single line
 route_line <- st_as_sf(route, coords = c("longitude", "latitude"), crs=4326)  %>% #convert coordinates to spatial
