@@ -69,6 +69,7 @@ Collate:
     'check_geoserver.R'
     'cql-predicates.R'
     'cql-translate.R'
+    'data-route.R'
     'filter.R'
     'select.R'
     'listFeatures.R'

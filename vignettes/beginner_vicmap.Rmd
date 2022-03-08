@@ -1,10 +1,12 @@
 ---
 title: "Vicmap for Beginners"
-author: "Rachel Swain"
-date: "10/01/2022"
-output: html_document
+output: rmarkdown::html_vignette
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{An introduction to Vicmap and working with spatial data.}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -47,7 +49,7 @@ The functions in VicmapR therefore provide a much faster and more robust method 
 
 VicmapR uses *lazy evaluation*,  in which we query but do not collect the data from the Vicmap database. This is called making a 'Vicmap Promise'. A Vicmap Promise contains the dataset information but not the data itself. This promise can be filtered for a subset of the data before collecting. Using lazy evaluation we can collect the desired subset, instead of the entire dataset.
 
-## Worked example - Swooping birds
+## Worked Example - Swooping Birds
 
 <!-- Load swoops for reporting -->
 ```{r, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE}
@@ -273,7 +275,7 @@ We can solve this problem in a similar way, using `st_intersection()`.
 # route <- readTCX(file = "Mount_Pleasant_Loop_Ride.tcx")
 
 # Load bike route
-load("~/Repos/VicmapR/data/route.rda")
+data(route)
 
 # Convert route to single line
 route_line <- st_as_sf(route, coords = c("longitude", "latitude"), crs=4326)  %>% #convert coordinates to spatial
