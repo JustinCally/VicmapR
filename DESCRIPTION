@@ -45,7 +45,8 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    leaflet
+    leaflet,
+    kableExtra
 Imports: 
     magrittr,
     httr,
