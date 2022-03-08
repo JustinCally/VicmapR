@@ -46,7 +46,8 @@ Suggests:
     knitr,
     rmarkdown,
     leaflet,
-    kableExtra
+    kableExtra,
+    mapview
 Imports: 
     magrittr,
     httr,
