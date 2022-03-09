@@ -129,7 +129,7 @@ swoops_2021 %>% head(5) %>%
 **By filtering the Vicmap promise before collecting, we have downloaded only `r nrow(swoops_2021)` rows of data instead of `r nrow(swoops)`.**
 
 
-### Quick visualisation of spatial data with Mapview
+### Quick visualisation of spatial data with the `mapview` package
 
 Often the first thing we want to do is see the data on a map. The simplest and quickest way to visualise spatial data is to use the `mapview` package:
 
@@ -141,7 +141,7 @@ mapview(swoops_2021)
 While the output is basic, it is very simple to achieve and points can be clicked on to obtain the details from the other fields.
 
 
-### Visualisation with Leaflet
+### Visualisation with `leaflet`
 
 For more customisation, you might want to consider plotting your map in `leaflet`. Leaflet is JavaScript library that allows users to produce interactive maps that work efficiently across most desktop and mobile platforms. Using the leaflet package in R, we have the flexibility of plotting more complex map products.
 
