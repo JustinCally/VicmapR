@@ -63,9 +63,11 @@ Australian spring is famous for the presence of swooping birds. Certain species 
 ### Searching for data 
 First, we need to search for the dataset. We can view all layers, or do a keyword search. Use `ignore.case = TRUE` for a case-insensitive search.
 
-```{r warning=FALSE, message=FALSE}
+```{r}
 #Don't forget to load VicmapR library
 library(VicmapR) 
+
+sf::sf_extSoftVersion()
 
 #All layers
 all_layers <- listLayers() 
