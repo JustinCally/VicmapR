@@ -273,8 +273,7 @@ We can solve this problem in a similar way, using `st_intersection()`.
 ```{r warning=FALSE, message=FALSE}
 
 # Load bike route
-# data(route, package = "VicmapR")
-load("~/Repos/VicmapR/data/route.rda")
+data(route, package = "VicmapR")
 
 # Convert route to single line
 route_line <- st_as_sf(route, coords = c("longitude", "latitude"), crs=4326)  %>% #convert coordinates to spatial
