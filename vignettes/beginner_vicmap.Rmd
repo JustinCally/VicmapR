@@ -273,12 +273,8 @@ We can solve this problem in a similar way, using `st_intersection()`.
 ```{r warning=FALSE, message=FALSE}
 
 # Load bike route
-data(route, package = "VicmapR")
-
-# Convert route to single line
-route_line <- st_as_sf(route, coords = c("longitude", "latitude"), crs=4326)  %>% #convert coordinates to spatial
-  summarise(geometry = st_combine(geometry)) %>% #combine into single line geom
-  st_cast("LINESTRING")
+route_line <- sf::st_read(system.file("shapes/cycle_route.geojson", package="VicmapR"), quiet = F) %>% 
+  sf::st_transform(4283)
 
 #Add buffer to route - we need to convert to m to do this (same as before)
 route_m <- st_transform(route_line, "+proj=utm +zone=55") %>% st_buffer(300) #300m buffer
