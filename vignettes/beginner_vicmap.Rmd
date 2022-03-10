@@ -67,7 +67,7 @@ First, we need to search for the dataset. We can view all layers, or do a keywor
 #Don't forget to load VicmapR library
 library(VicmapR) 
 
-sf::sf_extSoftVersion()
+message(sf::sf_extSoftVersion())
 
 #All layers
 all_layers <- listLayers() 
