@@ -327,19 +327,28 @@ mapview(radius_2021) + mapview(home_radius, alpha.regions = 0.3, col.regions = "
 
 ```
 
-And finally, the swoops on our cycling route. To find swoops within 300m we use the `DWITHIN()` function.
+And finally, the swoops on our cycling route. To find swoops within 300m we use the `INTERSECTS()` function and the cycling route with an added 300m buffer. Note: VicmapR geometric filters will be simplified, thus if precise intersections are desired, it is advised to do a cleanup of the filtered data once collected.
 
 ```{r warning=FALSE, message=FALSE}
-# Swoops on route
 
-route_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
+# Condense line object
+route_poly <- route_line %>% 
+  sf::st_transform(3111) %>% 
+  sf::st_buffer(300) %>% 
+  sf::st_cast("POLYGON") %>% 
+  sf::st_transform(4283)
+
+swoop <- VicmapR::vicmap_query("datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
   filter(STATUS == "OK") %>%
-  select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
-  filter(DWITHIN(route_line, distance = 300)) %>%
-  collect()
+  select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>% 
+  filter(INTERSECTS(route_poly)) %>% collect()
 
-mapview(route_2021) + mapview(route_line)
+
+mapview::mapview(route_poly) + mapview::mapview(swoop)
+
+# check against all records 
+# swoop_all <- VicmapR::vicmap_query("datavic:FLORAFUANA1_SWOOPING_BIRD") %>% filter(BBOX(route_poly)) %>% collect()
 
 ```
 
