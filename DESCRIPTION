@@ -43,11 +43,7 @@ BugReports: https://github.com/justincally/VicmapR/issues
 Suggests: 
     testthat (>= 2.1.0),
     covr,
-    knitr,
-    rmarkdown,
-    leaflet,
-    kableExtra,
-    mapview
+    rmarkdown
 Imports: 
     magrittr,
     httr,
@@ -63,7 +59,11 @@ Imports:
     rlang,
     curl,
     rvest,
-    lubridate
+    lubridate,
+    knitr,
+    kableExtra,
+    mapview,
+    leaflet
 VignetteBuilder: knitr
 Collate: 
     'globals.R'
@@ -85,4 +85,3 @@ Collate:
     'metadata.R'
 Depends: 
     R (>= 2.10)
-
