@@ -8,12 +8,36 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+<!--
+Copyright 2022 Province of Rachel Swain
 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.
+-->
+
+```{r, include = FALSE}
+geoserver_connected <- VicmapR::check_geoserver(quiet = TRUE)
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  echo = TRUE,
+  comment = "#>",
+  eval = all(geoserver_connected, !testthat:::on_cran())
+)
+```
+
+```{r setup, include=FALSE, echo=FALSE}
 # LIBRARIES -----
 library(VicmapR)
 library(sf)
+library(dplyr)
 ```
 
 ## Who is this tutorial for?
@@ -29,7 +53,7 @@ The end goal of this tutorial is for R users with minimal spatial experience to 
 
 ## What is Vicmap?
 
-Vicmap is the Victorian Government's catalogue of spatial datasets. The catalogue features `r VicmapR::listLayers() %>% nrow()` datasets across land, property, infrastructure and environment and is the most authoritative suite of spatial data in Victoria. 
+Vicmap is the Victorian Government's catalogue of spatial datasets. The catalogue features `r try(nrow(VicmapR::listLayers()))` datasets across land, property, infrastructure and environment and is the most authoritative suite of spatial data in Victoria. 
 
 ### Accessing Vicmap datasets
 
@@ -97,7 +121,7 @@ We can see that the dataset contains, swoop date, location and species. At a gla
 
 ### Downloading the data
 
-The summary also shows that there are `r nrow(swoops)` rows in this dataset. This isn't a very large dataset, but if we are using this data in an interactive report or application, waiting to download the full dataset may be impractical. 
+The summary also shows that there are `r try(nrow(swoops))` rows in this dataset. This isn't a very large dataset, but if we are using this data in an interactive report or application, waiting to download the full dataset may be impractical. 
 
 Using lazy evaluation, we can use pipes to filter and subset the data, so that we only collect the desired subset. For example, let's just look at the first 10 rows.
 
@@ -347,8 +371,6 @@ swoop <- VicmapR::vicmap_query("datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
 
 mapview::mapview(route_poly) + mapview::mapview(swoop)
 
-# check against all records 
-# swoop_all <- VicmapR::vicmap_query("datavic:FLORAFUANA1_SWOOPING_BIRD") %>% filter(BBOX(route_poly)) %>% collect()
 
 ```
 

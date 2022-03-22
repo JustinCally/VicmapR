@@ -4,7 +4,7 @@ pkgdown_sha: ae7363faac9040a473a54fb3d770decdfb8dfec1
 articles:
   beginner_vicmap: beginner_vicmap.html
   query_vicmap: query_vicmap.html
-last_built: 2022-03-18T05:19Z
+last_built: 2022-03-22T04:24Z
 urls:
   reference: https://justincally.github.io/VicmapR/reference
   article: https://justincally.github.io/VicmapR/articles
