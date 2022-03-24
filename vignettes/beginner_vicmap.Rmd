@@ -22,12 +22,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 -->
 
-```{r, include = TRUE}
+```{r, include = FALSE}
 geoserver_connected <- VicmapR::check_geoserver(quiet = TRUE)
-
-warning(sf::sf_extSoftVersion())
-
-warning(testthat:::on_cran())
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -93,8 +89,6 @@ First, we need to search for the dataset. We can view all layers, or do a keywor
 ```{r}
 #Don't forget to load VicmapR library
 library(VicmapR) 
-
-warning(sf::sf_extSoftVersion())
 
 #All layers
 all_layers <- listLayers() 
@@ -364,6 +358,9 @@ mapview(radius_2021) + mapview(home_radius, alpha.regions = 0.3, col.regions = "
 And finally, the swoops on our cycling route. To find swoops within 300m we use the `INTERSECTS()` function and the cycling route with an added 300m buffer. Note: VicmapR geometric filters will be simplified, thus if precise intersections are desired, it is advised to do a cleanup of the filtered data once collected.
 
 ```{r warning=FALSE, message=FALSE}
+
+route_line <- sf::st_read(system.file("shapes/cycle_route.geojson", package="VicmapR"), quiet = F) %>% 
+  sf::st_transform(4283)
 
 # Condense line object
 route_poly <- route_line %>% 
