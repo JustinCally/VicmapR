@@ -22,8 +22,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 -->
 
-```{r, include = FALSE}
+```{r, include = TRUE}
 geoserver_connected <- VicmapR::check_geoserver(quiet = TRUE)
+
+warning(sf::sf_extSoftVersion())
+
+warning(testthat:::on_cran())
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -37,7 +41,6 @@ knitr::opts_chunk$set(
 # LIBRARIES -----
 library(VicmapR)
 library(sf)
-library(dplyr)
 ```
 
 ## Who is this tutorial for?
@@ -324,6 +327,12 @@ Let's revisit our examples above. To get the swoops only in Darebin we can filte
 
 ```{r warning=FALSE, message=FALSE}
 
+# Suburb polygon for Darebin
+darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
+  select(LGA_NAME) %>% 
+  filter(LGA_NAME == "DAREBIN") %>%
+  collect()
+
 # Swoops in Darebin
 darebin_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
@@ -338,7 +347,8 @@ mapview(darebin_2021) + mapview(darebin, alpha.regions = 0.3, col.regions = "ora
 
 Now let's try the 10km radius.
 
-```{r warning=FALSE, message=FALSE}
+```{r}
+
 # Swoops in 10k
 radius_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
