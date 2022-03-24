@@ -67,6 +67,7 @@ jobs:
           brew install pkg-config 
           brew install gdal proj geos udunits
           Rscript -e "install.packages('sf')"
+          Rscript -e "install.packages('mapview')"
           export LDFLAGS="-L/usr/local/opt/libpq/lib"
           export CPPFLAGS="-I/usr/local/opt/libpq/include"
       - name: Install system dependencies
@@ -76,6 +77,7 @@ jobs:
         run: |
           Rscript -e "install.packages('stringi')"
           Rscript -e "install.packages('sf')"
+          Rscript -e "install.packages('mapview')"
           sudo apt install \
             libicu-dev 
           # install spatial dependencies
