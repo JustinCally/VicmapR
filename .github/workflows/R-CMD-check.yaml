@@ -64,9 +64,9 @@ jobs:
         if: runner.os == 'macOS'
         continue-on-error: true
         run: |
-          Rscript -e "install.packages('sf')"
           brew install pkg-config 
           brew install gdal proj geos udunits
+          Rscript -e "install.packages('sf')"
           export LDFLAGS="-L/usr/local/opt/libpq/lib"
           export CPPFLAGS="-I/usr/local/opt/libpq/include"
       - name: Install system dependencies
