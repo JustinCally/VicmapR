@@ -49,7 +49,7 @@ cql_translate <- function(...) {
     if (packageVersion("dbplyr") <= "2.1.1") {
       rlang::new_quosure(dbplyr::partial_eval(x, vars = character()), rlang::get_env(x))
     } else {
-      rlang::new_quosure(dbplyr::partial_eval(x, .data = dbplyr::lazy_frame()), rlang::get_env(x))
+      rlang::new_quosure(dbplyr::partial_eval(x, data = dbplyr::lazy_frame()), rlang::get_env(x))
     }
   })
   
