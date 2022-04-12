@@ -45,8 +45,12 @@ cql_translate <- function(...) {
         )
       }
     }
-    
-    rlang::new_quosure(dbplyr::partial_eval(x), rlang::get_env(x))
+
+    if (packageVersion("dbplyr") <= "2.1.1") {
+      rlang::new_quosure(dbplyr::partial_eval(x, vars = character()), rlang::get_env(x))
+    } else {
+      rlang::new_quosure(dbplyr::partial_eval(x, .data = dbplyr::lazy_frame()), rlang::get_env(x))
+    }
   })
   
   sql_where <- dbplyr::translate_sql_(dots, con = wfs_con, window = FALSE)
