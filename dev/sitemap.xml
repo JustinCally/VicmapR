@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://justincally.github.io/VicmapR/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/articles/query_vicmap.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/authors.html</loc>
+  </url>
+  <url>
     <loc>https://justincally.github.io/VicmapR/index.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/news/index.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/CQL.html</loc>
@@ -31,6 +46,9 @@
     <loc>https://justincally.github.io/VicmapR/reference/head.html</loc>
   </url>
   <url>
+    <loc>https://justincally.github.io/VicmapR/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://justincally.github.io/VicmapR/reference/listLayers.html</loc>
   </url>
   <url>
@@ -53,8 +71,5 @@
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/wfsConnection-class.html</loc>
-  </url>
-  <url>
-    <loc>https://justincally.github.io/VicmapR/articles/query_vicmap.html</loc>
   </url>
 </urlset>
