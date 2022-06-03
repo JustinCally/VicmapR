@@ -150,7 +150,7 @@ swoops_2021 %>% head(5) %>%
   kable_styling()
 ```
 
-**By filtering the Vicmap promise before collecting, we have downloaded only `r nrow(swoops_2021)` rows of data instead of `r nrow(swoops)`.**
+**By filtering the Vicmap promise before collecting, we have downloaded only a subset of rows of data.**
 
 
 ### Quick visualisation of spatial data with the `mapview` package
