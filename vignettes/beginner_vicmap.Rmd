@@ -1,6 +1,6 @@
 ---
 title: "Vicmap for Beginners"
-output: knitr::html_vignette
+output: rmarkdown::html_vignette
 date: "`r Sys.Date()`"
 vignette: >
   %\VignetteIndexEntry{Vicmap for Beginners}
