@@ -22,14 +22,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 -->
 
-```{r, include = FALSE}
+```{r, echo = FALSE}
 geoserver_connected <- VicmapR::check_geoserver(quiet = TRUE)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
   comment = "#>", 
-  eval = all(geoserver_connected, !testthat:::on_cran())
+  eval = all(geoserver_connected, !testthat:::on_cran()),
+  purl = FALSE
 )
 ```
 

@@ -12,7 +12,6 @@ name: R-CMD-check
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
-
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
     strategy:
@@ -21,7 +20,7 @@ jobs:
         config:
         - { os: windows-latest, r: 'release', args: "'--no-manual'"}
         - { os: macOS-latest,   r: 'release', args: "'--no-manual'"}
-        - { os: ubuntu-18.04,   r: '3.5',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--no-manual'"}
+        - { os: ubuntu-18.04,   r: '3.6',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--no-manual'"}
         - { os: ubuntu-18.04,   r: 'oldrel',  rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--no-manual'"}
         - { os: ubuntu-18.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--as-cran'"}
         - { os: ubuntu-18.04,   r: 'devel',   rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--no-manual'"}
@@ -31,7 +30,7 @@ jobs:
       RSPM: ${{ matrix.config.rspm }}
       CRAN: ${{ matrix.config.cran }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      cache-version: v15
+      cache-version: v17
       PKG_CONFIG_PATH: /opt/software/lib/pkgconfig
 
     steps:
@@ -66,6 +65,8 @@ jobs:
         run: |
           brew install pkg-config 
           brew install gdal proj geos udunits
+          Rscript -e "install.packages('sf')"
+          Rscript -e "install.packages('mapview')"
           export LDFLAGS="-L/usr/local/opt/libpq/lib"
           export CPPFLAGS="-I/usr/local/opt/libpq/include"
       - name: Install system dependencies
@@ -74,16 +75,14 @@ jobs:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
           Rscript -e "install.packages('stringi')"
+          Rscript -e "install.packages('sf')"
+          Rscript -e "install.packages('mapview')" 
           sudo apt install \
             libicu-dev 
           # install spatial dependencies
           # sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
           sudo apt update
-          sudo apt install \
-            libudunits2-dev \
-            libgdal-dev \
-            libgeos-dev \
-            libproj-dev
+          sudo apt-get install libgdal-dev libproj-dev libgeos-dev libudunits2-dev
         
       - name: Install dependencies
         run: |
