@@ -4,7 +4,7 @@ output: knitr::html_vignette
 date: "`r Sys.Date()`"
 vignette: >
   %\VignetteIndexEntry{How to Query Vicmap Data}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -29,7 +29,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
   comment = "#>", 
-  eval = all(geoserver_connected, !testthat:::on_cran())
+  eval = all(geoserver_connected, !testthat:::on_cran()),
+  purl = FALSE
 )
 ```
 
