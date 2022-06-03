@@ -1,10 +1,10 @@
 ---
 title: "How to Query Vicmap Data"
-output: rmarkdown::html_vignette
+output: knitr::html_vignette
 date: "`r Sys.Date()`"
 vignette: >
   %\VignetteIndexEntry{How to Query Vicmap Data}
-  %\VignetteEngine{knitr::rmarkdown_notangle}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
