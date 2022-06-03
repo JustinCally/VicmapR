@@ -64,7 +64,6 @@ Imports:
     kableExtra,
     mapview,
     leaflet
-VignetteBuilder: knitr
 Collate: 
     'globals.R'
     'build-query.R'

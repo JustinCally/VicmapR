@@ -20,7 +20,7 @@ jobs:
         config:
         - { os: windows-latest, r: 'release', args: "'--no-manual'"}
         - { os: macOS-latest,   r: 'release', args: "'--no-manual'"}
-        - { os: ubuntu-18.04,   r: '3.5',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--no-manual'"}
+        - { os: ubuntu-18.04,   r: '3.6',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--no-manual'"}
         - { os: ubuntu-18.04,   r: 'oldrel',  rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--no-manual'"}
         - { os: ubuntu-18.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--as-cran'"}
         - { os: ubuntu-18.04,   r: 'devel',   rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", args: "'--no-manual'"}
@@ -76,7 +76,7 @@ jobs:
         run: |
           Rscript -e "install.packages('stringi')"
           Rscript -e "install.packages('sf')"
-          Rscript -e "install.packages('mapview')"
+          Rscript -e "install.packages('mapview')" 
           sudo apt install \
             libicu-dev 
           # install spatial dependencies
