@@ -1,11 +1,11 @@
 ---
 title: "Vicmap for Beginners"
-output: rmarkdown::html_vignette
+output: knitr::html_vignette
 date: "`r Sys.Date()`"
 vignette: >
-  %\VignetteIndexEntry{Vicmap for Beginners,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-  %\VignetteEngine{knitr::rmarkdown,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-  %\VignetteEncoding{UTF-8,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+  %\VignetteIndexEntry{Vicmap for Beginners}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 <!--
