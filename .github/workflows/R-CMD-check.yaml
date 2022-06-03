@@ -12,7 +12,6 @@ name: R-CMD-check
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
-    container: docker://rocker/geospatial
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
     strategy:
