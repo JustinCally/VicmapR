@@ -1,6 +1,6 @@
 ---
 title: "How to Query Vicmap Data"
-output: knitr::html_vignette
+output: rmarkdown::html_vignette
 date: "`r Sys.Date()`"
 vignette: >
   %\VignetteIndexEntry{How to Query Vicmap Data}
@@ -22,7 +22,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 -->
 
-```{r, include = FALSE}
+```{r, echo = FALSE}
 geoserver_connected <- VicmapR::check_geoserver(quiet = TRUE)
 
 knitr::opts_chunk$set(
