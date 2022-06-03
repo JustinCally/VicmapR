@@ -75,19 +75,19 @@ jobs:
         env:
           RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
         run: |
-          Rscript -e "install.packages('stringi')"
-          Rscript -e "install.packages('sf')"
-          Rscript -e "install.packages('mapview')"
           sudo apt install \
             libicu-dev 
           # install spatial dependencies
-          # sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+          sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
           sudo apt update
           sudo apt install \
             libudunits2-dev \
             libgdal-dev \
             libgeos-dev \
             libproj-dev
+          Rscript -e "install.packages('stringi')"
+          Rscript -e "install.packages('sf')"
+          Rscript -e "install.packages('mapview')"
         
       - name: Install dependencies
         run: |
