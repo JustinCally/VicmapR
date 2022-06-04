@@ -2,8 +2,9 @@ pandoc: 2.7.3
 pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
+  beginner_vicmap: beginner_vicmap.html
   query_vicmap: query_vicmap.html
-last_built: 2022-04-29T01:45Z
+last_built: 2022-06-04T03:45Z
 urls:
   reference: https://justincally.github.io/VicmapR/reference
   article: https://justincally.github.io/VicmapR/articles
