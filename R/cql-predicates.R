@@ -119,7 +119,7 @@ sf_text <- function(x) {
   }
   
   ## If too big here, simplify
-  if (utils::object.size(sf::st_geometry(x)) > getOption("vicmap.max_geom_pred_size", 4400)) {
+  if (utils::object.size(x) > getOption("vicmap.max_geom_pred_size", 4400)) {
     # Message was annoying
     # message("The object is too large to perform exact spatial operations using VicmapR. 
     #         To simplify the polygon, sf::st_simplify() was used to reduce the size of the query")
