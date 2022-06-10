@@ -1,9 +1,9 @@
 # VicmapR 0.1.9  
 * Addition of tutorial for new users, written by Rachel Swain (Vicmap for Beginners) (PR#36, #41)  
 * Several bug fixes for the release of dbplyr 2.2.0 (PR#39, #40)  
+* Now moving to new edition of dbplyr and users will require dbplyr > 2.0.0   
 * `feature_hits()` now works with filters (#38)  
 * Remove annoying simplifying warning when using geometric filters (users already know as it is described in tutorials) (#37)  
-
 
 # VicmapR 0.1.8
 * Add the ability to create bibtex citations of data through `data_citation()`, as well as obtain a data dictionary (`data_dictionary()`) and other metadata (`get_metadata()`).  

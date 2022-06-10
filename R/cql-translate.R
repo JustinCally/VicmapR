@@ -136,7 +136,7 @@ cql_agg <- dbplyr::sql_translator(
 
 #' @importFrom dbplyr dbplyr_edition
 #' @export
-dbplyr_edition.myConnectionClass <- function(con) 2L
+dbplyr_edition.wfsConnection <- function(con) 2L
 
 #' wfsConnection class
 #'
@@ -170,31 +170,14 @@ sql_translation.wfsConnection <- function(conn) {
 }
 
 # Make sure that identities (LHS of relations) are escaped with double quotes
-# TODO: After dbplyr 2.0 I think we can remove these and move the body into dbQuoteIdentifier
-#' @keywords internal
-#' @importFrom dplyr sql_escape_ident
-#' @export
-sql_escape_ident.wfsConnection <- function(conn, x) {
-  dbplyr::sql_quote(x, "\"")
-}
-
-# Make sure that strings (RHS of relations) are escaped with single quotes
-# TODO: After dbplyr 2.0 I think we can remove these and move the body into dbQuoteString
-#' @keywords internal
-#' @importFrom dplyr sql_escape_string
-#' @export
-sql_escape_string.wfsConnection <- function(conn, x) {
-  dbplyr::sql_quote(x, "'")
-}
-
-# Make sure that identities (LHS of relations) are escaped with double quotes
 
 #' @keywords internal
 #' @rdname wfsConnection-class
 #' @exportMethod dbQuoteIdentifier
 #' @export
 setMethod("dbQuoteIdentifier", c("wfsConnection", "ANY"),
-          sql_escape_ident.wfsConnection)
+          function(conn, x) dbplyr::sql_quote(x, "\"")
+          )
 
 # Make sure that strings (RHS of relations) are escaped with single quotes
 
@@ -203,4 +186,5 @@ setMethod("dbQuoteIdentifier", c("wfsConnection", "ANY"),
 #' @exportMethod dbQuoteString
 #' @export
 setMethod("dbQuoteString", c("wfsConnection", "ANY"),
-          sql_escape_string.wfsConnection)
+          function(conn, x) dbplyr::sql_quote(x, "'")
+            )
