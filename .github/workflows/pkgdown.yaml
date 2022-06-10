@@ -44,9 +44,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          options(repos = c(CRAN='https://packagemanager.rstudio.com/cran/__linux__/bionic/latest'))
           remotes::install_deps(dependencies = TRUE)
           install.packages("pkgdown", type = "binary")
+          sf::sf_extSoftVersion()
         shell: Rscript {0}
 
       - name: Install package
