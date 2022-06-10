@@ -46,7 +46,7 @@ cql_translate <- function(...) {
       }
     }
 
-    if (packageVersion("dbplyr") <= "2.1.1") {
+    if (utils::packageVersion("dbplyr") <= "2.1.1") {
       rlang::new_quosure(dbplyr::partial_eval(x, vars = character()), rlang::get_env(x))
     } else {
       rlang::new_quosure(dbplyr::partial_eval(x, data = dbplyr::lazy_frame()), rlang::get_env(x))
@@ -134,6 +134,10 @@ cql_agg <- dbplyr::sql_translator(
   max        = no_agg("max")
 )
 
+#' @importFrom dbplyr dbplyr_edition
+#' @export
+dbplyr_edition.myConnectionClass <- function(con) 2L
+
 #' wfsConnection class
 #'
 #' @import methods
@@ -151,13 +155,13 @@ wfs_con <- structure(
 )
 
 # Custom sql_translator using cql variants defined above
-#' @keywords internal
-#' @importFrom dplyr sql_translate_env
-#' @export
 # TODO: After dbplyr 2.0 I think this will be sql_translation, with
 # generic from dbplyr rather than dplyr
-# (https://dbplyr.tidyverse.org/dev/articles/backend-2.html)
-sql_translate_env.wfsConnection <- function(conn) {
+# (https://dbplyr.tidyverse.org/dev/articles/backend-2.html): Done June 10 2022
+#' @keywords internal
+#' @importFrom dbplyr sql_translation
+#' @export
+sql_translation.wfsConnection <- function(conn) {
   dbplyr::sql_variant(
     cql_scalar,
     cql_agg,
