@@ -346,7 +346,7 @@ Now let's try the 10km radius.
 # Swoops in 10k
 radius_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
-  filter(STATUS == "OK") %>%
+  filter(STATUS == "HISTORY2021") %>%
   select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
   filter(INTERSECTS(home_radius)) %>%
   collect()

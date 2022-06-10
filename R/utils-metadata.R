@@ -43,6 +43,10 @@ feature_hits <- function(x) {
   x$query$outputFormat <- "text/xml"
   x$query$version <- "2.0.0"
   
+  if("CQL_FILTER" %in% names(x$query)) {
+    x$query$CQL_FILTER <- finalize_cql(x$query$CQL_FILTER)
+  }
+  
   request <- httr::build_url(x)
   response <- httr::GET(request)
   

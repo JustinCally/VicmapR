@@ -88,4 +88,6 @@ test_that("CQL functions fail correctly", {
 
 test_that("CQL translate works", {
   expect_is(VicmapR:::cql_translate(CQL(INTERSECTS(the_geom))), c("sql", "character"))
+  expect_is(VicmapR:::cql_translate(CQL(BBOX(!!st_bbox(the_geom)))), c("sql", "character"))
 })
+
