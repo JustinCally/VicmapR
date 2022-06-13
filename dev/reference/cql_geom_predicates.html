@@ -22,7 +22,7 @@ filtering may be needed to achieve exact results."><meta property="og:image" con
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.9.9000</span>
       </span>
     </div>
 
@@ -113,29 +113,42 @@ filtering may be needed to achieve exact results.</p>
     <h2>Arguments</h2>
     <dl><dt>geom</dt>
 <dd><p>an <code>sf</code>/<code>sfc</code>/<code>sfg</code> or <code>bbox</code> object (from the <code>sf</code> package)</p></dd>
+
+
 <dt>pattern</dt>
 <dd><p>spatial relationship specified by a DE-9IM matrix pattern.
 A DE-9IM pattern is a string of length 9 specified using the characters
 <code>*TF012</code>. Example: <code>'1*T***T**'</code></p></dd>
+
+
 <dt>coords</dt>
 <dd><p>the coordinates of the bounding box as four-element numeric
 vector <code>c(xmin, ymin, xmax, ymax)</code>, a <code>bbox</code> object from the <code>sf</code>
 package (the result of running <code><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">sf::st_bbox()</a></code> on an <code>sf</code> object), or
 an <code>sf</code> object which then gets converted to a bounding box on the fly.</p></dd>
+
+
 <dt>crs</dt>
 <dd><p>(Optional) A numeric value or string containing an SRS code. If
 <code>coords</code> is a <code>bbox</code> object with non-empty crs, it is taken from that.
 (For example, <code>'EPSG:3005'</code> or just <code>3005</code>. The default is to use the CRS of
 the queried layer)</p></dd>
+
+
 <dt>distance</dt>
 <dd><p>numeric value for distance tolerance</p></dd>
+
+
 <dt>units</dt>
 <dd><p>units that distance is specified in. One of
 <code>"feet"</code>, <code>"meters"</code>, <code>"statute miles"</code>, <code>"nautical miles"</code>, <code>"kilometers"</code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a CQL expression to be passed on to the WFS call</p>
+    
+
+<p>a CQL expression to be passed on to the WFS call</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -154,7 +167,7 @@ the queried layer)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>

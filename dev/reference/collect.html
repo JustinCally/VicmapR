@@ -19,7 +19,7 @@ See dplyr::collect for details."><meta property="og:image" content="https://just
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.9.9000</span>
       </span>
     </div>
 
@@ -78,17 +78,26 @@ In doing so it will return an <code>sf</code> object into memory.</p>
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>object of class <code>vicmap_promise</code> (likely passed from <code><a href="vicmap_query.html">vicmap_query()</a></code>)</p></dd>
+
+
 <dt>quiet</dt>
 <dd><p>logical; whether to suppress the printing of messages and progress</p></dd>
+
+
 <dt>paginate</dt>
 <dd><p>logical; whether to allow pagination of results to extract all records (default is TRUE,
 meaning all data will be returned but it will take more time)</p></dd>
+
+
 <dt>...</dt>
 <dd><p>additional arguments passed to <a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>sf/tbl_df/tbl/data.frame matching the query parameters</p>
+    
+
+<p>sf/tbl_df/tbl/data.frame matching the query parameters</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -142,7 +151,7 @@ process may take a while to run, thus it is recommended to filter large datasets
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>
