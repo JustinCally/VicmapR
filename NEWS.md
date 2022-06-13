@@ -1,3 +1,5 @@
+# VicmapR (development version)
+
 # VicmapR 0.1.9  
 * Addition of tutorial for new users, written by Rachel Swain (Vicmap for Beginners) (PR#36, #41)  
 * Several bug fixes for the release of dbplyr 2.2.0 (PR#39, #40)  
