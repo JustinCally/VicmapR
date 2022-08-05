@@ -55,7 +55,7 @@ Imports:
     DBI,
     xml2,
     glue,
-    dbplyr (>= 2.0.0),
+    dbplyr (>= 2.2.0),
     rlang,
     curl,
     rvest,
