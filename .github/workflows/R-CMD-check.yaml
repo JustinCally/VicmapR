@@ -48,7 +48,7 @@ jobs:
       - name: Install dev sf
         if: runner.os == 'Linux'
         run: |
-          remotes::install_github("r-spatial/sf")
+          devtools::install_github("r-spatial/sf")
         shell: Rscript {0}
           
       - name: Check sf installation
