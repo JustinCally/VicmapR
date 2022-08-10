@@ -29,12 +29,12 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
   comment = "#>",
-  eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3),
+  eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3),
   purl = FALSE
 )
 ```
 
-```{r, include=FALSE, echo=FALSE, eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, include=FALSE, echo=FALSE, eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 # LIBRARIES -----
 library(VicmapR)
 library(sf)
@@ -76,7 +76,7 @@ VicmapR uses *lazy evaluation*,  in which we query but do not collect the data f
 ## Worked Example - Swooping Birds
 
 <!-- Load swoops for reporting -->
-```{r, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 swoops <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% collect() 
 ```
 
@@ -87,7 +87,7 @@ Australian spring is famous for the presence of swooping birds. Certain species 
 ### Searching for data 
 First, we need to search for the dataset. We can view all layers, or do a keyword search. Use `ignore.case = TRUE` for a case-insensitive search.
 
-```{r,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 #Don't forget to load VicmapR library
 library(VicmapR) 
 
@@ -101,7 +101,7 @@ search <- listLayers(pattern = "swoop", ignore.case = T)
 
 Viewing our search results shows us the name of the dataset and its description.
 
-```{r echo=FALSE, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r echo=FALSE, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 library(knitr)
 library(kableExtra)
 search %>% kable() #%>% kable_styling("bordered")
@@ -111,7 +111,7 @@ Once we have the name of the Vicmap dataset we would like to download, in this c
 
 If we are still not sure from the name and description that this is the right dataset, we can look at the Vicmap Promise to get a snippet of the dataset contents. 
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") 
 ```
 
@@ -123,7 +123,7 @@ The summary also shows that there are `r try(nrow(swoops))` rows in this dataset
 
 Using lazy evaluation, we can use pipes to filter and subset the data, so that we only collect the desired subset. For example, let's just look at the first 10 rows.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 query <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
   head(10) %>% collect()
 
@@ -135,7 +135,7 @@ query
 
 Now let's only look at swoops that occurred in 2021, where STATUS is HISTORY2021. For our analysis, we will look only at the swoop date, species, number of birds, comments and geometry. Note that Vicmap datasets will retain id and OBJECTID columns even if not selected in the Vicmap promise. As this a simple features (sf) dataset, the geometry corresponding to the features (in this case, swoops) does not need to be selected as it is always attached. The geometry column can only be removed intentionally, for example, by using the `st_drop_geometry()` function in the `sf` package.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 library(dplyr)
 
 swoops_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>% 
@@ -157,7 +157,7 @@ swoops_2021 %>% head(5) %>%
 
 Often the first thing we want to do is see the data on a map. The simplest and quickest way to visualise spatial data is to use the `mapview` package:
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 library(mapview)
 mapview(swoops_2021)
 ```
@@ -171,7 +171,7 @@ For more customisation, you might want to consider plotting your map in `leaflet
 
 We will start by plotting the most basic map in leaflet. Instead of using a single function like `mapview()`, in leaflet we need to add each component to the map. At a minimum we specify the leaflet object, add a basemap and add the markers. Note: differing to mapview, leaflet does not include marker labels by default, these must be added with the `popup` parameter.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 library(leaflet)
 
 swoops_2021 %>%
@@ -183,7 +183,7 @@ swoops_2021 %>%
 
 There are a lot of points in this dataset and leaflet's default marker appears very large and crowded. `addCircleMarkers()` is a quick and easy way to customise markers to suit your data.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 swoops_2021 %>%
   leaflet() %>%
   addTiles() %>%
@@ -203,7 +203,7 @@ We can also easily conditionally format our markers and basemaps in leaflet. Let
 *  Change the basemap to something more simple. There are many popular and free third-party base maps to choose from that can be added with `addProviderTiles()`.
 *  Add more details to the popup. Text in the popup parameter can be formatted with html tags.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 
 # Create a palette
 pal <- colorFactor("Accent", levels = swoops_2021$SPECIES) #define a colour palette
@@ -232,7 +232,7 @@ The `sf` package for R provides tools for dealing with 'simple feature' datasets
 
 To do this we can use `sf::st_intersection()`. Before performing any spatial operations on a dataset, you want to make sure the coordinate reference system (crs) is correct and if there are multiple datasets, that the crs is the same for each dataset. You can check the crs system with `sf::st_crs()`.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 # Suburb polygon for Darebin
 darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
   select(LGA_NAME) %>% 
@@ -255,7 +255,7 @@ mapview(darebin_swoops) + mapview(darebin, alpha.regions = 0.3, col.regions= "gr
 
 We probably regularly travel a bit further afield though, so lets look at a radius from our home address. We can create the radius geometry with st_buffer() but first need to define the coordinates for the centre of the radius (home). Don't forget to specify the crs as 4326 as we are dealing with a latitude and longitude coordinate system.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 lat <- -37.75215888969604
 lon <- 145.02927170548745
 
@@ -265,7 +265,7 @@ home <- st_sfc(st_point(c(lon, lat)), crs = 4326)
 
 We have a problem though, latitude and longitude units are degrees and st_buffer assumes units of meters. To convert from degrees to metres we need to project our latitude and longitude, which are represented as a point on a curved surface, onto a flat plane. To do this, we use a projection standard chosen specifically for the zone containing the coordinates. The standard is called the EPSG code and for our coordinates is zone 55.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 # Project coordinates
 home_utm <- st_transform(home, "+proj=utm +zone=55")
 
@@ -277,7 +277,7 @@ mapview(home_utm) + mapview(home_radius)
 
 Now we can use this radius to filter our swoops data. Don't forget, we need to convert the crs to 4283 to work with our swoops data
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 st_crs(home_radius) #crs is UTM Zone 55
 
 home_radius <- st_transform(home_radius, crs = 4283)
@@ -293,7 +293,7 @@ Let's say we feel like a bike ride. We've picked a route but want to know which 
 
 We can solve this problem in a similar way, using `st_intersection()`. 
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 
 # Load bike route
 route_line <- sf::st_read(system.file("shapes/cycle_route.geojson", package="VicmapR"), quiet = F) %>% 
@@ -319,7 +319,7 @@ These geometric filters allow us to perform basic spatial manipulation while ret
 
 Let's revisit our examples above. To get the swoops only in Darebin we can filter with `INTERSECTS()`.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 
 # Suburb polygon for Darebin
 darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
@@ -341,7 +341,7 @@ mapview(darebin_2021) + mapview(darebin, alpha.regions = 0.3, col.regions = "ora
 
 Now let's try the 10km radius.
 
-```{r,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 
 # Swoops in 10k
 radius_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
@@ -357,7 +357,7 @@ mapview(radius_2021) + mapview(home_radius, alpha.regions = 0.3, col.regions = "
 
 And finally, the swoops on our cycling route. To find swoops within 300m we use the `INTERSECTS()` function and the cycling route with an added 300m buffer. Note: VicmapR geometric filters will be simplified, thus if precise intersections are desired, it is advised to do a cleanup of the filtered data once collected.
 
-```{r, warning=FALSE, message=FALSE,eval = all(geoserver_connected, !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 
 route_line <- sf::st_read(system.file("shapes/cycle_route.geojson", package="VicmapR"), quiet = F) %>% 
   sf::st_transform(4283)
