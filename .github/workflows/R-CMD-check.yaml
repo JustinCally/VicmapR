@@ -45,7 +45,7 @@ jobs:
         run: |
           # install spatial dependencies
           sudo apt update
-          sudo apt-get install libgdal-dev libproj-dev libgeos-dev libudunits2-dev
+          sudo apt-get install libgdal-dev libproj-dev libgeos-dev libudunits2-dev proj-bin
           
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
