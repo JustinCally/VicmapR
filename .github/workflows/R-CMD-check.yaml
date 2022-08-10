@@ -40,10 +40,22 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
           
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
+        run: |
+          # install spatial dependencies
+          sudo apt update
+          sudo apt-get install libgdal-dev libproj-dev libgeos-dev libudunits2-dev
+          
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
           needs: check
+          
+      - name: Check sf installation
+        if: runner.os == 'Linux'
+        run: |
+          RScript -e "sf::sf_extSoftVersion()"
 
       - uses: r-lib/actions/check-r-package@v2
         with:
