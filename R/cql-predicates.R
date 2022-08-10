@@ -104,6 +104,26 @@ cql_geom_predicate_list <- function() {
     "DWITHIN", "BEYOND", "BBOX")
 }
 
+#' axisorder
+#'
+#'
+#' @return character string
+#'
+#' @noRd
+axisorder <- function(x) {
+  # check axis order against standard
+p <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = TRUE) %>% 
+    sf::st_union() %>%
+    sf::st_centroid() %>%
+    sf::st_as_text()
+
+if(p == "POINT (144.9436 -37.81073)") {
+  return("2,1")
+} else {
+  return("1,2")
+}
+}
+
 #' Sf as text
 #'
 #' @param x sf object
@@ -123,7 +143,8 @@ sf_text <- function(x) {
     # Message was annoying
     # message("The object is too large to perform exact spatial operations using VicmapR. 
     #         To simplify the polygon, sf::st_simplify() was used to reduce the size of the query")
-    x <- polygonFormat(x)
+    x <- polygonFormat(x) %>%
+      sf::st_transform(4283) # lat/long format
   }
   
   if (inherits(x, "bbox")) {
@@ -136,7 +157,7 @@ sf_text <- function(x) {
     ## Flip axis for certain crs's using GDAL 3 ##
     ao <- sf::st_axis_order()
     sf::st_axis_order(TRUE)
-    x <- sf::st_transform(x, pipeline = "+proj=pipeline +step +proj=axisswap +order=2,1") # reverse axes
+    x <- sf::st_transform(x, pipeline = paste0("+proj=pipeline +step +proj=axisswap +order=", axisorder())) # reverse axes
     filter_string <- sf::st_as_text(x)
     sf::st_axis_order(ao)
     
