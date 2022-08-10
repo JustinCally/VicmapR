@@ -5,9 +5,7 @@ on:
       - master
       - gdal-fix
   pull_request:
-    branches:    
-      - main
-      - master
+    branches: [ "master" ]
   schedule:
     - cron: '30 4 * * 1'
 
