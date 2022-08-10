@@ -26,6 +26,7 @@ jobs:
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      CRAN: ${{ matrix.config.cran }}
       R_KEEP_PKG_SOURCE: yes
 
     steps:
@@ -38,7 +39,12 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-      
+          
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck
+          needs: check
+          
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
@@ -53,11 +59,7 @@ jobs:
           Rscript -e "install.packages('stringi')"
           Rscript -e "install.packages('sf', type = 'source')"
           Rscript -e "install.packages('mapview')" 
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: any::rcmdcheck
-          needs: check
+          Rscript -e "install.packages('rgdal')" 
 
       - uses: r-lib/actions/check-r-package@v2
         with:
