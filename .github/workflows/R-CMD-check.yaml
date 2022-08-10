@@ -50,25 +50,6 @@ jobs:
         run: |
           sf::sf_extSoftVersion()
         shell: Rscript {0}
-        
-      - name: Check vicmapr geom
-        run: |
-          library(sf)
-          library(VicmapR)
-          library(dplyr)
-          sf::sf_extSoftVersion()
-          darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
-                select(LGA_NAME) %>% 
-                filter(LGA_NAME == "DAREBIN") %>%
-                collect()
-          out <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
-          filter(SWOOP_DATE > "2020-12-31z") %>%
-          filter(STATUS == "HISTORY2021") %>%
-          filter(INTERSECTS(darebin)) %>%
-          select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
-            show_query() %>% capture.output()
-          cat(out)
-        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
