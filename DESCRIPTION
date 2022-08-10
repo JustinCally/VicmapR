@@ -65,6 +65,7 @@ Imports:
     mapview,
     leaflet
 VignetteBuilder: knitr
+SystemRequirements: GDAL (>= 3.0.0), GEOS (>= 3.4.0), PROJ (>= 7.0.0)
 Collate: 
     'globals.R'
     'build-query.R'
