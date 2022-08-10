@@ -118,9 +118,9 @@ p <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), qui
     sf::st_as_text()
 
 if(p == "POINT (144.9436 -37.81073)") {
-  return("2,1")
-} else {
   return("1,2")
+} else {
+  return("2,1")
 }
 }
 
@@ -156,7 +156,7 @@ sf_text <- function(x) {
   if (sf::sf_extSoftVersion()["GDAL"] >= "3.0.0") {
     ## Flip axis for certain crs's using GDAL 3 ##
     ao <- sf::st_axis_order()
-    sf::st_axis_order(TRUE)
+    sf::st_axis_order(FALSE)
     x <- sf::st_transform(x, pipeline = paste0("+proj=pipeline +step +proj=axisswap +order=", axisorder())) # reverse axes
     filter_string <- sf::st_as_text(x)
     sf::st_axis_order(ao)
