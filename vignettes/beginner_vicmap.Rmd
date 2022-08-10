@@ -326,6 +326,8 @@ darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
   filter(INTERSECTS(darebin)) %>%
   select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
     show_query() %>% capture.output()
+  
+  cat(out)
 
 # stop(sf::sf_extSoftVersion())
 
