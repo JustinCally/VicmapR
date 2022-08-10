@@ -3,6 +3,7 @@ on:
     branches:
       - main
       - master
+      - gdal-fix
   pull_request:
     branches:    
       - main
