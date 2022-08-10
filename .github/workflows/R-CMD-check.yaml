@@ -45,10 +45,15 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
           
+      - name: Install dev sf
+        if: runner.os == 'Linux'
+        run: |
+          remotes::install_github("r-spatial/sf")
+        shell: Rscript {0}
+          
       - name: Check sf installation
         if: runner.os == 'Linux'
         run: |
-          install.packages("sf", configure.args = "--with-proj-lib=/usr/local/lib/")
           sf::sf_extSoftVersion()
         shell: Rscript {0}
 
