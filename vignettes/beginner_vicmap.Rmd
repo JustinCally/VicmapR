@@ -38,7 +38,6 @@ knitr::opts_chunk$set(
 # LIBRARIES -----
 library(VicmapR)
 library(sf)
-message(sf::sf_extSoftVersion())
 ```
 
 ## Who is this tutorial for?
@@ -89,8 +88,6 @@ Australian spring is famous for the presence of swooping birds. Certain species 
 First, we need to search for the dataset. We can view all layers, or do a keyword search. Use `ignore.case = TRUE` for a case-insensitive search.
 
 ```{r,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-#Don't forget to load VicmapR library
-library(VicmapR) 
 
 #All layers
 all_layers <- listLayers() 
@@ -240,9 +237,6 @@ darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
   filter(LGA_NAME == "DAREBIN") %>%
   collect()
 
-
-library(sf)
-
 # Check crs for each spatial dataset
 sf::st_crs(darebin) == sf::st_crs(swoops_2021)
 
@@ -320,20 +314,30 @@ These geometric filters allow us to perform basic spatial manipulation while ret
 
 Let's revisit our examples above. To get the swoops only in Darebin we can filter with `INTERSECTS()`.
 
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-
+```{r, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 # Suburb polygon for Darebin
 darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
   select(LGA_NAME) %>% 
   filter(LGA_NAME == "DAREBIN") %>%
   collect()
 
+  out <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
+  filter(SWOOP_DATE > "2020-12-31z") %>%
+  filter(STATUS == "HISTORY2021") %>%
+  filter(INTERSECTS(darebin)) %>%
+  select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
+    show_query() %>% capture.output()
+
+warning(sf::sf_extSoftVersion())
+
+warning(out[16])
+
 # Swoops in Darebin
 darebin_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
   filter(SWOOP_DATE > "2020-12-31z") %>%
   filter(STATUS == "HISTORY2021") %>%
-  select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
   filter(INTERSECTS(darebin)) %>%
+  select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
   collect()
 
 mapview(darebin_2021) + mapview(darebin, alpha.regions = 0.3, col.regions = "orange")
