@@ -38,6 +38,7 @@ knitr::opts_chunk$set(
 # LIBRARIES -----
 library(VicmapR)
 library(sf)
+message(sf::sf_extSoftVersion())
 ```
 
 ## Who is this tutorial for?
