@@ -42,6 +42,7 @@ test_that("geometric filter works", {
   skip_if_offline()
   skip_on_cran()
   skip_if(geoserver_down)
+  skip_if(!(sf::sf_extSoftVersion()[["GDAL"]] > 3))
   
   polygon <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"))
   
