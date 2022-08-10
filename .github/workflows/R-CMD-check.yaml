@@ -55,7 +55,8 @@ jobs:
       - name: Check sf installation
         if: runner.os == 'Linux'
         run: |
-          RScript -e "sf::sf_extSoftVersion()"
+          sf::sf_extSoftVersion()
+        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
