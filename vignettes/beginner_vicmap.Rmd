@@ -314,8 +314,7 @@ These geometric filters allow us to perform basic spatial manipulation while ret
 
 Let's revisit our examples above. To get the swoops only in Darebin we can filter with `INTERSECTS()`.
 
-```{r, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-# Suburb polygon for Darebin
+```{r}
 darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
   select(LGA_NAME) %>% 
   filter(LGA_NAME == "DAREBIN") %>%
@@ -331,6 +330,11 @@ darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
 warning(sf::sf_extSoftVersion())
 
 warning(out[16])
+```
+
+
+```{r, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+# Suburb polygon for Darebin
 
 # Swoops in Darebin
 darebin_2021 <- vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") %>%
