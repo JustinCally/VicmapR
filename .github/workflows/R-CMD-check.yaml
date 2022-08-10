@@ -48,6 +48,7 @@ jobs:
       - name: Check sf installation
         if: runner.os == 'Linux'
         run: |
+          install.packages("sf", configure.args = "--with-proj-lib=/usr/local/lib/")
           sf::sf_extSoftVersion()
         shell: Rscript {0}
 
