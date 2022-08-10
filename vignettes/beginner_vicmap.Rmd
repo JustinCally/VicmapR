@@ -327,9 +327,9 @@ darebin <- vicmap_query(layer = "datavic:VMADMIN_LGA_POLYGON") %>%
   select(SWOOP_DATE, NO_OF_BIRDS, SPECIES, COMMENTS) %>%
     show_query() %>% capture.output()
 
-warning(sf::sf_extSoftVersion())
+# stop(sf::sf_extSoftVersion())
 
-warning(out[16])
+stop(out[16])
 ```
 
 
