@@ -20,9 +20,9 @@ jobs:
         config:
           - {os: macOS-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release', args: "'--as-cran'"}
-          - {os: ubuntu-latest,   r: 'release', args: "'--as-cran'"}
-          - {os: ubuntu-latest,   r: 'oldrel-1', args: "'--as-cran'"}
+          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,   r: 'release'}
+          - {os: ubuntu-latest,   r: 'oldrel-1'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -44,22 +44,6 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-          
-      - name: Install system dependencies
-        if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          sudo apt install \
-          libicu-dev 
-          # install spatial dependencies
-          sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
-          sudo apt update
-          sudo apt-get install libgdal-dev libproj-dev libgeos-dev libudunits2-dev
-          Rscript -e "install.packages('stringi')"
-          Rscript -e "install.packages('sf', type = 'source')"
-          Rscript -e "install.packages('mapview')" 
-          Rscript -e "install.packages('rgdal')" 
 
       - uses: r-lib/actions/check-r-package@v2
         with:

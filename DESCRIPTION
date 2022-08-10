@@ -47,7 +47,7 @@ Suggests:
 Imports: 
     magrittr,
     httr,
-    sf (>= 0.7),
+    sf (>= 0.8),
     dplyr,
     purrr,
     methods,
