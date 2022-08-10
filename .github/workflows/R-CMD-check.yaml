@@ -20,9 +20,9 @@ jobs:
         config:
           - {os: macOS-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
+          - {os: ubuntu-22.04,   r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-22.04,   r: 'release'}
+          - {os: ubuntu-22.04,   r: 'oldrel-1'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -39,27 +39,14 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-      
-      - name: Install spatial deps
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get install libgdal-dev proj-bin libgeos-dev libudunits2-dev
           
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
           needs: check
-          cache-version: 2
-          
-      - name: Install dev sf
-        if: runner.os == 'Linux'
-        run: |
-          install.packages("remotes")
-          remotes::install_github("r-spatial/sf")
-        shell: Rscript {0}
+          cache-version: 3
           
       - name: Check sf installation
-        if: runner.os == 'Linux'
         run: |
           sf::sf_extSoftVersion()
         shell: Rscript {0}
