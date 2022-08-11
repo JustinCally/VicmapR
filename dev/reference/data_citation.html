@@ -74,11 +74,11 @@ metadata for the record.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">data_citation</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, anzlicId <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">data_dictionary</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, anzlicId <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">get_metadata</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, anzlicId <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">data_citation</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, anzlicId <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">data_dictionary</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, anzlicId <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">get_metadata</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, anzlicId <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -100,51 +100,51 @@ metadata for the record.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
-<span class="r-in"><span class="fu">data_citation</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu">data_citation</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   @ELECTRONIC{HY_WATERCOURSE,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         author = {Department of Environment, Land, Water &amp; Planning},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         title = {Watercourse Network 1:25,000 - Vicmap Hydro},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         title = {Vicmap Hydro - Watercourse Line},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         year = {2020},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         url = {http://services.land.vic.gov.au/catalogue/metadata?anzlicId=ANZVI0803002490&amp;publicId=guest&amp;extractionProviderId=1},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         owner = {Department of Environment, Land, Water &amp; Planning},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         timestamp = {2022.06.13},</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         timestamp = {2022.08.11},</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-in"><span class="co"># }</span></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
-<span class="r-in"><span class="fu">data_dictionary</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu">data_dictionary</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    `Column Name` `Column Name 10` Obligation Unique `Data Type` `Reference Tab…`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> CONSTRUCTION  CONST            O          N      VARCHAR2(1) VMREFTAB.HY_CON…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> CREATE_DATE_… CRDATE_PFI       O          N      DATE        <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> CREATE_DATE_… CRDATE_UFI       O          N      DATE        <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> FEATURE_QUAL… FQID             O          N      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> FEATURE_TYPE… FTYPE_CODE       O          N      VARCHAR2(3… <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> HIERARCHY     HIERARCHY        O          N      VARCHAR2(1) VMREFTAB.HY_HIE…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> NAME          NAME             O          N      VARCHAR2(5… <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> NAMED_FEATUR… NFEAT_ID         O          N      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ORIGIN        ORIGIN           O          N      VARCHAR2(1) VMREFTAB.HY_ORI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> PFI           PFI              M          Y      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> SUPERCEDED_P… SUPER_PFI        O          N      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> UFI           UFI              O          N      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> USAGE         USAGE            O          N      VARCHAR2(1) VMREFTAB.HY_USA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: Comments &lt;chr&gt;</span></span>
-<span class="r-in"><span class="co"># }</span></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
-<span class="r-in"><span class="fu">get_metadata</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    `Column Name`      `Column Name 10` Obligation Unique Data …¹ Refer…² Comme…³</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> CONSTRUCTION       CONST            O          N      VARCHA… VMREFT… <span style="color: #949494;">"</span>Code …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> CREATE_DATE_PFI    CRDATE_PFI       O          N      DATE    <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Date …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> CREATE_DATE_UFI    CRDATE_UFI       O          N      DATE    <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Date …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> FEATURE_QUALITY_ID FQID             O          N      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Ident…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> FEATURE_TYPE_CODE  FTYPE_CODE       O          N      VARCHA… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Featu…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> HIERARCHY          HIERARCHY        O          N      VARCHA… VMREFT… <span style="color: #949494;">"</span>Code …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> NAME               NAME             O          N      VARCHA… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Name …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> NAMED_FEATURE_ID   NFEAT_ID         O          N      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Uniqu…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ORIGIN             ORIGIN           O          N      VARCHA… VMREFT… <span style="color: #949494;">"</span>Code …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> PFI                PFI              M          Y      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Persi…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> SUPERCEDED_PFI     SUPER_PFI        O          N      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>PFI o…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> UFI                UFI              O          N      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Datab…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> USAGE              USAGE            O          N      VARCHA… VMREFT… <span style="color: #949494;">"</span>Code …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​`Data Type`, ²​`Reference Table`, ³​Comments</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu">get_metadata</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 30 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    `Metadata Name`           Description                                        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Resource Name             <span style="color: #949494;">"</span>HY_WATERCOURSE<span style="color: #949494;">"</span>                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Title                     <span style="color: #949494;">"</span>Watercourse Network 1:25,000 - Vicmap Hydro<span style="color: #949494;">"</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Title                     <span style="color: #949494;">"</span>Vicmap Hydro - Watercourse Line<span style="color: #949494;">"</span>                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Anzlic Id                 <span style="color: #949494;">"</span>ANZVI0803002490\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Custodian                 <span style="color: #949494;">"</span>Department of Environment, Land, Water &amp; Planning<span style="color: #949494;">"</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Owner                     <span style="color: #949494;">"</span>Department of Environment, Land, Water &amp; Planning<span style="color: #949494;">"</span></span>
@@ -154,30 +154,31 @@ metadata for the record.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Purpose                   <span style="color: #949494;">"</span>Vicmap Hydro provides an accurate representation …</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Geographic Extent Polygon  <span style="color: #BB0000;">NA</span>                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 20 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    `Column Name` `Column Name 10` Obligation Unique `Data Type` `Reference Tab…`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> CONSTRUCTION  CONST            O          N      VARCHAR2(1) VMREFTAB.HY_CON…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> CREATE_DATE_… CRDATE_PFI       O          N      DATE        <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> CREATE_DATE_… CRDATE_UFI       O          N      DATE        <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> FEATURE_QUAL… FQID             O          N      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> FEATURE_TYPE… FTYPE_CODE       O          N      VARCHAR2(3… <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> HIERARCHY     HIERARCHY        O          N      VARCHAR2(1) VMREFTAB.HY_HIE…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> NAME          NAME             O          N      VARCHAR2(5… <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> NAMED_FEATUR… NFEAT_ID         O          N      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ORIGIN        ORIGIN           O          N      VARCHAR2(1) VMREFTAB.HY_ORI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> PFI           PFI              M          Y      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> SUPERCEDED_P… SUPER_PFI        O          N      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> UFI           UFI              O          N      NUMBER(9)   <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> USAGE         USAGE            O          N      VARCHAR2(1) VMREFTAB.HY_USA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: Comments &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    `Column Name`      `Column Name 10` Obligation Unique Data …¹ Refer…² Comme…³</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> CONSTRUCTION       CONST            O          N      VARCHA… VMREFT… <span style="color: #949494;">"</span>Code …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> CREATE_DATE_PFI    CRDATE_PFI       O          N      DATE    <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Date …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> CREATE_DATE_UFI    CRDATE_UFI       O          N      DATE    <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Date …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> FEATURE_QUALITY_ID FQID             O          N      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Ident…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> FEATURE_TYPE_CODE  FTYPE_CODE       O          N      VARCHA… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Featu…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> HIERARCHY          HIERARCHY        O          N      VARCHA… VMREFT… <span style="color: #949494;">"</span>Code …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> NAME               NAME             O          N      VARCHA… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Name …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> NAMED_FEATURE_ID   NFEAT_ID         O          N      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Uniqu…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ORIGIN             ORIGIN           O          N      VARCHA… VMREFT… <span style="color: #949494;">"</span>Code …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> PFI                PFI              M          Y      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Persi…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> SUPERCEDED_PFI     SUPER_PFI        O          N      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>PFI o…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> UFI                UFI              O          N      NUMBER… <span style="color: #BB0000;">NA</span>      <span style="color: #949494;">"</span>Datab…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> USAGE              USAGE            O          N      VARCHA… VMREFT… <span style="color: #949494;">"</span>Code …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​`Data Type`, ²​`Reference Table`, ³​Comments</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "http://services.land.vic.gov.au/catalogue/metadata?anzlicId=ANZVI0803002490&amp;publicId=guest&amp;extractionProviderId=1"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -192,7 +193,7 @@ metadata for the record.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
