@@ -9,13 +9,13 @@
 coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/JustinCally/VicmapR?branch=master)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![R build
-status](https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/VicmapR/actions)
+<!-- [![R build status](https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/VicmapR/actions) -->
 [![CRAN
 status](https://www.r-pkg.org/badges/version/VicmapR)](https://CRAN.R-project.org/package=VicmapR)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/VicmapR?color=ff69b4)](https://cran.r-project.org/package=VicmapR)
 <!-- [![Devel version](https://img.shields.io/badge/devel%20version-0.1.3-blue.svg)](https://github.com/JustinCally/VicmapR) -->
 <!-- [![Code size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR) -->
+[![R-CMD-check](https://github.com/JustinCally/VicmapR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JustinCally/VicmapR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of VicmapR is to provide functions to easily access Victorian
@@ -44,19 +44,18 @@ remotes::install_github("JustinCally/VicmapR")
 ### Dependencies
 
 Currently, the ability to use accurate geometric filters using `VicmapR`
-requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and
+requires GDAL \> 3.0. To see how to upgrade your version of GDAL and
 link it to the `sf` package visit:
 <https://r-spatial.github.io/sf/#installing>
 
 ``` r
 library(sf)
-#> Warning: package 'sf' was built under R version 4.1.2
-#> Linking to GEOS 3.9.1, GDAL 3.4.0, PROJ 8.1.1; sf_use_s2() is TRUE
+#> Linking to GEOS 3.11.0, GDAL 3.5.1, PROJ 9.0.1; sf_use_s2() is TRUE
 sf::sf_extSoftVersion()
 #>           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
-#>        "3.9.1"        "3.4.0"        "8.1.1"         "true"         "true" 
+#>       "3.11.0"        "3.5.1"        "9.0.1"         "true"         "true" 
 #>           PROJ 
-#>        "8.1.1"
+#>        "9.0.1"
 ```
 
 ## Example

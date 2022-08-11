@@ -36,3 +36,28 @@ test_that("passing an non-existent object to a geom predicate", {
                  filter(INTERSECTS(districts)),
                'object "districts" not found.\nThe object passed to INTERSECTS needs to be valid sf object.')
 })
+
+
+test_that("geometric filter works", {
+  skip_if_offline()
+  skip_on_cran()
+  skip_if(geoserver_down)
+  skip_if(!(sf::sf_extSoftVersion()[["GDAL"]] > 3))
+  
+  polygon <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = TRUE)
+  
+  dataobject <- vicmap_query("datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+                 filter(INTERSECTS(polygon)) %>%
+    feature_hits()
+  
+  expect_gt(dataobject, expected = 0)
+  
+  polygon_3111 <- sf::st_transform(polygon, 3111)
+  
+  dataobject <- vicmap_query("datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+    filter(INTERSECTS(polygon_3111)) %>%
+    feature_hits()
+  
+  expect_gt(dataobject, expected = 0)
+  
+})
