@@ -1,5 +1,5 @@
 base.url <- getOption("vicmap.base_url", default = VicmapR:::base_wfs_url)
-new.url <- "https://opendata-uat.maps.vic.gov.au/geoserver/wfs"
+new.url <- "https://opendata.maps.vic.gov.au/geoserver/wfs"
 options(vicmap.base_url = new.url)
 options(vicmap.backend = "AWS")
 melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = T)

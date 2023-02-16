@@ -206,7 +206,9 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
     
     for(i in 1:loop_times) {
       x$query$startIndex <- (i-1)*getOption("vicmap.chunk_limit", default = 1500L)
+      if(getOption("vicmap.backend", default = "Oracle") != "AWS") {
       x$query$sortBy <- sort_col 
+      }
       if(x$query$version == "2.0.0") {
         x$query$count <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 1500L))
       } else {
