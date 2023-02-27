@@ -29,6 +29,8 @@ requested. On faster internet connections, a bigger chunk limit could be useful 
 it is advisable to lower the chunk limit. Chunks must be less than 70000.
 
 \code{vicmap.base_url} is the base wfs url used to query the geoserver.
+
+\code{vicmap.backend} is the backend software running the geoserver. The data migration in 2022/2023 will change the backend from 'Oracle' to 'AWS'
 }
 \examples{
 vicmap_options()

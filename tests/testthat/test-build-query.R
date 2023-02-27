@@ -80,7 +80,7 @@ test_that("collect.vicmap_promise works", {
     head(101) %>% select(id) %>%
     collect()}, regexp = NULL)
   
-  options(vicmap.chunk_limit = 1500)
+  options(vicmap.chunk_limit = 5000L)
 })
 
 test_that("show_query.vicmap_promise works", {

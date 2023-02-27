@@ -1,0 +1,631 @@
+Original_Layer_Name,New_Layer_Name,CQL_FILTER
+BURNPLAN21,burnplan21,
+CATCHMENTS_BASIN100,basin100,
+CATCHMENTS_BIOLINK500,biolink500,
+CATCHMENTS_CMA100,cma100,
+CATCHMENTS_COASTAL_ACID_SULPHATE_SOILS,coastal_acid_sulphate_soils,
+CATCHMENTS_FLAGSHIP500,flagship500,
+CATCHMENTS_GMU250,gmu250,
+CATCHMENTS_LSYS100,lsys100,lscode !=  ' '
+CATCHMENTS_LANDUSE_2014,landuse_2014,
+CATCHMENTS_LSYS250,lsys250,
+CROWNLAND_APIARY,apiary,
+CROWNLAND_HUNT25_CLOSED,hunt25_closed,
+CROWNLAND_PARKRES,parkres,
+CROWNLAND_PLM25,plm25,
+CROWNLAND_PLM25_ALPINE_RESORT,plm25,mmgt_ongen='ALPINE RESORT'
+CROWNLAND_PLM25_CMNWTH_LAND,plm25,mmgt_ongen='COMMONWEALTH LAND'
+CROWNLAND_PLM25_COASTAL_RES,plm25,"mmgt_ongen in ('COASTAL RESERVE','COASTAL WATERS')"
+CROWNLAND_PLM25_COMM_USE_AREA,plm25,mmgt_ongen='COMMUNITY USE AREA'
+CROWNLAND_PLM25_EARTH_RESOURCES,plm25,mmgt_ongen='EARTH RESOURCES'
+CROWNLAND_PLM25_FOREST_PARK,plm25,mmgt_ongen='FOREST PARK'
+CROWNLAND_PLM25_H_A_C_FEAT_RES,plm25,mmgt_ongen='HISTORIC AND CULTURAL FEATURES RESERVE'
+CROWNLAND_PLM25_MARINE_NP,plm25,mmgt_ongen='MARINE NATIONAL PARK'
+CROWNLAND_PLM25_MARINE_SANC,plm25,mmgt_ongen='MARINE SANCTUARY'
+CROWNLAND_PLM25_NAT_CATCH,plm25,mmgt_ongen='ESSENTIALLY NATURAL CATCHMENT'
+CROWNLAND_PLM25_NATIONAL_P,plm25,mmgt_ongen='NATIONAL PARK'
+CROWNLAND_PLM25_NATURAL_FEAT,plm25,"mmgt_ongen in ('NATURAL FEATURES RESERVE','SCENIC RESERVE')"
+CROWNLAND_PLM25_NATURE_CONSERV,plm25,mmgt_ongen='NATURE CONSERVATION RESERVE'
+CROWNLAND_PLM25_NPA_SHED_3,plm25,mmgt_ongen='NPA SCHEDULE 3 OTHER PARK'
+CROWNLAND_PLM25_NPA_SHED_4,plm25,mmgt_ongen='NPA SCHEDULE 4 PARK OR RESERVE'
+CROWNLAND_PLM25_OTHER,plm25,"mmgt_ongen in ('OTHER (NON SCHEDULED)','LIGHTHOUSE RESERVE','PV MANAGED LAND','PHILLIP ISLAND NATURE PARK')"
+CROWNLAND_PLM25_OVERLAYS,plm25_overlays,
+CROWNLAND_PLM25_OVERLAYS_HR,plm25_overlays,mmgt_ongrd='Heritage River'
+CROWNLAND_PLM25_OVERLAYS_NCA,plm25_overlays,mmgt_ongrd='Natural Catchment Area'
+CROWNLAND_PLM25_OVERLAYS_RA,plm25_overlays,mmgt_ongrd='Reference Area'
+CROWNLAND_PLM25_OVERLAYS_RNA,plm25_overlays,mmgt_ongrd='Remote and Natural Area'
+CROWNLAND_PLM25_OVERLAYS_WZ,plm25_overlays,mmgt_ongrd='Wilderness Zone'
+CROWNLAND_PLM25_PLANTATION,plm25,mmgt_ongen='PLANTATION'
+CROWNLAND_PLM25_PORT_COAST_FAC,plm25,mmgt_ongen='PORT AND COASTAL FACILITY'
+CROWNLAND_PLM25_PROP_NPA,plm25,mmgt_ongen='PROPOSED NATIONAL PARKS ACT'
+CROWNLAND_PLM25_REGIONAL_P,plm25,"mmgt_ongen in ('REGIONAL PARK','METROPOLITAN PARK','RESERVOIR PARK')"
+CROWNLAND_PLM25_SERVICE_UTIL,plm25,mmgt_ongen='SERVICES AND UTILITIES'
+CROWNLAND_PLM25_STATE_FOREST,plm25,mmgt_ongen='STATE FOREST'
+CROWNLAND_PLM25_STATE_PARK,plm25,mmgt_ongen='STATE PARK'
+CROWNLAND_PLM25_UNCAT_PUBLIC,plm25,mmgt_ongen='UNCATEGORISED PUBLIC LAND'
+CROWNLAND_PLM25_WATER_BODY,plm25,mmgt_ongen='WATER BODY'
+CROWNLAND_PLM25_WATER_PROD,plm25,mmgt_ongen='WATER PRODUCTION'
+CROWNLAND_PLM25_WILDERNESS,plm25,mmgt_ongen='WILDERNESS PARK'
+CROWNLAND_PLMGEN,plmgen,
+CROWNLAND_PLMGEN_ALPINE_RESORT,plmgen,mmgt_ongen='ALPINE RESORT'
+CROWNLAND_PLMGEN_CMNWTH_LAND,plmgen,mmgt_ongen='COMMONWEALTH LAND'
+CROWNLAND_PLMGEN_COASTAL_RES,plmgen,"mmgt_ongen in ('COASTAL RESERVE','COASTAL WATERS')"
+CROWNLAND_PLMGEN_COMM_USE_AREA,plmgen,mmgt_ongen='COMMUNITY USE AREA'
+CROWNLAND_PLMGEN_EARTH_RESOURCES,plmgen,mmgt_ongen='EARTH RESOURCES'
+CROWNLAND_PLMGEN_FOREST_PARK,plmgen,mmgt_ongen='FOREST PARK'
+CROWNLAND_PLMGEN_H_A_C_FEAT_RES,plmgen,mmgt_ongen='HISTORIC AND CULTURAL FEATURES RESERVE'
+CROWNLAND_PLMGEN_MARINE_NP,plmgen,mmgt_ongen='MARINE NATIONAL PARK'
+CROWNLAND_PLMGEN_MARINE_SANC,plmgen,mmgt_ongen='MARINE SANCTUARY'
+CROWNLAND_PLMGEN_NAT_CATCH,plmgen,mmgt_ongen='ESSENTIALLY NATURAL CATCHMENT'
+CROWNLAND_PLMGEN_NATIONAL_P,plmgen,mmgt_ongen='NATIONAL PARK'
+CROWNLAND_PLMGEN_NATURAL_FEAT,plmgen,"mmgt_ongen in ('NATURAL FEATURES RESERVE','SCENIC RESERVE')"
+CROWNLAND_PLMGEN_NATURE_CONSERV,plmgen,mmgt_ongen='NATURE CONSERVATION RESERVE'
+CROWNLAND_PLMGEN_NPA_SHED_3,plmgen,mmgt_ongen='NPA SCHEDULE 3 OTHER PARK'
+CROWNLAND_PLMGEN_NPA_SHED_4,plmgen,mmgt_ongen='NPA SCHEDULE 4 PARK OR RESERVE'
+CROWNLAND_PLMGEN_OTHER,plmgen,"mmgt_ongen in ('OTHER (NON SCHEDULED)','LIGHTHOUSE RESERVE','PV MANAGED LAND','PHILLIP ISLAND NATURE PARK')"
+CROWNLAND_PLMGEN_PLANTATION,plmgen,mmgt_ongen='PLANTATION'
+CROWNLAND_PLMGEN_PORT_COAST_FAC,plmgen,mmgt_ongen='PORT AND COASTAL FACILITY'
+CROWNLAND_PLMGEN_PROP_NPA,plmgen,mmgt_ongen='PROPOSED NATIONAL PARKS ACT'
+CROWNLAND_PLMGEN_REGIONAL_P,plmgen,"mmgt_ongen in ('REGIONAL PARK','METROPOLITAN PARK','RESERVOIR PARK')"
+CROWNLAND_PLMGEN_SERVICE_UTIL,plmgen,mmgt_ongen='SERVICES AND UTILITIES'
+CROWNLAND_PLMGEN_STATE_FOREST,plmgen,mmgt_ongen='STATE FOREST'
+CROWNLAND_PLMGEN_STATE_PARK,plmgen,mmgt_ongen='STATE PARK'
+CROWNLAND_PLMGEN_UNCAT_PUBLIC,plmgen,mmgt_ongen='UNCATEGORISED PUBLIC LAND'
+CROWNLAND_PLMGEN_WATER_BODY,plmgen,mmgt_ongen='WATER BODY'
+CROWNLAND_PLMGEN_WATER_PROD,plmgen,mmgt_ongen='WATER PRODUCTION'
+CROWNLAND_PLMGEN_WILDERNESS,plmgen,mmgt_ongen='WILDERNESS PARK'
+CULTURE_RAP,rap,
+DISPLAY_VIEW_POLYGON,display_view_polygon,
+EMERGENCY_MANAGEMENT_REGION,emergency_management_region,
+ENERGY_ELECTRICITY_DISTRIBUTOR,electricity_distributor,
+ENERGY_FACILITIES,energy_facilities,
+ENVIRONPROTECT_ENVIRO_AUDIT_LOC_POINT,enviro_audit_point,
+ENVIRONPROTECT_ENVIRO_AUDIT_LOC_POLYGON,enviro_audit_polygon,
+ENVIRONPROTECT_EPA_LICENCE_POINT,epa_licence_point,
+ENVIRONPROTECT_EPA_LICENCE_POLYGON,epa_licence_polygon,
+ENVIRONPROTECT_GQRUZ_POINT,gqruz_point,
+ENVIRONPROTECT_GQRUZ_POLYGON,gqruz_polygon,
+ENVIRONPROTECT_PSR_POINT,psr_point,
+ENVIRONPROTECT_PSR_POLYGON,psr_polygon,
+ENVIRONPROTECT_SANDS_MCDOUGALL_PUBLIC,sands_mcdougall_public,
+ENVIRONPROTECT_VLR_POINT,vlr_point,
+ENVIRONPROTECT_VLR_POLYGON,vlr_polygon,
+FIRE_BURNPLAN13,burnplan13,
+FIRE_HISTORY_FREQUENCY,fire_history_frequency,
+FLOOD_CONTOUR_100Y_ARI,contour_100y_ari,
+FLOOD_CONTOUR_10Y_ARI,contour_10y_ari,
+FLOOD_CONTOUR_200Y_ARI,contour_200y_ari,
+FLOOD_CONTOUR_20Y_ARI,contour_20y_ari,
+FLOOD_CONTOUR_500Y_ARI,contour_500y_ari,
+FLOOD_CONTOUR_50Y_ARI,contour_50y_ari,
+FLOOD_CONTOUR_5Y_ARI,contour_5y_ari,
+FLOOD_EXTENT_1000Y_ARI,extent_1000y_ari,
+FLOOD_EXTENT_100Y_ARI,extent_100y_ari,
+FLOOD_EXTENT_10Y_ARI,extent_10y_ari,
+FLOOD_EXTENT_200Y_ARI,extent_200y_ari,
+FLOOD_EXTENT_30Y_ARI,extent_30y_ari,
+FLOOD_EXTENT_500Y_ARI,extent_500y_ari,
+FLOOD_EXTENT_50Y_ARI,extent_50y_ari,
+FLOOD_EXTENT_5Y_ARI,extent_5y_ari,
+FLOOD_EXTENT_PMF,extent_pmf,
+FLOOD_FLOODWAY,floodway,
+FLOOD_FLOW_DIRECTION,flow_direction,
+FLOOD_STRUCTURE,flood_structure,
+FLOOD_STRUCTURE_CHANNEL_OUTFALL,flood_structure,type='channel outfall structure'
+FLOOD_STRUCTURE_CHANNEL_REGULATOR,flood_structure,type='channel regulator'
+FLOOD_STRUCTURE_CULVERT,flood_structure,type='culvert'
+FLOOD_STRUCTURE_DAM_RESERVOIR,flood_structure,type='dam or reservoir'
+FLOOD_STRUCTURE_DRAIN_OUTFALL,flood_structure,type='drain outfall dtructure'
+FLOOD_STRUCTURE_DRAIN_REGULATOR,flood_structure,type='drain regulator'
+FLOOD_STRUCTURE_FLOOD_EFFLUENT,flood_structure,type='flood effluent structure'
+FLOOD_STRUCTURE_FLOOD_REGUULATOR,flood_structure,type='flood regulator'
+FLOOD_STRUCTURE_OCCUPATION_CROSSING,flood_structure,type='occupation crossing'
+FLOOD_STRUCTURE_OTHER_BRIDGE,flood_structure,type='other bridge'
+FLOOD_STRUCTURE_RAILWAY_BRIDGE,flood_structure,type='railway bridge'
+FLOOD_STRUCTURE_RETARDING_BASIN,flood_structure,type='retarding basin'
+FLOOD_STRUCTURE_ROAD_BRIDGE,flood_structure,type='road bridge'
+FLOOD_STRUCTURE_ROAD_EMBANKMENT,flood_structure,type='Road Embankment Location'
+FLOOD_STRUCTURE_SYPHON,flood_structure,type='syphon'
+FLOOD_STRUCTURE_WEIR,flood_structure,type='weir'
+FLORAFAUNA1_NV1750_EVCBCS,nv1750_evcbcs,
+FLORAFAUNA1_NV1750_EVCBCS_10_1,nv1750_evcbcs,evc_subgp=10.1
+FLORAFAUNA1_NV1750_EVCBCS_10_2,nv1750_evcbcs,evc_subgp=10.2
+FLORAFAUNA1_NV1750_EVCBCS_11_1,nv1750_evcbcs,evc_subgp=11.1
+FLORAFAUNA1_NV1750_EVCBCS_11_2,nv1750_evcbcs,evc_subgp=11.2
+FLORAFAUNA1_NV2005_EVCBCS,nv2005_evcbcs,
+FLORAFAUNA1_NV2005_EVCBCS_1_1,nv2005_evcbcs,evc_subgp=1.1
+FLORAFAUNA1_NV2005_EVCBCS_10_1,nv2005_evcbcs,evc_subgp=10.1
+FLORAFAUNA1_NV2005_EVCBCS_10_2,nv2005_evcbcs,evc_subgp=10.2
+FLORAFAUNA1_NV2005_EVCBCS_11_1,nv2005_evcbcs,evc_subgp=11.1
+FLORAFAUNA1_NV2005_EVCBCS_11_2,nv2005_evcbcs,evc_subgp=11.2
+FLORAFAUNA1_NV2005_EVCBCS_12_1,nv2005_evcbcs,evc_subgp=12.1
+FLORAFAUNA1_NV2005_EVCBCS_13_1,nv2005_evcbcs,evc_subgp=13.1
+FLORAFAUNA1_NV2005_EVCBCS_13_2,nv2005_evcbcs,evc_subgp=13.2
+FLORAFAUNA1_NV2005_EVCBCS_13_3,nv2005_evcbcs,evc_subgp=13.3
+FLORAFAUNA1_NV2005_EVCBCS_13_4,nv2005_evcbcs,evc_subgp=13.4
+FLORAFAUNA1_NV2005_EVCBCS_14_1,nv2005_evcbcs,evc_subgp=14.1
+FLORAFAUNA1_NV2005_EVCBCS_14_2,nv2005_evcbcs,evc_subgp=14.2
+FLORAFAUNA1_NV2005_EVCBCS_15_1,nv2005_evcbcs,evc_subgp=15.1
+FLORAFAUNA1_NV2005_EVCBCS_15_2,nv2005_evcbcs,evc_subgp=15.2
+FLORAFAUNA1_NV2005_EVCBCS_16_1,nv2005_evcbcs,evc_subgp=16.1
+FLORAFAUNA1_NV2005_EVCBCS_16_2,nv2005_evcbcs,evc_subgp=16.2
+FLORAFAUNA1_NV2005_EVCBCS_16_3,nv2005_evcbcs,evc_subgp=16.3
+FLORAFAUNA1_NV2005_EVCBCS_17_1,nv2005_evcbcs,evc_subgp=17.1
+FLORAFAUNA1_NV2005_EVCBCS_17_2,nv2005_evcbcs,evc_subgp=17.2
+FLORAFAUNA1_NV2005_EVCBCS_17_3,nv2005_evcbcs,evc_subgp=17.3
+FLORAFAUNA1_NV2005_EVCBCS_17_4,nv2005_evcbcs,evc_subgp=17.4
+FLORAFAUNA1_NV2005_EVCBCS_18_1,nv2005_evcbcs,evc_subgp=18.1
+FLORAFAUNA1_NV2005_EVCBCS_18_2,nv2005_evcbcs,evc_subgp=18.2
+FLORAFAUNA1_NV2005_EVCBCS_19_1,nv2005_evcbcs,evc_subgp=19.1
+FLORAFAUNA1_NV2005_EVCBCS_19_2,nv2005_evcbcs,evc_subgp=19.2
+FLORAFAUNA1_NV2005_EVCBCS_2_1,nv2005_evcbcs,evc_subgp=2.1
+FLORAFAUNA1_NV2005_EVCBCS_2_2,nv2005_evcbcs,evc_subgp=2.2
+FLORAFAUNA1_NV2005_EVCBCS_20_1,nv2005_evcbcs,evc_subgp=20.1
+FLORAFAUNA1_NV2005_EVCBCS_3_1,nv2005_evcbcs,evc_subgp=3.1
+FLORAFAUNA1_NV2005_EVCBCS_4_1,nv2005_evcbcs,evc_subgp=4.1
+FLORAFAUNA1_NV2005_EVCBCS_5_1,nv2005_evcbcs,evc_subgp=5.1
+FLORAFAUNA1_NV2005_EVCBCS_5_2,nv2005_evcbcs,evc_subgp=5.2
+FLORAFAUNA1_NV2005_EVCBCS_5_3,nv2005_evcbcs,evc_subgp=5.3
+FLORAFAUNA1_NV2005_EVCBCS_6_1,nv2005_evcbcs,evc_subgp=6.1
+FLORAFAUNA1_NV2005_EVCBCS_6_2,nv2005_evcbcs,evc_subgp=6.2
+FLORAFAUNA1_NV2005_EVCBCS_7_1,nv2005_evcbcs,evc_subgp=7.1
+FLORAFAUNA1_NV2005_EVCBCS_7_2,nv2005_evcbcs,evc_subgp=7.2
+FLORAFAUNA1_NV2005_EVCBCS_8_1,nv2005_evcbcs,evc_subgp=8.1
+FLORAFAUNA1_NV2005_EVCBCS_8_2,nv2005_evcbcs,evc_subgp=8.2
+FLORAFAUNA1_NV2005_EVCBCS_9_1,nv2005_evcbcs,evc_subgp=9.1
+FLORAFAUNA1_NV2005_EVCBCS_D,nv2005_evcbcs,evc_bcs='D'
+FLORAFAUNA1_NV2005_EVCBCS_E,nv2005_evcbcs,evc_bcs='E'
+FLORAFAUNA1_NV2005_EVCBCS_LC,nv2005_evcbcs,evc_bcs='LC'
+FLORAFAUNA1_NV2005_EVCBCS_R,nv2005_evcbcs,evc_bcs='R'
+FLORAFAUNA1_NV2005_EVCBCS_V,nv2005_evcbcs,evc_bcs='V'
+FLORAFAUNA1_RAMSAR25,ramsar25,
+FLORAFAUNA1_VBIOREG100,vbioreg100,
+FLORAFAUNA1_WETLAND_1788,wetland_1788,
+FLORAFAUNA1_WETLAND_1994,wetland_1994,
+FLORAFAUNA1_WETLAND_LANDSCAPE,wetland_landscape,
+FLORAFAUNA1_WETLAND500,wetland500,
+FLORAFAUNA1_WETLANDDIR,wetlanddir,
+FORESTS_RAINFOR25_MURRUNGOWAR,rainfor25_murrungowar,
+FORESTS_FCOV1000_1869_ABSENT,fcov1000_1869,forest_1869='A'
+FORESTS_FCOV1000_1869_PRESENT,fcov1000_1869,forest_1869='P'
+FORESTS_FCOV500_72_ABSENT,fcov500_7287,forest_72='A'
+FORESTS_FCOV500_72_PRESENT,fcov500_7287,forest_72='P'
+FORESTS_FCOV500_87_ABSENT,fcov500_7287,forest_87='A'
+FORESTS_FCOV500_87_PRESENT,fcov500_7287,forest_87='P'
+FORESTS_RECWEB_ASSET,recweb_asset,
+FORESTS_RECWEB_CARPARK,recweb_carpark,
+FORESTS_RECWEB_HISTORIC_RELIC,recweb_historic_relic,
+FORESTS_RECWEB_HUT,recweb_hut,
+FORESTS_RECWEB_POI,recweb_poi,
+FORESTS_RECWEB_SITE,recweb_site,
+FORESTS_RECWEB_TRACK,recweb_track,
+FORESTS_SVEG100,sveg100,
+FORESTS_VICFORESTS_ALLOCATION_APR2019,vicforests_allocation_apr2019,
+FRV_DISTRICT,frv_district,
+FRV_LEGISLATED_BOUNDARY,frv_legislated_boundary,
+FRV_REGION,frv_region,
+FRV_RESPONSE_AREA,frv_response_area,
+MINERALS_ALTERN100_POLYGON,altern100_polygon,
+MINERALS_ANASURV,anasurv,
+MINERALS_BASINS,basins,
+MINERALS_BORES_V_PUBLIC,bores_v_public,
+MINERALS_COAL_BDY,coal_bdy,
+MINERALS_COAL_FLOOR,coal_floor,
+MINERALS_COAL_ISOPACH,coal_isopach,
+MINERALS_COAL_RES,coal_res,
+MINERALS_COAL_ROOF,coal_roof,
+MINERALS_DEEPLD100_ARC,deepld100_arc,
+MINERALS_DEEPLD100_POLYGON,deepld100_polygon,
+MINERALS_DEEPLD250_POLYGON,deepld250_polygon,
+MINERALS_DIGSURV,digsurv,
+MINERALS_DLA,dla,
+MINERALS_DLL,dll,
+MINERALS_DURI100_POLYGON,duri100_polygon,
+MINERALS_EIIA,eiia,
+MINERALS_EL,el,
+MINERALS_ELHIST,elhist,
+MINERALS_ERUPTION_PTS,eruption_pts,
+MINERALS_EWA,ewa,
+MINERALS_EWAHST,ewahst,
+MINERALS_EXC,exc,
+MINERALS_FACIES100_POLYGON,facies100_polygon,
+MINERALS_FACILITY,facility,
+MINERALS_FLTROCK100_POLYGON,fltrock100_polygon,
+MINERALS_FOSSILS,fossils,
+MINERALS_GCHEM,gchem,
+MINERALS_GEOL100_ARC,geol100_arc,
+MINERALS_GEOL100_POLYGON,geol100_polygon,
+MINERALS_GEOL1M_ARC,geol1m_arc,
+MINERALS_GEOL1M_POLYGON,geol1m_polygon,
+MINERALS_GEOL250_ARC,geol250_arc,
+MINERALS_GEOL250_POLYGON,geol250_polygon,
+MINERALS_GEOL4M_POLYGON,geol4m_polygon,
+MINERALS_GEXCURS,gexcurs,
+MINERALS_GMLHST,gmlhst,
+MINERALS_GOLDFLD100_POLYGON,goldfld100_polygon,
+MINERALS_GPMISCL100,gpmiscl100,
+MINERALS_GPMISCL250,gpmiscl250,
+MINERALS_GPSGEOL1100_POLYGON,gpsgeol1100_polygon,
+MINERALS_GPSTRLINE100,gpstrline100,
+MINERALS_GPSTRLINE250,gpstrline250,
+MINERALS_GRAT100KM,grat100km,
+MINERALS_GRAT10KM,grat10km,
+MINERALS_GRAT1KM,grat1km,
+MINERALS_GRATMIN,gratmin,
+MINERALS_GRAVITY,gravity,
+MINERALS_GSVMI,gsvmi,
+MINERALS_INSPECT,inspect,
+MINERALS_MIN,min,
+MINERALS_MINERAL,mineral,
+MINERALS_MINERALP,mineralp,
+MINERALS_MINHST,minhst,
+MINERALS_MINSITE,minsite,
+MINERALS_MINTEN,minten,
+MINERALS_MISCL100,miscl100,
+MINERALS_MISCL250,miscl250,
+MINERALS_MP,mp,
+MINERALS_NUGGET,nugget,
+MINERALS_OILGAS,oilgas,
+MINERALS_OUTCROP,outcrop,
+MINERALS_PETPHYS,petphys,
+MINERALS_PET_WELLS,pet_wells,province_state='VIC'
+MINERALS_PETROL,petrol,
+MINERALS_PETROLPRO,petrolpro,
+MINERALS_PIPELINE,pipeline,
+MINERALS_PL,pl,
+MINERALS_RL,rl,
+MINERALS_ROCKS,rocks,
+MINERALS_RRDURI100_ARC,rrduri100_arc,
+MINERALS_RRDURI100_POLYGON,rrduri100_polygon,
+MINERALS_RRRADSIG100_ARC,rrradsig100_arc,
+MINERALS_RRRADSIG100_POLYGON,rrradsig100_polygon,
+MINERALS_RRREGO100_ARC,rrrego100_arc,
+MINERALS_RRREGO100_POLYGON,rrrego100_polygon,
+MINERALS_SEISMIC_ARC,seismic_arc,
+MINERALS_SEISMIC_POINT,seismic_point,
+MINERALS_SHAFT,shaft,
+MINERALS_SHALLD100_ARC,shalld100_arc,
+MINERALS_SHALLD100_POLYGON,shalld100_polygon,
+MINERALS_SHALWK100_ARC,shalwk100_arc,
+MINERALS_SHALWK100_POLYGON,shalwk100_polygon,
+MINERALS_SIGFEAT,sigfeat,
+MINERALS_SITES,sites,
+MINERALS_SPRINGS,springs,
+MINERALS_STRLINE100,strline100,
+MINERALS_STRLINE1M,strline1m,
+MINERALS_STRLINE250,strline250,
+MINERALS_STRUC,struc,
+MINERALS_TLHST,tlhst,
+MINERALS_XSEC_COAL,xsec_coal,
+PLANNING_HERITAGE_INVENTORY,hermes,vhi_num like 'H%'
+PLANNING_HERITAGE_REGISTER,hermes,vhr_num is not null
+MTP_EES_FUTURE_STN_ENTRANCES,mtp_ees_future_stn_entrances,
+MTP_EES_STATION_ENTRANCES,mtp_ees_station_entrances,
+MTP_EES_TUNNEL_ENTRANCES,mtp_ees_tunnel_entrances,
+MTP_EES_UNDERGROUND_RAIL_TRACK,mtp_ees_underground_rail_track,
+MTP_EES_UNDERGROUND_STATIONS,mtp_ees_underground_stations,
+NV2005_FFG_COMM,nv2005_ffg_comm,
+PLANNING_BUSHFIRE_PRONE_AREA,bushfire_prone_area,
+PORT_PHILLIP_AIDS_TO_NAV,port_phillip_aids_to_nav,
+PPTN_LINES,pptn_lines,
+PPTN_POINTS,pptn_points,
+PTV_METRO_BUS_ROUTE,ptv_metro_bus_route,
+PTV_METRO_BUS_STOP,ptv_metro_bus_stop,
+PTV_METRO_TRAIN_STATION,ptv_metro_train_station,
+PTV_METRO_TRAM_ROUTE,ptv_metro_tram_route,
+PTV_METRO_TRAM_STOP,ptv_metro_tram_stop,
+PTV_REGIONAL_BUS_ROUTE,ptv_regional_bus_route,
+PTV_REGIONAL_BUS_STOP,ptv_regional_bus_stop,
+PTV_REGIONAL_COACH_ROUTE,ptv_regional_coach_route,
+PTV_REGIONAL_COACH_STOP,ptv_regional_coach_stop,
+PTV_REGIONAL_TRAIN_STATION,ptv_regional_train_station,
+PTV_SKYBUS_ROUTE,ptv_skybus_route,
+PTV_SKYBUS_STOP,ptv_skybus_stop,
+PTV_TRAIN_CARPARK,ptv_train_carpark,
+PTV_TRAIN_CORRIDOR_CENTRELINE,ptv_train_corridor_centreline,
+PTV_TRAIN_STATION_BIKE_STORAGE,ptv_train_station_bike_storage,
+PTV_TRAIN_STATION_PLATFORM,ptv_train_station_platform,
+PTV_TRAIN_TRACK_CENTRELINE,ptv_train_track_centreline,
+PTV_TRAM_TRACK_CENTRELINE,ptv_tram_track_centreline,
+PUBLICLANDUSE_VEAC_METRO_OPEN_SPACE,veac_metro_open_space,
+RESOURCEFOOTPRINT,resourcefootprint,
+SMES_FULL,smes_full,
+SOIL_TYPE,soil_type,
+STATE_ASSEMBLY_2022,state_assembly_2022,
+STATE_COUNCIL_2022,state_council_2022,
+STEER_CLEAR_AREA,steer_clear_area,
+STRUCM100,strucm100,
+TR_ROAD_REGISTER,tr_road_register,
+UDP_BH2016,bh2016,
+UDP_IND2016,ind2016,
+UDP_IND2016_PROPOSED_AREAS,ind2016_proposed_areas,
+UDP_MRS2016,mrs2016,
+VBA_RESTRICTED_1M,vba_restricted_1m,
+VIC_RAIL_TRAILS,vic_rail_trails,
+VIC_RAILWAY_CORRIDOR,vic_railway_corridor,
+VIC_RAILWAY_DISUSED,vic_railway_disused,
+VIC_RAILWAY_STATIONS,vic_railway_stations,
+VIC_TOURIST_RAIL_CORRIDOR,vic_tourist_rail_corridor,
+VMADD_ADDRESS,address,
+VMADMIN_AD_LGA_AREA_POLYGON,ad_lga_area_polygon,
+VMADMIN_AD_LOCALITY_AREA_POLYGON,ad_locality_area_polygon,
+VMADMIN_AD_VICGOV_REGION,ad_vicgov_region,
+VMADMIN_CFA_DISTRICT,cfa_district,
+VMADMIN_CFA_REGION,cfa_region,
+VMADMIN_CFA_TFB_DISTRICT,cfa_tfb_district,
+VMADMIN_DELWP_REGION,delwp_region,
+VMADMIN_DEPI_REGION,depi_region,
+VMADMIN_DSE_REGION,dse_region,
+VMADMIN_LGA_POLYGON,lga_polygon,
+VMADMIN_LOCALITY_POLYGON,locality_polygon,
+VMADMIN_MFB_DISTRICT,mfb_district,
+VMADMIN_MFB_REGION,mfb_region,
+VMADMIN_PARISH_POLYGON,parish_polygon,
+VMADMIN_POSTCODE_POLYGON,postcode_polygon,
+VMADMIN_SHIRE500_1994,shire500_1994,
+VMADMIN_STATE_ASSEMBLY_2001,state_assembly_2001,
+VMADMIN_STATE_ASSEMBLY_2013,state_assembly_2013,
+VMADMIN_STATE_COUNCIL_2005,state_council_2005,
+VMADMIN_STATE_COUNCIL_2013,state_council_2013,
+VMADMIN_TOWNSHIP_POLYGON,township_polygon,
+VMADMIN_VICGOV_REGION,vicgov_region,
+VMADMIN_WARD_2008,ward_2008,
+VMADMIN_WARD_2012,ward_2012,
+VMADMIN_WARD_2016,ward_2016,
+VMADMIN_WARD_2020,ward_2020,
+VMCLTENURE_AGRICULTURAL,cl_tenure_view,clten_tenure_type='A'
+VMCLTENURE_APIARY,apiary,clten_tenure_type='B'
+VMCLTENURE_CL_TENURE_VIEW,cl_tenure_view,
+VMCLTENURE_GENERAL,cl_tenure_view,clten_tenure_type='G'
+VMCLTENURE_GOV_ROAD_POLY,gov_road_polygon,
+VMCLTENURE_LEASE,cl_tenure_view,clten_tenure_type='L'
+VMCLTENURE_PIPELINES,cl_tenure_view,clten_tenure_type='P'
+VMCLTENURE_RESERVE_MANAGEMENT,cl_tenure_view,clten_tenure_type='RM'
+VMCLTENURE_RESERVE_STATUS,cl_tenure_view,clten_tenure_type='RS'
+VMELEV_EL_CONTOUR,el_contour,
+VMELEV_EL_CONTOUR_1TO5M,el_contour_1to5m,
+VMELEV_EL_GRND_SURFACE_POINT,el_grnd_surface_point,
+VMELEV_GROUND_TYPE_ROCK_OC,el_grnd_type_area_polygon,feature_type_code='rock_outcrop'
+VMELEV_GROUND_TYPE_SAND,el_grnd_type_area_polygon,feature_type_code='sand'
+VMELEV_EL_GRND_SURFACE_POINT_1TO5M,el_grnd_surface_point_1to5m,
+VMELEV_EL_GRND_TYPE_POINT,el_grnd_type_point,
+VMFEAT_BUILDING_POINT,building_point,
+VMFEAT_BUILDING_POLYGON,building_polygon,
+VMFEAT_CFA_FIRE_STATION,geomark_point,feature_type='emergency facility' and feature_subtype='fire station' and auth_org_code='106'
+VMFEAT_EMERGENCY_FACILITY,geomark_point,"feature_subtype in ('ses unit','fire station','general hospital (emergency)','police station','neighbourhood safer place','refuge','lifesaving club')"
+VMFEAT_FOI_INDEX_CENTROID,foi_index_centroid,
+VMFEAT_FOI_INDEX_EXTENT,foi_index_extent,
+VMFEAT_FOI_LINE,foi_line,
+VMFEAT_FOI_POINT,foi_point,
+VMFEAT_FOI_POLYGON,foi_polygon,
+VMFEAT_GEOMARK_INDEX_CENTROID,geomark_index_centroid,
+VMFEAT_GEOMARK_INDEX_EXTENT,geomark_index_extent,
+VMFEAT_GEOMARK_LINE,geomark_line,
+VMFEAT_GEOMARK_POINT,geomark_point,
+VMFEAT_GEOMARK_POLYGON,geomark_polygon,
+VMFEAT_GEOMARK_SPORT_FACILITY_POLY,geomark_polygon,"feature_type='sport facility' or (feature_type='recreational resource' and feature_subtype in ('skate park','bmx track'))"
+VMFEAT_GNR,gnr,
+VMFEAT_LOCALITY_POINT,locality_point,
+VMFEAT_PL_PLACE_AREA_POLYGON,pl_place_area_polygon,
+VMFEAT_POLICE_STATION,geomark_point,feature_type='emergency facility' and feature_subtype='police station' and auth_org_code='107'
+VMHYDRO_HY_WATER_AREA_POLYGON,hy_water_area_polygon,
+VMHYDRO_HY_WATER_STRUCT_AREA_TANK,hy_water_struct_area_polygon,feature_type_code='tank_water'
+VMHYDRO_HY_WATER_POINT,hy_water_point,
+VMHYDRO_HY_WATER_STRUCT_POINT,hy_water_struct_point,
+VMHYDRO_HY_WATERCOURSE,hy_watercourse,
+VMHYDRO_WATER_AREA_INNUNDATION,hy_water_area_polygon,feature_type_code='flat_sti'
+VMHYDRO_WATER_AREA_LAKES_DAMS,hy_water_area_polygon,feature_type_code='wb_lake'
+VMHYDRO_WATER_AREA_PONDAGE,hy_water_area_polygon,feature_type_code='pondage'
+VMHYDRO_WATER_AREA_SALT_LAKE,hy_water_area_polygon,feature_type_code='wb_lake_salt'
+VMHYDRO_WATER_AREA_SALT_PAN,hy_water_area_polygon,feature_type_code='pandage_saltpan'
+VMHYDRO_WATER_AREA_SEWAGE,hy_water_area_polygon,feature_type_code='pondage_sewerage'
+VMHYDRO_WATER_AREA_SWAMPS,hy_water_area_polygon,feature_type_code='wetland_swamp'
+VMHYDRO_WATER_STRUCT_DAM_BATTER,hy_water_area_polygon,feature_type_code='dam_batter'
+VMHYDRO_WATER_STRUCT_MARINA,hy_water_area_polygon,feature_type_code='marina'
+VMHYDRO_WATER_STRUCT_SPILLWAY,hy_water_area_polygon,feature_type_code='spillway'
+VMHYDRO_WATER_STRUCT_TANK,hy_water_struct_point,feature_type_code='tank_water'
+VMHYDRO_WATER_STRUCT_BREAKWATER,hy_water_struct_line,feature_type_code='breakwater'
+VMHYDRO_WATER_STRUCT_CAUSEWAY,hy_water_struct_line,feature_type_code='causeway'
+VMHYDRO_WATER_STRUCT_WATER_PLACE,hy_water_struct_point,feature_type_code='watering_place'
+VMHYDRO_WATER_STRUCT_DAM_WALL,hy_water_struct_line,feature_type_code='dam_wall'
+VMHYDRO_WATER_STRUCT_DAM_WALL_ROAD,hy_water_struct_line,feature_type_code='dam_wall_road'
+VMHYDRO_WATER_STRUCT_LOCK,hy_water_struct_line,feature_type_code='lock'
+VMHYDRO_WATER_STRUCT_WELL,hy_water_struct_point,feature_type_code='well_water'
+VMHYDRO_WATER_STRUCT_PIPE,hy_water_struct_line,feature_type_code='pipe_water'
+VMHYDRO_WATER_STRUCT_RAMP,hy_water_struct_line,feature_type_code='launching_ramp'
+VMHYDRO_WATERCOURSE_CHANNEL,hy_watercourse,feature_type_code='watercourse_channel'
+VMHYDRO_WATERCOURSE_CONNECTOR,hy_watercourse,feature_type_code like '%connector%'
+VMHYDRO_WATER_STRUCT_UG_PIPE,hy_water_struct_line,feature_type_code='pipe_water_uground'
+VMHYDRO_WATERCOURSE_DRAIN,hy_watercourse,feature_type_code='watercourse_channel_drain'
+VMHYDRO_WATERCOURSE_RIVER,hy_watercourse,feature_type_code='watercourse_river'
+VMHYDRO_WATER_STRUCT_WHARF,hy_water_struct_line,feature_type_code='wharf'
+VMHYDRO_WATERCOURSE_STREAM,hy_watercourse,feature_type_code='watercourse_stream'
+VMHYDRO_WATERFALL,hy_water_point,feature_type_code='waterfall'
+VMINDEX_FR_FRAMEWORK_AREA_LINE,fr_framework_area_line,
+VMINDEX_FR_FRAMEWORK_AREA_POLYGON,fr_framework_area_polygon,
+VMINDEX_VICMAP_MAPINDEX_100D,vicmap_mapindex_100d,
+VMINDEX_VICMAP_MAPINDEX_25D,vicmap_mapindex_25d,
+VMINDEX_VICMAP_MAPINDEX_25S,vicmap_mapindex_25s,
+VMINDEX_VICMAP_MAPINDEX_30DA3,vicmap_mapindex_30da3,
+VMINDEX_VICMAP_MAPINDEX_30SA4,vicmap_mapindex_30sa4,
+VMINDEX_VICMAP_MAPINDEX_50D,vicmap_mapindex_50d,
+VMINDEX_VICMAP_MAPINDEX_50S,vicmap_mapindex_50s,
+VMINDEX_VICMAP_MAPINDEX_SPECIAL,vicmap_mapindex_special,
+VMLITE_BUILT_UP_AREA,vmlite_built_up_area,
+VMLITE_FOREST_SU2,vmlite_forest_su2,
+VMLITE_FOREST_SU3,vmlite_forest_su3,
+VMLITE_FOREST_SU5,vmlite_forest_su5,
+VMLITE_GEO_AREA_LABEL,vmlite_geo_area_label,
+VMLITE_GEO_POINT_LABEL,vmlite_geo_point_label,
+VMLITE_HY_WATER_AREA,vmlite_hy_water_area,
+VMLITE_HY_WATERCOURSE,vmlite_hy_watercourse,
+VMLITE_LGA,vmlite_lga,
+VMLITE_LOCALITY,vmlite_locality,
+VMLITE_LOCALITY_POLYGON,vmlite_locality_polygon,
+VMLITE_POSTCODE_POLYGON,vmlite_postcode_polygon,
+VMLITE_PUBLIC_LAND_COASTAL_W_SU3,vmlite_public_land_su3,public_land_group='COASTAL WATERS'
+VMLITE_PUBLIC_LAND_COASTAL_W_SU5,vmlite_public_land_su5,public_land_group='COASTAL WATERS'
+VMLITE_PUBLIC_LAND_MARINE_PARKRES_SU3,vmlite_public_land_su3,public_land_group='MARINE PARKS AND RESERVES'
+VMLITE_PUBLIC_LAND_MARINE_PARKRES_SU5,vmlite_public_land_su5,public_land_group='MARINE PARKS AND RESERVES'
+VMLITE_PUBLIC_LAND_OTHER_SU3,vmlite_public_land_su3,public_land_group= 'OTHER PUBLIC LAND'
+VMLITE_PUBLIC_LAND_OTHER_SU5,vmlite_public_land_su5,public_land_group= 'OTHER PUBLIC LAND'
+VMLITE_PUBLIC_LAND_PARKRES_SU3,vmlite_public_land_su3,public_land_group='PARKS AND RESERVES'
+VMLITE_PUBLIC_LAND_PARKRES_SU5,vmlite_public_land_su5,public_land_group='PARKS AND RESERVES'
+VMLITE_PUBLIC_LAND_SOFTWOOD_SU3,vmlite_public_land_su3,public_land_group='SOFTWOOD PLANTATION'
+VMLITE_PUBLIC_LAND_SOFTWOOD_SU5,vmlite_public_land_su5,public_land_group='SOFTWOOD PLANTATION'
+VMLITE_PUBLIC_LAND_STATE_FOREST_SU3,vmlite_public_land_su3,public_land_group='STATE FOREST'
+VMLITE_PUBLIC_LAND_STATE_FOREST_SU5,vmlite_public_land_su5,public_land_group='STATE FOREST'
+VMLITE_PUBLIC_LAND_SU3,vmlite_public_land_su3,
+VMLITE_PUBLIC_LAND_SU5,vmlite_public_land_su5,
+VMLITE_TR_AIRPORT,vmlite_tr_airport,
+VMLITE_TR_RAIL,vmlite_tr_rail,
+VMLITE_TR_RAIL_STATION,vmlite_tr_rail_station,
+VMLITE_TR_ROAD,vmlite_tr_road,
+VMLITE_VICTORIA_POLYGON_SU5,vmlite_victoria_polygon_su5,
+VMPLAN_PLAN_CODELIST,plan_codelist,
+VMPLAN_PLAN_OVERLAY,plan_overlay,
+VMPLAN_PLAN_UGA,plan_uga,
+VMPLAN_PLAN_UGB,plan_ugb,
+VMPLAN_PLAN_ZONE,plan_zone,
+VMPROP_ANNOTATION_TEXT,annotation_text,
+VMPROP_EASEMENT,easement,
+VMPROP_PARCEL_MP_ALL,parcel_mp_all,
+VMPROP_PARCEL_PROPERTY,parcel_property,
+VMPROP_PARCEL_VIEW,parcel_view,
+VMPROP_PROPERTY_MP_ALL,property_mp_all,
+VMPROP_PROPERTY_VIEW,property_view,
+VMPROP_ROAD_CASEMENT_POLYGON,road_casement_polygon,
+VMTRANS_AIR_INFRA_AREA_POLYGON,tr_air_infra_area_polygon,
+VMTRANS_AIRPORT_AREA_POLYGON,tr_airport_area_polygon,
+VMTRANS_AIRPORT_INFRASTRUCTURE,tr_airport_infrastructure,
+VMTRANS_ALPS_WALKING_TRACK,tr_road,road_name_1='AUSTRALIAN ALPS WALKING' and road_type_1='TRACK' or ezi_road_name='AUSTRALIAN ALPS WALKING TRACK'
+VMTRANS_BICENTENNIAL_NATIONAL,tr_road,road_name='BICENTENNIAL NATIONAL' or road_name_1='BICENTENNIAL NATIONAL' or road_name_2='BICENTENNIAL NATIONAL' or road_name_3='BICENTENNIAL NATIONAL'
+VMTRANS_GREAT_DIVIDING_TRAIL,tr_road,(road_name_1='GREAT DIVIDING' and road_type_1='TRAIL') or (road_name='GREAT DIVIDING' and road_type='TRAIL') or (road_name_2='GREAT DIVIDING' and road_type_2='TRAIL') or (road_name_3='GREAT DIVIDING' and road_type_3='TRAIL') or (road_name_4='GREAT DIVIDING' and road_type_4='TRAIL') or (road_name_5='GREAT DIVIDING' and road_type_5='TRAIL') or (road_name_6='GREAT DIVIDING' and road_type_6='TRAIL')
+VMTRANS_BIKE_BRIDGES,tr_road_infrastructure,feature_type_code='bridge' and construction_type=1
+VMTRANS_GATE,tr_road_infrastructure,feature_type_code='gate'
+VMTRANS_RAIL_STATION_DISMANTLED,tr_rail_infrastructure,feature_type_code='rail_station' and physical_condition=1
+VMTRANS_LEVEL_CROSSING,tr_road_infrastructure,feature_type_code='level_crossing'
+VMTRANS_RAIL_STATION_DISUSED,tr_rail_infrastructure,feature_type_code='rail_station' and physical_condition=2
+VMTRANS_RAIL_STATION_OPERATIONAL,tr_rail_infrastructure,feature_type_code='rail_station' and physical_condition=3
+VMTRANS_SURF_COAST_WALK,tr_road,(road_name= 'SURF COAST' and road_type='WALK') or (road_name_1= 'SURF COAST' and road_type_1='WALK') or (road_name_2='SURF COAST' and road_type_2='WALK') or (road_name_3='SURF COAST' and road_type_3='WALK')
+VMTRANS_ROUNDABOUT,tr_road_infrastructure,feature_type_code='roundabout'
+VMTRANS_TR_AIR_INFRA_POINT,tr_air_infra_point,
+VMTRANS_TR_FERRY_ROUTE,tr_road,class_code=14
+VMTRANS_TR_RAIL,tr_rail,
+VMTRANS_TR_RAIL_BRIDGE,tr_rail,feature_type_code='bridge_rail_o'
+VMTRANS_TR_RAIL_DISMANTLED,tr_rail,feature_type_code='railway' and physical_condition=1
+VMTRANS_TR_RAIL_DISUSED,tr_rail,feature_type_code='railway' and physical_condition=2
+VMTRANS_TR_RAIL_INFRASTRUCTURE,tr_rail_infrastructure,
+VMTRANS_TR_RAIL_LIGHT,tr_rail,feature_type_code='rail_light'
+VMTRANS_TR_RAIL_MARSHALLING,tr_rail,feature_type_code='marshalling_yard_rail'
+VMTRANS_TR_RAIL_OPERATIONAL,tr_rail,feature_type_code='railway' and physical_condition=3
+VMTRANS_TR_RAIL_SIDING,tr_rail,feature_type_code='rail_siding'
+VMTRANS_TR_RAIL_TRAIL,tr_rail,feature_type_code='rail_trail'
+VMTRANS_TR_RAIL_TRAM,tr_rail,feature_type_code='tramway'
+VMTRANS_TR_RAIL_TUNNEL,tr_rail,feature_type_code='tunnel_rail_o'
+VMTRANS_TR_RAIL_UNDERGROUND,tr_rail,feature_type_code='rail_uground_o'
+VMTRANS_TR_ROAD,tr_road,
+VMTRANS_TR_ROAD_4WD,tr_road,class_code=7
+VMTRANS_TR_ROAD_ARTERIAL,tr_road,class_code=2
+VMTRANS_TR_ROAD_BIKE_PATH,tr_road,class_code=12
+VMTRANS_TR_ROAD_BRIDGE,tr_road,feature_type_code='bridge'
+VMTRANS_TR_ROAD_CLOSED,tr_road,restrictions=4
+VMTRANS_TR_ROAD_COLLECTOR,tr_road,class_code=4
+VMTRANS_TR_ROAD_DWO,tr_road,restrictions=7
+VMTRANS_TR_ROAD_FOOTBRIDGE,tr_road,feature_type_code='foot_bridge'
+VMTRANS_TR_ROAD_FORDS,tr_road,feature_type_code='ford'
+VMTRANS_TR_ROAD_FREEWAY,tr_road,class_code=0
+VMTRANS_TR_ROAD_HIGHWAY,tr_road,class_code=1
+VMTRANS_TR_ROAD_LIMITS,tr_road,restrictions=3
+VMTRANS_TR_ROAD_LOCAL,tr_road,class_code=5
+VMTRANS_TR_ROAD_MANAGEMENT_VEHICLES,tr_road,restrictions=1
+VMTRANS_TR_ROAD_PRIVATE,tr_road,restrictions=5
+VMTRANS_TR_ROAD_PROPOSED,tr_road,class_code=9
+VMTRANS_TR_ROAD_SEASONAL,tr_road,
+VMTRANS_TR_ROAD_SUB_A,tr_road,class_code=3
+VMTRANS_TR_ROAD_TOLLWAYS,tr_road,road_name like '%CITYLINK%' or road_name like '%EASTLINK%'
+VMTRANS_TR_ROAD_TRACKS,tr_road,class_code=6
+VMTRANS_TR_ROAD_TUNNEL,tr_road,feature_type_code='tunnel'
+VMTRANS_TR_ROAD_UNMAINTAINED,tr_road,restrictions=6
+VMTRANS_WALKING_TRACK,tr_road,class_code=11
+VMVEG_TREE_DENSITY,tree_density,
+VMVEG_TREE_DENSITY_DENSE,tree_density,tree_density='dense'
+VMVEG_TREE_DENSITY_MEDIUM,tree_density,tree_density='medium'
+VMVEG_TREE_DENSITY_SCATTERED,tree_density,tree_density='sparse'
+WARD_2017,ward_2017,
+WATER_AQUIFER_SAL_BASAL,aquifer_sal_basal,
+WATER_AQUIFER_SAL_BED,aquifer_sal_bed,
+WATER_AQUIFER_SAL_SHALLOW,aquifer_sal_shallow,
+WATER_BFI_UNREG_RIVERS_1889_2012,bfi_unreg_rivers_1889_2012,
+WATER_BORES_BED_FA,bores_bed_fa,
+WATER_BORES_BSE_ALL,bores_bse_all,
+WATER_BORES_SED_FA,bores_sed_fa,
+WATER_BORES_VOLC_FA,bores_volc_fa,
+WATER_BU_LTER,bu_lter,
+WATER_BU_MTER,bu_mter,
+WATER_BU_UTER,bu_uter,
+WATER_BU_WTABLE,bu_wtable,
+WATER_CORP,water_corp,
+WATER_DAM__,dam,
+WATER_DW_POINTS,dw_points,
+WATER_EST_CATCH,est_catch,
+WATER_EST_FLUV,est_fluv,
+WATER_ESTUARIES,estuaries,
+WATER_EWSP,ewsp,
+WATER_FARM_DAMS_POINT,farm_dams_point,
+WATER_FAULTS_GOLDEN_BEACH_FM,faults_golden_beach_fm,
+WATER_FAULTS_LATROBE_GP,faults_latrobe_gp,
+WATER_FAULTS_NWMURRAY_BASIN,faults_nwmurray_basin,
+WATER_FAULTS_STRZELECKI_GP,faults_strzelecki_gp,
+WATER_FAULTS_WANGERRIP_GP,faults_wangerrip_gp,
+WATER_FLOWS_RIVER_REACHES,flows_river_reaches,
+WATER_GC,gc,
+WATER_GDE_TERR_CORCMA,gde_terr_corcma,
+WATER_GDE_TERR_EGCMA,gde_terr_egcma,
+WATER_GDE_TERR_GBCMA,gde_terr_gbcma,
+WATER_GDE_TERR_GHCMA,gde_terr_ghcma,
+WATER_GDE_TERR_MCMA,gde_terr_mcma,
+WATER_GDE_TERR_NCCMA,gde_terr_nccma,
+WATER_GDE_TERR_NECMA,gde_terr_necma,
+WATER_GDE_TERR_PPCMA,gde_terr_ppcma,
+WATER_GDE_TERR_WCMA,gde_terr_wcma,
+WATER_GDE_TERR_WGCMA,gde_terr_wgcma,
+WATER_GEOL_BSE_PERMIAN,geol_bse_permian,
+WATER_GEOL_SED_GOULBURN_MURRAY,geol_sed_goulburn_murray,
+WATER_GEOL_STRUCT_GOULBURN_MURRAY,geol_struct_goulburn_murray,
+WATER_GEOL_STRUCT_OVENS_VALLEY,geol_struct_ovens_valley,
+WATER_GMA,gma,
+WATER_GMA_SUBZONE,no match,
+WATER_GMA_ZONE,gma_zone,
+WATER_GMB,gmb,
+WATER_GW_BORES_CL,gw_bores_cl,
+WATER_GW_FLOW_IMPACT_STRUCT,gw_flow_impact_struct,
+WATER_GW_SITES,gw_sites,
+WATER_GW_SW_INTERACTION,gw_sw_interaction,
+WATER_GW_SW_INTERACTION_FLUX,gw_sw_interaction_flux,
+WATER_GWR,gwr,
+WATER_IRRIGATION_DISTRICT,irrigation_district,
+WATER_ISC_REACH,isc_reach,
+WATER_ISC2010_BANKFULL_WIDTH_R,isc2010_bankfull_width_r,
+WATER_ISC2010_BARE_GROUND,isc2010_bare_ground,
+WATER_ISC2010_CHANNEL_TRANSECTS,isc2010_channel_transects,
+WATER_ISC2010_TOE_OF_BANK,isc2010_toe_of_bank,
+WATER_ISC2010_TOP_OF_BANK,isc2010_top_of_bank,
+WATER_ISC2010_VEGETATION_WIDTH,isc2010_vegetation_width,
+WATER_ISC2010_WATER_BODIES,isc2010_water_bodies,
+WATER_LINEAMENTS_GRAVITY,lineaments_gravity,
+WATER_LINEAMENTS_RADIO,lineaments_radio,
+WATER_LINEAMENTS_TMI,lineaments_tmi,
+WATER_MELBOURNE_WATER_CORP,water_corp,watercorp_type_id=4
+WATER_MELBOURNE_WATER_RETAILER,water_corp,watercorp_type_id=3
+WATER_MODIFIED_RIVERS,modified_rivers,
+WATER_PRIORITY_RIVERS,priority_rivers,
+WATER_PWSC100,pwsc100,
+WATER_RURAL_WATER_CORP,water_corp,watercorp_type_id=2
+WATER_SDL_BASEFLOWS,sdl_baseflows,
+WATER_SDL_CATCH,sdl_catch,
+WATER_SPRING_LOCATIONS,spring_locations,
+WATER_STORAGE_,water_storage,
+WATER_URBAN_WATER_CORP,water_corp,watercorp_type_id=1
+WATER_WSPA,wspa,
+WATER_WSPA_ZONE,wspa_zone,

@@ -136,7 +136,7 @@ get_col_df <- function(x) {
   }
   
   layer <- x$query$version
-  if(getOption("vicmap.backend", default = "Oracle") == "AWS") {
+  if(getOption("vicmap.backend", default = "AWS") == "AWS") {
     base_url_n_wfs <- getOption("vicmap.base_url", default = base_wfs_url)
     r <- httr::GET(paste0(base_url_n_wfs, "?service=wfs&version=", x$query$version, "&request=DescribeFeatureType&typeNames=", x$query$typeNames))
   } else {
