@@ -17,7 +17,7 @@ test_that("get_metadata works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  r <- get_metadata(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
+  r <- get_metadata(vicmap_query(layer = "open-data-platform:hy_watercourse"))
   
   expect_equal(class(r), "list")
   expect_equal(length(r), 3)
@@ -26,7 +26,7 @@ test_that("get_metadata works", {
   expect_true(is.character(r[[3]]))
   
 
-  r2 <- get_metadata(anzlicId = "ANZVI0803002490")
+  r2 <- get_metadata(metadataID = "cc373943-7848-5c21-9be4-7a92632e624c")
   
   expect_identical(r, r2)
 })
@@ -36,7 +36,7 @@ test_that("data_dictionary works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  r <- data_dictionary(vicmap_query(layer = "datavic:VMLITE_PUBLIC_LAND_COASTAL_W_SU3"))
+  r <- data_dictionary(vicmap_query(layer = "open-data-platform:apiary"))
   
   expect_true(is.data.frame(r))
   
@@ -47,8 +47,8 @@ test_that("data_citation works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  data_citation(vicmap_query(layer = "datavic:VMLITE_PUBLIC_LAND_COASTAL_W_SU3"))
+  data_citation(vicmap_query(layer = "open-data-platform:basins"))
   
-  expect_output({data_citation(vicmap_query(layer = "datavic:VMLITE_PUBLIC_LAND_COASTAL_W_SU3"))})
+  expect_output({data_citation(vicmap_query(layer = "open-data-platform:basins"))})
   
 })
