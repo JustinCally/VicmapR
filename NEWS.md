@@ -1,4 +1,4 @@
-# VicmapR 0.1.10
+# VicmapR (development version)
 * Fixed issue with various installations of gdal/proj swapping axis order. Now use a (hopefully) more consistent approach, allowing geometric filters to work better.  
 * Change github actions to r-lib/actions v2 
 * Perform checks on newer ubuntu  
