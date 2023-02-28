@@ -38,6 +38,7 @@ knitr::opts_chunk$set(
 ```{r, include=FALSE, echo=FALSE, eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 # LIBRARIES -----
 library(VicmapR)
+library(dplyr)
 library(sf)
 ```
 
@@ -146,8 +147,6 @@ query
 Now let's only look at the tram route data. Note that VicmapR datasets will retain `id` and `geometry` columns even if not selected in the VicmapR promise. As this a simple features (sf) dataset, the geometry corresponding to the features does not need to be selected as it is always attached. The geometry column can only be removed intentionally, for example, by using the `st_drop_geometry()` function in the `sf` package.
 
 ```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-library(dplyr)
-
 tram_select <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>% 
   filter(operator_name == "Yarra Trams") %>% 
   filter(num_of_stops > 5) %>% 
