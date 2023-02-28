@@ -149,7 +149,7 @@ Now let's only look at the tram route data. Note that VicmapR datasets will reta
 ```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 tram_select <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>% 
   filter(operator_name == "Yarra Trams") %>% 
-  filter(num_of_stops > 5) %>% 
+  filter(num_of_stops > 10) %>% 
   select(route_id, route_short_name, trip_headsign, operator_name, route_km) %>%
   collect()
 
@@ -169,7 +169,7 @@ Often the first thing we want to do is see the data on a map. The simplest and q
 ```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 library(mapview)
 mapviewOptions(fgb = FALSE)
-mapview(tram_select)
+mapview(tram_route)
 ```
 
 While the output is basic, it is very simple to achieve and lines can be clicked on to obtain the details from the other fields.

@@ -17,8 +17,11 @@
 #' cql translate
 #'
 #' @param ... cql to translate
+#' @param .colnames column names of df
 #' @noRd
-cql_translate <- function(...) {
+# Function to translate R code to CQL
+cql_translate <- function(..., .colnames = character(0)) {
+  
   ## convert dots to list of quosures
   dots <- rlang::quos(...)
   ## run partial_eval on them to evaluate named objects in the environment
@@ -29,31 +32,20 @@ cql_translate <- function(...) {
   ## predicates and CQL() expressions are evaluated into valid CQL code
   ## so they can be combined with the rest of the query
   dots <- lapply(dots, function(x) {
-    
-    # make sure all arguments are named in the call so can be modified
-    x <- rlang::call_standardise(x, env = rlang::get_env(x))
-    
-    # if an argument to a predicate is a function call, need to tell it to evaluate
-    # locally, as by default all functions are treated as remote and thus
-    # not evaluated. Do this by using `rlang::call2` to wrap the function call in
-    # local()
-    # See ?rlang::partial_eval and https://github.com/bcgov/bcdata/issues/146
-    for (call_arg in rlang::call_args_names(x)) {
-      if (is.call(rlang::call_args(x)[[call_arg]])) {
-        x <- rlang::call_modify(
-          x, !!call_arg := rlang::call2("local", rlang::call_args(x)[[call_arg]])
-        )
-      }
-    }
-
-    if (utils::packageVersion("dbplyr") <= "2.1.1") {
-      rlang::new_quosure(dbplyr::partial_eval(x, vars = character()), rlang::get_env(x))
-    } else {
-      rlang::new_quosure(dbplyr::partial_eval(x, data = dbplyr::lazy_frame()), rlang::get_env(x))
-    }
+    rlang::new_quosure(
+      dbplyr::partial_eval(x, data = names_to_lazy_tbl(.colnames))
+    )
   })
   
-  sql_where <- dbplyr::translate_sql_(dots, con = wfs_con, window = FALSE)
+  sql_where <- try(dbplyr::translate_sql_(dots, con = wfs_con, window = FALSE),
+                   silent = TRUE)
+  
+  if (inherits(sql_where, "try-error")) {
+    if (grepl("no applicable method", sql_where)) {
+      stop("Unable to process query. Did you use a function that should be evaluated locally? If so, try wrapping it in 'local()'.", call. = FALSE)
+    }
+    stop(sql_where, call. = FALSE)
+  }
   
   build_where(sql_where)
 }
@@ -188,3 +180,9 @@ setMethod("dbQuoteIdentifier", c("wfsConnection", "ANY"),
 setMethod("dbQuoteString", c("wfsConnection", "ANY"),
           function(conn, x) dbplyr::sql_quote(x, "'")
             )
+
+names_to_lazy_tbl <- function(x) {
+  stopifnot(is.character(x))
+  frame <- as.data.frame(stats::setNames(rep(list(logical()), length(x)), x))
+  dbplyr::tbl_lazy(frame)
+}

@@ -129,7 +129,7 @@ rail_bbox <- vicmap_query(layer = "open-data-platform:tr_rail") %>%
   collect()
 
 rail_dwithin <- vicmap_query(layer = "open-data-platform:tr_rail") %>%
-  filter(DWITHIN(melbourne %>% sf::st_centroid(), distance = 10000, units = "meters")) %>%
+  filter(DWITHIN(sf::st_centroid(melbourne), distance = 10000, units = "meters")) %>%
   collect()
 
 leaflet(width = "100%") %>%
