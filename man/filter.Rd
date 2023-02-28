@@ -26,8 +26,8 @@ See \code{dplyr::\link[dplyr]{filter}} for details.
 \examples{
 \donttest{
 try(
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
- filter(HIERARCHY == "L", PFI == 8553127)
+vicmap_query(layer = "open-data-platform:hy_watercourse") \%>\%
+ filter(hierarchy == "L", pfi == 8553127)
  )
  }
 }

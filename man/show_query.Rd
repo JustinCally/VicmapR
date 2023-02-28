@@ -37,7 +37,7 @@ The printed information consists of three sections:
 \examples{
 \donttest{
 try(
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+vicmap_query(layer = "open-data-platform:hy_watercourse") \%>\%
 head(50) \%>\%
 show_query()
 )

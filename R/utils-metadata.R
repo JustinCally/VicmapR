@@ -30,7 +30,7 @@
 #'
 #' @examples
 #' \donttest{
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
 #'  feature_hits()
 #'  }
 feature_hits <- function(x) {
@@ -74,7 +74,7 @@ feature_hits <- function(x) {
 #' @examples
 #' \donttest{
 #' # Return the name of the geometry column
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>% 
 #'   geom_col_name()
 #'  }
 geom_col_name <- function(x) {
@@ -97,7 +97,7 @@ geom_col_name <- function(x) {
 #' @examples
 #' \donttest{
 #' # Return the column names as a character vector
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>% 
 #'   feature_cols()
 #' }   
 feature_cols <- function(x) {
@@ -125,7 +125,7 @@ specify_geom_name <- function(x, CQL_statement){
 #' \donttest{
 #' # Return a data.frame of the columns and their XML schema string datatypes
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>% 
 #'   get_col_df()
 #'   )
 #'  }

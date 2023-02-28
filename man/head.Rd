@@ -28,7 +28,7 @@ See \code{utils::\link[utils]{head}} for details.
 \examples{
 \donttest{
 try(
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+vicmap_query(layer = "open-data-platform:hy_watercourse") \%>\%
 head(50)
 )
 }

@@ -40,7 +40,7 @@ process may take a while to run, thus it is recommended to filter large datasets
 \examples{
 \donttest{
 try(
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+vicmap_query(layer = "open-data-platform:hy_watercourse") \%>\%
 head(5) \%>\%
 collect()
 )

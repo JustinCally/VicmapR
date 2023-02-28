@@ -8,7 +8,7 @@
 \usage{
 data_citation(x = NULL, metadataID = NULL)
 
-data_dictionary(x = NULL, anzlicId = NULL)
+data_dictionary(x = NULL, metadataID = NULL)
 
 get_metadata(x = NULL, metadataID = NULL)
 }

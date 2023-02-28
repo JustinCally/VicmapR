@@ -28,18 +28,18 @@ datatypes.
 \examples{
 \donttest{
 # Return the name of the geometry column
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% 
+vicmap_query(layer = "open-data-platform:hy_watercourse") \%>\% 
   geom_col_name()
  }
 \donttest{
 # Return the column names as a character vector
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% 
+vicmap_query(layer = "open-data-platform:hy_watercourse") \%>\% 
   feature_cols()
 }   
 \donttest{
 # Return a data.frame of the columns and their XML schema string datatypes
 try(
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\% 
+vicmap_query(layer = "open-data-platform:hy_watercourse") \%>\% 
   get_col_df()
   )
  }

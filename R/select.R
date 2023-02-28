@@ -39,8 +39,8 @@ NULL
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-#' select(HIERARCHY, PFI)
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
+#'  select(hierarchy,  pfi)
 #' )
 #' }
 select.vicmap_promise <- function(.data, ...){

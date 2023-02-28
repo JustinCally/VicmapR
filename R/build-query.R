@@ -50,7 +50,7 @@ base_chunk_lim <- 5000L
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' vicmap_query(layer = "open-data-platform:hy_watercourse")
 #' )
 #' }
 vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
@@ -105,7 +105,7 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
 #' head(50) %>%
 #' show_query()
 #' )
@@ -152,7 +152,7 @@ show_query.vicmap_promise <- function(x, ...) {
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
 #' head(5) %>%
 #' collect()
 #' )
@@ -207,14 +207,15 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
     }
     
     for(i in 1:loop_times) {
-      x$query$startIndex <- (i-1)*getOption("vicmap.chunk_limit", default = 5000L)
+      cl <- getOption("vicmap.chunk_limit", default = 5000L)
+      x$query$startIndex <- (i-1)*cl
       if(getOption("vicmap.backend", default = "AWS") != "AWS") {
       x$query$sortBy <- sort_col 
       }
       if(x$query$version == "2.0.0") {
-        x$query$count <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 5000L))
+        x$query$count <- min(c(number_of_records-((i-1)*cl), cl))
       } else {
-        x$query$maxFeatures <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 5000L))
+        x$query$maxFeatures <- min(c(number_of_records-((i-1)*cl)))
       }
       request <- httr::build_url(x)
       returned_sf[[i]] <- sf::read_sf(request, ...)
@@ -250,7 +251,7 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
 #' head(50)
 #' )
 #' }
@@ -284,7 +285,7 @@ head.vicmap_promise <- function(x, n = 5, ...) {
 #' @examples
 #' \donttest{
 #' try(
-#' query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' query <- vicmap_query(layer = "open-data-platform:hy_watercourse")
 #' )
 #' try(
 #' print(query)

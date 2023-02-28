@@ -16,5 +16,9 @@ object of class \code{vicmap_promise}
 Convert layer names from old platform naming convention to the new platform naming convention
 }
 \examples{
-
+\donttest{
+try(
+vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") 
+)
+}
 }

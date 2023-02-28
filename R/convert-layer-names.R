@@ -1,3 +1,15 @@
+# Copyright 2020 Justin Cally
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# https://www.apache.org/licenses/LICENSE-2.0.txt
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+
 #' Convert layer names from old platform naming convention to the new platform naming convention
 #'
 #' @param x object of class `vicmap_promise`
@@ -6,7 +18,11 @@
 #' @export
 #'
 #' @examples
-#' 
+#' \donttest{
+#' try(
+#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") 
+#' )
+#' }
 convert_layer_name <- function(x) {
   
   # All oldlayers should have #datavic:
@@ -18,17 +34,17 @@ convert_layer_name <- function(x) {
   type_name_full <- sub(pattern = "datavic:", replacement = "", x = x$query$typeNames)
   
   new_name_row <- name_conversions %>%
-    dplyr::filter(Original_Layer_Name == type_name_full) 
+    dplyr::filter(.data$Original_Layer_Name == type_name_full) 
   
   if(nrow(new_name_row) == 0) {
     stop("No matching data found on new geoserver platform. Please search for a new layer with listLayers()")
   }
   
   new_name <- new_name_row %>% 
-    dplyr::pull(`New_Layer_Name`)
+    dplyr::pull(.data$`New_Layer_Name`)
   
   cql_filter <- new_name_row %>% 
-    dplyr::pull(CQL_FILTER)
+    dplyr::pull(.data$CQL_FILTER)
   
   message(paste0("You are using old layer names. We converted your layer to ", 
                  new_name, " with a CQL filter of ", cql_filter,
