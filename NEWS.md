@@ -1,10 +1,11 @@
-# VicmapR (development version)
+# VicmapR 0.1.10
 * Fixed issue with various installations of gdal/proj swapping axis order. Now use a (hopefully) more consistent approach, allowing geometric filters to work better.  
 * Change github actions to r-lib/actions v2 
 * Perform checks on newer ubuntu  
 * Add tests to geometric filters  
 * Minimum sf version increased   
 * Minimum dbplyr version now 2.2.0  
+* Migration of geoserver platform now supported as the default
 
 # VicmapR 0.1.9  
 * Addition of tutorial for new users, written by Rachel Swain (Vicmap for Beginners) (PR#36, #41)  
