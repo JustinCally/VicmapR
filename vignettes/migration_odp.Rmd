@@ -1,0 +1,29 @@
+---
+title: "Migration to the Open Data Platform"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Migration to the Open Data Platform}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# About  
+
+The Enterprise Spatial Services (ESS) Transformation Program from the Department of Energy, Environment and Climate Action (DEECA) has determined that DELWP’s WMS and WFS Open Data services will be hosted in AWS Cloud. This will cause a change of URLs when accessing these
+services.
+
+This migration of services essentially requires the `VicmapR` package to restructure where and how it obtains data. We have updated package code to by default use the new Amazon AWS cloud platform as the default source for data moving forward. The legacy platforms and services will be turned off by the  27 March 2023. Meaning that users will no longer be able to access data from these sources from this date.  
+
+We have made an effort to update `VicmapR` in such a way to make existing code work by translating layer names from the legacy names to the new names. However, not all data may be available; or even if data is available there may be changes to formats and structures. However, the new platform is expected to be more scalable (with likely addition of more data moving forward).    
+
+
+```{r setup}
+library(VicmapR)
+```
