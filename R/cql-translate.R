@@ -36,7 +36,7 @@ cql_translate <- function(..., .colnames = character(0), converted = FALSE) {
     if(converted) {
       # change expression to lower names
       vtc <- all.vars(rlang::quo_get_expr(x))
-      rep <- stringr::str_replace_all(deparse(rlang::quo_get_expr(x)), pattern = paste(vtc, collapse = "|"), replacement = tolower)
+      rep <- stringr::str_replace_all(paste0(trimws(deparse(rlang::quo_get_expr(x))), collapse = ""), pattern = paste(vtc, collapse = "|"), replacement = tolower)
       x <- rlang::quo_set_expr(x, str2lang(rep))
     }
     
