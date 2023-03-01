@@ -31,3 +31,33 @@ test_that("convert layer name works", {
   
   expect_message(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"), regexp = "You are using old layer names. We converted your layer to hy_watercourse with a CQL filter of feature_type_code='watercourse_channel_drain'. To suppress this message, update your code to use the new layer names [(]see VicmapR::name_conversions for more details[)]")
 })
+
+# Check conversion of select and filter works
+test_that("convert layer filter works", {
+  r3 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+    filter(HIERARCHY == "L" & PFI == 8547514) %>%
+    collect()
+  
+  r4 <- vicmap_query("open-data-platform:hy_watercourse") %>%
+    filter(feature_type_code == 'watercourse_channel_drain') %>%
+    filter(hierarchy == "L" & pfi == 8547514) %>%
+    collect()
+  
+  expect_equal(r3, r4)
+  
+})
+
+test_that("convert layer select works", {
+  r5 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+    select(HIERARCHY, PFI) %>%
+    head(5) %>%
+    collect()
+  
+  r6 <- vicmap_query("open-data-platform:hy_watercourse") %>%
+    filter(feature_type_code == 'watercourse_channel_drain') %>%
+    select(hierarchy, pfi) %>%
+    head(5) %>%
+    collect()
+  
+  expect_equal(r5, r6)
+})

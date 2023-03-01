@@ -20,8 +20,7 @@
 #' @param .colnames column names of df
 #' @noRd
 # Function to translate R code to CQL
-cql_translate <- function(..., .colnames = character(0)) {
-  
+cql_translate <- function(..., .colnames = character(0), converted = FALSE) {
   ## convert dots to list of quosures
   dots <- rlang::quos(...)
   ## run partial_eval on them to evaluate named objects in the environment
@@ -32,6 +31,15 @@ cql_translate <- function(..., .colnames = character(0)) {
   ## predicates and CQL() expressions are evaluated into valid CQL code
   ## so they can be combined with the rest of the query
   dots <- lapply(dots, function(x) {
+
+    #change x to lower if converted 
+    if(converted) {
+      # change expression to lower names
+      vtc <- all.vars(rlang::quo_get_expr(x))
+      rep <- stringr::str_replace_all(deparse(rlang::quo_get_expr(x)), pattern = paste(vtc, collapse = "|"), replacement = tolower)
+      x <- rlang::quo_set_expr(x, str2lang(rep))
+    }
+    
     rlang::new_quosure(
       dbplyr::partial_eval(x, data = names_to_lazy_tbl(.colnames))
     )

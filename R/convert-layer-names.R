@@ -27,6 +27,8 @@ convert_layer_name <- function(x) {
   
   # All oldlayers should have #datavic:
   if(!grepl(pattern="datavic:", x = x$query$typeNames)) {
+    #Flag to notify if it is a converted dataset
+    x$converted <- FALSE
     return(as.vicmap_promise(x))
   }
   
@@ -60,6 +62,9 @@ convert_layer_name <- function(x) {
                                 dbplyr::sql(cql_filter),
                                 drop_null = TRUE)
   }
+  
+  #Flag to notify if it is a converted dataset
+  x_new$converted <- TRUE
   
   as.vicmap_promise(x_new)
   

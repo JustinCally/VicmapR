@@ -63,7 +63,8 @@ Imports:
     knitr,
     kableExtra,
     mapview,
-    leaflet
+    leaflet,
+    stringr
 VignetteBuilder: knitr
 SystemRequirements: GDAL (>= 3.0.0), GEOS (>= 3.4.0), PROJ (>= 7.0.0)
 Collate: 

@@ -53,7 +53,7 @@ filter.vicmap_promise <- function(.data, ...) {
   
   cdf <- VicmapR::get_col_df(.data)
   
-  current_cql = cql_translate(..., .colnames = cdf$name %||% character(0))
+  current_cql = cql_translate(..., .colnames = cdf$name %||% character(0), converted = .data$converted)
   ## Change CQL query on the fly if geom is not GEOMETRY
   current_cql = specify_geom_name(.data, current_cql)
   
