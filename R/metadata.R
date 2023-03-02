@@ -19,7 +19,7 @@
 #' metadata for the record.   
 #'
 #' @param x Object of class `vicmap_promise` (likely passed from [vicmap_query()])
-#' @param anzlicId character: ID of data (useful if data is not available through WFS)
+#' @param metadataID character: ID of data (useful if data is not available through WFS)
 #'
 #' @return citation, data.frame or list
 #' @export
@@ -31,9 +31,9 @@
 #' )
 #' }
 
-data_citation <- function(x = NULL, anzlicId = NULL) {
+data_citation <- function(x = NULL, metadataID = NULL) {
   
-  md <- get_metadata(x, anzlicId)
+  md <- get_metadata(x, metadataID)
   nl <- as.character(md[[1]][[2]])
   names(nl) <- as.character(md[[1]][[1]])
   
@@ -62,12 +62,12 @@ data_citation <- function(x = NULL, anzlicId = NULL) {
 #' data_dictionary(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
 #' )
 #' }
-data_dictionary <- function(x = NULL, anzlicId = NULL) {
+data_dictionary <- function(x = NULL, metadataID = NULL) {
   
-  get_metadata(x, anzlicId)[[2]]
+  get_metadata(x, metadataID)[[2]]
 }
 
-get_anzlicId <- function(x) {
+get_metadataID <- function(x) {
   url <- httr::parse_url(getOption("vicmap.base_url", default = base_wfs_url))
   url$query <- list(service = "wfs",
                     version = "2.0.0",
@@ -89,8 +89,9 @@ get_anzlicId <- function(x) {
   keywords <- unlist(attr_list[[feat]][["Keywords"]]) %>% 
     unique()
   
-  key_lookup <- grep(pattern = "^ANZVI", x = keywords, value = TRUE)
-  return(key_lookup)
+  key_lookup <- grep(pattern = "^MetadataID", x = keywords, value = TRUE)
+  key_lookup_sub <- sub(pattern = "MetadataID=", replacement = "", x = key_lookup)
+  return(key_lookup_sub)
 }
 
 #' @rdname data_citation
@@ -101,40 +102,30 @@ get_anzlicId <- function(x) {
 #' get_metadata(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"))
 #' )
 #' }
-get_metadata <- function(x = NULL, anzlicId = NULL) {
+get_metadata <- function(x = NULL, metadataID = NULL) {
   
-  if(is.null(x) & is.null(anzlicId)) {
+  if(is.null(x) & is.null(metadataID)) {
     stop("x or anzlicId must be provided")
   }
   
-  if(is.null(anzlicId)) {
+  if(is.null(metadataID)) {
 
-key_lookup <- get_anzlicId(x)
+key_lookup <- get_metadataID(x)
 
   } else {
-  key_lookup <- anzlicId
+  key_lookup <- metadataID
 }
 
-key_url <- paste0("http://services.land.vic.gov.au/catalogue/metadata?anzlicId=",key_lookup,"&publicId=guest&extractionProviderId=1")
+key_url <- paste0("https://metashare.maps.vic.gov.au/geonetwork/srv/api/records/",key_lookup,"/formatters/sdm-html?root=html&output=html")
 
 doc <- rvest::read_html(key_url) 
 tab <- rvest::html_elements(doc, "table") %>% rvest::html_table(na.strings = "")
 
-tab_filtered <- tab[c(2,7)]
+tab_filtered <- tab[c(3,length(tab))]
 
 tab_filtered[[1]] <- tab_filtered[[1]] %>%
-  dplyr::select(.data$`Metadata Name`, .data$`Description`) %>%
+  dplyr::select(.data$`Metadata Name`, .data$`Descriptions`) %>%
   dplyr::mutate(`Metadata Name` = gsub(pattern = ":$", replacement = "", x = .data$`Metadata Name`))
-
-# get Address in one line: 
-add_line <- which(tab_filtered[[1]]$`Metadata Name` == "Address")
-
-address_comp <- as.character(tab_filtered[[1]][add_line,"Description"])
-address_comp[2] <- ifelse(is.na(tab_filtered[[1]][add_line+1,"Metadata Name"]), tab_filtered[[1]][add_line+1,"Description"], NULL)
-address_comp[3] <- ifelse(is.na(tab_filtered[[1]][add_line+2,"Metadata Name"]), tab_filtered[[1]][add_line+2,"Description"], NULL)
-
-address_formatted <- paste(unlist(address_comp), collapse = ", ")
-tab_filtered[[1]][add_line,"Description"] <- address_formatted
 
 tab_filtered[[1]] <- dplyr::filter(tab_filtered[[1]], !is.na(.data$`Metadata Name`))
 

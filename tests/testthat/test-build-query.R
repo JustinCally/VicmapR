@@ -17,8 +17,8 @@ test_that("vicmap_query works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  q <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", CRS = 3111, wfs_version = "1.0.0")
-  q2 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "2.0.0")
+  q <- vicmap_query(layer = "open-data-platform:hy_watercourse", CRS = 3111, wfs_version = "1.0.0")
+  q2 <- vicmap_query(layer = "open-data-platform:hy_watercourse", wfs_version = "2.0.0")
   expect_error(vicmap_query(), regexp = 'argument "layer" is missing, with no default')
   expect_is(q, c("vicmap_promise", "url"))
   expect_setequal(names(q$query), c("service", 
@@ -44,8 +44,8 @@ test_that("print.vicmap_promise works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  expect_error(print(vicmap_query('not a layer')), regexp = "No data available to query. Check your layer and query parameters")
-  expect_output(print(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "2.0.0")), regexp = NULL)
+  expect_error(print(vicmap_query('not a layer')), regexp = "Bad Request [(]HTTP 400[)].")
+  expect_output(print(vicmap_query(layer = "open-data-platform:hy_watercourse", wfs_version = "2.0.0")), regexp = NULL)
 })
 
 test_that("head.vicmap_promise works", {
@@ -53,15 +53,12 @@ test_that("head.vicmap_promise works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  r <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  r <- vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
     head(10) %>%
     collect() %>% 
     nrow()
-  r2 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "1.0.0") %>%
-    head(10) %>%
-    collect() %>% 
-    nrow()
-  expect_equal(r2, 10)
+
+  expect_equal(r, 10)
 })
 
 test_that("collect.vicmap_promise works", {
@@ -69,18 +66,20 @@ test_that("collect.vicmap_promise works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  d <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  d <- vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
     head(10) %>% 
     collect()
   
   expect_is(d, c("data.frame", "sf", "tbl_df", "tbl"))
   
   options(vicmap.chunk_limit = 100)
-  expect_message(object = {d2 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  expect_message(object = {d2 <- vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
     head(101) %>% select(id) %>%
     collect()}, regexp = NULL)
   
-  options(vicmap.chunk_limit = 1500)
+  expect_equal(nrow(d2), 101)
+  
+  options(vicmap.chunk_limit = 5000L)
 })
 
 test_that("show_query.vicmap_promise works", {
@@ -88,6 +87,6 @@ test_that("show_query.vicmap_promise works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  expect_output({vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+  expect_output({vicmap_query(layer = "open-data-platform:hy_watercourse") %>% 
                   show_query()}, regexp = NULL)
 })

@@ -39,8 +39,8 @@ NULL
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-#' select(HIERARCHY, PFI)
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
+#'  select(hierarchy,  pfi)
 #' )
 #' }
 select.vicmap_promise <- function(.data, ...){
@@ -48,6 +48,11 @@ select.vicmap_promise <- function(.data, ...){
   ## Eventually have to migrate to tidyselect::eval_select
   ## https://community.rstudio.com/t/evaluating-using-rlang-when-supplying-a-vector/44693/10
   cols_to_select <- c(.data$query$propertyName, rlang::exprs(...)) %>% as.character()
+  
+  if(.data$converted) {
+    #convert to lowercase if it is a coverted layer
+    cols_to_select <- tolower(cols_to_select)
+  }
   
   ## id is always added in. web request doesn't like asking for it twice
   cols_to_select <- setdiff(cols_to_select, "id")

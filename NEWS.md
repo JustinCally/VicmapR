@@ -5,6 +5,7 @@
 * Add tests to geometric filters  
 * Minimum sf version increased   
 * Minimum dbplyr version now 2.2.0  
+* Migration of geoserver platform now supported as the default
 
 # VicmapR 0.1.9  
 * Addition of tutorial for new users, written by Rachel Swain (Vicmap for Beginners) (PR#36, #41)  

@@ -30,7 +30,7 @@
 #'
 #' @examples
 #' \donttest{
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
 #'  feature_hits()
 #'  }
 feature_hits <- function(x) {
@@ -74,7 +74,7 @@ feature_hits <- function(x) {
 #' @examples
 #' \donttest{
 #' # Return the name of the geometry column
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>% 
 #'   geom_col_name()
 #'  }
 geom_col_name <- function(x) {
@@ -97,7 +97,7 @@ geom_col_name <- function(x) {
 #' @examples
 #' \donttest{
 #' # Return the column names as a character vector
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>% 
 #'   feature_cols()
 #' }   
 feature_cols <- function(x) {
@@ -125,7 +125,7 @@ specify_geom_name <- function(x, CQL_statement){
 #' \donttest{
 #' # Return a data.frame of the columns and their XML schema string datatypes
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>% 
 #'   get_col_df()
 #'   )
 #'  }
@@ -136,9 +136,13 @@ get_col_df <- function(x) {
   }
   
   layer <- x$query$version
+  if(getOption("vicmap.backend", default = "AWS") == "AWS") {
+    base_url_n_wfs <- getOption("vicmap.base_url", default = base_wfs_url)
+    r <- httr::GET(paste0(base_url_n_wfs, "?service=wfs&version=", x$query$version, "&request=DescribeFeatureType&typeNames=", x$query$typeNames))
+  } else {
   base_url_n_wfs <- substr(getOption("vicmap.base_url", default = base_wfs_url), start = 0, stop = nchar(getOption("vicmap.base_url", default = base_wfs_url)) - 3)
-  
   r <- httr::GET(paste0(base_url_n_wfs, x$query$typeNames, "/wfs?service=wfs&version=", x$query$version, "&request=DescribeFeatureType"))
+  }
   
   # stop if broken
   httr::stop_for_status(r)

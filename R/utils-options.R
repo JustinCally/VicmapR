@@ -36,6 +36,8 @@
 #' it is advisable to lower the chunk limit. Chunks must be less than 70000.
 #' 
 #' `vicmap.base_url` is the base wfs url used to query the geoserver.
+#' 
+#' `vicmap.backend` is the backend software running the geoserver. The data migration in 2022/2023 will change the backend from 'Oracle' to 'AWS'
 #'
 #' @return vicmap_options() returns a \code{data.frame}
 #' @export
@@ -50,8 +52,9 @@ vicmap_options <- function() {
   dplyr::tribble(
     ~ option, ~ value, ~default,
     "vicmap.max_geom_pred_size", null_to_na(getOption("vicmap.max_geom_pred_size")), as.character(4400),
-    "vicmap.chunk_limit",null_to_na(getOption("vicmap.chunk_limit")), as.character(1500),
-    "vicmap.base_url", getOption("vicmap.base_url"), base_wfs_url
+    "vicmap.chunk_limit",null_to_na(getOption("vicmap.chunk_limit")), as.character(5000),
+    "vicmap.base_url", getOption("vicmap.base_url"), base_wfs_url,
+    "vicmap.backend", getOption("vicmap.backend"), "AWS"
   )
 }
 
@@ -61,7 +64,7 @@ check_chunk_limit <- function(){
   
   chunk_value <- options("vicmap.chunk_limit")$vicmap.chunk_limit
   
-  if(!is.null(chunk_value) && chunk_value > 70000){
+  if(!is.null(chunk_value) && chunk_value > 5000){
     stop(glue::glue("Your chunk value of {chunk_value} exceed the Vicmap Data Catalogue chunk limit"), call. = FALSE)
   }
 }

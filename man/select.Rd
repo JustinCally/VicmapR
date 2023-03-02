@@ -26,8 +26,8 @@ See \code{dplyr::\link[dplyr]{select}} for details.
 \examples{
 \donttest{
 try(
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
-select(HIERARCHY, PFI)
+vicmap_query(layer = "open-data-platform:hy_watercourse") \%>\%
+ select(hierarchy,  pfi)
 )
 }
 }

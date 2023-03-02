@@ -1,0 +1,108 @@
+---
+title: "Migration to the Open Data Platform"
+output: rmarkdown::html_vignette
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{Migration to the Open Data Platform}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!--
+Modifications Copyright 2020 Rachel Swain and Justin Cally
+Copyright 2019 Province of British Columbia
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.
+-->
+
+```{r, include = FALSE}
+eval_check <- all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = eval_check
+)
+```
+
+# About  
+
+From `VicmapR` version `0.2.0`, the default platform data is retrieved from is different.  
+
+The Enterprise Spatial Services (ESS) Transformation Program from the Department of Energy, Environment and Climate Action (DEECA) has determined that DELWP’s WMS and WFS Open Data services will be hosted in AWS Cloud. This will cause a change of URLs when accessing these
+services.
+
+This migration of services essentially requires the `VicmapR` package to restructure where and how it obtains data. We have updated package code to by default use the new Amazon AWS cloud platform as the default source for data moving forward. The legacy platforms and services will be turned off by the  27 March 2023. Meaning that users will no longer be able to access data from these sources from this date.  
+
+We have made an effort to update `VicmapR` in such a way to make existing code work by translating layer names from the legacy names to the new names. However, not all data may be available; or even if data is available there may be changes to formats and structures. However, the new platform is expected to be more scalable (with likely addition of more data moving forward).    
+
+Some key changes to the data structure are: 
+
++ Layer names now have a prefix of 'open-data-platform:' instead of 'datavic:'  
++ Layer names are now lowercase   
++ Attributes (columns) are now in lowercase   
++ There are no different layers for subsets of data (e.g. there is only one layer for 2005 modelled EVCs: nv2005_evcbcs, whereas previously there were lots of layer subsets for the different EVC groups)
++ The default chunk limit is 5000 (previously varied between 1500 and 70000 depending on the dataset)  
+
+# Comparison of old and new code  
+
+Below we show how you might have queried a a layer in the legacy system and in the new system 
+
+```{r setup, eval = eval_check}
+library(VicmapR)
+library(kableExtra)
+```
+
+```{r old_code, eval = eval_check}
+
+# Old code for obtaining freshwater wetlands in glenelg plain
+evc_18_1_old <- vicmap_query("datavic:FLORAFAUNA1_NV2005_EVCBCS_18_1") %>% 
+  filter(BIOREGION == "Glenelg Plain" & X_EVCNAME %in% c("Deep Freshwater Marsh", "Aquatic Herbland")) %>% 
+  select(X_EVCNAME) %>%
+  head(10) 
+
+collect(evc_18_1_old) %>%
+  kbl() %>%
+  kable_styling()
+```
+
+```{r new_code, eval = eval_check}
+# New code for obtaining freshwater wetlands in glenelg plain
+evc_18_1_new <- vicmap_query("open-data-platform:nv2005_evcbcs") %>% 
+  filter(x_subgroupname == "Freshwater" & 
+           bioregion == "Glenelg Plain" & 
+           x_evcname %in% c("Deep Freshwater Marsh", "Aquatic Herbland")) %>% 
+  select(x_evcname) %>%
+  head(10)
+
+collect(evc_18_1_new) %>%
+  kbl() %>%
+  kable_styling()
+```
+
+As we can see, both code chucks now produce the same data due to VicmapR's in-built translations as part of the update. To check the queries are the same we can compare them:  
+
+```{r compare_queries, eval = eval_check}
+cat("Old query (translated):\n")
+show_query(evc_18_1_old)
+cat("New query:\n")
+show_query(evc_18_1_new)
+```
+
+# Old data that is no longer available  
+
+Some data layers are not available on the new platform (at least not yet). At time of writing, the swooping birds data is not available. If you try and retrieve a data layer that is no longer available, you will receive the following error:  
+
+```{r, eval = eval_check}
+try({
+vicmap_query(layer = "datavic:FLORAFUANA1_SWOOPING_BIRD") 
+})
+```
+

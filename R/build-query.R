@@ -28,8 +28,8 @@
 #   is retained and only six records are printed to the screen, which was the case in bcdata. print.bcdc_promise() uses
 #   several utility function (like bcdc_tidy_resources) not developed in this package.
 
-base_wfs_url <- "http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs"
-base_chunk_lim <- 1500L
+base_wfs_url <- "https://opendata.maps.vic.gov.au/geoserver/ows"
+base_chunk_lim <- 5000L
 
 #' Establish Vicmap Query
 #'
@@ -50,7 +50,7 @@ base_chunk_lim <- 1500L
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' vicmap_query(layer = "open-data-platform:hy_watercourse")
 #' )
 #' }
 vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
@@ -64,8 +64,8 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
                     request = "GetFeature",
                     typeNames = layer,
                     outputFormat = "application/json",
-                    count = getOption("vicmap.chunk_limit", default = 1500L),
-                    maxFeatures = getOption("vicmap.chunk_limit", default = 1500L),
+                    count = getOption("vicmap.chunk_limit", default = 5000L),
+                    maxFeatures = getOption("vicmap.chunk_limit", default = 5000L),
                     srsName = paste0("EPSG:", CRS))
   
   #maxFeatures or count depends on version
@@ -76,6 +76,8 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
   }
   
   url$query <- purrr::discard(url$query, is.null)
+  
+  url <- convert_layer_name(url)
   
   as.vicmap_promise(url)
   
@@ -103,7 +105,7 @@ vicmap_query <- function(layer, CRS = 4283, wfs_version = "2.0.0") {
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
 #' head(50) %>%
 #' show_query()
 #' )
@@ -150,7 +152,7 @@ show_query.vicmap_promise <- function(x, ...) {
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
 #' head(5) %>%
 #' collect()
 #' )
@@ -180,17 +182,17 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
   }
   
   # For when head is used
-  if(the_count > getOption("vicmap.chunk_limit", default = 1500L)) {
+  if(the_count > getOption("vicmap.chunk_limit", default = 5000L)) {
     number_of_records <- the_count
   }
   
   #paginate?
-  if(number_of_records > getOption("vicmap.chunk_limit", default = 1500L) & paginate == TRUE & the_count >= getOption("vicmap.chunk_limit", default = 1500L)) {
+  if(number_of_records > getOption("vicmap.chunk_limit", default = 5000L) & paginate == TRUE & the_count >= getOption("vicmap.chunk_limit", default = 5000L)) {
     # number of times to loop
-    loop_times <- ceiling(number_of_records/getOption("vicmap.chunk_limit", default = 1500L))
+    loop_times <- ceiling(number_of_records/getOption("vicmap.chunk_limit", default = 5000L))
     # inform user of delay
     if(!quiet) {
-    message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (", getOption("vicmap.chunk_limit", default = 1500L),"). The collection of data will be paginated and might take some time."))
+    message(paste0("There are ", number_of_records, " rows to be retrieved. This is more than the Vicmap chunk limit (", getOption("vicmap.chunk_limit", default = 5000L),"). The collection of data will be paginated and might take some time."))
     }
     # pick something to sort by
     cols <- feature_cols(x)
@@ -205,12 +207,15 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
     }
     
     for(i in 1:loop_times) {
-      x$query$startIndex <- (i-1)*getOption("vicmap.chunk_limit", default = 1500L)
+      cl <- getOption("vicmap.chunk_limit", default = 5000L)
+      x$query$startIndex <- (i-1)*cl
+      if(getOption("vicmap.backend", default = "AWS") != "AWS") {
       x$query$sortBy <- sort_col 
+      }
       if(x$query$version == "2.0.0") {
-        x$query$count <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 1500L))
+        x$query$count <- min(c(number_of_records-((i-1)*cl), cl))
       } else {
-        x$query$maxFeatures <- number_of_records-((i-1)*getOption("vicmap.chunk_limit", default = 1500L))
+        x$query$maxFeatures <- min(c(number_of_records-((i-1)*cl)))
       }
       request <- httr::build_url(x)
       returned_sf[[i]] <- sf::read_sf(request, ...)
@@ -246,7 +251,7 @@ collect.vicmap_promise <- function(x, quiet = FALSE, paginate = TRUE, ...) {
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
 #' head(50)
 #' )
 #' }
@@ -280,7 +285,7 @@ head.vicmap_promise <- function(x, n = 5, ...) {
 #' @examples
 #' \donttest{
 #' try(
-#' query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+#' query <- vicmap_query(layer = "open-data-platform:hy_watercourse")
 #' )
 #' try(
 #' print(query)

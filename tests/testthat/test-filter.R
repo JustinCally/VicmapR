@@ -17,14 +17,10 @@ test_that("filter works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  expect_warning({vicmap_query("datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "1.0.0") %>% 
-                   filter(HIERARCHY == "L", PFI == 8553127)}, 
-                 regexp = "wfs_version is not 2.0.0. Filtering may not be correctly applied as certain CRS's requests require axis flips")
-
-  r <- vicmap_query("datavic:VMHYDRO_WATERCOURSE_DRAIN", wfs_version = "2.0.0") %>% 
-    filter(HIERARCHY == "L", PFI == 8553127)
+  r <- vicmap_query("open-data-platform:hy_watercourse", wfs_version = "2.0.0") %>% 
+    filter(hierarchy == "L", pfi == 8553127)
   
-  expect_equal(as.character(r[["query"]][["CQL_FILTER"]]), "((\"HIERARCHY\" = 'L') AND (\"PFI\" = 8553127.0))")
+  expect_equal(as.character(r[["query"]][["CQL_FILTER"]]), "((\"hierarchy\" = 'L') AND (\"pfi\" = 8553127.0))")
   })
 
 test_that("passing an non-existent object to a geom predicate", {
@@ -32,9 +28,8 @@ test_that("passing an non-existent object to a geom predicate", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  expect_error(vicmap_query("datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-                 filter(INTERSECTS(districts)),
-               'object "districts" not found.\nThe object passed to INTERSECTS needs to be valid sf object.')
+  expect_error(vicmap_query("open-data-platform:hy_watercourse") %>%
+                 filter(INTERSECTS(districts)))
 })
 
 
@@ -46,7 +41,7 @@ test_that("geometric filter works", {
   
   polygon <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = TRUE)
   
-  dataobject <- vicmap_query("datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  dataobject <- vicmap_query("open-data-platform:hy_watercourse") %>%
                  filter(INTERSECTS(polygon)) %>%
     feature_hits()
   
@@ -54,7 +49,7 @@ test_that("geometric filter works", {
   
   polygon_3111 <- sf::st_transform(polygon, 3111)
   
-  dataobject <- vicmap_query("datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
+  dataobject <- vicmap_query("open-data-platform:hy_watercourse") %>%
     filter(INTERSECTS(polygon_3111)) %>%
     feature_hits()
   

@@ -35,13 +35,14 @@ NULL
 #'
 #' @describeIn filter filter.vicmap_promise
 #' @return Object of class `vicmap_promise`, which is a 'promise' of the data that can  be returned if `collect()` is used
+#' @importFrom rlang "%||%"
 #' @export
 #'
 #' @examples
 #' \donttest{
 #' try(
-#' vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>%
-#'  filter(HIERARCHY == "L", PFI == 8553127)
+#' vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
+#'  filter(hierarchy == "L", pfi == 8553127)
 #'  )
 #'  }
 filter.vicmap_promise <- function(.data, ...) {
@@ -50,7 +51,9 @@ filter.vicmap_promise <- function(.data, ...) {
     warning("wfs_version is not 2.0.0. Filtering may not be correctly applied as certain CRS's requests require axis flips")
   }
   
-  current_cql = cql_translate(...)
+  cdf <- VicmapR::get_col_df(.data)
+  
+  current_cql = cql_translate(..., .colnames = cdf$name %||% character(0), converted = .data$converted)
   ## Change CQL query on the fly if geom is not GEOMETRY
   current_cql = specify_geom_name(.data, current_cql)
   

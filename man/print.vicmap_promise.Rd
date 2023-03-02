@@ -21,7 +21,7 @@ alongside the number of rows and columns that would be returned.
 \examples{
 \donttest{
 try(
-query <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
+query <- vicmap_query(layer = "open-data-platform:hy_watercourse")
 )
 try(
 print(query)

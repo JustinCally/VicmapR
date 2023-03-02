@@ -31,4 +31,6 @@ reference:
       - '`vicmap_options`'
       - '`check_geoserver`'
       - '`data_citation`'
+      - '`name_conversions`'
+      - '`convert_layer_name`'
       

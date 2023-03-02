@@ -19,7 +19,7 @@ without having to download the data.
 }
 \examples{
 \donttest{
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") \%>\%
+vicmap_query(layer = "open-data-platform:hy_watercourse") \%>\%
  feature_hits()
  }
 }
