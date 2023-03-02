@@ -10,6 +10,9 @@
     <loc>https://justincally.github.io/VicmapR/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://justincally.github.io/VicmapR/articles/migration_odp.html</loc>
+  </url>
+  <url>
     <loc>https://justincally.github.io/VicmapR/articles/query_vicmap.html</loc>
   </url>
   <url>
@@ -29,6 +32,9 @@
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/collect.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/convert_layer_name.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/cql_geom_predicates.html</loc>
@@ -53,6 +59,9 @@
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/listLayers.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/name_conversions.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/pipe.html</loc>

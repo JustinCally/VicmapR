@@ -35,6 +35,9 @@
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
     </li>
     <li>
+      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
+    </li>
+    <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
     </li>
   </ul></li>
@@ -96,36 +99,32 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span> <span class="fu">filter</span><span class="op">(</span><span class="va">HIERARCHY</span> <span class="op">==</span> <span class="st">"L"</span>, <span class="va">PFI</span> <span class="op">==</span> <span class="fl">8553127</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span> <span class="fu">filter</span><span class="op">(</span><span class="va">hierarchy</span> <span class="op">==</span> <span class="st">"L"</span>, <span class="va">pfi</span> <span class="op">==</span> <span class="fl">8553127</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Note: method with signature ‘DBIConnection#character’ chosen for function ‘dbQuoteIdentifier’,</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  target signature ‘wfsConnection#ident’.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  "wfsConnection#ANY" would also be valid</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Note: method with signature ‘DBIConnection#character’ chosen for function ‘dbQuoteIdentifier’,</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  target signature ‘wfsConnection#character’.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  "wfsConnection#ANY" would also be valid</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Note: method with signature ‘DBIConnection#character’ chosen for function ‘dbQuoteString’,</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  target signature ‘wfsConnection#character’.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  "wfsConnection#ANY" would also be valid</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> • Using <span style="color: #0000BB;">collect()</span> on this object will return <span style="color: #00BB00;">1</span> features</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> • and <span style="color: #00BB00;">16</span> fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> • and <span style="color: #00BB00;">15</span> fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> • At most six rows of the record are printed here</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ────────────────────────────────────────────────────────────────────────────────</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 1 feature and 15 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 1 feature and 14 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: LINESTRING</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 143.3209 ymin: -35.06905 xmax: 143.324 ymax: -35.06721</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  GDA94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 16</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id       PFI    UFI FEATU…¹ NAME  NAMED…² ORIGIN CONST…³ USAGE HIERA…⁴ FEATU…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> VMHY… 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 waterc… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      2      1       3     L          <span style="text-decoration: underline;">4</span>762</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 5 more variables: CREATE_DATE_PFI &lt;dttm&gt;, SUPERCEDED_PFI &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;, geometry &lt;LINESTRING [°]&gt;, and</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   abbreviated variable names ¹​FEATURE_TYPE_CODE, ²​NAMED_FEATURE_ID,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​CONSTRUCTION, ⁴​HIERARCHY, ⁵​FEATURE_QUALITY_ID</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `colnames()` to see all variable names</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 15</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id       pfi    ufi featu…¹ name  named…² origin usage hiera…³ featu…⁴ const…⁵</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> hy_w… 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 waterc… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      2      3     L          <span style="text-decoration: underline;">4</span>762 1      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more variables: superceded_pfi &lt;chr&gt;, create_date_pfi &lt;date&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   create_date_ufi &lt;date&gt;, geometry &lt;LINESTRING [°]&gt;, and abbreviated variable</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   names ¹​feature_type_code, ²​named_feature_id, ³​hierarchy,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​feature_quality_id, ⁵​construction</span></span>
 <span class="r-in"><span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
@@ -141,7 +140,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
