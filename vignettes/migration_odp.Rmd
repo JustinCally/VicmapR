@@ -51,6 +51,9 @@ Some key changes to the data structure are:
 + There are no different layers for subsets of data (e.g. there is only one layer for 2005 modelled EVCs: nv2005_evcbcs, whereas previously there were lots of layer subsets for the different EVC groups)
 + The default chunk limit is 5000 (previously varied between 1500 and 70000 depending on the dataset)  
 
+In order to view how old layer names relate to new layer names users can view the exported data.frame (`name_conversions`).
+
+
 # Comparison of old and new code  
 
 Below we show how you might have queried a a layer in the legacy system and in the new system 
