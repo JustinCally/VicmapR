@@ -89,5 +89,12 @@ test_that("CQL functions fail correctly", {
 test_that("CQL translate works", {
   expect_is(VicmapR:::cql_translate(CQL(INTERSECTS(the_geom))), c("sql", "character"))
   expect_is(VicmapR:::cql_translate(CQL(BBOX(!!st_bbox(the_geom)))), c("sql", "character"))
+  
+  # Test not equal predicate
+  vmne <- vicmap_query("open-data-platform:vmlite_victoria_polygon_su5") %>%
+    filter(state != "VIC")
+  
+  expect_equal(as.character(vmne$query$CQL_FILTER), "(NOT \"state\" = 'VIC')")
+  
 })
 
