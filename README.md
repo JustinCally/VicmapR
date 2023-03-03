@@ -25,6 +25,17 @@ al. (2021)](https://joss.theoj.org/papers/10.21105/joss.02927) for the
 [{bcdata} R package](https://bcgov.github.io/bcdata/), which allows for
 a responsive and precise querying process.
 
+## Migration of Victoria’s Open Data Geoserver
+
+**From March 2023 (`VicmapR v0.2.0`) the way `VicmapR` obtains data has
+changed**
+
+In March 2023 the data platform used by `VicmapR` will be migrated with
+the legacy platform discontinued. Changes have been to the `VicmapR`
+package to allow for the conversion and translation of of code in an
+effort to ensure legacy code still works. However, the migration may
+have unseen consequences and users are encouraged to review code.
+
 ## Installation
 
 You can install the released version from CRAN with:
@@ -50,12 +61,13 @@ link it to the `sf` package visit:
 
 ``` r
 library(sf)
-#> Linking to GEOS 3.11.0, GDAL 3.5.1, PROJ 9.0.1; sf_use_s2() is TRUE
+#> Warning: package 'sf' was built under R version 4.1.2
+#> Linking to GEOS 3.10.2, GDAL 3.4.2, PROJ 8.2.1; sf_use_s2() is TRUE
 sf::sf_extSoftVersion()
 #>           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
-#>       "3.11.0"        "3.5.1"        "9.0.1"         "true"         "true" 
+#>       "3.10.2"        "3.4.2"        "8.2.1"        "false"         "true" 
 #>           PROJ 
-#>        "9.0.1"
+#>        "8.2.1"
 ```
 
 ## Example
@@ -74,11 +86,14 @@ library(VicmapR)
 check_geoserver()
 #> [1] TRUE
 
-listLayers(pattern = "trees", ignore.case = T)
-#>                                Name
-#> 1 datavic:WATER_ISC2010_LARGE_TREES
-#>                                                           Title
-#> 1 2010 Index of Stream Condition - Large Trees polygon features
+listLayers(pattern = "road", ignore.case = T)
+#>                                        Name                  Title
+#> 1       open-data-platform:gov_road_polygon       gov_road_polygon
+#> 2  open-data-platform:road_casement_polygon  road_casement_polygon
+#> 3                open-data-platform:tr_road                tr_road
+#> 4 open-data-platform:tr_road_infrastructure tr_road_infrastructure
+#> 5       open-data-platform:tr_road_register       tr_road_register
+#> 6         open-data-platform:vmlite_tr_road         vmlite_tr_road
 ```
 
 ### Reading in data
@@ -98,34 +113,35 @@ in spatial data:
 melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = T)
 
 # Obtain a promise of what data will be returned for a given layer
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN")
-#> • Using collect() on this object will return 195432 features and 16
+vicmap_query(layer = "open-data-platform:hy_watercourse")
+#> • Using collect() on this object will return 1837784 features and 15
 #> • fields
 #> • At most six rows of the record are printed here
 #> ────────────────────────────────────────────────────────────────────────────────
-#> Simple feature collection with 6 features and 15 fields
+#> Simple feature collection with 6 features and 14 fields
 #> Geometry type: LINESTRING
 #> Dimension:     XY
-#> Bounding box:  xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559
+#> Bounding box:  xmin: 141.5126 ymin: -34.40608 xmax: 142.3502 ymax: -34.37683
 #> Geodetic CRS:  GDA94
-#> # A tibble: 6 × 16
-#>   id                   PFI    UFI FEATURE_TYPE_CO… NAME  NAMED_FEATURE_ID ORIGIN
-#>   <chr>              <int>  <int> <chr>            <chr> <chr>            <chr> 
-#> 1 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 2 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 3 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 4 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 5 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> 6 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… <NA>  <NA>             2     
-#> # … with 9 more variables: CONSTRUCTION <chr>, USAGE <chr>, HIERARCHY <chr>,
-#> #   FEATURE_QUALITY_ID <int>, CREATE_DATE_PFI <dttm>, SUPERCEDED_PFI <chr>,
-#> #   CREATE_DATE_UFI <dttm>, OBJECTID <int>, geometry <LINESTRING [°]>
+#> # A tibble: 6 × 15
+#>   id       pfi    ufi featu…¹ name  named…² origin usage hiera…³ featu…⁴ const…⁵
+#>   <chr>  <int>  <int> <chr>   <chr> <chr>   <chr>  <chr> <chr>     <int> <chr>  
+#> 1 hy_w… 8.55e6 2.55e6 waterc… <NA>  <NA>    2      3     L          4762 1      
+#> 2 hy_w… 8.55e6 2.55e6 waterc… <NA>  <NA>    2      3     L          4762 1      
+#> 3 hy_w… 8.55e6 2.55e6 waterc… <NA>  <NA>    2      3     L          4762 1      
+#> 4 hy_w… 8.55e6 2.55e6 waterc… <NA>  <NA>    2      3     L          4762 1      
+#> 5 hy_w… 8.55e6 2.55e6 waterc… <NA>  <NA>    1      1     L          4762 <NA>   
+#> 6 hy_w… 8.55e6 2.55e6 waterc… <NA>  <NA>    2      3     L          4762 1      
+#> # … with 4 more variables: superceded_pfi <chr>, create_date_pfi <date>,
+#> #   create_date_ufi <date>, geometry <LINESTRING [°]>, and abbreviated variable
+#> #   names ¹​feature_type_code, ²​named_feature_id, ³​hierarchy,
+#> #   ⁴​feature_quality_id, ⁵​construction
 
 # Build a more specific query and collect the results
-vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
-  filter(HIERARCHY == "L") %>% # simple filter for a column
+vicmap_query(layer = "open-data-platform:hy_watercourse") %>% # layer to query
+  filter(hierarchy == "L" & feature_type_code == 'watercourse_channel_drain') %>% # simple filter for a column
   filter(INTERSECTS(melbourne)) %>% # more advanced geometric filter
-  select(HIERARCHY, PFI) %>% 
+  select(hierarchy, pfi) %>% 
   collect()
 #> Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',
 #>  target signature 'wfsConnection#ident'.
@@ -136,22 +152,22 @@ vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% # layer to query
 #> Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteString',
 #>  target signature 'wfsConnection#character'.
 #>  "wfsConnection#ANY" would also be valid
-#> Simple feature collection with 8 features and 5 fields
+#> Simple feature collection with 8 features and 3 fields
 #> Geometry type: LINESTRING
 #> Dimension:     XY
 #> Bounding box:  xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198
 #> Geodetic CRS:  GDA94
-#> # A tibble: 8 × 6
-#>   id                     PFI    UFI HIERARCHY OBJECTID                  geometry
-#>   <chr>                <int>  <int> <chr>        <int>          <LINESTRING [°]>
-#> 1 VMHYDRO_WATERCOURS… 1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144…
-#> 2 VMHYDRO_WATERCOURS… 1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.…
-#> 3 VMHYDRO_WATERCOURS… 1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144…
-#> 4 VMHYDRO_WATERCOURS… 1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144…
-#> 5 VMHYDRO_WATERCOURS… 1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144…
-#> 6 VMHYDRO_WATERCOURS… 1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144…
-#> 7 VMHYDRO_WATERCOURS… 1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.…
-#> 8 VMHYDRO_WATERCOURS… 1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144…
+#> # A tibble: 8 × 4
+#>   id                          pfi hierarchy                             geometry
+#>   <chr>                     <int> <chr>                         <LINESTRING [°]>
+#> 1 hy_watercourse.1053834 14577602 L         (144.9288 -37.81417, 144.9292 -37.8…
+#> 2 hy_watercourse.1081287 14608731 L         (144.9365 -37.81511, 144.9359 -37.8…
+#> 3 hy_watercourse.1633540 14615146 L         (144.9442 -37.78198, 144.9441 -37.7…
+#> 4 hy_watercourse.1740501 19272791 L         (144.9287 -37.8033, 144.9186 -37.80…
+#> 5 hy_watercourse.1053831 14577596 L         (144.929 -37.81409, 144.9294 -37.81…
+#> 6 hy_watercourse.1633536 14608434 L         (144.9403 -37.78253, 144.9401 -37.7…
+#> 7 hy_watercourse.1633538 17520306 L         (144.9415 -37.78232, 144.9414 -37.7…
+#> 8 hy_watercourse.1740869 14608551 L         (144.9201 -37.79069, 144.9202 -37.7…
 ```
 
 VicmapR translates numerous geometric filter functions available in the
