@@ -92,6 +92,7 @@ cql_scalar <- dbplyr::sql_translator(
   `[` = `[`,
   `[[` = `[[`,
   `$` = `$`,
+  `!=` = function(x, ...) dbplyr::sql(paste0("NOT ", x, " = '", ..., "'")),
   as.Date = function(x, ...) as.character(as.Date(x, ...)),
   as.POSIXct = function(x, ...) as.character(as.POSIXct(x, ...)),
   as.numeric = vicmap_identity("as.numeric"),
