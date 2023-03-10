@@ -126,7 +126,7 @@ get_abstract_df <- function(url = "https://metashare.maps.vic.gov.au/geonetwork/
 }
 
 #' get abstract df from content of API response
-#'
+#' @noRd
 #' @param c content from metashare api
 
 extract_abstract <- function(c) {
