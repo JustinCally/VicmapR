@@ -45,8 +45,12 @@ cql_translate <- function(..., .colnames = character(0), converted = FALSE) {
     )
   })
   
+  suppressMessages({
+  
   sql_where <- try(dbplyr::translate_sql_(dots, con = wfs_con, window = FALSE),
                    silent = TRUE)
+  
+  })
   
   if (inherits(sql_where, "try-error")) {
     if (grepl("no applicable method", sql_where)) {
