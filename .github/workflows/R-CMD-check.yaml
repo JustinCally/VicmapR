@@ -3,6 +3,7 @@ on:
     branches:
       - main
       - master
+      - cran-fix
   pull_request: ~
   schedule:
     - cron: '30 4 * * 1'
