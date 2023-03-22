@@ -58,14 +58,17 @@ listLayers <- function(..., abstract = TRUE) {
   } else {
     
     df <- lapply(attr_list, function(x) {
+      # get metadataID
+      mdid <- stringr::str_sub(stringr::str_subset(unlist(x), "MetadataID="), 12)
       data.frame(x[["Name"]], 
                  x[["Title"]], 
-                 stringr::str_sub(x[["Keywords"]][[4]][[1]], 12), 
+                 if(purrr::is_empty(mdid)) NA_character_ else mdid, 
                  stringsAsFactors = F) %>% `colnames<-`(c("Name", "Title", "metadataID"))
     }) %>% 
       dplyr::bind_rows() %>%
       dplyr::left_join(get_abstract_df(), by = "metadataID") %>%
-      dplyr::select(Name, Title, Abstract, metadataID)
+      dplyr::select(Name, Title, Abstract, metadataID) %>%
+      dplyr::distinct()
     
   }
   
