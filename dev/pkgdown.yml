@@ -1,10 +1,11 @@
-pandoc: 2.11.4
-pkgdown: 2.0.2.9000
-pkgdown_sha: ae7363faac9040a473a54fb3d770decdfb8dfec1
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
 articles:
   beginner_vicmap: beginner_vicmap.html
+  migration_odp: migration_odp.html
   query_vicmap: query_vicmap.html
-last_built: 2022-03-24T01:03Z
+last_built: 2023-04-11T22:33Z
 urls:
   reference: https://justincally.github.io/VicmapR/reference
   article: https://justincally.github.io/VicmapR/articles
