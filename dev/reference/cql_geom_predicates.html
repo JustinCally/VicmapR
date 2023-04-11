@@ -22,7 +22,7 @@ filtering may be needed to achieve exact results."><meta property="og:image" con
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
       </span>
     </div>
 
@@ -31,16 +31,13 @@ filtering may be needed to achieve exact results."><meta property="og:image" con
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
-    </li>
-    <li>
-      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -79,79 +76,66 @@ filtering may be needed to achieve exact results.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">EQUALS</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">DISJOINT</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">INTERSECTS</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">TOUCHES</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">CROSSES</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">WITHIN</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">CONTAINS</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">OVERLAPS</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">RELATE</span><span class="op">(</span><span class="va">geom</span>, <span class="va">pattern</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">BBOX</span><span class="op">(</span><span class="va">coords</span>, crs <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">DWITHIN</span><span class="op">(</span></span>
-<span>  <span class="va">geom</span>,</span>
-<span>  <span class="va">distance</span>,</span>
-<span>  units <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"meters"</span>, <span class="st">"feet"</span>, <span class="st">"statute miles"</span>, <span class="st">"nautical miles"</span>, <span class="st">"kilometers"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">BEYOND</span><span class="op">(</span></span>
-<span>  <span class="va">geom</span>,</span>
-<span>  <span class="va">distance</span>,</span>
-<span>  units <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"meters"</span>, <span class="st">"feet"</span>, <span class="st">"statute miles"</span>, <span class="st">"nautical miles"</span>, <span class="st">"kilometers"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">EQUALS</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span>
+
+<span class="fu">DISJOINT</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span>
+
+<span class="fu">INTERSECTS</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span>
+
+<span class="fu">TOUCHES</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span>
+
+<span class="fu">CROSSES</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span>
+
+<span class="fu">WITHIN</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span>
+
+<span class="fu">CONTAINS</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span>
+
+<span class="fu">OVERLAPS</span><span class="op">(</span><span class="va">geom</span><span class="op">)</span>
+
+<span class="fu">RELATE</span><span class="op">(</span><span class="va">geom</span>, <span class="va">pattern</span><span class="op">)</span>
+
+<span class="fu">BBOX</span><span class="op">(</span><span class="va">coords</span>, crs <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+
+<span class="fu">DWITHIN</span><span class="op">(</span>
+  <span class="va">geom</span>,
+  <span class="va">distance</span>,
+  units <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"meters"</span>, <span class="st">"feet"</span>, <span class="st">"statute miles"</span>, <span class="st">"nautical miles"</span>, <span class="st">"kilometers"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">BEYOND</span><span class="op">(</span>
+  <span class="va">geom</span>,
+  <span class="va">distance</span>,
+  units <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"meters"</span>, <span class="st">"feet"</span>, <span class="st">"statute miles"</span>, <span class="st">"nautical miles"</span>, <span class="st">"kilometers"</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>geom</dt>
 <dd><p>an <code>sf</code>/<code>sfc</code>/<code>sfg</code> or <code>bbox</code> object (from the <code>sf</code> package)</p></dd>
-
-
 <dt>pattern</dt>
 <dd><p>spatial relationship specified by a DE-9IM matrix pattern.
 A DE-9IM pattern is a string of length 9 specified using the characters
 <code>*TF012</code>. Example: <code>'1*T***T**'</code></p></dd>
-
-
 <dt>coords</dt>
 <dd><p>the coordinates of the bounding box as four-element numeric
 vector <code>c(xmin, ymin, xmax, ymax)</code>, a <code>bbox</code> object from the <code>sf</code>
 package (the result of running <code><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">sf::st_bbox()</a></code> on an <code>sf</code> object), or
 an <code>sf</code> object which then gets converted to a bounding box on the fly.</p></dd>
-
-
 <dt>crs</dt>
 <dd><p>(Optional) A numeric value or string containing an SRS code. If
 <code>coords</code> is a <code>bbox</code> object with non-empty crs, it is taken from that.
 (For example, <code>'EPSG:3005'</code> or just <code>3005</code>. The default is to use the CRS of
 the queried layer)</p></dd>
-
-
 <dt>distance</dt>
 <dd><p>numeric value for distance tolerance</p></dd>
-
-
 <dt>units</dt>
 <dd><p>units that distance is specified in. One of
 <code>"feet"</code>, <code>"meters"</code>, <code>"statute miles"</code>, <code>"nautical miles"</code>, <code>"kilometers"</code></p></dd>
-
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>a CQL expression to be passed on to the WFS call</p>
+    <p>a CQL expression to be passed on to the WFS call</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -170,7 +154,7 @@ the queried layer)</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>

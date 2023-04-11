@@ -18,7 +18,7 @@ Used when writing filter expressions in vicmap_query()."><meta property="og:imag
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
       </span>
     </div>
 
@@ -27,16 +27,13 @@ Used when writing filter expressions in vicmap_query()."><meta property="og:imag
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
-    </li>
-    <li>
-      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -71,22 +68,17 @@ Used when writing filter expressions in <code><a href="vicmap_query.html">vicmap
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">CQL</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">CQL</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>...</dt>
 <dd><p>Character vectors that will be combined into a single CQL statement.</p></dd>
-
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>An object of class <code>c("CQL", "SQL")</code></p>
-
-
+    <p>An object of class <code>c("CQL", "SQL")</code></p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -96,7 +88,7 @@ Used when writing filter expressions in <code><a href="vicmap_query.html">vicmap
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">CQL</span><span class="op">(</span><span class="st">"FOO &gt; 12 &amp; NAME LIKE 'A&amp;'"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">CQL</span><span class="op">(</span><span class="st">"FOO &gt; 12 &amp; NAME LIKE 'A&amp;'"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;SQL&gt; FOO &gt; 12 &amp; NAME LIKE 'A&amp;'</span>
 </code></pre></div>
     </div>
@@ -112,7 +104,7 @@ Used when writing filter expressions in <code><a href="vicmap_query.html">vicmap
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>

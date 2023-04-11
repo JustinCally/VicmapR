@@ -19,7 +19,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Access Victorian Spatial Data Through Web File Services (WFS) ">
 <meta property="og:description" content="Easily interfaces R to spatial datasets available through 
-  the Victorian Governments WFS (Web Feature Service): &lt;https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities&gt;, 
+  the Victorian Governments WFS (Web Feature Service): &lt;https://opendata.maps.vic.gov.au/geoserver/ows?request=GetCapabilities&amp;service=wfs&gt;, 
   which allows users to read in sf data from these sources. VicmapR uses the lazy querying approach and code developed by Teucher et al. (2021) for the bcdata' R package &lt;doi:10.21105/joss.02927&gt;.">
 <meta property="og:image" content="https://justincally.github.io/VicmapR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -60,6 +60,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="articles/beginner_vicmap.html">Vicmap for Beginners</a>
+    </li>
+    <li>
+      <a href="articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -93,30 +96,37 @@
 <div class="page-header"><h1 id="vicmapr-">VicmapR <img src="reference/figures/logo.png" align="right" height="139"><a class="anchor" aria-label="anchor" href="#vicmapr-"></a>
 </h1></div>
 <!-- badges: start -->
+
 <p>The goal of VicmapR is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). VicmapR leverages code and a lazy querying approach developed by <a href="https://joss.theoj.org/papers/10.21105/joss.02927" class="external-link">Teucher et al. (2021)</a> for the <a href="https://bcgov.github.io/bcdata/" class="external-link">{bcdata} R package</a>, which allows for a responsive and precise querying process.</p>
+<div class="section level2">
+<h2 id="migration-of-victorias-open-data-geoserver">Migration of Victoria’s Open Data Geoserver<a class="anchor" aria-label="anchor" href="#migration-of-victorias-open-data-geoserver"></a>
+</h2>
+<p><strong>From March 2023 (<code>VicmapR v0.2.0</code>) the way <code>VicmapR</code> obtains data has changed</strong></p>
+<p>In March 2023 the data platform used by <code>VicmapR</code> will be migrated with the legacy platform discontinued. Changes have been to the <code>VicmapR</code> package to allow for the conversion and translation of of code in an effort to ensure legacy code still works. However, the migration may have unseen consequences and users are encouraged to review code.</p>
+</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the released version from CRAN with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"VicmapR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"VicmapR"</span><span class="op">)</span></span></code></pre></div>
 <p>Or you can install the the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"JustinCally/VicmapR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JustinCally/VicmapR"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="dependencies">Dependencies<a class="anchor" aria-label="anchor" href="#dependencies"></a>
 </h3>
 <p>Currently, the ability to use accurate geometric filters using <code>VicmapR</code> requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and link it to the <code>sf</code> package visit: <a href="https://r-spatial.github.io/sf/#installing" class="external-link uri">https://r-spatial.github.io/sf/#installing</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
-<span class="co">#&gt; Warning: package 'sf' was built under R version 4.1.2</span>
-<span class="co">#&gt; Linking to GEOS 3.9.1, GDAL 3.4.0, PROJ 8.1.1; sf_use_s2() is TRUE</span>
-<span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf_extSoftVersion.html" class="external-link">sf_extSoftVersion</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H </span>
-<span class="co">#&gt;        "3.9.1"        "3.4.0"        "8.1.1"         "true"         "true" </span>
-<span class="co">#&gt;           PROJ </span>
-<span class="co">#&gt;        "8.1.1"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'sf' was built under R version 4.1.2</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.10.2, GDAL 3.4.2, PROJ 8.2.1; sf_use_s2() is TRUE</span></span>
+<span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf_extSoftVersion.html" class="external-link">sf_extSoftVersion</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H </span></span>
+<span><span class="co">#&gt;       "3.10.2"        "3.4.2"        "8.2.1"        "false"         "true" </span></span>
+<span><span class="co">#&gt;           PROJ </span></span>
+<span><span class="co">#&gt;        "8.2.1"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -126,86 +136,86 @@
 <h3 id="searching-for-data">Searching for data<a class="anchor" aria-label="anchor" href="#searching-for-data"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://justincally.github.io/VicmapR/">VicmapR</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'VicmapR'</span>
-<span class="co">#&gt; The following object is masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter</span>
-
-<span class="co"># Check to see if the geoserver is working. It will error if it is not working  </span>
-<span class="fu"><a href="reference/check_geoserver.html">check_geoserver</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] TRUE</span>
-
-<span class="fu"><a href="reference/listLayers.html">listLayers</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"trees"</span>, ignore.case <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="co">#&gt;                                Name</span>
-<span class="co">#&gt; 1 datavic:WATER_ISC2010_LARGE_TREES</span>
-<span class="co">#&gt;                                                           Title</span>
-<span class="co">#&gt; 1 2010 Index of Stream Condition - Large Trees polygon features</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://justincally.github.io/VicmapR/">VicmapR</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'VicmapR'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter</span></span>
+<span></span>
+<span><span class="co"># Check to see if the geoserver is working. It will error if it is not working  </span></span>
+<span><span class="fu"><a href="reference/check_geoserver.html">check_geoserver</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/listLayers.html">listLayers</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"watercourse"</span>, ignore.case <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                       Name                 Title</span></span>
+<span><span class="co">#&gt; 1 open-data-platform:hy_water_area_polygon hy_water_area_polygon</span></span>
+<span><span class="co">#&gt; 2        open-data-platform:hy_watercourse        hy_watercourse</span></span>
+<span><span class="co">#&gt; 3 open-data-platform:vmlite_hy_watercourse vmlite_hy_watercourse</span></span>
+<span><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Abstract</span></span>
+<span><span class="co">#&gt; 1                                                                                                                                                                                                                                                                                                                                                                                                                                                        This layer is part of Vicmap Hydro and contains polygon features delineating hydrological features.\nIncludes; Lakes, Flats (subject to inundation),  Wetlands, Pondages (saltpan &amp; sewrage), Watercourse Areas, Rapids &amp; Waterfalls\nAttributed for name.\nCentroid layer also available.</span></span>
+<span><span class="co">#&gt; 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                This layer is part of Vicmap Hydro and contains line features delineating hydrological features.\nIncludes; Watercourses (ie channels, rivers &amp; streams) &amp; Connectors.\nAttributed for name.  Arcs run downstream.</span></span>
+<span><span class="co">#&gt; 3 This layer is part of Vicmap Lite and contains line features delineating hydrological features. Vicmap Lite datasets are suited for use between scales of 1: 250,000 and 1 : 5 million.  The linework was sourced from Vicmap Hydro. The level of attribute information, the number of features and the number of vertices has been simplified to suit the 1: 250,000  - 1 : 5 million scale range. The concept of a Scale Use Code has been introduced to help control the level of detail displayed.\n\nIf this dataset is used in conjunction with vmlite_hy_water_area, then the draw order should be such that vmlite_hy_watercourse is drawn 1st and vmlite_hy_water_area is drawn ontop.\n\nTHIS DATASET WAS LAST UPDATED IN NOVEMBER 2015</span></span>
+<span><span class="co">#&gt;                             metadataID</span></span>
+<span><span class="co">#&gt; 1 3984e659-2487-512d-b390-0de817979f21</span></span>
+<span><span class="co">#&gt; 2 cc373943-7848-5c21-9be4-7a92632e624c</span></span>
+<span><span class="co">#&gt; 3 9753ed02-4f2a-59a0-a673-73fbe934f58a</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="reading-in-data">Reading in data<a class="anchor" aria-label="anchor" href="#reading-in-data"></a>
 </h3>
 <p>As of VicmapR version <code>0.1.0</code> data is read in using a lazy evaluation method with the convenience of pipe operators (<code>%&gt;%</code>). A lot of the methods and code have already been written for a similar package (<a href="https://github.com/bcgov/bcdata" class="external-link">bcdata</a>) that downloads data from the British Columbia WFS catalogues. Using a similar approach, VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until <code><a href="reference/collect.html">collect()</a></code> is used on the <code>vicmap_promise</code>. The example below shows an extensive example of how the to easily read in spatial data:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Read in an example shape to restrict our query to using geometric filtering</span>
-<span class="va">melbourne</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/melbourne.geojson"</span>, package<span class="op">=</span><span class="st">"VicmapR"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-
-<span class="co"># Obtain a promise of what data will be returned for a given layer</span>
-<span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span>
-<span class="co">#&gt; • Using collect() on this object will return 195432 features and 16</span>
-<span class="co">#&gt; • fields</span>
-<span class="co">#&gt; • At most six rows of the record are printed here</span>
-<span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Simple feature collection with 6 features and 15 fields</span>
-<span class="co">#&gt; Geometry type: LINESTRING</span>
-<span class="co">#&gt; Dimension:     XY</span>
-<span class="co">#&gt; Bounding box:  xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559</span>
-<span class="co">#&gt; Geodetic CRS:  GDA94</span>
-<span class="co">#&gt; # A tibble: 6 × 16</span>
-<span class="co">#&gt;   id                   PFI    UFI FEATURE_TYPE_CO… NAME  NAMED_FEATURE_ID ORIGIN</span>
-<span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt;  &lt;int&gt; &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt; </span>
-<span class="co">#&gt; 1 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 2 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 3 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 4 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 5 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; 6 VMHYDRO_WATERCOU… 8.55e6 2.55e6 watercourse_cha… &lt;NA&gt;  &lt;NA&gt;             2     </span>
-<span class="co">#&gt; # … with 9 more variables: CONSTRUCTION &lt;chr&gt;, USAGE &lt;chr&gt;, HIERARCHY &lt;chr&gt;,</span>
-<span class="co">#&gt; #   FEATURE_QUALITY_ID &lt;int&gt;, CREATE_DATE_PFI &lt;dttm&gt;, SUPERCEDED_PFI &lt;chr&gt;,</span>
-<span class="co">#&gt; #   CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;, geometry &lt;LINESTRING [°]&gt;</span>
-
-<span class="co"># Build a more specific query and collect the results</span>
-<span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="co"># layer to query</span>
-  <span class="fu"><a href="reference/filter.html">filter</a></span><span class="op">(</span><span class="va">HIERARCHY</span> <span class="op">==</span> <span class="st">"L"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="co"># simple filter for a column</span>
-  <span class="fu"><a href="reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="reference/cql_geom_predicates.html">INTERSECTS</a></span><span class="op">(</span><span class="va">melbourne</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="co"># more advanced geometric filter</span>
-  <span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">HIERARCHY</span>, <span class="va">PFI</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="reference/collect.html">collect</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',</span>
-<span class="co">#&gt;  target signature 'wfsConnection#ident'.</span>
-<span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span>
-<span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',</span>
-<span class="co">#&gt;  target signature 'wfsConnection#character'.</span>
-<span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span>
-<span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteString',</span>
-<span class="co">#&gt;  target signature 'wfsConnection#character'.</span>
-<span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span>
-<span class="co">#&gt; Simple feature collection with 8 features and 5 fields</span>
-<span class="co">#&gt; Geometry type: LINESTRING</span>
-<span class="co">#&gt; Dimension:     XY</span>
-<span class="co">#&gt; Bounding box:  xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198</span>
-<span class="co">#&gt; Geodetic CRS:  GDA94</span>
-<span class="co">#&gt; # A tibble: 8 × 6</span>
-<span class="co">#&gt;   id                     PFI    UFI HIERARCHY OBJECTID                  geometry</span>
-<span class="co">#&gt;   &lt;chr&gt;                &lt;int&gt;  &lt;int&gt; &lt;chr&gt;        &lt;int&gt;          &lt;LINESTRING [°]&gt;</span>
-<span class="co">#&gt; 1 VMHYDRO_WATERCOURS… 1.46e7 3.63e7 L          1605003 (144.9365 -37.81511, 144…</span>
-<span class="co">#&gt; 2 VMHYDRO_WATERCOURS… 1.46e7 3.63e7 L          1582117 (144.929 -37.81409, 144.…</span>
-<span class="co">#&gt; 3 VMHYDRO_WATERCOURS… 1.46e7 3.63e7 L          1582120 (144.9288 -37.81417, 144…</span>
-<span class="co">#&gt; 4 VMHYDRO_WATERCOURS… 1.46e7 4.90e7 L          2432411 (144.9403 -37.78253, 144…</span>
-<span class="co">#&gt; 5 VMHYDRO_WATERCOURS… 1.75e7 4.90e7 L          2432413 (144.9415 -37.78232, 144…</span>
-<span class="co">#&gt; 6 VMHYDRO_WATERCOURS… 1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144…</span>
-<span class="co">#&gt; 7 VMHYDRO_WATERCOURS… 1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.…</span>
-<span class="co">#&gt; 8 VMHYDRO_WATERCOURS… 1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144…</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Read in an example shape to restrict our query to using geometric filtering</span></span>
+<span><span class="va">melbourne</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/melbourne.geojson"</span>, package<span class="op">=</span><span class="st">"VicmapR"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Obtain a promise of what data will be returned for a given layer</span></span>
+<span><span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; • Using collect() on this object will return 1837836 features and 15</span></span>
+<span><span class="co">#&gt; • fields</span></span>
+<span><span class="co">#&gt; • At most six rows of the record are printed here</span></span>
+<span><span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Simple feature collection with 6 features and 14 fields</span></span>
+<span><span class="co">#&gt; Geometry type: LINESTRING</span></span>
+<span><span class="co">#&gt; Dimension:     XY</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: 141.5126 ymin: -34.40608 xmax: 142.3502 ymax: -34.37683</span></span>
+<span><span class="co">#&gt; Geodetic CRS:  GDA94</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 15</span></span>
+<span><span class="co">#&gt;   id       pfi    ufi featu…¹ name  named…² origin const…³ usage hiera…⁴ featu…⁵</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 hy_w… 8.55e6 2.55e6 waterc… &lt;NA&gt;  &lt;NA&gt;    2      1       3     L          4762</span></span>
+<span><span class="co">#&gt; 2 hy_w… 8.55e6 2.55e6 waterc… &lt;NA&gt;  &lt;NA&gt;    2      1       3     L          4762</span></span>
+<span><span class="co">#&gt; 3 hy_w… 8.55e6 2.55e6 waterc… &lt;NA&gt;  &lt;NA&gt;    2      1       3     L          4762</span></span>
+<span><span class="co">#&gt; 4 hy_w… 8.55e6 2.55e6 waterc… &lt;NA&gt;  &lt;NA&gt;    2      1       3     L          4762</span></span>
+<span><span class="co">#&gt; 5 hy_w… 8.55e6 2.55e6 waterc… &lt;NA&gt;  &lt;NA&gt;    1      &lt;NA&gt;    1     L          4762</span></span>
+<span><span class="co">#&gt; 6 hy_w… 8.55e6 2.55e6 waterc… &lt;NA&gt;  &lt;NA&gt;    2      1       3     L          4762</span></span>
+<span><span class="co">#&gt; # … with 4 more variables: create_date_pfi &lt;date&gt;, superceded_pfi &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   create_date_ufi &lt;date&gt;, geometry &lt;LINESTRING [°]&gt;, and abbreviated variable</span></span>
+<span><span class="co">#&gt; #   names ¹​feature_type_code, ²​named_feature_id, ³​construction, ⁴​hierarchy,</span></span>
+<span><span class="co">#&gt; #   ⁵​feature_quality_id</span></span>
+<span></span>
+<span><span class="co"># Build a more specific query and collect the results</span></span>
+<span><span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="co"># layer to query</span></span>
+<span>  <span class="fu"><a href="reference/filter.html">filter</a></span><span class="op">(</span><span class="va">hierarchy</span> <span class="op">==</span> <span class="st">"L"</span> <span class="op">&amp;</span> <span class="va">feature_type_code</span> <span class="op">==</span> <span class="st">'watercourse_channel_drain'</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="co"># simple filter for a column</span></span>
+<span>  <span class="fu"><a href="reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="reference/cql_geom_predicates.html">INTERSECTS</a></span><span class="op">(</span><span class="va">melbourne</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="co"># more advanced geometric filter</span></span>
+<span>  <span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="va">hierarchy</span>, <span class="va">pfi</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="reference/collect.html">collect</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Simple feature collection with 8 features and 3 fields</span></span>
+<span><span class="co">#&gt; Geometry type: LINESTRING</span></span>
+<span><span class="co">#&gt; Dimension:     XY</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: 144.909 ymin: -37.81511 xmax: 144.9442 ymax: -37.78198</span></span>
+<span><span class="co">#&gt; Geodetic CRS:  GDA94</span></span>
+<span><span class="co">#&gt; # A tibble: 8 × 4</span></span>
+<span><span class="co">#&gt;   id                          pfi hierarchy                             geometry</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                     &lt;int&gt; &lt;chr&gt;                         &lt;LINESTRING [°]&gt;</span></span>
+<span><span class="co">#&gt; 1 hy_watercourse.1740229 19272791 L         (144.9287 -37.8033, 144.9186 -37.80…</span></span>
+<span><span class="co">#&gt; 2 hy_watercourse.1740597 14608551 L         (144.9201 -37.79069, 144.9202 -37.7…</span></span>
+<span><span class="co">#&gt; 3 hy_watercourse.1053715 14577596 L         (144.929 -37.81409, 144.9294 -37.81…</span></span>
+<span><span class="co">#&gt; 4 hy_watercourse.1053718 14577602 L         (144.9288 -37.81417, 144.9292 -37.8…</span></span>
+<span><span class="co">#&gt; 5 hy_watercourse.1081163 14608731 L         (144.9365 -37.81511, 144.9359 -37.8…</span></span>
+<span><span class="co">#&gt; 6 hy_watercourse.1633268 14608434 L         (144.9403 -37.78253, 144.9401 -37.7…</span></span>
+<span><span class="co">#&gt; 7 hy_watercourse.1633270 17520306 L         (144.9415 -37.78232, 144.9414 -37.7…</span></span>
+<span><span class="co">#&gt; 8 hy_watercourse.1633272 14615146 L         (144.9442 -37.78198, 144.9441 -37.7…</span></span></code></pre></div>
 <p>VicmapR translates numerous geometric filter functions available in the Victorian Government’s WFS Geoserver supports numerous <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters" class="external-link">geometric filters</a>:</p>
 <ul>
 <li>
@@ -245,13 +255,13 @@
 </h3>
 <p>Using <code>options(vicmap.base_url)</code> VicmapR can query data from other WFS services; while this remains somewhat untested it is relatively easy to point VicmapR to another WFS url. This option would need to be set every session to override the base VicmapR url. For instance, the BOM WFS can be used as follows:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># set the new base url</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>vicmap.base_url <span class="op">=</span> <span class="st">"http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs"</span><span class="op">)</span>
-
-<span class="co"># collect a data sample</span>
-<span class="va">catchments</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span><span class="st">"ahgf_shcatch:AHGFCatchment"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="reference/head.html">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="reference/collect.html">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># set the new base url</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>vicmap.base_url <span class="op">=</span> <span class="st">"http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># collect a data sample</span></span>
+<span><span class="va">catchments</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span><span class="st">"ahgf_shcatch:AHGFCatchment"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="reference/head.html">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="reference/collect.html">collect</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><em><strong>Note</strong>: Using other Geoserver WFS urls will not necessarily work as expected due to the potential differences in the capabilities of the Geoserver instance</em></p>
 </div>
 <div class="section level3">
@@ -304,16 +314,7 @@ Modifications Copyright 2020 Justin Cally</p>
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://app.codecov.io/gh/JustinCally/VicmapR?branch=master" class="external-link"><img src="https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://github.com/JustinCally/VicmapR/actions" class="external-link"><img src="https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://CRAN.R-project.org/package=VicmapR" class="external-link"><img src="https://www.r-pkg.org/badges/version/VicmapR" alt="CRAN status"></a></li>
-<li><a href="https://cran.r-project.org/package=VicmapR" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/VicmapR?color=ff69b4"></a></li>
-</ul>
-</div>
+
 
   </div>
 </div>
@@ -326,7 +327,7 @@ Modifications Copyright 2020 Justin Cally</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -33,6 +33,9 @@
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
+    </li>
+    <li>
+      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -61,7 +64,19 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.9" id="vicmapr-019">VicmapR 0.1.9<a class="anchor" aria-label="anchor" href="#vicmapr-019"></a></h2>
+<h2 class="page-header" data-toc-text="0.2.0" id="vicmapr-020">VicmapR 0.2.0<small>2023-04-11</small><a class="anchor" aria-label="anchor" href="#vicmapr-020"></a></h2>
+<ul><li>Migration of geoserver platform now supported as the default. Details are available in the <code><a href="../articles/migration_odp.html">vignette("migration_odp")</a></code> vignette<br></li>
+<li>Fixed issue with various installations of gdal/proj swapping axis order. Now use a (hopefully) more consistent approach, allowing geometric filters to work better.<br></li>
+<li>Change github actions to r-lib/actions v2</li>
+<li>Perform checks on newer ubuntu<br></li>
+<li>Add tests to geometric filters<br></li>
+<li>Minimum sf version increased<br></li>
+<li>Minimum dbplyr version now 2.2.0<br></li>
+<li>By default in <code><a href="../reference/listLayers.html">listLayers()</a></code> pulls down abstracts and metadataID, argument provided to only pull down titles<br></li>
+<li>Suppress message when first using filter</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.1.9" id="vicmapr-019">VicmapR 0.1.9<small>2022-06-10</small><a class="anchor" aria-label="anchor" href="#vicmapr-019"></a></h2>
 <ul><li>Addition of tutorial for new users, written by Rachel Swain (Vicmap for Beginners) (PR#36, <a href="https://github.com/justincally/VicmapR/issues/41" class="external-link">#41</a>)<br></li>
 <li>Several bug fixes for the release of dbplyr 2.2.0 (PR#39, <a href="https://github.com/justincally/VicmapR/issues/40" class="external-link">#40</a>)<br></li>
 <li>Now moving to new edition of dbplyr and users will require dbplyr &gt; 2.0.0<br></li>
@@ -99,7 +114,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.3" id="vicmapr-013">VicmapR 0.1.3<small>2021-06-10</small><a class="anchor" aria-label="anchor" href="#vicmapr-013"></a></h2>
-<ul><li>Fixed issues relating to CRAN submission for version 0.1.2. They were:<ul><li>Link to the used webservices added to the description field of DESCRIPTION.</li>
+<ul><li>Fixed issues relating to CRAN submission for version 0.1.2. They were:
+<ul><li>Link to the used webservices added to the description field of DESCRIPTION.</li>
 <li>Used only undirected quotation marks in the description text. e.g. <code>sf</code> –&gt; ‘sf’</li>
 <li>Added to .Rd files regarding exported methods and explain the functions results in the documentation. Missing Rd-tags were:</li>
 <li>
@@ -153,7 +169,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.9.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
       </span>
     </div>
 
@@ -26,16 +26,13 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
-    </li>
-    <li>
-      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -65,25 +62,7 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="development version" id="vicmapr-development-version">VicmapR (development version)<a class="anchor" aria-label="anchor" href="#vicmapr-development-version"></a></h2>
-<ul><li>Migration of geoserver platform now supported as the default. Details are available in the <code><a href="../articles/migration_odp.html">vignette("migration_odp")</a></code> vignette<br></li>
-<li>Fixed issue with various installations of gdal/proj swapping axis order. Now use a (hopefully) more consistent approach, allowing geometric filters to work better.<br></li>
-<li>Change github actions to r-lib/actions v2</li>
-<li>Perform checks on newer ubuntu<br></li>
-<li>Add tests to geometric filters<br></li>
-<li>Minimum sf version increased<br></li>
-<li>Minimum dbplyr version now 2.2.0<br></li>
-<li>By default in <code><a href="../reference/listLayers.html">listLayers()</a></code> pulls down abstracts and metadataID, argument provided to only pull down titles<br></li>
-<li>Suppress message when first using filter</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.9" id="vicmapr-019">VicmapR 0.1.9<small>2022-06-10</small><a class="anchor" aria-label="anchor" href="#vicmapr-019"></a></h2>
-<ul><li>Addition of tutorial for new users, written by Rachel Swain (Vicmap for Beginners) (PR#36, <a href="https://github.com/justincally/VicmapR/issues/41" class="external-link">#41</a>)<br></li>
-<li>Several bug fixes for the release of dbplyr 2.2.0 (PR#39, <a href="https://github.com/justincally/VicmapR/issues/40" class="external-link">#40</a>)<br></li>
-<li>Now moving to new edition of dbplyr and users will require dbplyr &gt; 2.0.0<br></li>
-<li>
-<code><a href="../reference/feature_hits.html">feature_hits()</a></code> now works with filters (<a href="https://github.com/justincally/VicmapR/issues/38" class="external-link">#38</a>)<br></li>
-<li>Remove annoying simplifying warning when using geometric filters (users already know as it is described in tutorials) (<a href="https://github.com/justincally/VicmapR/issues/37" class="external-link">#37</a>)</li>
-</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.8" id="vicmapr-018">VicmapR 0.1.8<small>2021-11-10</small><a class="anchor" aria-label="anchor" href="#vicmapr-018"></a></h2>
 <ul><li>Add the ability to create bibtex citations of data through <code><a href="../reference/data_citation.html">data_citation()</a></code>, as well as obtain a data dictionary (<code><a href="../reference/data_citation.html">data_dictionary()</a></code>) and other metadata (<code><a href="../reference/data_citation.html">get_metadata()</a></code>).<br></li>
@@ -169,7 +148,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>

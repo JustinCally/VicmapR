@@ -11,7 +11,8 @@ from the catalogue, the request is broken up into smaller chunks which are then 
 been downloaded. VicmapR does this all for you but using this option you can set the size of the chunk
 requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
 it is advisable to lower the chunk limit. Chunks must be less than 70000.
-vicmap.base_url is the base wfs url used to query the geoserver."><meta property="og:image" content="https://justincally.github.io/VicmapR/logo.png"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
+vicmap.base_url is the base wfs url used to query the geoserver.
+vicmap.backend is the backend software running the geoserver. The data migration in 2022/2023 will change the backend from 'Oracle' to 'AWS'"><meta property="og:image" content="https://justincally.github.io/VicmapR/logo.png"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
@@ -29,7 +30,7 @@ vicmap.base_url is the base wfs url used to query the geoserver."><meta property
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -45,6 +46,9 @@ vicmap.base_url is the base wfs url used to query the geoserver."><meta property
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
+    </li>
+    <li>
+      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -87,28 +91,34 @@ been downloaded. VicmapR does this all for you but using this option you can set
 requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
 it is advisable to lower the chunk limit. Chunks must be less than 70000.</p>
 <p><code>vicmap.base_url</code> is the base wfs url used to query the geoserver.</p>
+<p><code>vicmap.backend</code> is the backend software running the geoserver. The data migration in 2022/2023 will change the backend from 'Oracle' to 'AWS'</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">vicmap_options</span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu">check_chunk_limit</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">vicmap_options</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">check_chunk_limit</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="value">
     <h2>Value</h2>
-    <p>vicmap_options() returns a <code>data.frame</code></p>
+    
+
+<p>vicmap_options() returns a <code>data.frame</code></p>
+
+
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">vicmap_options</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 3</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">vicmap_options</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   option                    value     default                                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> vicmap.max_geom_pred_size <span style="color: #949494;">&lt;lgl [1]&gt;</span> 4400                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> vicmap.chunk_limit        <span style="color: #949494;">&lt;lgl [1]&gt;</span> 1500                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> vicmap.base_url           <span style="color: #949494;">&lt;NULL&gt;</span>    http://services.land.vic.gov.au/catalogue…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> vicmap.chunk_limit        <span style="color: #949494;">&lt;lgl [1]&gt;</span> 5000                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> vicmap.base_url           <span style="color: #949494;">&lt;NULL&gt;</span>    https://opendata.maps.vic.gov.au/geoserve…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> vicmap.backend            <span style="color: #949494;">&lt;NULL&gt;</span>    AWS                                       </span>
 </code></pre></div>
     </div>
   </div>
@@ -123,7 +133,7 @@ it is advisable to lower the chunk limit. Chunks must be less than 70000.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

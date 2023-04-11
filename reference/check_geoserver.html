@@ -18,7 +18,7 @@ in this package will not work. This function will check the response of the geos
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -34,6 +34,9 @@ in this package will not work. This function will check the response of the geos
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
+    </li>
+    <li>
+      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -68,30 +71,35 @@ in this package will not work. This function will check the response of the geos
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">check_geoserver</span><span class="op">(</span>timeout <span class="op">=</span> <span class="fl">15</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_geoserver</span><span class="op">(</span>timeout <span class="op">=</span> <span class="fl">15</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>timeout</dt>
 <dd><p>numeric: the time (in seconds) to wait for the response before timing out (default is 15)</p></dd>
+
+
 <dt>quiet</dt>
 <dd><p>logical: whether to silently check the connection and if working, return nothing. If <code>FALSE</code> (default),
 the status message will be printed (<a href="https://httr.r-lib.org/reference/http_status.html" class="external-link">http_status</a>)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>logical, TRUE if the geoserver is working</p>
+    
+
+<p>logical, TRUE if the geoserver is working</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
-<span class="r-in"><span class="fu">check_geoserver</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu">check_geoserver</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -106,7 +114,7 @@ the status message will be printed (<a href="https://httr.r-lib.org/reference/ht
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
