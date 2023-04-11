@@ -38,7 +38,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 URL: https://justincally.github.io/VicmapR/,
-    https://mapshare.vic.gov.au/vicplan/, https://github.com/justincally/VicmapR/
+    https://www.data.vic.gov.au/, https://github.com/justincally/VicmapR/
 BugReports: https://github.com/justincally/VicmapR/issues
 Suggests: 
     testthat (>= 2.1.0),
