@@ -75,7 +75,7 @@ description/clarification about the layer.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">listLayers</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">listLayers</span><span class="op">(</span><span class="va">...</span>, abstract <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -83,12 +83,16 @@ description/clarification about the layer.</p>
     <dl><dt>...</dt>
 <dd><p>Additional arguments passed to <a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a>. The <code>pattern</code> argument can be used to search for specific layers with matching names or titles.</p></dd>
 
+
+<dt>abstract</dt>
+<dd><p>Whether to return a column of abstract (and metadata ID), the default is true. Switching to FALSE will provide a data.frame with only 2 columns and may be slightly faster.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
-<p>data.frame</p>
+<p>data.frame of 2 (abstract = FALSE) or 4 (abstract = TRUE) columns</p>
     </div>
 
     <div id="ref-examples">
@@ -97,8 +101,8 @@ description/clarification about the layer.</p>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span><span class="fu">listLayers</span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"trees"</span>, ignore.case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Name  Title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;0 rows&gt; (or 0-length row.names)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in listLayers(pattern = "trees", ignore.case = TRUE) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bad Request (HTTP 400).</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

@@ -106,28 +106,7 @@
 <span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span><span class="fu">head</span><span class="op">(</span><span class="fl">50</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> • Using <span style="color: #0000BB;">collect()</span> on this object will return <span style="color: #00BB00;">1837784</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> • features and <span style="color: #00BB00;">15</span> fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> • At most six rows of the record are printed here</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ────────────────────────────────────────────────────────────────────────────────</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 6 features and 14 fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: LINESTRING</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 141.5126 ymin: -34.40608 xmax: 142.3502 ymax: -34.37683</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  GDA94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 15</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id       pfi    ufi featu…¹ name  named…² origin usage hiera…³ featu…⁴ const…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> hy_w… 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 waterc… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      2      3     L          <span style="text-decoration: underline;">4</span>762 1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> hy_w… 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 waterc… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      2      3     L          <span style="text-decoration: underline;">4</span>762 1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> hy_w… 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 waterc… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      2      3     L          <span style="text-decoration: underline;">4</span>762 1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> hy_w… 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 waterc… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      2      3     L          <span style="text-decoration: underline;">4</span>762 1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> hy_w… 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 waterc… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      1      1     L          <span style="text-decoration: underline;">4</span>762 <span style="color: #BB0000;">NA</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> hy_w… 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 waterc… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>      2      3     L          <span style="text-decoration: underline;">4</span>762 1      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more variables: superceded_pfi &lt;chr&gt;, create_date_pfi &lt;date&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   create_date_ufi &lt;date&gt;, geometry &lt;LINESTRING [°]&gt;, and abbreviated variable</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   names ¹​feature_type_code, ²​named_feature_id, ³​hierarchy,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​feature_quality_id, ⁵​construction</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in feature_hits(x):</span> Bad Request (HTTP 400).</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

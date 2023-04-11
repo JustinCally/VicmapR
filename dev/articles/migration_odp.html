@@ -95,7 +95,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Migration to the Open Data Platform</h1>
             
-            <h4 data-toc-skip class="date">2023-03-03</h4>
+            <h4 data-toc-skip class="date">2023-04-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/justincally/VicmapR/blob/HEAD/vignettes/migration_odp.Rmd" class="external-link"><code>vignettes/migration_odp.Rmd</code></a></small>
       <div class="hidden name"><code>migration_odp.Rmd</code></div>
@@ -180,15 +180,6 @@ system and in the new system</p>
 <span>  <span class="fu"><a href="../reference/select.html">select</a></span><span class="op">(</span><span class="va">X_EVCNAME</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/head.html">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; You are using old layer names. We converted your layer to nv2005_evcbcs with a CQL filter of evc_subgp=18.1. To suppress this message, update your code to use the new layer names (see VicmapR::name_conversions for more details)</span></span>
-<span><span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',</span></span>
-<span><span class="co">#&gt;  target signature 'wfsConnection#ident'.</span></span>
-<span><span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span></span>
-<span><span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',</span></span>
-<span><span class="co">#&gt;  target signature 'wfsConnection#character'.</span></span>
-<span><span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span></span>
-<span><span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteString',</span></span>
-<span><span class="co">#&gt;  target signature 'wfsConnection#character'.</span></span>
-<span><span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/collect.html">collect</a></span><span class="op">(</span><span class="va">evc_18_1_old</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
