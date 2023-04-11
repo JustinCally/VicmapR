@@ -17,6 +17,11 @@ test_that("listLayers works", {
   skip_on_cran()
   skip_if(geoserver_down)
   
-  expect_equal(class(listLayers()), "data.frame")
-  expect_lte(nrow(listLayers(pattern = "trees", ignore.case = TRUE)), 5)
+  full_ll <- listLayers(pattern = "trees", ignore.case = TRUE)
+  sub_ll <- listLayers(abstract = FALSE)
+  
+  expect_equal(class(sub_ll), "data.frame")
+  expect_lte(nrow(full_ll), 5)
+  expect_equal(ncol(full_ll), 4)
+  expect_equal(ncol(sub_ll), 2)
 })

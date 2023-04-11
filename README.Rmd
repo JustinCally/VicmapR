@@ -67,7 +67,7 @@ library(VicmapR)
 # Check to see if the geoserver is working. It will error if it is not working  
 check_geoserver()
 
-listLayers(pattern = "road", ignore.case = T)
+listLayers(pattern = "watercourse", ignore.case = T)
 ```
 
 ### Reading in data

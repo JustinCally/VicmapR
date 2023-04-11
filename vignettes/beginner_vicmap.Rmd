@@ -79,24 +79,19 @@ VicmapR uses *lazy evaluation*,  in which we query but do not collect the data f
 
 *Note: A previous version of this tutorial used swooping birds as the example, but due to the migration of platforms that data was not available at time of writing*
 
-<!-- Load trams for reporting -->
-```{r, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-tram_route <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>% collect() 
-```
-
 To demonstrate VicmapR's features, we will download and explore a dataset from the Vicmap catalogue. The data is a spatial dataset of Melbourne's tram network.
 
 <!-- Australian spring is famous for the presence of swooping birds. Certain species of birds swoop during the breeding season to protect their nest from potential predators. Swooping birds in Victoria include the masked lapwing (plover), butcherbird, magpie-lark, noisy miner and perhaps most famously, the magpie. The Vicmap catalogue has a dataset of 'swoop' locations, recorded by members of the public.  -->
 
 ### Searching for data 
-First, we need to search for the dataset. We can view all layers, or do a keyword search. Use `ignore.case = TRUE` for a case-insensitive search.
+First, we need to search for the dataset. We can view all layers, or do a keyword search. Use `ignore.case = TRUE` for a case-insensitive search. `listLayers()` by default now provides a column of 'Abstract' and 'metadataID'. You can remove these columns by setting the abstract argument to FALSE (e.g. `listLayers(abstract = FALSE)`)
 
 ```{r,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 
 #All layers
 all_layers <- listLayers() 
 
-#Case insensitive keyword search
+# Case insensitive keyword search
 search <- listLayers(pattern = "tram", ignore.case = T) 
 
 ```
@@ -149,7 +144,7 @@ Now let's only look at the tram route data. Note that VicmapR datasets will reta
 ```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 tram_select <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>% 
   filter(operator_name == "Yarra Trams") %>% 
-  filter(num_of_stops > 10) %>% 
+  filter(num_of_stops > 20) %>% 
   select(route_id, route_short_name, trip_headsign, operator_name, route_km) %>%
   collect()
 
@@ -169,6 +164,12 @@ Often the first thing we want to do is see the data on a map. The simplest and q
 ```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 library(mapview)
 mapviewOptions(fgb = FALSE)
+
+# Because the dataset is not big we can download all the data as 'tram_route'
+tram_route <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>% 
+  collect() 
+
+# plot data
 mapview(tram_route)
 ```
 

@@ -4,13 +4,15 @@
 \alias{listLayers}
 \title{List Available WFS Layers}
 \usage{
-listLayers(...)
+listLayers(..., abstract = TRUE)
 }
 \arguments{
 \item{...}{Additional arguments passed to \link[base]{grep}. The \code{pattern} argument can be used to search for specific layers with matching names or titles.}
+
+\item{abstract}{Whether to return a column of abstract (and metadata ID), the default is true. Switching to FALSE will provide a data.frame with only 2 columns and may be slightly faster.}
 }
 \value{
-data.frame
+data.frame of 2 (abstract = FALSE) or 4 (abstract = TRUE) columns
 }
 \description{
 Lists layers available from the WFS geoserver. This is similar to sending the
