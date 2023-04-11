@@ -1,3 +1,5 @@
+# VicmapR (development version)
+
 # VicmapR 0.2.0
 * Migration of geoserver platform now supported as the default. Details are available in the `vignette("migration_odp")` vignette   
 * Fixed issue with various installations of gdal/proj swapping axis order. Now use a (hopefully) more consistent approach, allowing geometric filters to work better.  
