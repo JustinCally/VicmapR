@@ -6,7 +6,7 @@
 * Minimum sf version increased   
 * Minimum dbplyr version now 2.2.0  
 * Migration of geoserver platform now supported as the default  
-* By default in `listLayers()` pulls down abstracts and metadataID  
+* By default in `listLayers()` pulls down abstracts and metadataID, argument provided to only pull down titles    
 * Suppress message when first using filter
 
 # VicmapR 0.1.9  
