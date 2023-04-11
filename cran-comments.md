@@ -1,3 +1,8 @@
+## Submission 0.2.0 (2023-04-11)  
++ Changes to the internal elements of the package to use a new database url 
++ Allows for the conversion of code from old to new version  
++ New vignette explaining the migration  
+
 ## Resubmission 0.1.9 (2022-06-10)  
 + Addition of tutorial for new users, written by Rachel Swain (Vicmap for Beginners) (PR#36, #41)   
 + Several bug fixes for the release of dbplyr 2.2.0 (PR#39, #40)   
