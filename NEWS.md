@@ -1,4 +1,4 @@
-# VicmapR (development version)
+# VicmapR 0.2.1
 * Fixed CRAN issue with tests running on internet resources  
 
 # VicmapR 0.2.0
