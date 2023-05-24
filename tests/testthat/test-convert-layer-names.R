@@ -34,6 +34,11 @@ test_that("convert layer name works", {
 
 # Check conversion of select and filter works
 test_that("convert layer filter works", {
+  
+  skip_if_offline()
+  skip_on_cran()
+  skip_if(geoserver_down)
+  
   r3 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
     filter(HIERARCHY == "L" & PFI == 8547514) %>%
     collect()
@@ -48,6 +53,11 @@ test_that("convert layer filter works", {
 })
 
 test_that("convert layer select works", {
+  
+  skip_if_offline()
+  skip_on_cran()
+  skip_if(geoserver_down)
+  
   r5 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
     select(HIERARCHY, PFI) %>%
     head(5) %>%
