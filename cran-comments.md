@@ -1,3 +1,6 @@
+## Submission 0.2.0 (2023-05-24)  
++ Fixed CRAN issue with tests running on internet resources  
+
 ## Submission 0.2.0 (2023-04-11)  
 + Changes to the internal elements of the package to use a new database url 
 + Allows for the conversion of code from old to new version  

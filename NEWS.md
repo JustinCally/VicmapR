@@ -1,4 +1,5 @@
 # VicmapR (development version)
+* Fixed CRAN issue with tests running on internet resources  
 
 # VicmapR 0.2.0
 * Migration of geoserver platform now supported as the default. Details are available in the `vignette("migration_odp")` vignette   
