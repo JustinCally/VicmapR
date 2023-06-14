@@ -21,7 +21,7 @@ datatypes."><meta property="og:image" content="https://justincally.github.io/Vic
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -109,11 +109,16 @@ datatypes.</p>
 <span class="r-in"><span><span class="co"># Return the column names as a character vector</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
 <span class="r-in"><span>  <span class="fu">feature_cols</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "pfi"                "ufi"                "feature_type_code" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "named_feature_id"   "origin"             "construction"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "usage"              "hierarchy"          "feature_quality_id"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "create_date_pfi"    "superceded_pfi"     "create_date_ufi"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "geom"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "ufi"                     "pfi"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "feature_type_code"       "named_feature_id"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "origin"                  "construction"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "usage"                   "hierarchy"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "auth_org_code"           "auth_org_id"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "auth_org_verified"       "feature_quality_id"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "task_id"                 "create_date_pfi"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "superceded_pfi"          "feature_ufi"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "feature_create_date_ufi" "create_date_ufi"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "geom"                   </span>
 <span class="r-in"><span><span class="co"># }   </span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Return a data.frame of the columns and their XML schema string datatypes</span></span></span>
@@ -121,20 +126,26 @@ datatypes.</p>
 <span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
 <span class="r-in"><span>  <span class="fu">get_col_df</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  name                  type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 pfi           xsd:decimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 ufi           xsd:decimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   feature_type_code            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    named_feature_id           xsd:decimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              origin            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        construction            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7               usage            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8           hierarchy            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  feature_quality_id           xsd:decimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    create_date_pfi              xsd:date</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11     superceded_pfi           xsd:decimal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12    create_date_ufi              xsd:date</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13               geom gml:CurvePropertyType</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       name                  type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                      ufi               xsd:int</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                      pfi               xsd:int</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        feature_type_code            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         named_feature_id               xsd:int</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                   origin            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6             construction            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                    usage            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                hierarchy            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9            auth_org_code            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10             auth_org_id            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11       auth_org_verified          xsd:dateTime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12      feature_quality_id               xsd:int</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                 task_id               xsd:int</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14         create_date_pfi          xsd:dateTime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15          superceded_pfi               xsd:int</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16             feature_ufi               xsd:int</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 feature_create_date_ufi          xsd:dateTime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18         create_date_ufi          xsd:dateTime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                    geom gml:CurvePropertyType</span>
 <span class="r-in"><span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

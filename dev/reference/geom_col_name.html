@@ -21,7 +21,7 @@ datatypes."><meta property="og:image" content="https://justincally.github.io/Vic
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
       </span>
     </div>
 
@@ -30,16 +30,13 @@ datatypes."><meta property="og:image" content="https://justincally.github.io/Vic
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
-    </li>
-    <li>
-      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -77,76 +74,77 @@ datatypes.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">geom_col_name</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">feature_cols</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">get_col_df</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">geom_col_name</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+
+<span class="fu">feature_cols</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+
+<span class="fu">get_col_df</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>object of class <code>vicmap_promise</code></p></dd>
-
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>character/data.frame</p>
+    <p>character/data.frame</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co"># Return the name of the geometry column</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
-<span class="r-in"><span>  <span class="fu">geom_col_name</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "geom"</span>
-<span class="r-in"><span> <span class="co"># }</span></span></span>
-<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co"># Return the column names as a character vector</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
-<span class="r-in"><span>  <span class="fu">feature_cols</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "ufi"                     "pfi"                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "feature_type_code"       "named_feature_id"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "origin"                  "construction"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "usage"                   "hierarchy"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "feature_quality_id"      "create_date_pfi"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "superceded_pfi"          "create_date_ufi"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "auth_org_code"           "auth_org_id"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "auth_org_verified"       "task_id"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "feature_ufi"             "feature_create_date_ufi"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "geom"                   </span>
-<span class="r-in"><span><span class="co"># }   </span></span></span>
-<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co"># Return a data.frame of the columns and their XML schema string datatypes</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
-<span class="r-in"><span>  <span class="fu">get_col_df</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       name                  type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                      ufi            xsd:double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                      pfi               xsd:int</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        feature_type_code            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         named_feature_id               xsd:int</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                   origin            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6             construction            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                    usage            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                hierarchy            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       feature_quality_id               xsd:int</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10         create_date_pfi          xsd:dateTime</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          superceded_pfi               xsd:int</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12         create_date_ufi          xsd:dateTime</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13           auth_org_code            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14             auth_org_id            xsd:string</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15       auth_org_verified          xsd:dateTime</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16                 task_id               xsd:int</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17             feature_ufi            xsd:double</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 feature_create_date_ufi          xsd:dateTime</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19                    geom gml:CurvePropertyType</span>
-<span class="r-in"><span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+<span class="r-in"><span class="co"># Return the name of the geometry column</span></span>
+<span class="r-in"><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span>
+<span class="r-in">  <span class="fu">geom_col_name</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "SHAPE"</span>
+<span class="r-in"> <span class="co"># }</span></span>
+<span class="r-in"><span class="co"># \donttest{</span></span>
+<span class="r-in"><span class="co"># Return the column names as a character vector</span></span>
+<span class="r-in"><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span>
+<span class="r-in">  <span class="fu">feature_cols</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "COUPEID"          "OBJECTID"         "AREA_NAME"        "DFW_TYPE"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "AUTHOR"           "EDIT_DATE"        "STATUS"           "SITEACCESS"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "COMMENTS"         "OPEN_DATE"        "CLOSE_DATE"       "REGION"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "DISTRICT"         "LEGL_NUM"         "SF_NAME"          "NEAR_TOWN_1"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "NEAR_TOWN_2"      "NEAR_TOWN_3"      "VOLUME"           "PBURN"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "RESTRICTIONS"     "ROAD_NAME"        "SE_ANNO_CAD_DATA" "UFI"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "UFI_CREATED"      "SHAPE"           </span>
+<span class="r-in"><span class="co"># }   </span></span>
+<span class="r-in"><span class="co"># \donttest{</span></span>
+<span class="r-in"><span class="co"># Return a data.frame of the columns and their XML schema string datatypes</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
+<span class="r-in"><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span>
+<span class="r-in">  <span class="fu">get_col_df</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in">  <span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                name                  type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           COUPEID            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          OBJECTID           xsd:decimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         AREA_NAME            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          DFW_TYPE            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5            AUTHOR            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         EDIT_DATE          xsd:dateTime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7            STATUS            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8        SITEACCESS            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9          COMMENTS            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        OPEN_DATE          xsd:dateTime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11       CLOSE_DATE          xsd:dateTime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12           REGION            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13         DISTRICT            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14         LEGL_NUM            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15          SF_NAME            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16      NEAR_TOWN_1            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17      NEAR_TOWN_2            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18      NEAR_TOWN_3            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19           VOLUME            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20            PBURN            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21     RESTRICTIONS            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22        ROAD_NAME            xsd:string</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 SE_ANNO_CAD_DATA         xsd:hexBinary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24              UFI           xsd:decimal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25      UFI_CREATED          xsd:dateTime</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26            SHAPE gml:PointPropertyType</span>
+<span class="r-in"> <span class="co"># }</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -161,7 +159,7 @@ datatypes.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>

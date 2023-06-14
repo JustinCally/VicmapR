@@ -19,7 +19,7 @@ See dplyr::collect for details."><meta property="og:image" content="https://just
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -123,22 +123,24 @@ process may take a while to run, thus it is recommended to filter large datasets
 <span class="r-in"><span><span class="fu"><a href="head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span><span class="fu">collect</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 5 features and 14 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 5 features and 20 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: LINESTRING</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 141.5126 ymin: -34.40608 xmax: 142.3502 ymax: -34.37683</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 146.3073 ymin: -38.99322 xmax: 146.3657 ymax: -38.9847</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  GDA94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 15</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id                  pfi    ufi feature_type_code name  named_feature_id origin</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 21</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id                  ufi    pfi feature_type_code name  named_feature_id origin</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> hy_watercourse.1 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 watercourse_chan… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               2     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> hy_watercourse.2 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 watercourse_chan… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               2     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> hy_watercourse.3 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 watercourse_chan… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               2     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> hy_watercourse.4 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 watercourse_chan… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               2     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> hy_watercourse.5 8.55<span style="color: #949494;">e</span>6 2.55<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: construction &lt;chr&gt;, usage &lt;chr&gt;, hierarchy &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   feature_quality_id &lt;int&gt;, create_date_pfi &lt;date&gt;, superceded_pfi &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   create_date_ufi &lt;date&gt;, geometry &lt;LINESTRING [°]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> hy_watercourse.1 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> hy_watercourse.2 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> hy_watercourse.3 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> hy_watercourse.4 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> hy_watercourse.5 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: construction &lt;chr&gt;, usage &lt;chr&gt;, hierarchy &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   auth_org_code &lt;chr&gt;, auth_org_id &lt;chr&gt;, auth_org_verified &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   feature_quality_id &lt;int&gt;, task_id &lt;chr&gt;, create_date_pfi &lt;dttm&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   superceded_pfi &lt;chr&gt;, feature_ufi &lt;int&gt;, feature_create_date_ufi &lt;dttm&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   create_date_ufi &lt;dttm&gt;, geometry &lt;LINESTRING [°]&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
