@@ -1,5 +1,5 @@
-## Submission 0.2.0 (2023-05-24)  
-+ Fixed CRAN issue with tests running on internet resources  
+## Submission 0.2.2 (2023-06-14)  
++ Exits test if internet resource is not available and provides an informative message as per CRAN policy   
 
 ## Submission 0.2.0 (2023-04-11)  
 + Changes to the internal elements of the package to use a new database url 

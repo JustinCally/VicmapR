@@ -1,3 +1,6 @@
+# VicmapR 0.2.2
+* Exits test if internet resource is not available and providees an informative message as per CRAN policy  
+
 # VicmapR 0.2.1
 * Fixed CRAN issue with tests running on internet resources  
 
