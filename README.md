@@ -119,7 +119,7 @@ melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="Vicmap
 
 # Obtain a promise of what data will be returned for a given layer
 vicmap_query(layer = "open-data-platform:hy_watercourse")
-#> • Using collect() on this object will return 1837814 features and 21
+#> • Using collect() on this object will return 1835052 features and 21
 #> • fields
 #> • At most six rows of the record are printed here
 #> ────────────────────────────────────────────────────────────────────────────────
@@ -129,20 +129,20 @@ vicmap_query(layer = "open-data-platform:hy_watercourse")
 #> Bounding box:  xmin: 146.3073 ymin: -38.9966 xmax: 146.3657 ymax: -38.9847
 #> Geodetic CRS:  GDA94
 #> # A tibble: 6 × 21
-#>   id       ufi    pfi featu…¹ name  named…² origin const…³ usage hiera…⁴ featu…⁵
-#>   <chr>  <int>  <int> <chr>   <chr> <chr>   <chr>  <chr>   <chr> <chr>     <int>
-#> 1 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L          4762
-#> 2 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L          4762
-#> 3 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L          4762
-#> 4 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L          4762
-#> 5 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L          4762
-#> 6 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L          4762
-#> # … with 10 more variables: create_date_pfi <dttm>, superceded_pfi <chr>,
-#> #   create_date_ufi <dttm>, auth_org_code <chr>, auth_org_id <chr>,
-#> #   auth_org_verified <chr>, task_id <chr>, feature_ufi <int>,
-#> #   feature_create_date_ufi <dttm>, geometry <LINESTRING [°]>, and abbreviated
-#> #   variable names ¹​feature_type_code, ²​named_feature_id, ³​construction,
-#> #   ⁴​hierarchy, ⁵​feature_quality_id
+#>   id       ufi    pfi featu…¹ name  named…² origin const…³ usage hiera…⁴ auth_…⁵
+#>   <chr>  <int>  <int> <chr>   <chr> <chr>   <chr>  <chr>   <chr> <chr>   <chr>  
+#> 1 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
+#> 2 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
+#> 3 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
+#> 4 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
+#> 5 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
+#> 6 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
+#> # … with 10 more variables: auth_org_id <chr>, auth_org_verified <chr>,
+#> #   feature_quality_id <int>, task_id <chr>, create_date_pfi <dttm>,
+#> #   superceded_pfi <chr>, feature_ufi <int>, feature_create_date_ufi <dttm>,
+#> #   create_date_ufi <dttm>, geometry <LINESTRING [°]>, and abbreviated variable
+#> #   names ¹​feature_type_code, ²​named_feature_id, ³​construction, ⁴​hierarchy,
+#> #   ⁵​auth_org_code
 
 # Build a more specific query and collect the results
 vicmap_query(layer = "open-data-platform:hy_watercourse") %>% # layer to query
@@ -158,14 +158,14 @@ vicmap_query(layer = "open-data-platform:hy_watercourse") %>% # layer to query
 #> # A tibble: 8 × 4
 #>   id                          pfi hierarchy                             geometry
 #>   <chr>                     <int> <chr>                         <LINESTRING [°]>
-#> 1 hy_watercourse.1657019 19272791 L         (144.9287 -37.8033, 144.9186 -37.80…
-#> 2 hy_watercourse.1658128 14608551 L         (144.9201 -37.79069, 144.9202 -37.7…
-#> 3 hy_watercourse.763289  14577596 L         (144.929 -37.81409, 144.9294 -37.81…
-#> 4 hy_watercourse.763296  14577602 L         (144.9288 -37.81417, 144.9292 -37.8…
-#> 5 hy_watercourse.1191058 14608731 L         (144.9365 -37.81511, 144.9359 -37.8…
-#> 6 hy_watercourse.1183410 17520306 L         (144.9415 -37.78232, 144.9414 -37.7…
-#> 7 hy_watercourse.1183418 14615146 L         (144.9442 -37.78198, 144.9441 -37.7…
-#> 8 hy_watercourse.1183482 14608434 L         (144.9403 -37.78253, 144.9401 -37.7…
+#> 1 hy_watercourse.763443  14577596 L         (144.929 -37.81409, 144.9294 -37.81…
+#> 2 hy_watercourse.763452  14577602 L         (144.9288 -37.81417, 144.9292 -37.8…
+#> 3 hy_watercourse.1191149 14608731 L         (144.9365 -37.81511, 144.9359 -37.8…
+#> 4 hy_watercourse.1183449 17520306 L         (144.9415 -37.78232, 144.9414 -37.7…
+#> 5 hy_watercourse.1183457 14615146 L         (144.9442 -37.78198, 144.9441 -37.7…
+#> 6 hy_watercourse.1183525 14608434 L         (144.9403 -37.78253, 144.9401 -37.7…
+#> 7 hy_watercourse.1651720 19272791 L         (144.9287 -37.8033, 144.9186 -37.80…
+#> 8 hy_watercourse.1652842 14608551 L         (144.9201 -37.79069, 144.9202 -37.7…
 ```
 
 VicmapR translates numerous geometric filter functions available in the

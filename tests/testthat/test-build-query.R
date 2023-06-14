@@ -14,8 +14,7 @@ geoserver_down <- !(check_geoserver(timeout = 5, quiet = TRUE))
 
 test_that("vicmap_query works", {
   skip_if_offline()
-  skip_on_cran()
-  skip_if(geoserver_down)
+  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
   
   q <- vicmap_query(layer = "open-data-platform:hy_watercourse", CRS = 3111, wfs_version = "1.0.0")
   q2 <- vicmap_query(layer = "open-data-platform:hy_watercourse", wfs_version = "2.0.0")
@@ -41,8 +40,7 @@ test_that("vicmap_query works", {
 
 test_that("print.vicmap_promise works", {
   skip_if_offline()
-  skip_on_cran()
-  skip_if(geoserver_down)
+  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
   
   expect_error(print(vicmap_query('not a layer')), regexp = "Bad Request [(]HTTP 400[)].")
   expect_output(print(vicmap_query(layer = "open-data-platform:hy_watercourse", wfs_version = "2.0.0")), regexp = NULL)
@@ -50,8 +48,7 @@ test_that("print.vicmap_promise works", {
 
 test_that("head.vicmap_promise works", {
   skip_if_offline()
-  skip_on_cran()
-  skip_if(geoserver_down)
+  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
   
   r <- vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
     head(10) %>%
@@ -63,8 +60,7 @@ test_that("head.vicmap_promise works", {
 
 test_that("collect.vicmap_promise works", {
   skip_if_offline()
-  skip_on_cran()
-  skip_if(geoserver_down)
+  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
   
   d <- vicmap_query(layer = "open-data-platform:hy_watercourse") %>%
     head(10) %>% 
@@ -84,8 +80,7 @@ test_that("collect.vicmap_promise works", {
 
 test_that("show_query.vicmap_promise works", {
   skip_if_offline()
-  skip_on_cran()
-  skip_if(geoserver_down)
+  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
   
   expect_output({vicmap_query(layer = "open-data-platform:hy_watercourse") %>% 
                   show_query()}, regexp = NULL)

@@ -14,8 +14,7 @@ geoserver_down <- !(check_geoserver(timeout = 5, quiet = TRUE))
 
 test_that("feature_hits() works", {
   skip_if_offline()
-  skip_on_cran()
-  skip_if(geoserver_down)
+  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
   
   expect_equal(vicmap_query("open-data-platform:hy_watercourse", wfs_version = "2.0.0") %>% 
                  filter(hierarchy == "L", pfi == 8553127) %>%
