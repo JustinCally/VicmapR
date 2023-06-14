@@ -1,5 +1,8 @@
+# VicmapR 0.2.2
+* Exits test if internet resource is not available and providees an informative message as per CRAN policy  
+
 # VicmapR 0.2.1
-* Fixed CRAN issue with tests running on internet resources  
+* Fixed CRAN issue with tests running on internet resources (not accepted)
 
 # VicmapR 0.2.0
 * Migration of geoserver platform now supported as the default. Details are available in the `vignette("migration_odp")` vignette   
