@@ -1,3 +1,6 @@
+# VicmapR 0.2.3 (2023-06-19)  
++ Check internet resource is available in the cql predicate tests 
+
 ## Submission 0.2.2 (2023-06-14)  
 + Exits test if internet resource is not available and provides an informative message as per CRAN policy   
 
