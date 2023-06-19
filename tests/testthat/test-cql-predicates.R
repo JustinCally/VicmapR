@@ -18,6 +18,8 @@ suppressPackageStartupMessages(library(sf, quietly = TRUE))
 
 the_geom <- st_sf(st_sfc(st_point(c(1,1)))) %>% `st_crs<-`(4283)
 
+geoserver_down <- !(check_geoserver(timeout = 5, quiet = TRUE))
+
 test_that("vicmap_cql_string fails when an invalid arguments are given",{
   expect_error(VicmapR:::vicmap_cql_string(the_geom, "FOO"))
   expect_error(VicmapR:::vicmap_cql_string(quakes, "DWITHIN"))
@@ -87,6 +89,9 @@ test_that("CQL functions fail correctly", {
 })
 
 test_that("CQL translate works", {
+  skip_if_offline()
+  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  
   expect_is(VicmapR:::cql_translate(CQL(INTERSECTS(the_geom))), c("sql", "character"))
   expect_is(VicmapR:::cql_translate(CQL(BBOX(!!st_bbox(the_geom)))), c("sql", "character"))
   
