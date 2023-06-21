@@ -21,7 +21,7 @@ metadata for the record."><meta property="og:image" content="https://justincally
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.3.9000</span>
       </span>
     </div>
 
@@ -30,13 +30,16 @@ metadata for the record."><meta property="og:image" content="https://justincally
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
+    </li>
+    <li>
+      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -74,105 +77,56 @@ metadata for the record.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">data_citation</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, anzlicId <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">data_dictionary</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, anzlicId <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-<span class="fu">get_metadata</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, anzlicId <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">data_citation</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, metadataID <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">data_dictionary</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, metadataID <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">get_metadata</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, metadataID <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>Object of class <code>vicmap_promise</code> (likely passed from <code><a href="vicmap_query.html">vicmap_query()</a></code>)</p></dd>
-<dt>anzlicId</dt>
+
+
+<dt>metadataID</dt>
 <dd><p>character: ID of data (useful if data is not available through WFS)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>citation, data.frame or list</p>
+    
+
+<p>citation, data.frame or list</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
-<span class="r-in"><span class="fu">data_citation</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   @ELECTRONIC{HY_WATERCOURSE,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         author = {Department of Environment, Land, Water &amp; Planning},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         title = {Watercourse Network 1:25,000 - Vicmap Hydro},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         year = {2020},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         url = {http://services.land.vic.gov.au/catalogue/metadata?anzlicId=ANZVI0803002490&amp;publicId=guest&amp;extractionProviderId=1},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         owner = {Department of Environment, Land, Water &amp; Planning},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         timestamp = {2022.03.24},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-in"><span class="co"># }</span></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
-<span class="r-in"><span class="fu">data_dictionary</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 x 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    `Column Name` `Column Name 10` Obligation Unique `Data Type` `Reference Tab~`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>         </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>            </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>      </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>           </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span><span> CONSTRUCTION  CONST            O          N      VARCHAR2(1) VMREFTAB.HY_CON~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span><span> CREATE_DATE_~ CRDATE_PFI       O          N      DATE        </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span><span> CREATE_DATE_~ CRDATE_UFI       O          N      DATE        </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span><span> FEATURE_QUAL~ FQID             O          N      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span><span> FEATURE_TYPE~ FTYPE_CODE       O          N      VARCHAR2(3~ </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span><span> HIERARCHY     HIERARCHY        O          N      VARCHAR2(1) VMREFTAB.HY_HIE~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span><span> NAME          NAME             O          N      VARCHAR2(5~ </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span><span> NAMED_FEATUR~ NFEAT_ID         O          N      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span><span> ORIGIN        ORIGIN           O          N      VARCHAR2(1) VMREFTAB.HY_ORI~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span><span> PFI           PFI              M          Y      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span><span> SUPERCEDED_P~ SUPER_PFI        O          N      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span><span> UFI           UFI              O          N      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span><span> USAGE         USAGE            O          N      VARCHAR2(1) VMREFTAB.HY_USA~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 1 more variable: Comments &lt;chr&gt;</span></span>
-<span class="r-in"><span class="co"># }</span></span>
-<span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
-<span class="r-in"><span class="fu">get_metadata</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 30 x 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    `Metadata Name`           Description                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>                     </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>                                              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span><span> Resource Name             </span><span style="color: #949494;">"</span><span>HY_WATERCOURSE</span><span style="color: #949494;">"</span><span>                                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span><span> Title                     </span><span style="color: #949494;">"</span><span>Watercourse Network 1:25,000 - Vicmap Hydro</span><span style="color: #949494;">"</span><span>      </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span><span> Anzlic Id                 </span><span style="color: #949494;">"</span><span>ANZVI0803002490\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span><span> Custodian                 </span><span style="color: #949494;">"</span><span>Department of Environment, Land, Water &amp; Planning</span><span style="color: #949494;">"</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span><span> Owner                     </span><span style="color: #949494;">"</span><span>Department of Environment, Land, Water &amp; Planning</span><span style="color: #949494;">"</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span><span> Jurisdiction              </span><span style="color: #949494;">"</span><span>Victoria</span><span style="color: #949494;">"</span><span>                                         </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span><span> Abstract                  </span><span style="color: #949494;">"</span><span>This layer is part of Vicmap Hydro and contains l~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span><span> Search Words              </span><span style="color: #949494;">"</span><span>LAND Topography, AGRICULTURE Irrigation, WATER Hy~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span><span> Purpose                   </span><span style="color: #949494;">"</span><span>Vicmap Hydro provides an accurate representation ~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span><span> Geographic Extent Polygon  </span><span style="color: #BB0000;">NA</span><span>                                                </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 20 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 x 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    `Column Name` `Column Name 10` Obligation Unique `Data Type` `Reference Tab~`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>         </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>            </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>      </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>           </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span><span> CONSTRUCTION  CONST            O          N      VARCHAR2(1) VMREFTAB.HY_CON~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span><span> CREATE_DATE_~ CRDATE_PFI       O          N      DATE        </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span><span> CREATE_DATE_~ CRDATE_UFI       O          N      DATE        </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span><span> FEATURE_QUAL~ FQID             O          N      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span><span> FEATURE_TYPE~ FTYPE_CODE       O          N      VARCHAR2(3~ </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span><span> HIERARCHY     HIERARCHY        O          N      VARCHAR2(1) VMREFTAB.HY_HIE~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span><span> NAME          NAME             O          N      VARCHAR2(5~ </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span><span> NAMED_FEATUR~ NFEAT_ID         O          N      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span><span> ORIGIN        ORIGIN           O          N      VARCHAR2(1) VMREFTAB.HY_ORI~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span><span> PFI           PFI              M          Y      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span><span> SUPERCEDED_P~ SUPER_PFI        O          N      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span><span> UFI           UFI              O          N      NUMBER(9)   </span><span style="color: #BB0000;">NA</span><span>              </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span><span> USAGE         USAGE            O          N      VARCHAR2(1) VMREFTAB.HY_USA~</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 1 more variable: Comments &lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "http://services.land.vic.gov.au/catalogue/metadata?anzlicId=ANZVI0803002490&amp;publicId=guest&amp;extractionProviderId=1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># }</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu">data_citation</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are using old layer names. We converted your layer to hy_watercourse with a CQL filter of feature_type_code='watercourse_channel_drain'. To suppress this message, update your code to use the new layer names (see VicmapR::name_conversions for more details)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in attr_list[[feat]] : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   attempt to select less than one element in get1index</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu">data_dictionary</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are using old layer names. We converted your layer to hy_watercourse with a CQL filter of feature_type_code='watercourse_channel_drain'. To suppress this message, update your code to use the new layer names (see VicmapR::name_conversions for more details)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in attr_list[[feat]] : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   attempt to select less than one element in get1index</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu">get_metadata</span><span class="op">(</span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are using old layer names. We converted your layer to hy_watercourse with a CQL filter of feature_type_code='watercourse_channel_drain'. To suppress this message, update your code to use the new layer names (see VicmapR::name_conversions for more details)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in attr_list[[feat]] : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   attempt to select less than one element in get1index</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -187,7 +141,7 @@ metadata for the record.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
