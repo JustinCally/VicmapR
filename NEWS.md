@@ -1,3 +1,5 @@
+# VicmapR (development version)
+
 # VicmapR 0.2.3
 * Check internet resource is available in the cql predicate tests 
 
