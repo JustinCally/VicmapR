@@ -19,7 +19,7 @@ See dplyr::collect for details."><meta property="og:image" content="https://just
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.3.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
       </span>
     </div>
 
@@ -28,16 +28,13 @@ See dplyr::collect for details."><meta property="og:image" content="https://just
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
-    </li>
-    <li>
-      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -73,34 +70,25 @@ In doing so it will return an <code>sf</code> object into memory.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for vicmap_promise</span></span>
-<span><span class="fu">collect</span><span class="op">(</span><span class="va">x</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>, paginate <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for vicmap_promise</span>
+<span class="fu">collect</span><span class="op">(</span><span class="va">x</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>, paginate <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>object of class <code>vicmap_promise</code> (likely passed from <code><a href="vicmap_query.html">vicmap_query()</a></code>)</p></dd>
-
-
 <dt>quiet</dt>
 <dd><p>logical; whether to suppress the printing of messages and progress</p></dd>
-
-
 <dt>paginate</dt>
 <dd><p>logical; whether to allow pagination of results to extract all records (default is TRUE,
 meaning all data will be returned but it will take more time)</p></dd>
-
-
 <dt>...</dt>
 <dd><p>additional arguments passed to <a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></p></dd>
-
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>sf/tbl_df/tbl/data.frame matching the query parameters</p>
+    <p>sf/tbl_df/tbl/data.frame matching the query parameters</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -117,31 +105,29 @@ process may take a while to run, thus it is recommended to filter large datasets
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span><span class="fu"><a href="head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span><span class="fu">collect</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 5 features and 20 fields</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
+<span class="r-in"><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in"><span class="fu"><a href="head.html">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in"><span class="fu">collect</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 5 features and 15 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: LINESTRING</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 146.3073 ymin: -38.99322 xmax: 146.3657 ymax: -38.9847</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 142.7675 ymin: -35.06905 xmax: 143.324 ymax: -35.04559</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  GDA94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 21</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id                  ufi    pfi feature_type_code name  named_feature_id origin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> hy_watercourse.1 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> hy_watercourse.2 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> hy_watercourse.3 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> hy_watercourse.4 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> hy_watercourse.5 3.63<span style="color: #949494;">e</span>6 9.63<span style="color: #949494;">e</span>6 watercourse_stre… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               1     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: construction &lt;chr&gt;, usage &lt;chr&gt;, hierarchy &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   auth_org_code &lt;chr&gt;, auth_org_id &lt;chr&gt;, auth_org_verified &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   feature_quality_id &lt;int&gt;, task_id &lt;chr&gt;, create_date_pfi &lt;dttm&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   superceded_pfi &lt;chr&gt;, feature_ufi &lt;int&gt;, feature_create_date_ufi &lt;dttm&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   create_date_ufi &lt;dttm&gt;, geometry &lt;LINESTRING [°]&gt;</span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 x 16</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id                   PFI    UFI FEATURE_TYPE_CO~ NAME  NAMED_FEATURE_ID ORIGIN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>              </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>            </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>            </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span><span> VMHYDRO_WATERCOU~ 8.55</span><span style="color: #949494;">e</span><span>6 2.55</span><span style="color: #949494;">e</span><span>6 watercourse_cha~ </span><span style="color: #BB0000;">NA</span><span>    </span><span style="color: #BB0000;">NA</span><span>               2     </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span><span> VMHYDRO_WATERCOU~ 8.55</span><span style="color: #949494;">e</span><span>6 2.55</span><span style="color: #949494;">e</span><span>6 watercourse_cha~ </span><span style="color: #BB0000;">NA</span><span>    </span><span style="color: #BB0000;">NA</span><span>               2     </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span><span> VMHYDRO_WATERCOU~ 8.55</span><span style="color: #949494;">e</span><span>6 2.55</span><span style="color: #949494;">e</span><span>6 watercourse_cha~ </span><span style="color: #BB0000;">NA</span><span>    </span><span style="color: #BB0000;">NA</span><span>               2     </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span><span> VMHYDRO_WATERCOU~ 8.55</span><span style="color: #949494;">e</span><span>6 2.55</span><span style="color: #949494;">e</span><span>6 watercourse_cha~ </span><span style="color: #BB0000;">NA</span><span>    </span><span style="color: #BB0000;">NA</span><span>               2     </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span><span> VMHYDRO_WATERCOU~ 8.55</span><span style="color: #949494;">e</span><span>6 2.55</span><span style="color: #949494;">e</span><span>6 watercourse_cha~ </span><span style="color: #BB0000;">NA</span><span>    </span><span style="color: #BB0000;">NA</span><span>               2     </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 9 more variables: CONSTRUCTION &lt;chr&gt;, USAGE &lt;chr&gt;, HIERARCHY &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   FEATURE_QUALITY_ID &lt;int&gt;, CREATE_DATE_PFI &lt;dttm&gt;, SUPERCEDED_PFI &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;, geometry &lt;LINESTRING [°]&gt;</span></span>
+<span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -156,7 +142,7 @@ process may take a while to run, thus it is recommended to filter large datasets
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>

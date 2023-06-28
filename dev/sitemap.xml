@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://justincally.github.io/VicmapR/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>https://justincally.github.io/VicmapR/articles/beginner_vicmap.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://justincally.github.io/VicmapR/articles/migration_odp.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/articles/query_vicmap.html</loc>
@@ -22,10 +16,10 @@
     <loc>https://justincally.github.io/VicmapR/index.html</loc>
   </url>
   <url>
-    <loc>https://justincally.github.io/VicmapR/news/index.html</loc>
+    <loc>https://justincally.github.io/VicmapR/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://justincally.github.io/VicmapR/reference/CQL.html</loc>
+    <loc>https://justincally.github.io/VicmapR/news/index.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/check_geoserver.html</loc>
@@ -34,7 +28,7 @@
     <loc>https://justincally.github.io/VicmapR/reference/collect.html</loc>
   </url>
   <url>
-    <loc>https://justincally.github.io/VicmapR/reference/convert_layer_name.html</loc>
+    <loc>https://justincally.github.io/VicmapR/reference/CQL.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/cql_geom_predicates.html</loc>
@@ -59,9 +53,6 @@
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/listLayers.html</loc>
-  </url>
-  <url>
-    <loc>https://justincally.github.io/VicmapR/reference/name_conversions.html</loc>
   </url>
   <url>
     <loc>https://justincally.github.io/VicmapR/reference/pipe.html</loc>

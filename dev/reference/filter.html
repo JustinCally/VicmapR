@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">VicmapR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.3.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
       </span>
     </div>
 
@@ -26,16 +26,13 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/beginner_vicmap.html">Vicmap for Beginners</a>
-    </li>
-    <li>
-      <a href="../articles/migration_odp.html">Migration to the Open Data Platform</a>
     </li>
     <li>
       <a href="../articles/query_vicmap.html">How to Query Vicmap Data</a>
@@ -69,25 +66,20 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for vicmap_promise</span></span>
-<span><span class="fu">filter</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for vicmap_promise</span>
+<span class="fu">filter</span><span class="op">(</span><span class="va">.data</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>object of class <code>vicmap_promise</code> (likely passed from <code><a href="vicmap_query.html">vicmap_query()</a></code>)</p></dd>
-
-
 <dt>...</dt>
 <dd><p>filter statements</p></dd>
-
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>Object of class <code>vicmap_promise</code>, which is a 'promise' of the data that can  be returned if <code><a href="collect.html">collect()</a></code> is used</p>
+    <p>Object of class <code>vicmap_promise</code>, which is a 'promise' of the data that can  be returned if <code><a href="collect.html">collect()</a></code> is used</p>
     </div>
     <div id="methods-by-class-">
     <h2>Methods (by class)</h2>
@@ -97,30 +89,37 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span> <span class="fu">filter</span><span class="op">(</span><span class="va">hierarchy</span> <span class="op">==</span> <span class="st">"L"</span>, <span class="va">pfi</span> <span class="op">==</span> <span class="fl">8553127</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> • Using <span style="color: #0000BB;">collect()</span> on this object will return <span style="color: #00BB00;">1</span> features</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> • and <span style="color: #00BB00;">21</span> fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> • At most six rows of the record are printed here</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ────────────────────────────────────────────────────────────────────────────────</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 1 feature and 20 fields</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span>
+<span class="r-in"><span class="fu"><a href="vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in"> <span class="fu">filter</span><span class="op">(</span><span class="va">HIERARCHY</span> <span class="op">==</span> <span class="st">"L"</span>, <span class="va">PFI</span> <span class="op">==</span> <span class="fl">8553127</span><span class="op">)</span></span>
+<span class="r-in"> <span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  target signature 'wfsConnection#ident'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  "wfsConnection#ANY" would also be valid</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteIdentifier',</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  target signature 'wfsConnection#character'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  "wfsConnection#ANY" would also be valid</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteString',</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  target signature 'wfsConnection#character'.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  "wfsConnection#ANY" would also be valid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> * Using <span style="color: #0000BB;">collect()</span><span> on this object will return </span><span style="color: #00BB00;">1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> * features and <span style="color: #00BB00;">16</span><span> fields</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> * At most six rows of the record are printed here</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 1 feature and 15 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: LINESTRING</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 143.3209 ymin: -35.06905 xmax: 143.324 ymax: -35.06721</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  GDA94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id                  ufi    pfi feature_type_code name  named_feature_id origin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> hy_watercourse.… 2.55<span style="color: #949494;">e</span>6 8.55<span style="color: #949494;">e</span>6 watercourse_chan… <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>               2     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: construction &lt;chr&gt;, usage &lt;chr&gt;, hierarchy &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   auth_org_code &lt;chr&gt;, auth_org_id &lt;chr&gt;, auth_org_verified &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   feature_quality_id &lt;int&gt;, task_id &lt;chr&gt;, create_date_pfi &lt;dttm&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   superceded_pfi &lt;chr&gt;, feature_ufi &lt;int&gt;, feature_create_date_ufi &lt;dttm&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   create_date_ufi &lt;dttm&gt;, geometry &lt;LINESTRING [°]&gt;</span></span>
-<span class="r-in"><span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 x 16</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id                   PFI    UFI FEATURE_TYPE_CO~ NAME  NAMED_FEATURE_ID ORIGIN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>              </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #949494;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>            </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span>            </span><span style="color: #949494;font-style: italic;">&lt;chr&gt;</span><span> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span><span> VMHYDRO_WATERCOU~ 8.55</span><span style="color: #949494;">e</span><span>6 2.55</span><span style="color: #949494;">e</span><span>6 watercourse_cha~ </span><span style="color: #BB0000;">NA</span><span>    </span><span style="color: #BB0000;">NA</span><span>               2     </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ... with 9 more variables: CONSTRUCTION &lt;chr&gt;, USAGE &lt;chr&gt;, HIERARCHY &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   FEATURE_QUALITY_ID &lt;int&gt;, CREATE_DATE_PFI &lt;dttm&gt;, SUPERCEDED_PFI &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   CREATE_DATE_UFI &lt;dttm&gt;, OBJECTID &lt;int&gt;, geometry &lt;LINESTRING [°]&gt;</span></span>
+<span class="r-in"> <span class="co"># }</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -135,7 +134,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer></div>
