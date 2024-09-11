@@ -18,6 +18,12 @@ status](https://www.r-pkg.org/badges/version/VicmapR)](https://CRAN.R-project.or
 [![R-CMD-check](https://github.com/JustinCally/VicmapR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JustinCally/VicmapR/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+**From November 2024 (version 0.3.0) `VicmapR` will be renamed to
+`vicspatial`. Unfortunately this change has been requested by the
+trademark holders of `VICMAP` (Department of Transport and Planning).
+While redirections should be in place for GitHub and CRAN websites,
+please check existing code for explicit mentions of `VicmapR`.**
+
 The goal of VicmapR is to provide functions to easily access Victorian
 Government spatial data through their WFS (Web Feature Service). VicmapR
 leverages code and a lazy querying approach developed by [Teucher et
@@ -61,13 +67,12 @@ link it to the `sf` package visit:
 
 ``` r
 library(sf)
-#> Warning: package 'sf' was built under R version 4.1.2
-#> Linking to GEOS 3.10.2, GDAL 3.4.2, PROJ 8.2.1; sf_use_s2() is TRUE
+#> Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE
 sf::sf_extSoftVersion()
 #>           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
-#>       "3.10.2"        "3.4.2"        "8.2.1"        "false"         "true" 
+#>       "3.11.0"        "3.5.3"        "9.1.0"         "true"         "true" 
 #>           PROJ 
-#>        "8.2.1"
+#>        "9.1.0"
 ```
 
 ## Example
@@ -76,6 +81,7 @@ sf::sf_extSoftVersion()
 
 ``` r
 library(VicmapR)
+#> From November 2024 (version 0.3.0) `VicmapR` will be renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `VicmapR`
 #> 
 #> Attaching package: 'VicmapR'
 #> The following object is masked from 'package:stats':
@@ -119,30 +125,29 @@ melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="Vicmap
 
 # Obtain a promise of what data will be returned for a given layer
 vicmap_query(layer = "open-data-platform:hy_watercourse")
-#> • Using collect() on this object will return 1835052 features and 21
+#> • Using collect() on this object will return 1832888 features and 21
 #> • fields
 #> • At most six rows of the record are printed here
 #> ────────────────────────────────────────────────────────────────────────────────
 #> Simple feature collection with 6 features and 20 fields
 #> Geometry type: LINESTRING
 #> Dimension:     XY
-#> Bounding box:  xmin: 146.3073 ymin: -38.9966 xmax: 146.3657 ymax: -38.9847
+#> Bounding box:  xmin: 141.8898 ymin: -39.01699 xmax: 146.3676 ymax: -34.36471
 #> Geodetic CRS:  GDA94
 #> # A tibble: 6 × 21
-#>   id       ufi    pfi featu…¹ name  named…² origin const…³ usage hiera…⁴ auth_…⁵
-#>   <chr>  <int>  <int> <chr>   <chr> <chr>   <chr>  <chr>   <chr> <chr>   <chr>  
-#> 1 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
-#> 2 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
-#> 3 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
-#> 4 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
-#> 5 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
-#> 6 hy_w… 3.63e6 9.63e6 waterc… <NA>  <NA>    1      <NA>    1     L       <NA>   
-#> # … with 10 more variables: auth_org_id <chr>, auth_org_verified <chr>,
+#>   id                  ufi    pfi feature_type_code name  named_feature_id origin
+#>   <chr>             <int>  <int> <chr>             <chr> <chr>            <chr> 
+#> 1 hy_watercourse.1 3.63e6 9.63e6 watercourse_stre… <NA>  <NA>             1     
+#> 2 hy_watercourse.2 3.63e6 9.63e6 watercourse_stre… <NA>  <NA>             1     
+#> 3 hy_watercourse.3 3.63e6 9.63e6 watercourse_stre… <NA>  <NA>             1     
+#> 4 hy_watercourse.4 2.55e6 8.55e6 watercourse_chan… <NA>  <NA>             2     
+#> 5 hy_watercourse.5 2.55e6 8.55e6 watercourse_chan… <NA>  <NA>             2     
+#> 6 hy_watercourse.6 2.55e6 8.55e6 watercourse_chan… <NA>  <NA>             2     
+#> # ℹ 14 more variables: construction <chr>, usage <chr>, hierarchy <chr>,
+#> #   auth_org_code <chr>, auth_org_id <chr>, auth_org_verified <chr>,
 #> #   feature_quality_id <int>, task_id <chr>, create_date_pfi <dttm>,
 #> #   superceded_pfi <chr>, feature_ufi <int>, feature_create_date_ufi <dttm>,
-#> #   create_date_ufi <dttm>, geometry <LINESTRING [°]>, and abbreviated variable
-#> #   names ¹​feature_type_code, ²​named_feature_id, ³​construction, ⁴​hierarchy,
-#> #   ⁵​auth_org_code
+#> #   create_date_ufi <dttm>, geometry <LINESTRING [°]>
 
 # Build a more specific query and collect the results
 vicmap_query(layer = "open-data-platform:hy_watercourse") %>% # layer to query
@@ -158,31 +163,31 @@ vicmap_query(layer = "open-data-platform:hy_watercourse") %>% # layer to query
 #> # A tibble: 8 × 4
 #>   id                          pfi hierarchy                             geometry
 #>   <chr>                     <int> <chr>                         <LINESTRING [°]>
-#> 1 hy_watercourse.763443  14577596 L         (144.929 -37.81409, 144.9294 -37.81…
-#> 2 hy_watercourse.763452  14577602 L         (144.9288 -37.81417, 144.9292 -37.8…
-#> 3 hy_watercourse.1191149 14608731 L         (144.9365 -37.81511, 144.9359 -37.8…
-#> 4 hy_watercourse.1183449 17520306 L         (144.9415 -37.78232, 144.9414 -37.7…
-#> 5 hy_watercourse.1183457 14615146 L         (144.9442 -37.78198, 144.9441 -37.7…
-#> 6 hy_watercourse.1183525 14608434 L         (144.9403 -37.78253, 144.9401 -37.7…
-#> 7 hy_watercourse.1651720 19272791 L         (144.9287 -37.8033, 144.9186 -37.80…
-#> 8 hy_watercourse.1652842 14608551 L         (144.9201 -37.79069, 144.9202 -37.7…
+#> 1 hy_watercourse.676580  19272791 L         (144.9287 -37.8033, 144.9186 -37.80…
+#> 2 hy_watercourse.1134745 14608551 L         (144.9201 -37.79069, 144.9202 -37.7…
+#> 3 hy_watercourse.189593  14615146 L         (144.9442 -37.78198, 144.944 -37.78…
+#> 4 hy_watercourse.189600  14608434 L         (144.9403 -37.78253, 144.9401 -37.7…
+#> 5 hy_watercourse.1079520 14577596 L         (144.929 -37.81409, 144.9294 -37.81…
+#> 6 hy_watercourse.1677768 17520306 L         (144.9415 -37.78232, 144.9414 -37.7…
+#> 7 hy_watercourse.1765811 14577602 L         (144.9288 -37.81417, 144.9292 -37.8…
+#> 8 hy_watercourse.1792496 14608731 L         (144.9365 -37.81511, 144.9359 -37.8…
 ```
 
 VicmapR translates numerous geometric filter functions available in the
 Victorian Government’s WFS Geoserver supports numerous [geometric
 filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):
 
--   `EQUALS`  
--   `DISJOINT`  
--   `INTERSECTS`  
--   `TOUCHES`  
--   `CROSSES`  
--   `WITHIN`  
--   `CONTAINS`
--   `OVERLAPS`  
--   `DWITHIN`  
--   `BEYOND`  
--   `BBOX`
+- `EQUALS`  
+- `DISJOINT`  
+- `INTERSECTS`  
+- `TOUCHES`  
+- `CROSSES`  
+- `WITHIN`  
+- `CONTAINS`
+- `OVERLAPS`  
+- `DWITHIN`  
+- `BEYOND`  
+- `BBOX`
 
 These filters can be used within the `filter()` function by providing
 them an object of class `sf/sfc/sfg/bbox` as shown above with the

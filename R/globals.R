@@ -11,3 +11,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 utils::globalVariables(c(":=", "name", "type", ".", ".data", "name_conversions", "Name", "Title", "Abstract", "metadataID"))
+
+.onAttach <- function(libname, pkgname) {
+  packageStartupMessage("From November 2024 (version 0.3.0) `VicmapR` will be renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `VicmapR`.")
+}

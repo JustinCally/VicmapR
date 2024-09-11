@@ -124,12 +124,16 @@ rail_intersects <- vicmap_query(layer = "open-data-platform:tr_rail") %>% # laye
   filter(INTERSECTS(melbourne)) %>% # more advanced geometric filter
   collect()
 
+melbourne_bbox <- sf::st_bbox(melbourne)
+
 rail_bbox <- vicmap_query(layer = "open-data-platform:tr_rail") %>%
-  filter(BBOX(sf::st_bbox(melbourne))) %>%
+  filter(BBOX(melbourne_bbox)) %>%
   collect()
 
+melbourne_centroid <- sf::st_centroid(melbourne)
+
 rail_dwithin <- vicmap_query(layer = "open-data-platform:tr_rail") %>%
-  filter(DWITHIN(sf::st_centroid(melbourne), distance = 10000, units = "meters")) %>%
+  filter(DWITHIN(melbourne_centroid, distance = 10000, units = "meters")) %>%
   collect()
 
 leaflet(width = "100%") %>%

@@ -44,8 +44,8 @@ test_that("data_citation works", {
   skip_if_offline()
   skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
   
-  data_citation(vicmap_query(layer = "open-data-platform:basins"))
+  data_citation(vicmap_query(layer = "open-data-platform:apiary"))
   
-  expect_output({data_citation(vicmap_query(layer = "open-data-platform:basins"))})
+  expect_output({data_citation(vicmap_query(layer = "open-data-platform:apiary"))})
   
 })
