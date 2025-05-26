@@ -1,9 +1,9 @@
 ---
-title: "Vicmap for Beginners"
+title: "vicspatial for Beginners"
 output: rmarkdown::html_vignette
 date: "`r Sys.Date()`"
 vignette: >
-  %\VignetteIndexEntry{Vicmap for Beginners}
+  %\VignetteIndexEntry{vicspatial for Beginners}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
