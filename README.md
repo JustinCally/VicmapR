@@ -18,29 +18,31 @@ status](https://www.r-pkg.org/badges/version/vicspatial)](https://CRAN.R-project
 [![R-CMD-check](https://github.com/JustinCally/vicspatial/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JustinCally/vicspatial/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-**From November 2024 (version 0.3.0) `vicspatial` will be renamed to
-`vicspatial`. Unfortunately this change has been requested by the
-trademark holders of `VICMAP` (Department of Transport and Planning).
-While redirections should be in place for GitHub and CRAN websites,
-please check existing code for explicit mentions of `vicspatial`.**
+**In May 2025 (version 0.3.0) `VicmapR` was renamed to `vicspatial`.
+Unfortunately this change has been requested by the trademark holders of
+`VICMAP` (Department of Transport and Planning). While redirections
+should be in place for GitHub and CRAN websites, please check existing
+code for explicit mentions of `VicmapR`.**
 
-The goal of vicspatial is to provide functions to easily access Victorian
-Government spatial data through their WFS (Web Feature Service). vicspatial
-leverages code and a lazy querying approach developed by [Teucher et
+The goal of vicspatial is to provide functions to easily access
+Victorian Government spatial data through their WFS (Web Feature
+Service). vicspatial leverages code and a lazy querying approach
+developed by [Teucher et
 al. (2021)](https://joss.theoj.org/papers/10.21105/joss.02927) for the
 [{bcdata} R package](https://bcgov.github.io/bcdata/), which allows for
 a responsive and precise querying process.
 
 ## Migration of Victoria’s Open Data Geoserver
 
-**From March 2023 (`vicspatial v0.2.0`) the way `vicspatial` obtains data has
-changed**
+**From March 2023 (`vicspatial v0.2.0`) the way `vicspatial` obtains
+data has changed**
 
-In March 2023 the data platform used by `vicspatial` will be migrated with
-the legacy platform discontinued. Changes have been to the `vicspatial`
-package to allow for the conversion and translation of of code in an
-effort to ensure legacy code still works. However, the migration may
-have unseen consequences and users are encouraged to review code.
+In March 2023 the data platform used by `vicspatial` will be migrated
+with the legacy platform discontinued. Changes have been to the
+`vicspatial` package to allow for the conversion and translation of of
+code in an effort to ensure legacy code still works. However, the
+migration may have unseen consequences and users are encouraged to
+review code.
 
 ## Installation
 
@@ -60,19 +62,20 @@ remotes::install_github("JustinCally/vicspatial")
 
 ### Dependencies
 
-Currently, the ability to use accurate geometric filters using `vicspatial`
-requires GDAL \> 3.0. To see how to upgrade your version of GDAL and
-link it to the `sf` package visit:
+Currently, the ability to use accurate geometric filters using
+`vicspatial` requires GDAL \> 3.0. To see how to upgrade your version of
+GDAL and link it to the `sf` package visit:
 <https://r-spatial.github.io/sf/#installing>
 
 ``` r
 library(sf)
-#> Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE
+#> Warning: package 'sf' was built under R version 4.3.3
+#> Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
 sf::sf_extSoftVersion()
 #>           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H 
-#>       "3.11.0"        "3.5.3"        "9.1.0"         "true"         "true" 
+#>       "3.13.0"        "3.8.5"        "9.5.1"         "true"         "true" 
 #>           PROJ 
-#>        "9.1.0"
+#>        "9.5.1"
 ```
 
 ## Example
@@ -81,7 +84,7 @@ sf::sf_extSoftVersion()
 
 ``` r
 library(vicspatial)
-#> From November 2024 (version 0.3.0) `vicspatial` will be renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `vicspatial`
+#> From November 2024 (version 0.3.0) `vicspatial` will be renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `vicspatial`.
 #> 
 #> Attaching package: 'vicspatial'
 #> The following object is masked from 'package:stats':
@@ -125,7 +128,7 @@ melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="vicspa
 
 # Obtain a promise of what data will be returned for a given layer
 vicmap_query(layer = "open-data-platform:hy_watercourse")
-#> • Using collect() on this object will return 1832888 features and 21
+#> • Using collect() on this object will return 1832868 features and 21
 #> • fields
 #> • At most six rows of the record are printed here
 #> ────────────────────────────────────────────────────────────────────────────────
@@ -173,8 +176,8 @@ vicmap_query(layer = "open-data-platform:hy_watercourse") %>% # layer to query
 #> 8 hy_watercourse.1792496 14608731 L         (144.9365 -37.81511, 144.9359 -37.8…
 ```
 
-vicspatial translates numerous geometric filter functions available in the
-Victorian Government’s WFS Geoserver supports numerous [geometric
+vicspatial translates numerous geometric filter functions available in
+the Victorian Government’s WFS Geoserver supports numerous [geometric
 filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):
 
 - `EQUALS`  
@@ -195,11 +198,11 @@ them an object of class `sf/sfc/sfg/bbox` as shown above with the
 
 ### Using other WFS urls
 
-Using `options(vicmap.base_url)` vicspatial can query data from other WFS
-services; while this remains somewhat untested it is relatively easy to
-point vicspatial to another WFS url. This option would need to be set every
-session to override the base vicspatial url. For instance, the BOM WFS can
-be used as follows:
+Using `options(vicmap.base_url)` vicspatial can query data from other
+WFS services; while this remains somewhat untested it is relatively easy
+to point vicspatial to another WFS url. This option would need to be set
+every session to override the base vicspatial url. For instance, the BOM
+WFS can be used as follows:
 
 ``` r
 # set the new base url

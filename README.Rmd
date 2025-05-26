@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/JustinCally/vicspatial/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JustinCally/vicspatial/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-**From November 2024 (version 0.3.0) `vicspatial` will be renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `vicspatial`.**
+**In May 2025 (version 0.3.0) `VicmapR` was renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `VicmapR`.**
 
 The goal of vicspatial is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). vicspatial leverages code and a lazy querying approach developed by [Teucher et al. (2021)](https://joss.theoj.org/papers/10.21105/joss.02927) for the [{bcdata} R package](https://bcgov.github.io/bcdata/), which allows for a responsive and precise querying process. 
 

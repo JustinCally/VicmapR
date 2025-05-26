@@ -13,5 +13,5 @@
 utils::globalVariables(c(":=", "name", "type", ".", ".data", "name_conversions", "Name", "Title", "Abstract", "metadataID"))
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("In May 2025 (version 0.3.0) `VicmapR` was renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `vicspatial`.")
+  packageStartupMessage("In May 2025 (version 0.3.0) `VicmapR` was renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `VicmapR`.")
 }
