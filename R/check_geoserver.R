@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 #' Check Geoserver Response  
 #' 
-#' @description VicmapR relies upon a functioning geoserver. If for whatever reason the geoserver is not functioning then the functions 
+#' @description vicspatial relies upon a functioning geoserver. If for whatever reason the geoserver is not functioning then the functions 
 #' in this package will not work. This function will check the response of the geoserver; erroring out if the connection is down. 
 #'
 #' @param timeout numeric: the time (in seconds) to wait for the response before timing out (default is 15)

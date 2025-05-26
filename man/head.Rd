@@ -22,9 +22,9 @@ See \code{utils::\link[utils]{head}} for details.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{vicmap_promise}: head.vicmap_promise
-}}
+\item \code{head(vicmap_promise)}: head.vicmap_promise
 
+}}
 \examples{
 \donttest{
 try(

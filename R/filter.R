@@ -51,7 +51,7 @@ filter.vicmap_promise <- function(.data, ...) {
     warning("wfs_version is not 2.0.0. Filtering may not be correctly applied as certain CRS's requests require axis flips")
   }
   
-  cdf <- VicmapR::get_col_df(.data)
+  cdf <- vicspatial::get_col_df(.data)
   
   current_cql = cql_translate(..., .colnames = cdf$name %||% character(0), converted = .data$converted)
   ## Change CQL query on the fly if geom is not GEOMETRY

@@ -1,4 +1,4 @@
 library(testthat)
-library(VicmapR)
+library(vicspatial)
 
-test_check("VicmapR")
+test_check("vicspatial")

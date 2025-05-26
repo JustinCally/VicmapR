@@ -3,7 +3,7 @@ destination: docs
 development:
   mode: auto
 
-url: https://justincally.github.io/VicmapR
+url: https://justincally.github.io/vicspatial
 
 reference:
   - title: "Querying the Vicmap/Vicplan Web File Services (WFS) Catalogue"

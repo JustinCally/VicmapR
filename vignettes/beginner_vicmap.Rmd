@@ -24,20 +24,20 @@ See the License for the specific language governing permissions and limitations 
 -->
 
 ```{r, echo = FALSE}
-geoserver_connected <- VicmapR::check_geoserver(quiet = TRUE)
+geoserver_connected <- vicspatial::check_geoserver(quiet = TRUE)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
   comment = "#>",
-  eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3),
+  eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3),
   purl = FALSE
 )
 ```
 
-```{r, include=FALSE, echo=FALSE, eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, include=FALSE, echo=FALSE, eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 # LIBRARIES -----
-library(VicmapR)
+library(vicspatial)
 library(dplyr)
 library(sf)
 ```
@@ -47,75 +47,75 @@ library(sf)
 The purpose of this tutorial is:
 
  - To introduce Vicmap
- - To explain the advantages of VicmapR in more detail
+ - To explain the advantages of vicspatial in more detail
  - To provide simple examples of querying, visualising and working with Vicmap spatial data
  
 The end goal of this tutorial is for R users with minimal spatial experience to be able to search for, download and visualise Vicmap data. While this tutorial is aimed at spatial beginners, it can still be used as a reference for more experienced users.
 
 
-## What is Vicmap?
+## What is vicspatial?
 
-Vicmap is the Victorian Government's catalogue of spatial datasets. The catalogue features `r try(nrow(VicmapR::listLayers()))` datasets across land, property, infrastructure and environment and is the most authoritative suite of spatial data in Victoria. 
+vicspatial is the R package that connects to the Victorian Government's catalogue of spatial datasets. The catalogue features `r try(nrow(vicspatial::listLayers()))` datasets across land, property, infrastructure and environment and is the most authoritative suite of spatial data in Victoria. 
 
-### Accessing Vicmap datasets
+### Accessing vicspatial datasets
 
-This data catalogue is freely available to the public and can be accessed via several methods. For users of R, the fastest way to access up to date Vicmap datasets is to utilise the Web Feature Service (WFS). WFS is a standardised interface to request geographic information, regardless of the platform on which it is stored. 
+This data catalogue is freely available to the public and can be accessed via several methods. For users of R, the fastest way to access up to date vicspatial datasets is to utilise the Web Feature Service (WFS). WFS is a standardised interface to request geographic information, regardless of the platform on which it is stored. 
 
 WFS requires a URL that contains the instructions for the query and is written in WFS specific terminology. This of course requires understanding of the WFS terminology and the time-consuming process of manually building the URL string. 
 
 
-## Enter, VicmapR.
+## Enter, vicspatial.
 
 #### WFS, without the fuss!
 
-VicmapR simplifies WFS queries by taking user supplied keywords and automatically building the correctly formatted URL string.  
-The functions in VicmapR therefore provide a much faster and more robust method for acquiring Vicmap data.
+vicspatial simplifies WFS queries by taking user supplied keywords and automatically building the correctly formatted URL string.  
+The functions in vicspatial therefore provide a much faster and more robust method for acquiring data.
 
 #### Lazy evaluation
 
-VicmapR uses *lazy evaluation*,  in which we query but do not collect the data from the Vicmap database. This is called making a 'Vicmap Promise'. A Vicmap Promise contains the dataset information but not the data itself. This promise can be filtered for a subset of the data before collecting. Using lazy evaluation we can collect the desired subset, instead of the entire dataset.
+vicspatial uses *lazy evaluation*,  in which we query but do not collect the data from the WFS database. This is called making a 'Promise'. A promise contains the dataset information but not the data itself. This promise can be filtered for a subset of the data before collecting. Using lazy evaluation we can collect the desired subset, instead of the entire dataset.
 
-## Worked Example - Melbourne's Tram Network
+## Worked Example - Melbourne's Open Space Network
 
 *Note: A previous version of this tutorial used swooping birds as the example, but due to the migration of platforms that data was not available at time of writing*
 
-To demonstrate VicmapR's features, we will download and explore a dataset from the Vicmap catalogue. The data is a spatial dataset of Melbourne's tram network.
+To demonstrate vicspatial's features, we will download and explore a dataset from the data catalogue. The data is a spatial dataset of Melbourne's open space network.
 
 <!-- Australian spring is famous for the presence of swooping birds. Certain species of birds swoop during the breeding season to protect their nest from potential predators. Swooping birds in Victoria include the masked lapwing (plover), butcherbird, magpie-lark, noisy miner and perhaps most famously, the magpie. The Vicmap catalogue has a dataset of 'swoop' locations, recorded by members of the public.  -->
 
 ### Searching for data 
 First, we need to search for the dataset. We can view all layers, or do a keyword search. Use `ignore.case = TRUE` for a case-insensitive search. `listLayers()` by default now provides a column of 'Abstract' and 'metadataID'. You can remove these columns by setting the abstract argument to FALSE (e.g. `listLayers(abstract = FALSE)`)
 
-```{r,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 
 #All layers
 all_layers <- listLayers() 
 
 # Case insensitive keyword search
-search <- listLayers(pattern = "tram", ignore.case = T) 
+search <- listLayers(pattern = "veac", ignore.case = T) 
 
 ```
 
 Viewing our search results shows us the name of the dataset and its description.
 
-```{r echo=FALSE, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r echo=FALSE, warning=FALSE, message=FALSE,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 library(knitr)
 library(kableExtra)
 search %>% kable() #%>% kable_styling("bordered")
 ```
 
-Once we have the name of the Vicmap dataset we would like to download, in this case *'open-data-platform:ptv_metro_tram_route'*, we can query the Vicmap database. 
+Once we have the name of the dataset we would like to download, in this case *'open-data-platform:veac_metro_open_space'*, we can query the Vicmap database. 
 
-If we are still not sure from the name and description that this is the right dataset, we can look at the Vicmap Promise to get a snippet of the dataset contents. 
+If we are still not sure from the name and description that this is the right dataset, we can look at the promise to get a snippet of the dataset contents. 
 
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") 
+```{r, warning=FALSE, message=FALSE,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+vicmap_query(layer = "open-data-platform:veac_metro_open_space") 
 ```
 
 We can see that the dataset contains the route numbers and names. At a glance this data should be adequate. If you want more extensive information of the data you can use `get_metadata()` to download a list of (i) metadata about the data, (ii) a data dictionary (*work-in-progress*) and (iii) a link to the metadata url. 
 
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-metadata <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>%
+```{r, warning=FALSE, message=FALSE,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+metadata <- vicmap_query(layer = "open-data-platform:veac_metro_open_space") %>%
   get_metadata() %>%
   .[[1]]
 
@@ -125,12 +125,12 @@ kbl(metadata) %>%
 
 ### Downloading the data
 
-The summary also shows that there are `r try(nrow(tram_route))` rows in this dataset. This isn't a very large dataset, but if we are using this data in an interactive report or application, waiting to download the full dataset may be impractical. 
+This isn't a very large dataset, but if we are using this data in an interactive report or application, waiting to download the full dataset may be impractical. 
 
 Using lazy evaluation, we can use pipes to filter and subset the data, so that we only collect the desired subset. For example, let's just look at the first 10 rows.
 
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-query <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>% 
+```{r, warning=FALSE, message=FALSE,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+query <- vicmap_query(layer = "open-data-platform:veac_metro_open_space") %>% 
   head(10) %>% collect()
 
 query
@@ -139,16 +139,16 @@ query
 
 ### Subsetting data
 
-Now let's only look at the tram route data. Note that VicmapR datasets will retain `id` and `geometry` columns even if not selected in the VicmapR promise. As this a simple features (sf) dataset, the geometry corresponding to the features does not need to be selected as it is always attached. The geometry column can only be removed intentionally, for example, by using the `st_drop_geometry()` function in the `sf` package.
+Now let's only look at the open space data. Note that vicspatial datasets will retain `id` and `geometry` columns even if not selected in the vicspatial promise. As this a simple features (sf) dataset, the geometry corresponding to the features does not need to be selected as it is always attached. The geometry column can only be removed intentionally, for example, by using the `st_drop_geometry()` function in the `sf` package.
 
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-tram_select <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>% 
-  filter(operator_name == "Yarra Trams") %>% 
-  filter(num_of_stops > 20) %>% 
-  select(route_id, route_short_name, trip_headsign, operator_name, route_km) %>%
+```{r, warning=FALSE, message=FALSE,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+veac_select <- vicmap_query(layer = "open-data-platform:veac_metro_open_space") %>% 
+  filter(dominant_lga_name == "DAREBIN") %>% 
+  filter(ha > 0.1) %>% 
+  select(id, ownername_summary, ha, os_group, dominant_lga_name, name) %>%
   collect()
 
-tram_select %>% head(5) %>% 
+ veac_select %>% head(5) %>% 
   select(-id) %>% #condense table for viewing
   kable() %>% 
   kable_styling()
@@ -161,16 +161,16 @@ tram_select %>% head(5) %>%
 
 Often the first thing we want to do is see the data on a map. The simplest and quickest way to visualise spatial data is to use the `mapview` package:
 
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 library(mapview)
 mapviewOptions(fgb = FALSE)
 
-# Because the dataset is not big we can download all the data as 'tram_route'
-tram_route <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>% 
+# Because the dataset is not big we can download all the data as 'veac_area'
+veac_area <- vicmap_query(layer = "open-data-platform:veac_metro_open_space") %>% 
   collect() 
 
 # plot data
-mapview(tram_route)
+mapview::mapview(veac_area)
 ```
 
 While the output is basic, it is very simple to achieve and lines can be clicked on to obtain the details from the other fields.
@@ -182,136 +182,58 @@ For more customization, you might want to consider plotting your map in `leaflet
 
 We will start by plotting the most basic map in leaflet. Instead of using a single function like `mapview()`, in leaflet we need to add each component to the map. At a minimum we specify the leaflet object, add a basemap and add the markers. Note: differing to mapview, leaflet does not include marker labels by default, these must be added with the `popup` parameter.
 
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+```{r, warning=FALSE, message=FALSE,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 library(leaflet)
 
 # Create a palette
-pal <- colorFactor("Accent", levels = tram_route$trip_headsign) #define a colour palette
+pal <- colorFactor("Set1", levels = veac_area$os_group) #define a colour palette
 
-tram_route %>%
+veac_area %>%
   leaflet() %>%
   addProviderTiles(providers$CartoDB.Positron) %>% #add third party base map
-  addPolylines(
-    color = ~pal(trip_headsign),
+  addPolygons(
+    color = ~pal(os_group),
     weight = 2,
     stroke = 0.5, #removes outline
     fillOpacity = 0.8,
-    popup = paste0("<b>Route No.: </b>", tram_route$route_short_name, "<br>", #format the popup with html tags
-                   "<b>Route Name: </b>", tram_route$trip_headsign, "<br>",
-                   "<b>Distance (km): </b>", tram_route$route_km)
+    popup = paste0("<b>Group.: </b>", veac_area$os_group, "<br>", #format the popup with html tags
+                   "<b>LGA Name: </b>", veac_area$dominant_lga_name, "<br>",
+                   "<b>Name: </b>", veac_area$name)
   )
 ```
 
 ### Spatial filtering
 
-Let's say we want to know about the tram routes only in our LGA (e.g. Darebin). We can apply a spatial filter to our dataset so that only the tram routes in our suburb are shown. Where do we get the spatial data for our LGA? From the Vicmap catalogue of course!
+Let's say we want to know about the VEAC area only in our LGA (e.g. Darebin). We can apply a spatial filter to our dataset so that only the areas in our suburb are shown. Where do we get the spatial data for our LGA? From the Vicmap catalogue of course!
 
-#### The sf package
+## Using the vicspatial Geometric Filters
 
-The `sf` package for R provides tools for dealing with 'simple feature' datasets, i.e. a data frame or tibble with a geometry list-column. The sf package allows us to manupulate spatial data and perform spatial operations. In this case, we want to find which points in our tram route data intersect with the polygon for our suburb polygon.
+The vicspatial package offers tools for geometric filtering that avoid the need for sf package. The WFS Geoserver on which Vicmap is based supports several geometric filters - see the full list [here](https://justincally.github.io/vicspatial/articles/query_vicmap.html#geometric-filters).
 
-To do this we can use `sf::st_intersection()`. Before performing any spatial operations on a dataset, you want to make sure the coordinate reference system (crs) is correct and if there are multiple datasets, that the crs is the same for each dataset. You can check the crs system with `sf::st_crs()`.
+These geometric filters allow us to perform basic spatial manipulation while retaining the benefits of lazy evaluation. So as before, if we want to filter our data before downloading, we can do so with more complex spatial operations. This is particularly useful when presenting vicspatial data in an interactive map, as it reduces the time for downloading data between re-rendering the map.
 
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-# Suburb polygon for Darebin
+To get the areas only in Darebin we can filter with `INTERSECTS()`.
+
+```{r, message=FALSE,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
+# areas in Darebin
 darebin <- vicmap_query(layer = "open-data-platform:lga_polygon") %>%
   select(lga_name) %>% 
   filter(lga_name == "DAREBIN") %>%
   collect() %>%
   st_make_valid() # magic fix for some spatial data
 
-# Check crs for each spatial dataset
-sf::st_crs(darebin) == sf::st_crs(tram_route)
-
-# Intersection
-darebin_trams <- sf::st_intersection(tram_route, darebin)
-mapview(darebin_trams) + mapview(darebin, alpha.regions = 0.3, col.regions= "green")
-
-```
-
-#### Filtering within a radius 
-
-We probably regularly travel a bit further afield though, so lets look at a radius from our home address. We can create the radius geometry with `st_buffer()` but first need to define the coordinates for the centre of the radius (home). Don't forget to specify the crs as 4326 as we are dealing with a latitude and longitude coordinate system.
-
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-lat <- -37.75215888969604
-lon <- 145.02927170548745
-
-home <- st_sfc(st_point(c(lon, lat)), crs = 4326)
-
-```
-
-We have a problem though, latitude and longitude units are degrees and `st_buffer()` assumes units of meters. To convert from degrees to metres we need to project our latitude and longitude, which are represented as a point on a curved surface, onto a flat plane. To do this, we use a projection standard chosen specifically for the zone containing the coordinates. The standard is called the EPSG code and for our coordinates is zone 55.
-
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-# Project coordinates
-home_utm <- st_transform(home, "+proj=utm +zone=55")
-
-# Get buffer
-home_radius <- sf::st_buffer(home_utm, dist = 10000)
-
-mapview(home_utm) + mapview(home_radius)
-```
-
-Now we can use this radius to filter our tram route data. Don't forget, we need to convert the crs to 4283 to work with our tram route data
-
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-st_crs(home_radius) #crs is UTM Zone 55
-
-home_radius <- st_transform(home_radius, crs = 4283)
-st_crs(home_radius)
-
-tram_route_10k <- st_intersection(tram_route, home_radius)
-mapview(tram_route_10k) + mapview(home_radius, alpha.regions = 0.3, col.regions = "green")
-```
-
-#### Finding nearby points
-
-Let's say we feel like a bike ride. We've picked a route but want to know which areas to avoid so as not to get caught in tram tracks. 
-
-We can solve this problem in a similar way, using `st_intersection()`. 
-
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-
-# Load bike route
-route_line <- sf::st_read(system.file("shapes/cycle_route.geojson", package="VicmapR"), quiet = F) %>% 
-  sf::st_transform(4283)
-
-#Add buffer to route - we need to convert to m to do this (same as before)
-route_m <- st_transform(route_line, "+proj=utm +zone=55")
-tram_m <- st_transform(tram_route, "+proj=utm +zone=55") # convert to same crs for st_intersection
-
-trams_en_route <- st_intersection(route_m,tram_m)
-
-# Recorded tram tracks within 300m of the route
-mapview(trams_en_route, col.regions = "Black") + mapview(route_line)
-
-```
-
-
-## Using the VicmapR Geometric Filters
-
-The VicmapR package offers tools for geometric filtering that avoid the need for sf package. The WFS Geoserver on which Vicmap is based supports several geometric filters - see the full list [here](https://justincally.github.io/VicmapR/articles/query_vicmap.html#geometric-filters).
-
-These geometric filters allow us to perform basic spatial manipulation while retaining the benefits of lazy evaluation. So as before, if we want to filter our data before downloading, we can do so with more complex spatial operations. This is particularly useful when presenting VicmapR data in an interactive map, as it reduces the time for downloading data between re-rendering the map.
-
-Let's revisit our examples above. To get the tram routes only in Darebin we can filter with `INTERSECTS()`.
-
-```{r, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-# trams in Darebin
-darebin_trams <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>%
+darebin_veac <- vicmap_query(layer = "open-data-platform:veac_metro_open_space") %>%
   filter(INTERSECTS(darebin)) %>%
   collect()
 
-mapview(darebin_trams) + mapview(darebin, alpha.regions = 0.3, col.regions = "orange")
+mapview::mapview(darebin) + mapview::mapview(darebin_veac, alpha.regions = 0.3, col.regions = "orange")
 
 ```
+And finally, the veac open spaces on our cycling route. To find spaces within 30m we use the `INTERSECTS()` function and the cycling route with an added 30m buffer. Note: vicspatial geometric filters will be simplified, thus if precise intersections are desired, it is advised to do a cleanup of the filtered data once collected.
 
-And finally, the tram routes on our cycling route. To find tram tracks within 30m we use the `INTERSECTS()` function and the cycling route with an added 300m buffer. Note: VicmapR geometric filters will be simplified, thus if precise intersections are desired, it is advised to do a cleanup of the filtered data once collected.
+```{r, warning=FALSE, message=FALSE,eval = all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
 
-```{r, warning=FALSE, message=FALSE,eval = all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)}
-
-route_line <- sf::st_read(system.file("shapes/cycle_route.geojson", package="VicmapR"), quiet = F) %>% 
+route_line <- sf::st_read(system.file("shapes/cycle_route.geojson", package="vicspatial"), quiet = F) %>% 
   sf::st_transform(4283)
 
 # Condense line object
@@ -321,16 +243,14 @@ route_poly <- route_line %>%
   sf::st_cast("POLYGON") %>% 
   sf::st_transform(4283)
 
-route_intersection <- vicmap_query(layer = "open-data-platform:ptv_metro_tram_route") %>%
+route_intersection <- vicmap_query(layer = "open-data-platform:veac_metro_open_space") %>%
   filter(INTERSECTS(route_poly)) %>% 
-  collect() %>%
-  st_intersection(route_poly)
+  collect() 
 
 
 mapview::mapview(route_poly) + mapview::mapview(route_intersection, color = "red", lwd = 5)
 
 ```
-
 
 
 ## Debrief

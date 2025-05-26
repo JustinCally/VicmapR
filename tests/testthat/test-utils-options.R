@@ -17,6 +17,6 @@ test_that("vicmap_options works", {
 
 test_that("check_chunk_limit works", {
   options(vicmap.chunk_limit = 999999999L)
-  expect_error(VicmapR:::check_chunk_limit(), regexp = "Your chunk value of 999999999 exceed the Vicmap Data Catalogue chunk limit")
+  expect_error(vicspatial:::check_chunk_limit(), regexp = "Your chunk value of 999999999 exceed the Vicmap Data Catalogue chunk limit")
   options(vicmap.chunk_limit = 5000L)
 })

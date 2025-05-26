@@ -15,7 +15,7 @@ geoserver_down <- !(check_geoserver(timeout = 5, quiet = TRUE))
 test_that("convert layer name works", {
   
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   r1 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
     head(10) %>%
@@ -28,14 +28,14 @@ test_that("convert layer name works", {
   
   expect_equal(r1, r2)
   
-  expect_message(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"), regexp = "You are using old layer names. We converted your layer to hy_watercourse with a CQL filter of feature_type_code='watercourse_channel_drain'. To suppress this message, update your code to use the new layer names [(]see VicmapR::name_conversions for more details[)]")
+  expect_message(vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN"), regexp = "You are using old layer names. We converted your layer to hy_watercourse with a CQL filter of feature_type_code='watercourse_channel_drain'. To suppress this message, update your code to use the new layer names [(]see vicspatial::name_conversions for more details[)]")
 })
 
 # Check conversion of select and filter works
 test_that("convert layer filter works", {
   
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   r3 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
     filter(HIERARCHY == "L" & PFI == 8547514) %>%
@@ -53,7 +53,7 @@ test_that("convert layer filter works", {
 test_that("convert layer select works", {
   
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   r5 <- vicmap_query(layer = "datavic:VMHYDRO_WATERCOURSE_DRAIN") %>% 
     select(HIERARCHY, PFI) %>%

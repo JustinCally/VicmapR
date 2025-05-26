@@ -50,7 +50,7 @@ convert_layer_name <- function(x) {
   
   message(paste0("You are using old layer names. We converted your layer to ", 
                  new_name, " with a CQL filter of ", cql_filter,
-                 ". To suppress this message, update your code to use the new layer names (see VicmapR::name_conversions for more details)"))
+                 ". To suppress this message, update your code to use the new layer names (see vicspatial::name_conversions for more details)"))
   
   # assign new values to x_new 
   x_new$query$typeNames <- new_name

@@ -14,7 +14,7 @@ geoserver_down <- !(check_geoserver(timeout = 5, quiet = TRUE))
 
 test_that("listLayers works", {
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   full_ll <- listLayers(pattern = "trees", ignore.case = TRUE)
   sub_ll <- listLayers(abstract = FALSE)

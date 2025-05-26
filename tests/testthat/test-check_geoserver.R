@@ -14,7 +14,7 @@ geoserver_down <- !(check_geoserver(timeout = 5, quiet = TRUE))
 
 test_that("Check geoserver works", {
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   expect_error(check_geoserver(timeout = 0.001))
   

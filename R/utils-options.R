@@ -31,7 +31,7 @@
 #'
 #' `vicmap.chunk_limit` is an option useful when dealing with very large data sets. When requesting large objects
 #' from the catalogue, the request is broken up into smaller chunks which are then recombined after they've
-#' been downloaded. VicmapR does this all for you but using this option you can set the size of the chunk
+#' been downloaded. vicspatial does this all for you but using this option you can set the size of the chunk
 #' requested. On faster internet connections, a bigger chunk limit could be useful while on slower connections,
 #' it is advisable to lower the chunk limit. Chunks must be less than 70000.
 #' 

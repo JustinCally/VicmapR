@@ -14,7 +14,7 @@ geoserver_down <- !(check_geoserver(timeout = 5, quiet = TRUE))
 
 test_that("get_metadata works", {
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   r <- get_metadata(vicmap_query(layer = "open-data-platform:hy_watercourse"))
   
@@ -32,7 +32,7 @@ test_that("get_metadata works", {
 
 test_that("data_dictionary works", {
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   r <- data_dictionary(vicmap_query(layer = "open-data-platform:apiary"))
   
@@ -42,7 +42,7 @@ test_that("data_dictionary works", {
 
 test_that("data_citation works", {
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   data_citation(vicmap_query(layer = "open-data-platform:apiary"))
   

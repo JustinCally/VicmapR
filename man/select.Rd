@@ -20,9 +20,9 @@ See \code{dplyr::\link[dplyr]{select}} for details.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{vicmap_promise}: select.vicmap_promise
-}}
+\item \code{select(vicmap_promise)}: select.vicmap_promise
 
+}}
 \examples{
 \donttest{
 try(

@@ -24,7 +24,7 @@ See the License for the specific language governing permissions and limitations 
 -->
 
 ```{r, include = FALSE}
-eval_check <- all(VicmapR::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)
+eval_check <- all(vicspatial::check_geoserver(quiet = TRUE), !testthat:::on_cran(), sf::sf_extSoftVersion()[["GDAL"]] > 3)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -34,14 +34,14 @@ knitr::opts_chunk$set(
 
 # About  
 
-From `VicmapR` version `0.2.0`, the default platform data is retrieved from is different.  
+From `vicspatial` version `0.2.0`, the default platform data is retrieved from is different.  
 
 The Enterprise Spatial Services (ESS) Transformation Program from the Department of Energy, Environment and Climate Action (DEECA) has determined that DELWP’s WMS and WFS Open Data services will be hosted in AWS Cloud. This will cause a change of URLs when accessing these
 services.
 
-This migration of services essentially requires the `VicmapR` package to restructure where and how it obtains data. We have updated package code to by default use the new Amazon AWS cloud platform as the default source for data moving forward. The legacy platforms and services will be turned off by the  27 March 2023. Meaning that users will no longer be able to access data from these sources from this date.  
+This migration of services essentially requires the `vicspatial` package to restructure where and how it obtains data. We have updated package code to by default use the new Amazon AWS cloud platform as the default source for data moving forward. The legacy platforms and services will be turned off by the  27 March 2023. Meaning that users will no longer be able to access data from these sources from this date.  
 
-We have made an effort to update `VicmapR` in such a way to make existing code work by translating layer names from the legacy names to the new names. However, not all data may be available; or even if data is available there may be changes to formats and structures. However, the new platform is expected to be more scalable (with likely addition of more data moving forward).    
+We have made an effort to update `vicspatial` in such a way to make existing code work by translating layer names from the legacy names to the new names. However, not all data may be available; or even if data is available there may be changes to formats and structures. However, the new platform is expected to be more scalable (with likely addition of more data moving forward).    
 
 Some key changes to the data structure are: 
 
@@ -58,7 +58,7 @@ In order to view how old layer names relate to new layer names users can view th
 Below we show how you might have queried a a layer in the legacy system and in the new system 
 
 ```{r setup, eval = eval_check}
-library(VicmapR)
+library(vicspatial)
 library(kableExtra)
 ```
 
@@ -89,7 +89,7 @@ collect(evc_18_1_new) %>%
   kable_styling()
 ```
 
-As we can see, both code chucks now produce the same data due to VicmapR's in-built translations as part of the update. To check the queries are the same we can compare them:  
+As we can see, both code chucks now produce the same data due to vicspatial's in-built translations as part of the update. To check the queries are the same we can compare them:  
 
 ```{r compare_queries, eval = eval_check}
 cat("Old query (translated):\n")

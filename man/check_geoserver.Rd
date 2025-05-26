@@ -16,7 +16,7 @@ the status message will be printed (\link[httr]{http_status})}
 logical, TRUE if the geoserver is working
 }
 \description{
-VicmapR relies upon a functioning geoserver. If for whatever reason the geoserver is not functioning then the functions
+vicspatial relies upon a functioning geoserver. If for whatever reason the geoserver is not functioning then the functions
 in this package will not work. This function will check the response of the geoserver; erroring out if the connection is down.
 }
 \examples{

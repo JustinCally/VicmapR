@@ -23,7 +23,7 @@ See the License for the specific language governing permissions and limitations 
 -->
 
 ```{r, echo = FALSE}
-geoserver_connected <- VicmapR::check_geoserver(quiet = TRUE)
+geoserver_connected <- vicspatial::check_geoserver(quiet = TRUE)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -35,7 +35,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(VicmapR)
+library(vicspatial)
 library(sf)
 library(leaflet)
 
@@ -59,7 +59,7 @@ head(available_layers, 10)
 
 ## Vicmap promise
 
-VicmapR introduces a new class called `vicmap_promise`, which is an extension to the `httr::url` class. Essentially this object is how the vicmap query is stored before data is collected. That is to say `vicmap_promise` is essentially a promise of what data will be retrieved. 
+vicspatial introduces a new class called `vicmap_promise`, which is an extension to the `httr::url` class. Essentially this object is how the vicmap query is stored before data is collected. That is to say `vicmap_promise` is essentially a promise of what data will be retrieved. 
 
 In order to generate a new promise the `vicmap_query` function can be used to select the layer. The promise prints a sample of the data (max = 6 rows) as well as the dimensions (nrow and ncol).  
 
@@ -97,7 +97,7 @@ str(watercourse_data)
 
 ## Geometric filters
 
-VicmapR translates numerous geometric filter functions available in the Victorian Government's WFS Geoserver supports numerous [geometric filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):  
+vicspatial translates numerous geometric filter functions available in the Victorian Government's WFS Geoserver supports numerous [geometric filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):  
 
 + `EQUALS`   
 + `DISJOINT`   
@@ -116,7 +116,7 @@ These filters can be used within the `filter()` function by providing them an ob
 ```{r filter_spatial, warning = FALSE, message=FALSE, out.width="100%"}
 #### Return objects that intersect melbourne ####
 # Read in an example shape to restrict our query to using geometric filtering
-melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = F) %>% 
+melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="vicspatial"), quiet = F) %>% 
   sf::st_transform(4283)
 
 # Return data that intersects melbourne

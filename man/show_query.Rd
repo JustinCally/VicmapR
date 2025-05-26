@@ -31,9 +31,9 @@ The printed information consists of three sections:
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{vicmap_promise}: show_query.vicmap_promise
-}}
+\item \code{show_query(vicmap_promise)}: show_query.vicmap_promise
 
+}}
 \examples{
 \donttest{
 try(

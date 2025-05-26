@@ -1,4 +1,4 @@
-# VicmapR 0.2.3 (2023-06-19)  
+# vicspatial 0.2.3 (2023-06-19)  
 + Check internet resource is available in the cql predicate tests 
 
 ## Submission 0.2.2 (2023-06-14)  
@@ -25,7 +25,7 @@
 ## Resubmission 0.1.7 (2020-07-26)  
 
 + Fixed the check errors and check warnings associated with temporarily unavailable internet resources. If internet resources (geoserver instance) is down the checks should still pass as per CRAN policy.   
-+ Also, this submission reduces the default chunk limit to 1500 to avoid a bug whereby the default geoserver instance only returns 1500 features (when the stated limit is 70,000). See: https://github.com/JustinCally/VicmapR/issues/29  
++ Also, this submission reduces the default chunk limit to 1500 to avoid a bug whereby the default geoserver instance only returns 1500 features (when the stated limit is 70,000). See: https://github.com/JustinCally/vicspatial/issues/29  
 
 ## Resubmission 0.1.6 (2020-07-06)
 Changed {bcdata} to 'bcdata' in the DESCRIPION file
@@ -40,7 +40,7 @@ Fixed two NOTES as part of the previous CRAN submission:
 This is a resubmission (0.1.5 from 0.1.3; version 0.1.4 was unreleased on CRAN). Briefly, this upgrade makes two main additions to the package:  
 
 + 0.1.4: Functions amended to include more informative errors when the geoserver is not responding (see NEWS.md).  
-+ 0.1.5: VicmapR now using Apache licencing and properly recognising and stating modifications in cases where code was developed in [bcdata](https://github.com/bcgov/bcdata) (see NEWS.md).  
++ 0.1.5: vicspatial now using Apache licencing and properly recognising and stating modifications in cases where code was developed in [bcdata](https://github.com/bcgov/bcdata) (see NEWS.md).  
 
 ## Resubmission 0.1.3 
 This is a resubmission (0.1.3 from 0.1.2). The following items were ammended as part of this resubmission:  

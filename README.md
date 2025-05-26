@@ -1,31 +1,31 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# VicmapR <img src='man/figures/logo.png' align="right" height="139" />
+# vicspatial <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 
 [![Codecov test
-coverage](https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/JustinCally/VicmapR?branch=master)
+coverage](https://codecov.io/gh/JustinCally/vicspatial/branch/master/graph/badge.svg)](https://app.codecov.io/gh/JustinCally/vicspatial?branch=master)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-<!-- [![R build status](https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/VicmapR/actions) -->
+<!-- [![R build status](https://github.com/JustinCally/vicspatial/workflows/R-CMD-check/badge.svg)](https://github.com/JustinCally/vicspatial/actions) -->
 [![CRAN
-status](https://www.r-pkg.org/badges/version/VicmapR)](https://CRAN.R-project.org/package=VicmapR)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/VicmapR?color=ff69b4)](https://cran.r-project.org/package=VicmapR)
-<!-- [![Devel version](https://img.shields.io/badge/devel%20version-0.1.3-blue.svg)](https://github.com/JustinCally/VicmapR) -->
-<!-- [![Code size](https://img.shields.io/github/languages/code-size/JustinCally/VicmapR.svg)](https://github.com/JustinCally/VicmapR) -->
-[![R-CMD-check](https://github.com/JustinCally/VicmapR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JustinCally/VicmapR/actions/workflows/R-CMD-check.yaml)
+status](https://www.r-pkg.org/badges/version/vicspatial)](https://CRAN.R-project.org/package=vicspatial)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/vicspatial?color=ff69b4)](https://cran.r-project.org/package=vicspatial)
+<!-- [![Devel version](https://img.shields.io/badge/devel%20version-0.1.3-blue.svg)](https://github.com/JustinCally/vicspatial) -->
+<!-- [![Code size](https://img.shields.io/github/languages/code-size/JustinCally/vicspatial.svg)](https://github.com/JustinCally/vicspatial) -->
+[![R-CMD-check](https://github.com/JustinCally/vicspatial/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JustinCally/vicspatial/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-**From November 2024 (version 0.3.0) `VicmapR` will be renamed to
+**From November 2024 (version 0.3.0) `vicspatial` will be renamed to
 `vicspatial`. Unfortunately this change has been requested by the
 trademark holders of `VICMAP` (Department of Transport and Planning).
 While redirections should be in place for GitHub and CRAN websites,
-please check existing code for explicit mentions of `VicmapR`.**
+please check existing code for explicit mentions of `vicspatial`.**
 
-The goal of VicmapR is to provide functions to easily access Victorian
-Government spatial data through their WFS (Web Feature Service). VicmapR
+The goal of vicspatial is to provide functions to easily access Victorian
+Government spatial data through their WFS (Web Feature Service). vicspatial
 leverages code and a lazy querying approach developed by [Teucher et
 al. (2021)](https://joss.theoj.org/papers/10.21105/joss.02927) for the
 [{bcdata} R package](https://bcgov.github.io/bcdata/), which allows for
@@ -33,11 +33,11 @@ a responsive and precise querying process.
 
 ## Migration of Victoria’s Open Data Geoserver
 
-**From March 2023 (`VicmapR v0.2.0`) the way `VicmapR` obtains data has
+**From March 2023 (`vicspatial v0.2.0`) the way `vicspatial` obtains data has
 changed**
 
-In March 2023 the data platform used by `VicmapR` will be migrated with
-the legacy platform discontinued. Changes have been to the `VicmapR`
+In March 2023 the data platform used by `vicspatial` will be migrated with
+the legacy platform discontinued. Changes have been to the `vicspatial`
 package to allow for the conversion and translation of of code in an
 effort to ensure legacy code still works. However, the migration may
 have unseen consequences and users are encouraged to review code.
@@ -47,7 +47,7 @@ have unseen consequences and users are encouraged to review code.
 You can install the released version from CRAN with:
 
 ``` r
-install.packages("VicmapR")
+install.packages("vicspatial")
 ```
 
 Or you can install the the development version from
@@ -55,12 +55,12 @@ Or you can install the the development version from
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("JustinCally/VicmapR")
+remotes::install_github("JustinCally/vicspatial")
 ```
 
 ### Dependencies
 
-Currently, the ability to use accurate geometric filters using `VicmapR`
+Currently, the ability to use accurate geometric filters using `vicspatial`
 requires GDAL \> 3.0. To see how to upgrade your version of GDAL and
 link it to the `sf` package visit:
 <https://r-spatial.github.io/sf/#installing>
@@ -80,10 +80,10 @@ sf::sf_extSoftVersion()
 ### Searching for data
 
 ``` r
-library(VicmapR)
-#> From November 2024 (version 0.3.0) `VicmapR` will be renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `VicmapR`
+library(vicspatial)
+#> From November 2024 (version 0.3.0) `vicspatial` will be renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `vicspatial`
 #> 
-#> Attaching package: 'VicmapR'
+#> Attaching package: 'vicspatial'
 #> The following object is masked from 'package:stats':
 #> 
 #>     filter
@@ -109,11 +109,11 @@ listLayers(pattern = "watercourse", ignore.case = T)
 
 ### Reading in data
 
-As of VicmapR version `0.1.0` data is read in using a lazy evaluation
+As of vicspatial version `0.1.0` data is read in using a lazy evaluation
 method with the convenience of pipe operators (`%>%`). A lot of the
 methods and code have already been written for a similar package
 ([bcdata](https://github.com/bcgov/bcdata)) that downloads data from the
-British Columbia WFS catalogues. Using a similar approach, VicmapR
+British Columbia WFS catalogues. Using a similar approach, vicspatial
 allows users to construct a WFS query in a step-wise format. In doing so
 a query is reserved until `collect()` is used on the `vicmap_promise`.
 The example below shows an extensive example of how the to easily read
@@ -121,7 +121,7 @@ in spatial data:
 
 ``` r
 # Read in an example shape to restrict our query to using geometric filtering
-melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = T)
+melbourne <- sf::st_read(system.file("shapes/melbourne.geojson", package="vicspatial"), quiet = T)
 
 # Obtain a promise of what data will be returned for a given layer
 vicmap_query(layer = "open-data-platform:hy_watercourse")
@@ -173,7 +173,7 @@ vicmap_query(layer = "open-data-platform:hy_watercourse") %>% # layer to query
 #> 8 hy_watercourse.1792496 14608731 L         (144.9365 -37.81511, 144.9359 -37.8…
 ```
 
-VicmapR translates numerous geometric filter functions available in the
+vicspatial translates numerous geometric filter functions available in the
 Victorian Government’s WFS Geoserver supports numerous [geometric
 filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters):
 
@@ -195,10 +195,10 @@ them an object of class `sf/sfc/sfg/bbox` as shown above with the
 
 ### Using other WFS urls
 
-Using `options(vicmap.base_url)` VicmapR can query data from other WFS
+Using `options(vicmap.base_url)` vicspatial can query data from other WFS
 services; while this remains somewhat untested it is relatively easy to
-point VicmapR to another WFS url. This option would need to be set every
-session to override the base VicmapR url. For instance, the BOM WFS can
+point vicspatial to another WFS url. This option would need to be set every
+session to override the base vicspatial url. For instance, the BOM WFS can
 be used as follows:
 
 ``` r

@@ -34,9 +34,9 @@ process may take a while to run, thus it is recommended to filter large datasets
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{vicmap_promise}: collect.vicmap_promise
-}}
+\item \code{collect(vicmap_promise)}: collect.vicmap_promise
 
+}}
 \examples{
 \donttest{
 try(

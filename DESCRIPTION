@@ -1,6 +1,6 @@
-Package: VicmapR
+Package: vicspatial
 Title: Access Victorian Spatial Data Through Web File Services (WFS) 
-Version: 0.2.3.9001
+Version: 0.3.0
 Authors@R: 
     c(person(given = "Justin",
            family = "Cally",
@@ -31,15 +31,15 @@ Authors@R:
              comment = "bcdata copyright"))
 Description: Easily interfaces R to spatial datasets available through 
   the Victorian Government's WFS (Web Feature Service): <https://opendata.maps.vic.gov.au/geoserver/ows?request=GetCapabilities&service=wfs>, 
-  which allows users to read in 'sf' data from these sources. VicmapR uses the lazy querying approach and code developed by Teucher et al. (2021) for the 'bcdata' R package <doi:10.21105/joss.02927>.
+  which allows users to read in 'sf' data from these sources. vicspatial uses the lazy querying approach and code developed by Teucher et al. (2021) for the 'bcdata' R package <doi:10.21105/joss.02927>.
 License: Apache License (== 2.0)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
-URL: https://justincally.github.io/VicmapR/,
-    https://www.data.vic.gov.au/, https://github.com/justincally/VicmapR/
-BugReports: https://github.com/justincally/VicmapR/issues
+RoxygenNote: 7.2.3
+URL: https://justincally.github.io/vicspatial/,
+    https://www.data.vic.gov.au/, https://github.com/justincally/vicspatial/
+BugReports: https://github.com/justincally/vicspatial/issues
 Suggests: 
     testthat (>= 2.1.0),
     covr,

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Access Victorian Spatial Data Through Web File Services (WFS)  • VicmapR</title>
+<title>Access Victorian Spatial Data Through Web File Services (WFS)  • vicspatial</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -20,8 +20,8 @@
 <script src="pkgdown.js"></script><meta property="og:title" content="Access Victorian Spatial Data Through Web File Services (WFS) ">
 <meta property="og:description" content="Easily interfaces R to spatial datasets available through 
   the Victorian Governments WFS (Web Feature Service): &lt;https://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/wfs?request=getCapabilities&gt;, 
-  which allows users to read in sf data from these sources. VicmapR uses the lazy querying approach and code developed by Teucher et al. (2021) for the bcdata' R package &lt;doi:10.21105/joss.02927&gt;.">
-<meta property="og:image" content="https://justincally.github.io/VicmapR/logo.png">
+  which allows users to read in sf data from these sources. vicspatial uses the lazy querying approach and code developed by Teucher et al. (2021) for the bcdata' R package &lt;doi:10.21105/joss.02927&gt;.">
+<meta property="og:image" content="https://justincally.github.io/vicspatial/logo.png">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -42,7 +42,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">VicmapR</a>
+        <a class="navbar-link" href="index.html">vicspatial</a>
         <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.1.8.9000</span>
       </span>
     </div>
@@ -73,7 +73,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/justincally/VicmapR/" class="external-link">
+  <a href="https://github.com/justincally/vicspatial/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -91,25 +91,25 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="vicmapr-">VicmapR <img src="reference/figures/logo.png" align="right" height="139"><a class="anchor" aria-label="anchor" href="#vicmapr-"></a>
+<div class="page-header"><h1 id="vicmapr-">vicspatial <img src="reference/figures/logo.png" align="right" height="139"><a class="anchor" aria-label="anchor" href="#vicmapr-"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of VicmapR is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). VicmapR leverages code and a lazy querying approach developed by <a href="https://joss.theoj.org/papers/10.21105/joss.02927" class="external-link">Teucher et al. (2021)</a> for the <a href="https://bcgov.github.io/bcdata/" class="external-link">{bcdata} R package</a>, which allows for a responsive and precise querying process.</p>
+<p>The goal of vicspatial is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). vicspatial leverages code and a lazy querying approach developed by <a href="https://joss.theoj.org/papers/10.21105/joss.02927" class="external-link">Teucher et al. (2021)</a> for the <a href="https://bcgov.github.io/bcdata/" class="external-link">{bcdata} R package</a>, which allows for a responsive and precise querying process.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the released version from CRAN with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"VicmapR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"vicspatial"</span><span class="op">)</span></code></pre></div>
 <p>Or you can install the the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"JustinCally/VicmapR"</span><span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"JustinCally/vicspatial"</span><span class="op">)</span></code></pre></div>
 <div class="section level3">
 <h3 id="dependencies">Dependencies<a class="anchor" aria-label="anchor" href="#dependencies"></a>
 </h3>
-<p>Currently, the ability to use accurate geometric filters using <code>VicmapR</code> requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and link it to the <code>sf</code> package visit: <a href="https://r-spatial.github.io/sf/#installing" class="external-link uri">https://r-spatial.github.io/sf/#installing</a></p>
+<p>Currently, the ability to use accurate geometric filters using <code>vicspatial</code> requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and link it to the <code>sf</code> package visit: <a href="https://r-spatial.github.io/sf/#installing" class="external-link uri">https://r-spatial.github.io/sf/#installing</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
 <span class="co">#&gt; Linking to GEOS 3.8.1, GDAL 3.2.1, PROJ 7.2.1</span>
@@ -127,9 +127,9 @@
 <h3 id="searching-for-data">Searching for data<a class="anchor" aria-label="anchor" href="#searching-for-data"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://justincally.github.io/VicmapR/">VicmapR</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://justincally.github.io/vicspatial/">vicspatial</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'VicmapR'</span>
+<span class="co">#&gt; Attaching package: 'vicspatial'</span>
 <span class="co">#&gt; The following object is masked from 'package:stats':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     filter</span>
@@ -147,10 +147,10 @@
 <div class="section level3">
 <h3 id="reading-in-data">Reading in data<a class="anchor" aria-label="anchor" href="#reading-in-data"></a>
 </h3>
-<p>As of VicmapR version <code>0.1.0</code> data is read in using a lazy evaluation method with the convenience of pipe operators (<code>%&gt;%</code>). A lot of the methods and code have already been written for a similar package (<a href="https://github.com/bcgov/bcdata" class="external-link">bcdata</a>) that downloads data from the British Columbia WFS catalogues. Using a similar approach, VicmapR allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until <code><a href="reference/collect.html">collect()</a></code> is used on the <code>vicmap_promise</code>. The example below shows an extensive example of how the to easily read in spatial data:</p>
+<p>As of vicspatial version <code>0.1.0</code> data is read in using a lazy evaluation method with the convenience of pipe operators (<code>%&gt;%</code>). A lot of the methods and code have already been written for a similar package (<a href="https://github.com/bcgov/bcdata" class="external-link">bcdata</a>) that downloads data from the British Columbia WFS catalogues. Using a similar approach, vicspatial allows users to construct a WFS query in a step-wise format. In doing so a query is reserved until <code><a href="reference/collect.html">collect()</a></code> is used on the <code>vicmap_promise</code>. The example below shows an extensive example of how the to easily read in spatial data:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Read in an example shape to restrict our query to using geometric filtering</span>
-<span class="va">melbourne</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/melbourne.geojson"</span>, package<span class="op">=</span><span class="st">"VicmapR"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">melbourne</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"shapes/melbourne.geojson"</span>, package<span class="op">=</span><span class="st">"vicspatial"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 
 <span class="co"># Obtain a promise of what data will be returned for a given layer</span>
 <span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"datavic:VMHYDRO_WATERCOURSE_DRAIN"</span><span class="op">)</span>
@@ -191,7 +191,7 @@
 <span class="co">#&gt; Note: method with signature 'DBIConnection#character' chosen for function 'dbQuoteString',</span>
 <span class="co">#&gt;  target signature 'wfsConnection#character'.</span>
 <span class="co">#&gt;  "wfsConnection#ANY" would also be valid</span>
-<span class="co">#&gt; The object is too large to perform exact spatial operations using VicmapR. </span>
+<span class="co">#&gt; The object is too large to perform exact spatial operations using vicspatial. </span>
 <span class="co">#&gt;             To simplify the polygon, sf::st_simplify() was used to reduce the size of the query</span>
 <span class="co">#&gt; Simple feature collection with 8 features and 5 fields</span>
 <span class="co">#&gt; Geometry type: LINESTRING</span>
@@ -209,7 +209,7 @@
 <span class="co">#&gt; 6 VMHYDRO_WATâ€¦  1.46e7 4.90e7 L          2432415 (144.9442 -37.78198, 144.9441 â€¦</span>
 <span class="co">#&gt; 7 VMHYDRO_WATâ€¦  1.93e7 5.44e7 L          2698790 (144.9287 -37.8033, 144.9186 -â€¦</span>
 <span class="co">#&gt; 8 VMHYDRO_WATâ€¦  1.46e7 5.44e7 L          2698805 (144.9201 -37.79069, 144.9202 â€¦</span></code></pre></div>
-<p>VicmapR translates numerous geometric filter functions available in the Victorian Government’s WFS Geoserver supports numerous <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters" class="external-link">geometric filters</a>:</p>
+<p>vicspatial translates numerous geometric filter functions available in the Victorian Government’s WFS Geoserver supports numerous <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html#geometric-filters" class="external-link">geometric filters</a>:</p>
 <ul>
 <li>
 <code>EQUALS</code><br>
@@ -246,7 +246,7 @@
 <div class="section level3">
 <h3 id="using-other-wfs-urls">Using other WFS urls<a class="anchor" aria-label="anchor" href="#using-other-wfs-urls"></a>
 </h3>
-<p>Using <code>options(vicmap.base_url)</code> VicmapR can query data from other WFS services; while this remains somewhat untested it is relatively easy to point VicmapR to another WFS url. This option would need to be set every session to override the base VicmapR url. For instance, the BOM WFS can be used as follows:</p>
+<p>Using <code>options(vicmap.base_url)</code> vicspatial can query data from other WFS services; while this remains somewhat untested it is relatively easy to point vicspatial to another WFS url. This option would need to be set every session to override the base vicspatial url. For instance, the BOM WFS can be used as follows:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set the new base url</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>vicmap.base_url <span class="op">=</span> <span class="st">"http://geofabric.bom.gov.au/simplefeatures/ahgf_shcatch/wfs"</span><span class="op">)</span>
@@ -274,9 +274,9 @@ Modifications Copyright 2020 Justin Cally</p>
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://cloud.r-project.org/package=VicmapR" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/justincally/VicmapR/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/justincally/VicmapR/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://cloud.r-project.org/package=vicspatial" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/justincally/vicspatial/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/justincally/vicspatial/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -292,7 +292,7 @@ Modifications Copyright 2020 Justin Cally</p>
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing VicmapR</a></li>
+<li><a href="authors.html#citation">Citing vicspatial</a></li>
 </ul>
 </div>
 
@@ -310,11 +310,11 @@ Modifications Copyright 2020 Justin Cally</p>
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://app.codecov.io/gh/JustinCally/VicmapR?branch=master" class="external-link"><img src="https://codecov.io/gh/JustinCally/VicmapR/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://app.codecov.io/gh/JustinCally/vicspatial?branch=master" class="external-link"><img src="https://codecov.io/gh/JustinCally/vicspatial/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://github.com/JustinCally/VicmapR/actions" class="external-link"><img src="https://github.com/JustinCally/VicmapR/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://CRAN.R-project.org/package=VicmapR" class="external-link"><img src="https://www.r-pkg.org/badges/version/VicmapR" alt="CRAN status"></a></li>
-<li><a href="https://cran.r-project.org/package=VicmapR" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/VicmapR?color=ff69b4"></a></li>
+<li><a href="https://github.com/JustinCally/vicspatial/actions" class="external-link"><img src="https://github.com/JustinCally/vicspatial/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=vicspatial" class="external-link"><img src="https://www.r-pkg.org/badges/version/vicspatial" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/package=vicspatial" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/vicspatial?color=ff69b4"></a></li>
 </ul>
 </div>
 

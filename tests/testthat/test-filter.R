@@ -14,7 +14,7 @@ geoserver_down <- !(check_geoserver(timeout = 5, quiet = TRUE))
 
 test_that("filter works", {
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   r <- vicmap_query("open-data-platform:hy_watercourse", wfs_version = "2.0.0") %>% 
     filter(hierarchy == "L", pfi == 8553127)
@@ -24,7 +24,7 @@ test_that("filter works", {
 
 test_that("passing an non-existent object to a geom predicate", {
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   
   expect_error(vicmap_query("open-data-platform:hy_watercourse") %>%
                  filter(INTERSECTS(districts)))
@@ -33,10 +33,10 @@ test_that("passing an non-existent object to a geom predicate", {
 
 test_that("geometric filter works", {
   skip_if_offline()
-  skip_if(geoserver_down, message = "VicmapR geoserver not currently available")
+  skip_if(geoserver_down, message = "vicspatial geoserver not currently available")
   skip_if(!(sf::sf_extSoftVersion()[["GDAL"]] > 3))
   
-  polygon <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = TRUE)
+  polygon <- sf::st_read(system.file("shapes/melbourne.geojson", package="vicspatial"), quiet = TRUE)
   
   dataobject <- vicmap_query("open-data-platform:hy_watercourse") %>%
                  filter(INTERSECTS(polygon)) %>%

@@ -20,9 +20,9 @@ See \code{dplyr::\link[dplyr]{filter}} for details.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{vicmap_promise}: filter.vicmap_promise
-}}
+\item \code{filter(vicmap_promise)}: filter.vicmap_promise
 
+}}
 \examples{
 \donttest{
 try(

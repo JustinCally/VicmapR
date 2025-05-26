@@ -112,7 +112,7 @@ cql_geom_predicate_list <- function() {
 #' @noRd
 axisorder <- function(x) {
   # check axis order against standard
-p <- sf::st_read(system.file("shapes/melbourne.geojson", package="VicmapR"), quiet = TRUE) %>% 
+p <- sf::st_read(system.file("shapes/melbourne.geojson", package="vicspatial"), quiet = TRUE) %>% 
     sf::st_union() %>%
     sf::st_centroid() %>%
     sf::st_as_text()
@@ -141,7 +141,7 @@ sf_text <- function(x) {
   ## If too big here, simplify
   if (utils::object.size(x) > getOption("vicmap.max_geom_pred_size", 4400)) {
     # Message was annoying
-    # message("The object is too large to perform exact spatial operations using VicmapR. 
+    # message("The object is too large to perform exact spatial operations using vicspatial. 
     #         To simplify the polygon, sf::st_simplify() was used to reduce the size of the query")
     x <- polygonFormat(x) %>%
       sf::st_transform(4283) # lat/long format
