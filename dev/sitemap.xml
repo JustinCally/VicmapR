@@ -1,31 +1,78 @@
-<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>https://justincally.github.io/VicmapR/LICENSE.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/articles/beginner_vicmap.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/articles/index.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/articles/migration_odp.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/articles/query_vicmap.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/authors.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/index.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/news/index.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/CQL.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/check_geoserver.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/collect.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/convert_layer_name.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/cql_geom_predicates.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/data_citation.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/feature_hits.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/filter.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/geom_col_name.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/head.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/index.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/listLayers.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/name_conversions.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/pipe.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/print.vicmap_promise.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/select.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/show_query.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/vicmap_options.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/vicmap_query.html</loc></url>
-<url><loc>https://justincally.github.io/VicmapR/reference/wfsConnection-class.html</loc></url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://justincally.github.io/VicmapR/articles/beginner_vicmap.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/articles/query_vicmap.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/index.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/check_geoserver.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/collect.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/CQL.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/cql_geom_predicates.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/data_citation.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/feature_hits.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/filter.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/geom_col_name.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/head.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/listLayers.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/print.vicmap_promise.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/select.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/show_query.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/vicmap_options.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/vicmap_query.html</loc>
+  </url>
+  <url>
+    <loc>https://justincally.github.io/VicmapR/reference/wfsConnection-class.html</loc>
+  </url>
 </urlset>
-

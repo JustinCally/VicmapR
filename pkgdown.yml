@@ -1,12 +1,11 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   beginner_vicmap: beginner_vicmap.html
   migration_odp: migration_odp.html
   query_vicmap: query_vicmap.html
-last_built: 2023-06-28T03:24Z
+last_built: 2025-05-26T05:17Z
 urls:
-  reference: https://justincally.github.io/VicmapR/reference
-  article: https://justincally.github.io/VicmapR/articles
-
+  reference: https://justincally.github.io/vicspatial/reference
+  article: https://justincally.github.io/vicspatial/articles
