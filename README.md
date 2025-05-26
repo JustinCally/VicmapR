@@ -1,7 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# vicspatial <img src='man/figures/logo.png' align="right" height="139" />
+# vicspatial 
+
+<img src='man/figures/logo.png' align="right" height="100" />
 
 <!-- badges: start -->
 
