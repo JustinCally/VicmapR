@@ -94,7 +94,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><strong>From November 2024 (version 0.3.0) <code>vicspatial</code> will be renamed to <code>vicspatial</code>. Unfortunately this change has been requested by the trademark holders of <code>VICMAP</code> (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of <code>vicspatial</code>.</strong></p>
+<p><strong>In May 2025 (version 0.3.0) <code>VicmapR</code> was renamed to <code>vicspatial</code>. Unfortunately this change has been requested by the trademark holders of <code>VICMAP</code> (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of <code>VicmapR</code>.</strong></p>
 <p>The goal of vicspatial is to provide functions to easily access Victorian Government spatial data through their WFS (Web Feature Service). vicspatial leverages code and a lazy querying approach developed by <a href="https://joss.theoj.org/papers/10.21105/joss.02927" class="external-link">Teucher et al. (2021)</a> for the <a href="https://bcgov.github.io/bcdata/" class="external-link">{bcdata} R package</a>, which allows for a responsive and precise querying process.</p>
 <div class="section level2">
 <h2 id="migration-of-victorias-open-data-geoserver">Migration of Victoria’s Open Data Geoserver<a class="anchor" aria-label="anchor" href="#migration-of-victorias-open-data-geoserver"></a>
@@ -118,12 +118,13 @@
 <p>Currently, the ability to use accurate geometric filters using <code>vicspatial</code> requires GDAL &gt; 3.0. To see how to upgrade your version of GDAL and link it to the <code>sf</code> package visit: <a href="https://r-spatial.github.io/sf/#installing" class="external-link uri">https://r-spatial.github.io/sf/#installing</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</span></span>
+<span><span class="co">#&gt; Warning: package 'sf' was built under R version 4.3.3</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE</span></span>
 <span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf_extSoftVersion.html" class="external-link">sf_extSoftVersion</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           GEOS           GDAL         proj.4 GDAL_with_GEOS     USE_PROJ_H </span></span>
-<span><span class="co">#&gt;       "3.11.0"        "3.5.3"        "9.1.0"         "true"         "true" </span></span>
+<span><span class="co">#&gt;       "3.13.0"        "3.8.5"        "9.5.1"         "true"         "true" </span></span>
 <span><span class="co">#&gt;           PROJ </span></span>
-<span><span class="co">#&gt;        "9.1.0"</span></span></code></pre></div>
+<span><span class="co">#&gt;        "9.5.1"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -134,7 +135,7 @@
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://justincally.github.io/vicspatial/">vicspatial</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; From November 2024 (version 0.3.0) `vicspatial` will be renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `vicspatial`</span></span>
+<span><span class="co">#&gt; From November 2024 (version 0.3.0) `vicspatial` will be renamed to `vicspatial`. Unfortunately this change has been requested by the trademark holders of `VICMAP` (Department of Transport and Planning). While redirections should be in place for GitHub and CRAN websites, please check existing code for explicit mentions of `vicspatial`.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'vicspatial'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
@@ -169,7 +170,7 @@
 <span></span>
 <span><span class="co"># Obtain a promise of what data will be returned for a given layer</span></span>
 <span><span class="fu"><a href="reference/vicmap_query.html">vicmap_query</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"open-data-platform:hy_watercourse"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; • Using collect() on this object will return 1832888 features and 21</span></span>
+<span><span class="co">#&gt; • Using collect() on this object will return 1832868 features and 21</span></span>
 <span><span class="co">#&gt; • fields</span></span>
 <span><span class="co">#&gt; • At most six rows of the record are printed here</span></span>
 <span><span class="co">#&gt; ────────────────────────────────────────────────────────────────────────────────</span></span>
