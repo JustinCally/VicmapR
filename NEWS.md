@@ -1,5 +1,6 @@
 # vicspatial 0.3.0
-* VicmapR has now been renamed to vicspatial  
+* VicmapR has now been renamed to vicspatial 
+* Change logo and update vignette with tram data not working
 
 # vicspatial 0.2.3.9001
 * Provide note/message to users on package load that warns them of the upcoming change to the vicspatial package name to vicspatial.
