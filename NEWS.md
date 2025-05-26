@@ -1,6 +1,6 @@
 # VicmapR 0.2.3.9001
 * Provide note/message to users on package load that warns them of the upcoming change to the VicmapR package name to vicspatial.
-* In vignettes evaluate the bbox or entroid before making th query
+* In vignettes evaluate the bbox or centroid before making the query
 
 # VicmapR 0.2.3
 * Check internet resource is available in the cql predicate tests 
