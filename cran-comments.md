@@ -1,3 +1,6 @@
+# vicspatial 0.3.0 (2025-05-26)  
++ Note: This package is the renamed version of the previously accepted CRAN package `VicmapR` (due to copyright and branding concerns). The codebase and authorship are the same.
+
 # vicspatial 0.2.3 (2023-06-19)  
 + Check internet resource is available in the cql predicate tests 
 
